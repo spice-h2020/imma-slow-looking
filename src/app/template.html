@@ -1,0 +1,240 @@
+<div class="container-fluid"> 
+
+    <button (click)="mode=1">Slow Looking</button>
+    <button (click)="mode=2">Management</button>
+    <button (click)="mode=3">Other People</button>
+    <button (click)="mode=4">Authoring</button>
+    <button (click)="mode=5">Themes</button>
+
+    <div [ngSwitch]="mode">  
+        <div *ngSwitchCase="1">
+            <h1>Slow Looking</h1>
+            <p>Themes</p>
+            <table class="table table-sm table-striped"> 
+                <tr><th></th><th>id</th><th>Theme</th><th>Description</th></tr> 
+                <tbody class="text-black"> 
+                    <tr *ngFor="let item of getThemes(); let i = index"> 
+                    <td>{{i}}</td> 
+                    <td>{{item.id}}</td> 
+                    <td>{{item.name}}</td>
+                    <td>{{item.description}}</td>
+                    </tr> 
+                </tbody> 
+            </table> 
+
+            <div *ngFor="let item of getThemes(); let i = index">
+                <div>
+                    <div>{{item.id}}: {{item.name}}</div>
+                    <div *ngFor="let script of getScriptsOfTheme(item.id); let i = index">
+                        <div>{{script.name}}</div> 
+                        <div><img class="col-sm-12" src="{{script.artwork.fileLocation}}"></div>
+                        <div><strong>{{script.artwork.name}}</strong></div>
+                        <div>{{script.artwork.artist}}</div>
+                        <div>{{script.artwork.year}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div>Script: {{getScript(1).name}}, Artwork: {{getScript(1).artwork.name}}, 
+                Open: {{getScript(1).open}}, Visible: {{getScript(1).visible}}</div>
+
+            <div *ngFor="let stage of getScript(1).stages; let i = index">
+                <div>
+                    <div>{{i}}</div>
+                    <div>{{stage.id}}</div>
+                    <div>{{stage.position}}</div>
+                    <div>{{stage.title}}</div>
+                    <div>{{stage.body}}</div>
+                    <div>{{stage.help}}</div>
+                    <div>{{stage.type}}</div>
+                </div>
+            </div>
+
+
+
+        </div> 
+        <div *ngSwitchCase="2">
+            <h1>Management</h1>
+            <p>All activities</p>
+            <table class="table table-sm table-striped"> 
+                <tr><th></th><th>id</th><th>Script</th><th>Actions</th><th>Approved</th></tr> 
+                <tbody class="text-black"> 
+                    <tr *ngFor="let item of getActivities(); let i = index"> 
+                    <td>{{i}}</td> 
+                    <td>{{item.id}}</td> 
+                    <td>{{item.script.name}}: {{item.script.artwork.name}}, {{item.script.artwork.artist}}, {{item.script.artwork.year}}</td> 
+                    <div *ngFor="let action of item.actions;">
+                        {{action.position}}, {{action.question}}, {{action.answer}}
+                    </div>
+                    <td>{{item.approved}}</td> 
+                    </tr> 
+                </tbody> 
+            </table> 
+            
+            <p>Approved activities</p>
+            <table class="table table-sm table-striped"> 
+                <tr><th></th><th>id</th><th>Script</th><th>Actions</th><th>Approved</th><th>Status</th><th>Public</th></tr> 
+                <tbody class="text-black"> 
+                    <tr *ngFor="let item of getApprovedActivities(); let i = index"> 
+                    <td>{{i}}</td> 
+                    <td>{{item.id}}</td> 
+                    <td>{{item.script.name}}: {{item.script.artwork.name}}, {{item.script.artwork.artist}}, {{item.script.artwork.year}}</td> 
+                    <div *ngFor="let action of item.actions;">
+                        {{action.position}}, {{action.question}}, {{action.answer}}
+                    </div>
+                    <td>{{item.approved}}</td>
+                    <td>{{item.script.open}}</td> 
+                    <td>{{item.script.visible}}</td>
+                    </tr> 
+                </tbody> 
+            </table> 
+            
+            <p>Awaiting approval</p>
+            <table class="table table-sm table-striped"> 
+                <tr><th></th><th>id</th><th>Script</th><th>Actions</th><th>Approved</th><th>Status</th><th>Public</th></tr> 
+                <tbody class="text-black"> 
+                    <tr *ngFor="let item of getUnpprovedActivities(); let i = index"> 
+                    <td>{{i}}</td> 
+                    <td>{{item.id}}</td> 
+                    <td>{{item.script.name}}: {{item.script.artwork.name}}, {{item.script.artwork.artist}}, {{item.script.artwork.year}}</td> 
+                    <div *ngFor="let action of item.actions;">
+                        {{action.position}}, {{action.question}}, {{action.answer}}
+                    </div>
+                    <td>{{item.approved}}</td> 
+                    <td>{{item.script.open}}</td> 
+                    <td>{{item.script.visible}}</td>
+                    </tr> 
+                </tbody> 
+            </table> 
+
+        </div> 
+        <div *ngSwitchCase="3">
+            <h1>Other People</h1>
+
+            <table class="table table-sm table-striped"> 
+                <tr><th></th><th>id</th><th>Script</th><th>Actions</th><th>Approved</th><th>Status</th><th>Public</th></tr> 
+                <tbody class="text-black"> 
+                    <tr *ngFor="let item of getApprovedVisibleActivities(); let i = index"> 
+                        <td>{{i}}</td> 
+                        <td>{{item.id}}</td> 
+                        <td>{{item.script.name}}: {{item.script.artwork.name}}, {{item.script.artwork.artist}}, {{item.script.artwork.year}}</td> 
+                        <div *ngFor="let action of item.actions;">
+                            {{action.position}}, {{action.question}}, {{action.answer}}
+                        </div>
+                        <td>{{item.approved}}</td> 
+                        <td>{{item.script.open}}</td> 
+                        <td>{{item.script.visible}}</td>
+                    </tr> 
+                </tbody> 
+            </table> 
+
+        </div> 
+        <div *ngSwitchCase="4">
+            <h1>Authoring</h1>
+
+            <table class="table table-sm table-striped"> 
+                <tr><th></th><th>id</th><th>Name</th><th>Themes</th><th>Artwork</th><th>Status</th><th>Visibility</th></tr> 
+                <tbody class="text-black"> 
+                    <tr *ngFor="let item of getScripts(); let i = index"> 
+                    <td>{{i}}</td>
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>
+                        <div *ngFor="let theme of item.themes"> 
+                            {{theme.name}}
+                        </div>
+                    </td>
+                    <td>{{item.artwork.name}}, {{item.artwork.artist}}, {{item.artwork.year}}</td>
+                    <td>{{item.open}}</td>
+                    <td>{{item.visible}}</td>
+                    </tr> 
+                </tbody> 
+            </table> 
+            <div *ngFor="let item of getScripts()">
+                {{item.name}}
+                <table class="table table-sm table-striped"> 
+                    <tr><th></th><th>id</th><th>Position</th><th>Type</th><th>Title</th><th>Body</th><th>Help</th></tr> 
+                    <tbody class="text-black"> 
+                        <tr *ngFor="let stage of item.stages; let i = index">
+                        <td>{{i}}</td>
+                        <td>{{stage.id}}</td>
+                        <td>{{stage.position}}</td>
+                        <td>{{stage.type}}</td>
+                        <td>{{stage.title}}</td>
+                        <td>{{stage.body}}</td>
+                        <td>{{stage.help}}</td>
+                        </tr> 
+                    </tbody> 
+                </table> 
+            </div>
+        </div>        
+        <div *ngSwitchDefault>
+            <h1>Themes</h1>
+            <p>{{tableEditing}}{{editrow}}</p> 
+
+            <div class="form-group">
+            <table class="table table-sm table-striped"> 
+                <tr><th></th><th>id</th><th>Theme</th><th>Description</th><th></th><th></th></tr> 
+                <tbody class="text-black"> 
+                    <tr *ngFor="let item of getThemes(); let i = index"> 
+                        <td>
+                            {{i}}
+                        </td> 
+                        <td>{{item.id}}</td>
+                        <td>
+                            <span *ngIf="!tableEditing || editrow!=item.id">
+                                {{item.name}}
+                            </span>
+                            <span *ngIf="tableEditing && editrow==item.id">
+                                <input class="form-control" [(ngModel)]="item.name"/>
+                            </span>
+                        </td>
+                        <td>
+                            <span *ngIf="!tableEditing || editrow!=item.id">
+                                {{item.description}}
+                            </span>
+                            <span *ngIf="tableEditing && editrow==item.id">
+                                <input class="form-control" [(ngModel)]="item.description"/>
+                            </span>
+                        </td>
+                        <td>
+                            <span *ngIf="!tableEditing">
+                                Delete
+                            </span>
+                        </td>
+                        <td>
+                            <span *ngIf="!tableEditing">
+                                <button (click)="editrow=item.id" (click)="tableEditing=true">Edit</button>
+                            </span>
+                            <span *ngIf="tableEditing && editrow==item.id">
+                                <button (click)="0" (click)="tableEditing=false">Done</button>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td> 
+                        <td></td>
+                        <td>
+                            <span *ngIf="!tableEditing">
+                                <input class="form-control" [(ngModel)]="newTheme.name" />
+                            </span>
+                        </td>
+                        <td>
+                            <span *ngIf="!tableEditing">
+                                <input class="form-control" [(ngModel)]="newTheme.description" />
+                            </span>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                            <span *ngIf="!tableEditing">
+                                <button (click)="addTheme(newTheme)">Add</button>
+                            </span>
+                        </td>
+                    </tr> 
+                </tbody> 
+            </table> 
+            </div>
+        </div>
+    </div>
+  </div> 
