@@ -27,6 +27,12 @@ export class SlowLookingComponent {
         this.tableEditing = false;
     }
 
+    deleteTheme(id: number) {
+        this.model.deleteTheme(id);
+        this.newTheme = new Theme();
+        this.tableEditing = false;
+    }
+
     getArtworks(): Artwork[] {
         return this.model.getArtworks();
     }

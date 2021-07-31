@@ -51,6 +51,13 @@ export class Model {
         }
     }
 
+    deleteTheme(id: number) {
+        let index = this.themes.findIndex(x => this.locator(x, id));
+        if (index > -1) {
+            this.themes.splice(index, 1);
+        }
+    }
+
     getArtworks(): Artwork[] {
         return this.artworks;
     }

@@ -199,7 +199,7 @@
                         </td>
                         <td>
                             <span *ngIf="!tableEditing">
-                                Delete
+                                <button (click)="deleteTheme(item.id)">Delete</button>
                             </span>
                         </td>
                         <td>
