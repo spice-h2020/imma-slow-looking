@@ -1,5 +1,5 @@
 <div class="container-fluid"> 
-
+    <div (click)="mode=4">Slow Looking</div>
     <button (click)="mode=1">Slow Looking</button>
     <button (click)="mode=2">Management</button>
     <button (click)="mode=3">Other People</button>
@@ -8,32 +8,43 @@
 
     <div [ngSwitch]="mode">  
         <div *ngSwitchCase="1">
-            <h1>Slow Looking</h1>
-            <p>Themes</p>
-            <table class="table table-sm table-striped"> 
-                <tr><th></th><th>id</th><th>Theme</th><th>Description</th></tr> 
-                <tbody class="text-black"> 
-                    <tr *ngFor="let item of getThemes(); let i = index"> 
-                    <td>{{i}}</td> 
-                    <td>{{item.id}}</td> 
-                    <td>{{item.name}}</td>
-                    <td>{{item.description}}</td>
-                    </tr> 
-                </tbody> 
-            </table> 
-
-            <div *ngFor="let item of getThemes(); let i = index">
-                <div>
-                    <div>{{item.id}}: {{item.name}}</div>
-                    <div *ngFor="let script of getScriptsOfTheme(item.id); let i = index">
-                        <div>{{script.name}}</div> 
-                        <div><img class="col-sm-12" src="{{script.artwork.fileLocation}}"></div>
-                        <div><strong>{{script.artwork.name}}</strong></div>
-                        <div>{{script.artwork.artist}}</div>
-                        <div>{{script.artwork.year}}</div>
+            <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark hidenav">
+                <a class="navbar-brand" href="#">IMMA Slow Looking</a>
+            </nav>
+            <div><img class="col-sm-12" src="assets/img/IMMA30_LOGO_RGB_small.png"></div>
+            <p class="lead">Weclome to IMMA Slow Looking. Dive deeper into IMMA artworks. Share your own responses to IMMA artworks and view the responses of others.</p>
+            
+            <h2>Find Out More</h2>
+            <p>Weclome to IMMA Slow Looking. Look closely at these IMMA artworks and develop your own interpretation. How do you view thse artworks? How do other people view them?</p> 
+            <p>Below are some Slow Looking activities. Each one focusses on a particular IMMA artwork. Each Slow Looking activity helps you to look deeper, find out more about the artwork and develop you own interpretation.</p>
+            <p>Within each activity you may have the opportunity to share your response with IMMA, send it to friends and family as well as keep a copy for yourself as a momento of your experience.</p>
+            <p>There is a link to the public display of shared Slow Looking responses in the Other People section of this page. But first, try some Slow Looking activities for yourself.</p>
+            
+            <h2>Take Part</h2>
+            <p>The Slow Looking activities are organised into the themes below. Select a theme to view the Slow Looking activities. Each activity is based around a particular artwork in the IMMA collection.</p>
+            {{slowLookingScript}}
+            <div class="row">
+                <div *ngFor="let theme of getThemes()" >
+                    <div (click)="updateSlowLookingTheme(theme.id)" class="col-md-12 card my-3 shadow-sm rounded">
+                        <h4>{{theme.name}}</h4>
+                        <p>{{theme.description}}</p>
+                    </div>
+                    <div class="col-md-12  my-3 rounded">
+                        <div *ngIf="slowLookingTheme==theme.id">
+                            <div *ngFor="let script of getScriptsOfTheme(slowLookingTheme); let i = index" class="col-sm-12 pb-4">
+                                <h5 class="col-sm-12">{{script.name}}</h5> 
+                                <div><img (click)="slowLookingScript=script.id" class="col-sm-12" src="{{script.artwork.fileLocation}}"></div>
+                                <div class="col-sm-12"><strong>{{script.artwork.name}}</strong></div>
+                                <div class="col-sm-12">{{script.artwork.artist}}</div>
+                                <div class="col-sm-12">{{script.artwork.year}}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+                
+
+
 
             <div>Script: {{getScript(1).name}}, Artwork: {{getScript(1).artwork.name}}, 
                 Open: {{getScript(1).open}}, Visible: {{getScript(1).visible}}</div>
@@ -169,9 +180,10 @@
             </div>
         </div>        
         <div *ngSwitchDefault>
-            <h1>Themes</h1>
-            <p>{{tableEditing}}{{editrow}}</p> 
-
+            <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark hidenav">
+                <a class="navbar-brand" href="#">Themes</a>
+            </nav>
+            <p>Add, edit and delete themes used in Slow Looking.</p>
             <div class="form-group">
             <table class="table table-sm table-striped"> 
                 <tr><th></th><th>id</th><th>Theme</th><th>Description</th><th></th><th></th></tr> 

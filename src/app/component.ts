@@ -13,7 +13,20 @@ import { Theme } from "./theme.model";
 export class SlowLookingComponent {
     model: Model = new Model();
 
-    mode: number = 0;
+    mode: number = 1;
+
+    slowLookingScript: number = 0;
+
+    slowLookingTheme: number = 0;
+
+    updateSlowLookingTheme(id: number) {
+        if(id == this.slowLookingTheme) {
+            this.slowLookingTheme = 0;
+        }
+        else {
+            this.slowLookingTheme = id;
+        }
+    }
 
     editrow: number = 0;
 

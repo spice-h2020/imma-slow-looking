@@ -34,7 +34,7 @@ export class StaticDataSource {
         );
         
         this.scriptData = new Array<Script>(
-            new Script(1, "Slow Looking at Saddle", new Array<Theme>(this.themeData[0], this.themeData[1], this.themeData[4]), this.artworkData[0], true, true,
+            new Script(1, "Slow Looking at Saddle", new Array<Theme>(this.themeData[0], this.themeData[1], this.themeData[2], this.themeData[3], this.themeData[4]), this.artworkData[0], true, true,
             new Array<Stage>(
                 new welcomeStage(1, 1, "Saddle", "Hello and welcome to the IMMA Slow Looking Series. " +
                     "My name is Paola and I'm going to share some time exploring an artwork from the IMMA Collection with you. " +
