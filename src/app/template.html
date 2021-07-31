@@ -207,7 +207,7 @@
                                 <button (click)="editrow=item.id" (click)="tableEditing=true">Edit</button>
                             </span>
                             <span *ngIf="tableEditing && editrow==item.id">
-                                <button (click)="0" (click)="tableEditing=false">Done</button>
+                                <button (click)="0" (click)="tableEditing=false" [disabled]="!item.name || !item.description">Done</button>
                             </span>
                         </td>
                     </tr>
@@ -228,7 +228,7 @@
                         </td>
                         <td>
                             <span *ngIf="!tableEditing">
-                                <button (click)="addTheme(newTheme)">Add</button>
+                                <button (click)="addTheme(newTheme)" [disabled]="!newTheme.name || !newTheme.description">Add</button>
                             </span>
                         </td>
                     </tr> 
