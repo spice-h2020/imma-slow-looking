@@ -67,7 +67,7 @@ export class followStage extends Stage {
         public id?: number,
         public position?: number,
         public title: string = "Keep in touch",
-        public body: string = "Would you like to receive a link to your SLow Looking activity via email?",
+        public body: string = "Would you like to receive a link to your Slow Looking activity via email? If so, enter your email address.",
         public type: string = "follow"
     ) {
         super(id, position, type);
@@ -80,8 +80,8 @@ export class shareWithSomeoneStage extends Stage {
         public id?: number,
         public position?: number,
         public title: string = "Share with someone",
-        public body: string = "Would you like to share your response with someone such as friend or family member?" +
-        "If so, enter their email address and a message" +
+        public body: string = "Would you like to share your response with someone such as friend or family member? " +
+        "If so, enter their email address and a message. " +
         "Remember to include your name in the message so they know who sent it",
         public type: string = "shareWithSomeone"
     ) {
@@ -95,7 +95,7 @@ export class thankyouStage extends Stage {
         public id?: number,
         public position?: number,
         public title: string = "Thankyou",
-        public body: string = "THankyou for taking part in this Slow Looking activity" +
+        public body: string = "Thankyou for taking part in this Slow Looking activity. " +
         "Share the activity over social media. This shares the activity, not your own response to it.",
         public type: string = "thankyou",
     ) {

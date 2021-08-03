@@ -33,12 +33,21 @@ export class Model {
         this.dataSource.getActivityData().forEach(x => this.activities.push(x));
     }
 
+    // saveAction(action: Action) {
+
+    // }
+    
     getThemes(): Theme[] {
         return this.themes;
     }
 
     getTheme(id: number) {
         return this.themes.find(x => this.locator(x, id));
+    }
+
+    saveActivity(activity: Activity) {
+        activity.id = this.generateActivityID();
+        this.activities.push(activity);
     }
 
     saveTheme(theme: Theme) {
@@ -95,6 +104,10 @@ export class Model {
     //     }
     // }
 
+    getActivity(id: number) {
+        return this.activities.find(x => this.locator(x, id));
+    }
+
     getActivities(): Activity[] {
         return this.activities;
     }
@@ -109,6 +122,14 @@ export class Model {
 
     getUnapprovedActivities(): Activity[] {
         return this.activities.filter(x => this.unapproved(x))
+    }
+
+    private generateActivityID(): number {
+        let candidate = 1;
+        while (this.getActivity(candidate) != null) {
+            candidate++;
+        }
+        return candidate;
     }
 
     private generateThemeID(): number {

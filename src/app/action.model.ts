@@ -23,7 +23,7 @@ export class shareWithMusemAction extends Action {
     constructor (
         public shareWithMuseumStage?: shareWithMuseumStage,
         public position?: number,
-        public share?: boolean,
+        public share: boolean = true
     ) {
         super(position);
     }

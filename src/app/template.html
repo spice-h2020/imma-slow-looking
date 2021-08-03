@@ -1,5 +1,4 @@
 <div class="container-fluid"> 
-    <div (click)="mode=4">Slow Looking</div>
     <button (click)="mode=1">Slow Looking</button>
     <button (click)="mode=2">Management</button>
     <button (click)="mode=3">Other People</button>
@@ -11,59 +10,205 @@
             <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark hidenav">
                 <a class="navbar-brand" href="#">IMMA Slow Looking</a>
             </nav>
-            <div><img class="col-sm-12" src="assets/img/IMMA30_LOGO_RGB_small.png"></div>
-            <p class="lead">Weclome to IMMA Slow Looking. Dive deeper into IMMA artworks. Share your own responses to IMMA artworks and view the responses of others.</p>
-            
-            <h2>Find Out More</h2>
-            <p>Weclome to IMMA Slow Looking. Look closely at these IMMA artworks and develop your own interpretation. How do you view thse artworks? How do other people view them?</p> 
-            <p>Below are some Slow Looking activities. Each one focusses on a particular IMMA artwork. Each Slow Looking activity helps you to look deeper, find out more about the artwork and develop you own interpretation.</p>
-            <p>Within each activity you may have the opportunity to share your response with IMMA, send it to friends and family as well as keep a copy for yourself as a momento of your experience.</p>
-            <p>There is a link to the public display of shared Slow Looking responses in the Other People section of this page. But first, try some Slow Looking activities for yourself.</p>
-            
-            <h2>Take Part</h2>
-            <p>The Slow Looking activities are organised into the themes below. Select a theme to view the Slow Looking activities. Each activity is based around a particular artwork in the IMMA collection.</p>
-            {{slowLookingScript}}
-            <div class="row">
-                <div *ngFor="let theme of getThemes()" >
-                    <div (click)="updateSlowLookingTheme(theme.id)" class="col-md-12 card my-3 shadow-sm rounded">
-                        <h4>{{theme.name}}</h4>
-                        <p>{{theme.description}}</p>
-                    </div>
-                    <div class="col-md-12  my-3 rounded">
-                        <div *ngIf="slowLookingTheme==theme.id">
-                            <div *ngFor="let script of getScriptsOfTheme(slowLookingTheme); let i = index" class="col-sm-12 pb-4">
-                                <h5 class="col-sm-12">{{script.name}}</h5> 
-                                <div><img (click)="slowLookingScript=script.id" class="col-sm-12" src="{{script.artwork.fileLocation}}"></div>
-                                <div class="col-sm-12"><strong>{{script.artwork.name}}</strong></div>
-                                <div class="col-sm-12">{{script.artwork.artist}}</div>
-                                <div class="col-sm-12">{{script.artwork.year}}</div>
+            <div *ngIf="!(slowLookingScript>0)">
+                <div><img class="col-sm-12" src="assets/img/IMMA30_LOGO_RGB_small.png"></div>
+                <p class="lead">Weclome to IMMA Slow Looking. Dive deeper into IMMA artworks. Share your own responses to IMMA artworks and view the responses of others.</p>
+                
+                <h2>Find Out More</h2>
+                <p>Weclome to IMMA Slow Looking. Look closely at these IMMA artworks and develop your own interpretation. How do you view thse artworks? How do other people view them?</p> 
+                <p>Below are some Slow Looking activities. Each one focusses on a particular IMMA artwork. Each Slow Looking activity helps you to look deeper, find out more about the artwork and develop you own interpretation.</p>
+                <p>Within each activity you may have the opportunity to share your response with IMMA, send it to friends and family as well as keep a copy for yourself as a momento of your experience.</p>
+                <p>There is a link to the public display of shared Slow Looking responses in the Other People section of this page. But first, try some Slow Looking activities for yourself.</p>
+                
+                <h2>Take Part</h2>
+                <p>The Slow Looking activities are organised into the themes below. Select a theme to view the Slow Looking activities. Each activity is based around a particular artwork in the IMMA collection.</p>
+                <div class="row">
+                    <div *ngFor="let theme of getThemes()" >
+                        <div (click)="updateSlowLookingTheme(theme.id)" class="col-md-12 card my-3 shadow-sm rounded">
+                            <h4>{{theme.name}}</h4>
+                            <p>{{theme.description}}</p>
+                        </div>
+                        <div class="col-md-12  my-3 rounded">
+                            <div *ngIf="slowLookingTheme==theme.id">
+                                <div *ngFor="let script of getScriptsOfTheme(slowLookingTheme); let i = index" class="col-sm-12 pb-4">
+                                    <h5 class="col-sm-12">{{script.name}}</h5> 
+                                    <div>
+                                        <img (click)="setSlowLookingScript(script.id)" class="col-sm-12" src="{{script.artwork.fileLocation}}" >
+                                    </div>
+                                    <div class="col-sm-12"><strong>{{script.artwork.name}}</strong></div>
+                                    <div class="col-sm-12">{{script.artwork.artist}}</div>
+                                    <div class="col-sm-12">{{script.artwork.year}}</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-                
 
+            <div *ngIf="slowLookingScript>0">
+                <div *ngFor="let stage of getScript(slowLookingScript).stages; let i = index">
+                    <div *ngIf="slowLookingCurrentScriptStageIndex == i">
+                        <div *ngIf="stage.type == 'welcome'">  
+                            <h5>{{stage.title}}</h5>
+                            <p>{{stage.body}}</p>
+                            <span *ngIf="slowLookingMaximumScriptStageIndex == i">
+                                <div class="text-center">
+                                    <button (click)="slowLookingScript=0">Return to the list of Slow Looking activities</button>
+                                </div>
+                            </span>
+                            <span *ngIf="slowLookingMaximumScriptStageIndex != i">
+                                <div class="text-right">
+                                    <button (click)="slowLookingCurrentScriptStageIndex=i+1; ">Continue</button>
+                                </div>
+                            </span>
+                        </div>
+                        <div *ngIf="stage.type == 'context'">  
+                            <h5>{{stage.title}}</h5>
+                            <p>{{stage.body}}</p>
+                            <span *ngIf="slowLookingMaximumScriptStageIndex == i">
+                                <div class="text-center">
+                                    <button (click)="slowLookingScript=0">Return to the list of Slow Looking activities</button>
+                                </div>
+                            </span>
+                            <span *ngIf="slowLookingMaximumScriptStageIndex != i">
+                                <div class="text-right">
+                                    <button (click)="slowLookingCurrentScriptStageIndex=i+1; ">Continue</button>
+                                </div>
+                            </span>
+                        </div>
+                        <div *ngIf="stage.type == 'question'"> 
+                            <div class="form-group">
+                                <!-- initialise a new action and add its stage and question  -->
+                                {{intialiseQuestionAction(stage, stage.body)}}
 
+                                <!-- show title and question  -->
+                                <h5>{{stage.title}}</h5>
+                                <p>{{stage.body}}</p>
 
-            <div>Script: {{getScript(1).name}}, Artwork: {{getScript(1).artwork.name}}, 
-                Open: {{getScript(1).open}}, Visible: {{getScript(1).visible}}</div>
+                                <!-- get the answer -->
+                                <textarea rows="3" class="form-control" [(ngModel)]="newQuestionAction.answer"></textarea>
 
-            <div *ngFor="let stage of getScript(1).stages; let i = index">
-                <div>
-                    <div>{{i}}</div>
-                    <div>{{stage.id}}</div>
-                    <div>{{stage.position}}</div>
-                    <div>{{stage.title}}</div>
-                    <div>{{stage.body}}</div>
-                    <div>{{stage.help}}</div>
-                    <div>{{stage.type}}</div>
-                </div>
+                                <!-- return to list if last stage -->
+                                <span *ngIf="slowLookingMaximumScriptStageIndex == i">
+                                    <div class="text-center">
+                                        <button (click)="slowLookingScript=0; addActionToActivity(newQuestionAction); resetNewQuestionAction();">Return to the list of Slow Looking activities</button>
+                                    </div>
+                                </span>
+                                <!-- continue if not last stage -->
+                                <span *ngIf="slowLookingMaximumScriptStageIndex != i">
+                                    <div class="text-right">
+                                        <button (click)="slowLookingCurrentScriptStageIndex=i+1; addActionToActivity(newQuestionAction); resetNewQuestionAction();">Continue</button>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>   
+                        <div *ngIf="stage.type == 'shareWithMuseum'">  
+                            <div class="form-group">
+                                {{intialiseShareWithMuseumAction(stage)}}
+                                <h5>{{stage.title}}</h5>
+                                <p>{{stage.body}}</p>
+                            </div>
+                            <div class="form-check">
+                                <input
+                                    type="radio"
+                                    [value]=true
+                                    name="share"
+                                    [(ngModel)] = "newShareWithMusemAction.share"
+                                    checked
+                                />
+                                <label class="form-check-label" for="flexRadioDefault2"> agree </label>
+                            </div>
+                            <div class="form-check">
+                                <input
+                                    type="radio"
+                                    [value]=false
+                                    name="share"
+                                    [(ngModel)] = "newShareWithMusemAction.share"
+                              />
+                              <label class="form-check-label" for="flexRadioDefault1"> disagree </label>
+                            </div>
+
+                            <span *ngIf="slowLookingMaximumScriptStageIndex == i">
+                                <div class="text-center">
+                                    <button (click)="slowLookingScript=0; addActionToActivity(newShareWithMusemAction); resetNewShareWithMusemAction();">Return to the list of Slow Looking activities</button>
+                                </div>
+                            </span>
+                            <span *ngIf="slowLookingMaximumScriptStageIndex != i">
+                                <div class="text-right">
+                                    <button (click)="slowLookingCurrentScriptStageIndex=i+1; addActionToActivity(newShareWithMusemAction); resetNewShareWithMusemAction();">Continue</button>
+                                </div>
+                            </span>
+                        </div>
+                        <div *ngIf="stage.type == 'follow'">  
+                            <div class="form-group">
+                                {{intialiseFollowAction(stage)}}
+                                <h5>{{stage.title}}</h5>
+                                <p>{{stage.body}}</p>
+                                <div class="form-group">
+                                    <label for="emailaddress">Your email address:</label>
+                                    <textarea id="emailaddress" rows="1" class="form-control" [(ngModel)]="newFollowAction.emailAddress"></textarea>
+                                </div>
+                            </div>
+                            <span *ngIf="slowLookingMaximumScriptStageIndex == i">
+                                <div class="text-center">
+                                    <button (click)="slowLookingScript=0; addActionToActivity(newFollowAction); resetFollowAction();">Return to the list of Slow Looking activities</button>
+                                </div>
+                            </span>
+                            <span *ngIf="slowLookingMaximumScriptStageIndex != i">
+                                <div class="text-right">
+                                    <button (click)="slowLookingCurrentScriptStageIndex=i+1; addActionToActivity(newFollowAction); resetFollowAction();">Continue</button>
+                                </div>
+                            </span>
+                            {{foo()}}
+                        </div>
+                        <div *ngIf="stage.type == 'shareWithSomeone'">  
+                            <div class="form-group">
+                                {{intialiseShareWithSomeoneAction(stage)}}
+                                <h5>{{stage.title}}</h5>
+                                <p>{{stage.body}}</p>
+                                <div class="form-group">
+                                    <label for="emailaddress">Their email address:</label>
+                                    <textarea id="emailaddress" rows="1" class="form-control" [(ngModel)]="newShareWithFriendAction.emailAddress"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="emailaddress">Message:</label>
+                                    <textarea id="emailaddress" rows="5" class="form-control" [(ngModel)]="newShareWithFriendAction.message"></textarea>
+                                </div>
+                            </div>
+                            <span *ngIf="slowLookingMaximumScriptStageIndex == i">
+                                <div class="text-center">
+                                    <button (click)="slowLookingScript=0; addActionToActivity(newShareWithFriendAction); resetShareWithSomeoneAction();">Return to the list of Slow Looking activities</button>
+                                </div>
+                            </span>
+                            <span *ngIf="slowLookingMaximumScriptStageIndex != i">
+                                <div class="text-right">
+                                    <button (click)="slowLookingCurrentScriptStageIndex=i+1;  addActionToActivity(newShareWithFriendAction); resetShareWithSomeoneAction();">Continue</button>
+                                </div>
+                            </span>
+                            {{foo()}}
+                        </div>
+                        <div *ngIf="stage.type == 'thankyou'">  
+                            <h5>{{stage.title}}</h5>
+                            <p>{{stage.body}}</p>
+                            <div>
+                                [Social media butons to be added here]                            
+                            </div>
+                            <span *ngIf="slowLookingMaximumScriptStageIndex == i">
+                                <div class="text-center">
+                                    <button (click)="slowLookingScript=0; addActivity();">Return to the list of Slow Looking activities</button>
+                                </div>
+                            </span>
+                            {{foo()}}
+                            <span *ngIf="slowLookingMaximumScriptStageIndex != i">
+                                <div class="text-right">
+                                    <button (click)="slowLookingCurrentScriptStageIndex=i+1; ">Continue</button>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </div> 
             </div>
-
-
-
-        </div> 
+        </div>
         <div *ngSwitchCase="2">
             <h1>Management</h1>
             <p>All activities</p>
@@ -75,7 +220,10 @@
                     <td>{{item.id}}</td> 
                     <td>{{item.script.name}}: {{item.script.artwork.name}}, {{item.script.artwork.artist}}, {{item.script.artwork.year}}</td> 
                     <div *ngFor="let action of item.actions;">
-                        {{action.position}}, {{action.question}}, {{action.answer}}
+                        <span *ngIf="action.questionStage">
+                            1{{action.questionStage.title}}1
+                            {{action.position}}, {{action.question}}, {{action.answer}}
+                        </span>
                     </div>
                     <td>{{item.approved}}</td> 
                     </tr> 
@@ -91,7 +239,10 @@
                     <td>{{item.id}}</td> 
                     <td>{{item.script.name}}: {{item.script.artwork.name}}, {{item.script.artwork.artist}}, {{item.script.artwork.year}}</td> 
                     <div *ngFor="let action of item.actions;">
-                        {{action.position}}, {{action.question}}, {{action.answer}}
+                        <span *ngIf="action.questionStage">
+                            1{{action.questionStage.title}}1
+                            {{action.position}}, {{action.question}}, {{action.answer}}
+                        </span>
                     </div>
                     <td>{{item.approved}}</td>
                     <td>{{item.script.open}}</td> 
@@ -109,7 +260,10 @@
                     <td>{{item.id}}</td> 
                     <td>{{item.script.name}}: {{item.script.artwork.name}}, {{item.script.artwork.artist}}, {{item.script.artwork.year}}</td> 
                     <div *ngFor="let action of item.actions;">
-                        {{action.position}}, {{action.question}}, {{action.answer}}
+                        <span *ngIf="action.questionStage">
+                            1{{action.questionStage.title}}1
+                            {{action.position}}, {{action.question}}, {{action.answer}}
+                        </span>
                     </div>
                     <td>{{item.approved}}</td> 
                     <td>{{item.script.open}}</td> 
@@ -142,7 +296,6 @@
         </div> 
         <div *ngSwitchCase="4">
             <h1>Authoring</h1>
-
             <table class="table table-sm table-striped"> 
                 <tr><th></th><th>id</th><th>Name</th><th>Themes</th><th>Artwork</th><th>Status</th><th>Visibility</th></tr> 
                 <tbody class="text-black"> 
@@ -198,7 +351,7 @@
                                 {{item.name}}
                             </span>
                             <span *ngIf="tableEditing && editrow==item.id">
-                                <input class="form-control" [(ngModel)]="item.name"/>
+                                <textarea rows="3" class="form-control" [(ngModel)]="item.name"></textarea>
                             </span>
                         </td>
                         <td>
@@ -206,7 +359,7 @@
                                 {{item.description}}
                             </span>
                             <span *ngIf="tableEditing && editrow==item.id">
-                                <input class="form-control" [(ngModel)]="item.description"/>
+                                <textarea rows="3" class="form-control" [(ngModel)]="item.description"></textarea>
                             </span>
                         </td>
                         <td>
@@ -219,7 +372,7 @@
                                 <button (click)="editrow=item.id" (click)="tableEditing=true">Edit</button>
                             </span>
                             <span *ngIf="tableEditing && editrow==item.id">
-                                <button (click)="0" (click)="tableEditing=false" [disabled]="!item.name || !item.description">Done</button>
+                                <button (click)="tableEditing=false" [disabled]="!item.name || !item.description">Done</button>
                             </span>
                         </td>
                     </tr>
@@ -228,12 +381,12 @@
                         <td></td>
                         <td>
                             <span *ngIf="!tableEditing">
-                                <input class="form-control" [(ngModel)]="newTheme.name" />
+                                <textarea rows="3" class="form-control" [(ngModel)]="newTheme.name"></textarea>
                             </span>
                         </td>
                         <td>
                             <span *ngIf="!tableEditing">
-                                <input class="form-control" [(ngModel)]="newTheme.description" />
+                                <textarea rows="3" class="form-control" [(ngModel)]="newTheme.description"></textarea>
                             </span>
                         </td>
                         <td>
