@@ -86,7 +86,10 @@
                                 <!-- show title and question  -->
                                 <h5>{{stage.title}}</h5>
                                 <p>{{stage.body}}</p>
-
+                                <div>
+                                    <span style="float:right"><img width="20" style="background-color:white;" src="assets/img/question-help.png" (click)="toggleQuestionHelp()"></span>
+                                    <span style="float:left"*ngIf="showQuestionHelp">{{stage.help}}</span>
+                                </div>
                                 <!-- get the answer -->
                                 <textarea rows="3" class="form-control" [(ngModel)]="newQuestionAction.answer"></textarea>
 

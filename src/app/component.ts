@@ -27,6 +27,16 @@ export class SlowLookingComponent {
         }
     }
     
+    toggleQuestionHelp() {
+        if(this.showQuestionHelp) {
+            this.showQuestionHelp = false;
+        }
+        else {
+            this.showQuestionHelp = true;
+        }
+    }
+    showQuestionHelp = false;
+
     selectedScript: number = 0;
 
     model: Model = new Model();
