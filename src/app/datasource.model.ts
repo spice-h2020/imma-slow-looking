@@ -1,5 +1,3 @@
-import { newArray } from "@angular/compiler/src/util";
-import { Injectable } from "@angular/core";
 import { Action, questionAction } from "./action.model";
 import { Activity } from "./activity.model";
 import { Artwork } from "./artwork.model";

@@ -50,6 +50,13 @@ export class Model {
         this.activities.push(activity);
     }
 
+    deleteActivity(id: number) {
+        let index = this.activities.findIndex(x => this.locator(x, id));
+        if (index > -1) {
+            this.activities.splice(index, 1);
+        }
+    }
+
     saveTheme(theme: Theme) {
         if (theme.id == 0 || theme.id == null) {
             theme.id = this.generateThemeID();

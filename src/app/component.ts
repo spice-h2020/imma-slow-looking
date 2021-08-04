@@ -14,17 +14,15 @@ import { Theme } from "./theme.model";
 })
 export class SlowLookingComponent {
 
+    foo(x){
+        console.log(x);
+    }
+
     model: Model = new Model();
-
-    foo() {
-        console.log(this.newActivity);
-    }
-
-    bar() {
-        console.log(this.newShareWithMusemAction);
-    }
     
-    mode: number = 1;
+    mode: number = 2;
+
+    managementMode: number = 1;
 
     slowLookingTheme: number = 0;
 
@@ -94,6 +92,11 @@ export class SlowLookingComponent {
     
     addActivity() {
         this.model.saveActivity(this.newActivity);
+    }
+
+    deleteActivity(id: number) {
+        console.log("hello");
+        this.model.deleteActivity(id);
     }
 
     addActionToActivity(action: Action) {
