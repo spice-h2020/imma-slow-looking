@@ -18,9 +18,20 @@ export class SlowLookingComponent {
         console.log(x);
     }
 
+    selectScript(id: number) {
+        if(id == this.selectedScript) {
+            this.selectedScript = 0;
+        }
+        else {
+            this.selectedScript = id;
+        }
+    }
+    
+    selectedScript: number = 0;
+
     model: Model = new Model();
     
-    mode: number = 2;
+    mode: number = 3;
 
     managementMode: number = 1;
 
@@ -162,6 +173,10 @@ export class SlowLookingComponent {
 
     getScriptsOfTheme(id: number): Script[] {
         return this.model.getScriptsOfTheme(id);
+    }
+
+    getApprovedActivitiesOfAScript(id: number): Activity[] {
+        return this.model.getApprovedActivitiesOfAScript(id);
     }
 
     getApprovedActivities(): Activity[] {

@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <h2>Other People</h2>
-                <button (click)="mode=3">Find out how others have responded to these artworks</button>
+                <button class="m-3" (click)="mode=3">Find out how others have responded to these artworks</button>
             </div>
 
             <div *ngIf="slowLookingScript>0">
@@ -315,25 +315,46 @@
             </div>
         </div> 
         <div *ngSwitchCase="3">
-            <h1>Other People</h1>
-
-            <table class="table table-sm table-striped"> 
-                <tr><th></th><th>id</th><th>Script</th><th>Actions</th><th>Approved</th><th>Status</th><th>Public</th></tr> 
-                <tbody class="text-black"> 
-                    <tr *ngFor="let item of getApprovedVisibleActivities(); let i = index"> 
-                        <td>{{i}}</td> 
-                        <td>{{item.id}}</td> 
-                        <td>{{item.script.name}}: {{item.script.artwork.name}}, {{item.script.artwork.artist}}, {{item.script.artwork.year}}</td> 
-                        <div *ngFor="let action of item.actions;">
-                            {{action.position}}, {{action.question}}, {{action.answer}}
+            <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark hidenav">
+                <a class="navbar-brand" href="#">IMMA Slow Looking</a>
+            </nav>
+                          
+            <h2>Other People</h2>
+            <p>Find out how others have responded to IMMA artworks. Select one of the themes to view the responses. Follow @IMMASlowLooking on Twitter to keep track of the responses of others.</p> 
+ 
+            <div class="row">
+                <div *ngFor="let theme of getThemes()" >
+                    <div (click)="updateSlowLookingTheme(theme.id)" class="col-md-12 card my-3 shadow-sm rounded">
+                        <h4>{{theme.name}}</h4>
+                        <p>{{theme.description}}</p>
+                    </div>
+                    <div class="col-md-12  my-3 rounded">
+                        <div *ngIf="slowLookingTheme==theme.id">
+                            <div *ngFor="let script of getScriptsOfTheme(slowLookingTheme); let i = index" class="col-sm-12 pb-4">
+                                <h5 class="col-sm-12">{{script.name}}</h5> 
+                                <div>
+                                    <img class="col-sm-12" src="{{script.artwork.fileLocation}}" >
+                                </div>
+                                <div class="col-sm-12"><strong>{{script.artwork.name}}</strong></div>
+                                <div class="col-sm-12">{{script.artwork.artist}}</div>
+                                <div class="col-sm-12">{{script.artwork.year}}</div>
+                                <div class="col-sm-12 border border-dark" (click)="selectScript(script.id)">
+                                    Recent responses
+                                    <div *ngIf="script.id==selectedScript">
+                                        <!-- get approved activities of a script -->
+                                        <div *ngFor="let activity of getApprovedActivitiesOfAScript(script.id); let i = index" class="border border-dark">
+                                            <div *ngFor="let action of activity.actions;">
+                                                <span class="font-weight-bold">{{action.question}}</span>
+                                                <p class="font-weight-normal">{{action.answer}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <td>{{item.approved}}</td> 
-                        <td>{{item.script.open}}</td> 
-                        <td>{{item.script.visible}}</td>
-                    </tr> 
-                </tbody> 
-            </table> 
-
+                    </div>
+                </div>
+            </div>
         </div> 
         <div *ngSwitchCase="4">
             <h1>Authoring</h1>

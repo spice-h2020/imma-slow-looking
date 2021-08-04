@@ -119,6 +119,10 @@ export class Model {
         return this.activities;
     }
     
+    getApprovedActivitiesOfAScript(scriptId: number): Activity[] {
+        return this.getApprovedActivities().filter(x => x.script.id == scriptId);
+    }
+
     getApprovedActivities(): Activity[] {
         return this.activities.filter(x => this.approved(x))
     }

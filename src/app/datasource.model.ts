@@ -200,7 +200,18 @@ export class StaticDataSource {
                     "A giant hare with a drum."),
                 ), 
                 true
-            ),              
+            ),
+            new Activity(6, this.scriptData[1], new Array<Action>(
+                new questionAction(new questionStage(18, 3, "What do you see?", "As we take our time to observe, what do we notice? " +
+                "What is our attention drawn to first? What is this sculpture made of? " +
+                "Are there several parts to it? What materials do you see?"), 4, 
+                    "As we take our time to observe, what do we notice? " +
+                    "What is our attention drawn to first? What is this sculpture made of? " +
+                    "Are there several parts to it? What materials do you see?",
+                    "A shiny cylinder."),
+                ), 
+                true
+            ),               
         );
 
     }
