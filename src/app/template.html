@@ -400,17 +400,25 @@
         <div *ngSwitchDefault>
             <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark hidenav">
                 <a class="navbar-brand" href="#">Themes</a>
-            </nav>
+            </nav> 
             <p>Add, edit and delete themes used in Slow Looking.</p>
             <div class="form-group">
             <table class="table table-sm table-striped"> 
-                <tr><th></th><th>id</th><th>Theme</th><th>Description</th><th></th><th></th></tr> 
+                <tr><th>id</th><th>Theme</th><th>Description</th><th></th><th></th></tr> 
                 <tbody class="text-black"> 
                     <tr *ngFor="let item of getThemes(); let i = index"> 
                         <td>
-                            {{i}}
-                        </td> 
-                        <td>{{item.id}}</td>
+                            <span *ngIf="!tableEditing || editrow!=item.id">
+                                {{i+1}}
+                            </span>
+                            <span *ngIf="tableEditing && editrow==item.id">
+                                <select (change)="shiftThemePosition($event,i); tableEditing=false">
+                                    <option *ngFor="let pos of getThemes(); let ind = index" [selected]="ind==i" value="{{ind}}">   
+                                        {{ind+1}}           
+                                     </option> 
+                                </select>
+                            </span>
+                        </td>
                         <td>
                             <span *ngIf="!tableEditing || editrow!=item.id">
                                 {{item.name}}
@@ -442,7 +450,6 @@
                         </td>
                     </tr>
                     <tr>
-                        <td></td> 
                         <td></td>
                         <td>
                             <span *ngIf="!tableEditing">

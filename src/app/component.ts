@@ -14,8 +14,12 @@ import { Theme } from "./theme.model";
 })
 export class SlowLookingComponent {
 
-    foo(x){
-        console.log(x);
+    shiftThemePosition(event,old){
+        let data = [0,1,2,3,4];
+        console.log(event.target.value);
+        console.log(old);
+
+        this.model.shiftThemePosition(old, event.target.value);
     }
 
     selectScript(id: number) {

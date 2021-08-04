@@ -33,10 +33,15 @@ export class Model {
         this.dataSource.getActivityData().forEach(x => this.activities.push(x));
     }
 
-    // saveAction(action: Action) {
-
-    // }
+    shiftThemePosition(from: number, to: number) {
+        this.insertAndShiftThemes(this.themes, from, to);
+    }
     
+    insertAndShiftThemes(arr: Theme[], from: number, to: number) {
+        let cutOut = arr.splice(from, 1) [0]; // cut the element at index 'from'
+        arr.splice(to, 0, cutOut);            // insert it at index 'to'
+    }
+
     getThemes(): Theme[] {
         return this.themes;
     }
