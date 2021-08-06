@@ -215,10 +215,10 @@
             <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark hidenav">
                 <a class="navbar-brand" href="#">IMMA Slow Looking: Management</a>
             </nav>
-            <div class="ml-4 mr-4">
+            <div>
                 Show:
             </div>
-            <div class="ml-4 mr-4">
+            <div class="mb-4">
                 <button (click)="managementMode=1" class="col-sm-4 text-center">All</button>
                 <button (click)="managementMode=2" class="col-sm-4 text-center">Approved</button>
                 <button (click)="managementMode=3" class="col-sm-4 text-center">Awaiting approval</button>
@@ -227,7 +227,7 @@
             <div [ngSwitch]="managementMode">  
                 <div *ngSwitchCase="1">
                     <!-- show all -->
-                    <div *ngFor="let item of getActivities(); let i = index" class="m-4 border">
+                    <div *ngFor="let item of getActivities(); let i = index" class="mb-4 border">
                         <div class="text-center border border-dark">
                             <span *ngIf="item.approved">
                                 Approved
@@ -257,7 +257,7 @@
                 </div>
                 <div *ngSwitchCase="2">
                     <!-- show approved -->
-                    <div *ngFor="let item of getApprovedActivities(); let i = index" class="m-4 border">
+                    <div *ngFor="let item of getApprovedActivities(); let i = index" class="mb-4 border">
                         <div class="text-center border border-dark">
                             <span *ngIf="item.approved">
                                 Approved
@@ -287,7 +287,7 @@
                 </div>
                 <div *ngSwitchCase="3">
                     <!-- show waiting approval -->
-                    <div *ngFor="let item of getUnpprovedActivities(); let i = index" class="m-4 border">
+                    <div *ngFor="let item of getUnpprovedActivities(); let i = index" class="mb4 border">
                         <div class="text-center border border-dark">
                             <span *ngIf="item.approved">
                                 Approved
@@ -360,25 +360,146 @@
             </div>
         </div> 
         <div *ngSwitchCase="4">
-            <h1>Authoring</h1>
-            <table class="table table-sm table-striped"> 
-                <tr><th></th><th>id</th><th>Name</th><th>Themes</th><th>Artwork</th><th>Status</th><th>Visibility</th></tr> 
-                <tbody class="text-black"> 
-                    <tr *ngFor="let item of getScripts(); let i = index"> 
-                    <td>{{i}}</td>
-                    <td>{{item.id}}</td>
-                    <td>{{item.name}}</td>
-                    <td>
-                        <div *ngFor="let theme of item.themes"> 
-                            {{theme.name}}
+            <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark hidenav">
+                <a class="navbar-brand" href="#">IMMA Slow Looking: Authoring</a>
+            </nav> 
+
+            <div class="form-group">
+                <span class="mr-3">Show: </span>
+                <span class="mr-3"><label>Open: </label><input type="checkbox" [checked]="showOpenScripts" (change)="showOpenScripts = !showOpenScripts"/></span>
+                <span class="mr-3"><label>Closed: </label><input type="checkbox" [checked]="showClosedScripts" (change)="showClosedScripts = !showClosedScripts"/></span>
+            </div>
+
+            <div class="float-right"><button>Add new script</button></div>
+            <div *ngFor="let script of getScripts(); let i = index">
+                <span *ngIf="(script.open && showOpenScripts) || (!(script.open) && showClosedScripts)">
+                    <div class="mb-3">
+                        <table class="table table-sm"><th></th><th></th><tr><td>
+                        
+                        <!-- script edit -->
+                        <span *ngIf="script.id==editScript">
+                            <!-- script name -->
+                            <span class="font-weight-bold">Title: </span><textarea rows="1" class="form-control" [(ngModel)]="script.name"></textarea>
+
+                            <div>
+                                <span class="font-weight-bold">Themes: </span>
+                                <span *ngFor="let theme of getThemes()" class="mr-3">
+                                    <input
+                                    type="checkbox"
+                                    [value]=theme.id
+                                    [ngModel] = "script.themes.includes(theme)"
+                                    (change) = "themesChange(script, theme, $event)"
+                                    />
+                                    <label class="form-check-label"> {{theme.name}} </label>
+                                </span>
+                            </div>
+
+                            <div>
+                                <table><th></th><th></th><tr><td>
+                                    <span class="font-weight-bold">Artwork: </span>
+                                </td><td>
+                                    <span *ngFor="let artwork of getArtworks()" class="mr-3">
+                                            <input
+                                            type="radio"
+                                            [value]="artwork"
+                                            name="artwork.name"
+                                            [(ngModel)] = "script.artwork"
+                                            />
+                                            <label class="form-check-label"> {{artwork.name}}, {{artwork.artist}}, {{artwork.year}} </label>
+                                            <br/>
+                                    </span>
+                                </td></tr></table>
+                            </div>
+                            <!-- script status -->
+                            <div>
+                                <span class="mr-3 font-weight-bold">
+                                    Status: 
+                                </span>
+                                <span class="mr-3">
+                                    <input
+                                    type="radio"
+                                    [value]=true
+                                    name="open"
+                                    [(ngModel)] = "script.open"
+                                    checked
+                                    />
+                                    <label class="form-check-label"> Open </label>
+                                </span>
+                                <span class="mr-3">
+                                    <input
+                                        type="radio"
+                                        [value]=false
+                                        name="open"
+                                        [(ngModel)] = "script.open"
+                                    />
+                                    <label class="form-check-label"> Closed </label>
+                                </span> 
+                            </div>
+                            <!-- script visibility -->
+                            <div>
+                                <span class="mr-3 font-weight-bold">
+                                    Visibility:
+                                </span>
+                                <span class="mr-3">
+                                    <input
+                                        type="radio"
+                                        [value]=true
+                                        name="visible"
+                                        [(ngModel)] = "script.visible"
+                                        checked
+                                    />
+                                    <label class="form-check-label"> Public </label>
+                                </span>
+                                <span class="mr-3">
+                                    <input
+                                        type="radio"
+                                        [value]=false
+                                        name="visible"
+                                        [(ngModel)] = "script.visible"
+                                    />
+                                    <label class="form-check-label"> Private </label>
+                                </span>
+                            </div>
+                        </span>
+                        
+                        <!-- script view-->
+                        <span *ngIf="script.id!=editScript">
+                            <h4>{{script.name}}</h4>
+                            <span class="font-weight-bold">
+                                Themes: 
+                            </span>
+                            <span *ngFor="let theme of script.themes; let i = index; let last = last">
+                                {{theme.name}}<span *ngIf="!last">, </span>
+                            </span>
+                            <br/>
+                            <span class="font-weight-bold">
+                                Artwork: 
+                            </span>{{script.artwork.name}}, {{script.artwork.artist}}, {{script.artwork.year}}<br/>
+                            <span class="font-weight-bold">
+                                Status: 
+                            </span>
+                            <span *ngIf="script.open">Open</span>
+                            <span *ngIf="!script.open">Closed</span><br/>
+                            <span class="font-weight-bold">
+                                Visibilty: 
+                            </span>
+                            <span *ngIf="script.visible">Public</span>
+                            <span *ngIf="!script.visible">Private</span><br/>
+                        </span>
+                    </td><td  class="align-text-top"><div class="float-right">
+                        <span *ngIf="script.id==editScript">
+                            <button (click)="editScript=0">Done</button>
+                        </span>
+                        <span *ngIf="script.id!=editScript">
+                            <button class="mr-3">Delete</button><button (click)="editScript=script.id">Edit</button>
+                        </span>
                         </div>
-                    </td>
-                    <td>{{item.artwork.name}}, {{item.artwork.artist}}, {{item.artwork.year}}</td>
-                    <td>{{item.open}}</td>
-                    <td>{{item.visible}}</td>
-                    </tr> 
-                </tbody> 
-            </table> 
+                    </td></tr></table>
+                    </div>
+                </span>
+            </div>
+
+
             <div *ngFor="let item of getScripts()">
                 {{item.name}}
                 <table class="table table-sm table-striped"> 
@@ -399,12 +520,12 @@
         </div>        
         <div *ngSwitchDefault>
             <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark hidenav">
-                <a class="navbar-brand" href="#">Themes</a>
+                <a class="navbar-brand" href="#">IMMA Slow Looking: Themes</a>
             </nav> 
             <p>Add, edit and delete themes used in Slow Looking.</p>
             <div class="form-group">
             <table class="table table-sm table-striped"> 
-                <tr><th>id</th><th>Theme</th><th>Description</th><th></th><th></th></tr> 
+                <tr><th>Position</th><th>Theme</th><th>Description</th><th></th><th></th></tr> 
                 <tbody class="text-black"> 
                     <tr *ngFor="let item of getThemes(); let i = index"> 
                         <td>

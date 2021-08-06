@@ -14,11 +14,25 @@ import { Theme } from "./theme.model";
 })
 export class SlowLookingComponent {
 
-    shiftThemePosition(event,old){
-        let data = [0,1,2,3,4];
-        console.log(event.target.value);
-        console.log(old);
 
+    themesChange(script: Script, theme: Theme, selected: any) {
+        if(selected.target.checked) {
+            this.model.addThemeToScript(script, theme);
+        }
+        else {
+            this.model.removeThemeFromScript(script, theme);
+        }
+    }
+
+    editScript: number = 0;
+
+    showOpenScripts: boolean = true;
+
+    showClosedScripts: boolean = true;
+
+    scriptShow: number = 0;
+
+    shiftThemePosition(event,old){
         this.model.shiftThemePosition(old, event.target.value);
     }
 
@@ -45,7 +59,7 @@ export class SlowLookingComponent {
 
     model: Model = new Model();
     
-    mode: number = 3;
+    mode: number = 4;
 
     managementMode: number = 1;
 

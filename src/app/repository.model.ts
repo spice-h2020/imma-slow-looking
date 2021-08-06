@@ -33,6 +33,27 @@ export class Model {
         this.dataSource.getActivityData().forEach(x => this.activities.push(x));
     }
 
+    addThemeToScript(script: Script, theme: Theme) {
+        console.log("add", script, theme);
+
+        //add theme
+        script.themes.push(theme);
+
+        //save script
+        this.saveScript(script);
+    }
+
+    removeThemeFromScript(script: Script, theme: Theme) {
+        console.log("remove", script, theme);
+
+        //remove theme
+        let index = script.themes.findIndex(x => this.locator(x, theme.id));
+        script.themes.splice(index, 1);
+
+        //save script
+        this.saveScript(script);
+    }
+
     shiftThemePosition(from: number, to: number) {
         this.insertAndShiftThemes(this.themes, from, to);
     }
@@ -99,15 +120,15 @@ export class Model {
         return this.scripts.find(x => this.locator(x, id));
     }
 
-    // saveScript(script: Script) {
-    //     if (script.id == 0 || script.id == null) {
-    //         script.id = this.generateID();
-    //         this.scripts.push(script);
-    //     } else {
-    //         let index = this.scripts.findIndex(x => this.locator(x, script.id));
-    //         this.scripts.splice(index, 1, script);
-    //     }
-    // }
+    saveScript(script: Script) {
+        if (script.id == 0 || script.id == null) {
+            script.id = this.generateScriptID();
+            this.scripts.push(script);
+        } else {
+            let index = this.scripts.findIndex(x => this.locator(x, script.id));
+            this.scripts.splice(index, 1, script);
+        }
+    }
 
     // deleteScript(id: number) {
     //     let index = this.scripts.findIndex(x => this.locator(x, id));
@@ -151,6 +172,14 @@ export class Model {
     private generateThemeID(): number {
         let candidate = 1;
         while (this.getTheme(candidate) != null) {
+            candidate++;
+        }
+        return candidate;
+    }
+
+    private generateScriptID(): number {
+        let candidate = 1;
+        while (this.getScript(candidate) != null) {
             candidate++;
         }
         return candidate;
