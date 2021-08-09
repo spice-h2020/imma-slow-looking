@@ -5,7 +5,7 @@ import { Activity } from "./activity.model";
 import { Artwork } from "./artwork.model";
 import { Model } from "./repository.model";
 import { Script } from "./script.model";
-import { followStage, questionStage, shareWithMuseumStage, shareWithSomeoneStage, Stage } from "./stage.model";
+import { contextStage, followStage, questionStage, shareWithMuseumStage, shareWithSomeoneStage, Stage, thankyouStage, welcomeStage } from "./stage.model";
 import { Theme } from "./theme.model";
 
 @Component({
@@ -14,6 +14,133 @@ import { Theme } from "./theme.model";
 })
 export class SlowLookingComponent {
 
+    addWelcomeStage() {
+        let stage = new welcomeStage();
+        stage.id = this.model.saveStage(stage);
+        return stage;
+    }
+
+    addContextStage() {
+        let stage = new contextStage();
+        stage.id = this.model.saveStage(stage);
+        return stage;
+    }
+    
+    addQuestionStage() {
+        let stage = new questionStage();
+        stage.id = this.model.saveStage(stage);
+        return stage;
+    }
+
+    addShareWithMuseumStage() {
+        let stage = new shareWithMuseumStage();
+        stage.id = this.model.saveStage(stage);
+        return stage;
+    }
+
+    addFollowStage() {
+        let stage = new followStage();
+        stage.id = this.model.saveStage(stage);
+        return stage;
+    }
+
+    addShareWithSomeoneStage() {
+        let stage = new shareWithSomeoneStage();
+        stage.id = this.model.saveStage(stage);
+        return stage;
+    }
+
+    addThankyouStage() {
+        let stage = new thankyouStage();
+        stage.id = this.model.saveStage(stage);
+        return stage;
+    }
+
+    deleteStage(script: Script, stageid: number) {
+        this.model.removeStageFromScript(script, stageid);
+        this.model.deleteStage(stageid);
+    }
+
+    newScript: Script = new Script();
+
+    addWelcomeStageToScript(script: Script) {
+        let stage = this.addWelcomeStage();
+        this.model.addStageToScript(script, stage);
+        //set vars
+        this.viewScript = script.id;
+        this.editScriptStage = stage.id;
+    }
+
+    addContextStageToScript(script: Script) {
+        let stage = this.addContextStage();
+        this.model.addStageToScript(script, stage);
+        //set vars
+        this.viewScript = script.id;
+        this.editScriptStage = stage.id;
+    }
+
+    addQuestionStageToScript(script: Script) {
+        let stage = this.addQuestionStage();
+        this.model.addStageToScript(script, stage);
+        //set vars
+        this.viewScript = script.id;
+        this.editScriptStage = stage.id;
+    }
+
+    addShareWithMuseumStageToScript(script: Script) {
+        let stage = this.addShareWithMuseumStage();
+        this.model.addStageToScript(script, stage);
+        //set vars
+        this.viewScript = script.id;
+        this.editScriptStage = stage.id;
+    }
+
+    addFollowStageToScript(script: Script) {
+        let stage = this.addFollowStage();
+        this.model.addStageToScript(script, stage);
+        //set vars
+        this.viewScript = script.id;
+        this.editScriptStage = stage.id;
+    }
+
+    addShareWithSomeoneStageToScript(script: Script) {
+        let stage = this.addShareWithSomeoneStage();
+        this.model.addStageToScript(script, stage);
+        //set vars
+        this.viewScript = script.id;
+        this.editScriptStage = stage.id;
+    }
+
+    addThankyouStageToScript(script: Script) {
+        let stage = this.addThankyouStage();
+        this.model.addStageToScript(script, stage);
+        //set vars
+        this.viewScript = script.id;
+        this.editScriptStage = stage.id;
+    }
+
+    addScript() {
+        let newscript = this.newScript;
+        newscript.name = "Untitled script";
+        newscript.open = false;
+        newscript.visible = false;
+        newscript.artwork = this.model.getDefaultArtwork();
+        newscript.themes = [this.model.getDefaultTheme()];
+        newscript.stages = [this.addWelcomeStage(), this.addContextStage(), this.addQuestionStage(), this.addShareWithMuseumStage(), this.addFollowStage(), this.addShareWithSomeoneStage(), this.addThankyouStage()];
+        let scriptid = this.model.saveScript(newscript);
+        this.viewScript = scriptid;
+        this.editScriptDescription=0; 
+        this.editScriptStage=0;
+    }
+
+    deleteScript(id: number) {
+        this.model.deleteScript(id);
+    }
+
+    shiftStagePosition(script: Script, event, old) {
+        //reorder script stages
+        this.model.moveScriptStage(script, old, event.target.value);
+    }
 
     themesChange(script: Script, theme: Theme, selected: any) {
         if(selected.target.checked) {
@@ -24,7 +151,11 @@ export class SlowLookingComponent {
         }
     }
 
-    editScript: number = 0;
+    viewScript: number = 0;
+
+    editScriptDescription: number = 0;
+
+    editScriptStage: number = 0;
 
     showOpenScripts: boolean = true;
 
@@ -134,7 +265,6 @@ export class SlowLookingComponent {
     }
 
     deleteActivity(id: number) {
-        console.log("hello");
         this.model.deleteActivity(id);
     }
 

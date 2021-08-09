@@ -11,6 +11,7 @@ export class Model {
     private artworks: Artwork[];
     private scripts: Script[];
     private activities: Activity[];
+    private stages: Stage[];
     private locator = (x: any, id: number) => x.id == id;
     private openAndVisible = (x: any) => (x.open && x.visible);
     private approved = (x: any) => (x.approved);
@@ -31,20 +32,42 @@ export class Model {
 
         this.activities = new Array<Activity>();
         this.dataSource.getActivityData().forEach(x => this.activities.push(x));
+
+        this.stages = new Array<Stage>();
+        this.dataSource.getStageData().forEach(x => this.stages.push(x));
+    }
+
+    moveScriptStage(script: Script, oldPosition: number, newPosition: number) {
+        //move script stage position
+        this.insertAndShiftStages(script.stages, oldPosition, newPosition);
+        //save script
+        this.saveScript(script);
     }
 
     addThemeToScript(script: Script, theme: Theme) {
-        console.log("add", script, theme);
-
         //add theme
         script.themes.push(theme);
 
         //save script
         this.saveScript(script);
     }
+    
+    addStageToScript(script: Script, stage: Stage) {
+        script.stages.unshift(stage);
+        this.saveScript(script);
+    }
+
+    removeStageFromScript(script: Script, stageid: number) {
+ 
+        // remove stage
+        let index = script.stages.findIndex(x => this.locator(x, stageid));
+        script.stages.splice(index, 1);
+
+        // save script
+        this.saveScript(script);
+    }
 
     removeThemeFromScript(script: Script, theme: Theme) {
-        console.log("remove", script, theme);
 
         //remove theme
         let index = script.themes.findIndex(x => this.locator(x, theme.id));
@@ -58,9 +81,40 @@ export class Model {
         this.insertAndShiftThemes(this.themes, from, to);
     }
     
+    insertAndShiftStages(arr: Stage[], from: number, to: number) {
+        let cutOut = arr.splice(from, 1) [0]; // cut the element at index 'from'
+        arr.splice(to, 0, cutOut);            // insert it at index 'to'
+    }
+
     insertAndShiftThemes(arr: Theme[], from: number, to: number) {
         let cutOut = arr.splice(from, 1) [0]; // cut the element at index 'from'
         arr.splice(to, 0, cutOut);            // insert it at index 'to'
+    }
+
+    getStages(): Stage[] {
+        return this.stages;
+    }
+
+    getStage(id: number) {
+        return this.stages.find(x => this.locator(x, id));
+    }
+
+    saveStage(stage: Stage) {
+        if (stage.id == 0 || stage.id == null) {
+            stage.id = this.generateStageID();
+            this.stages.push(stage);
+        } else {
+            let index = this.stages.findIndex(x => this.locator(x, stage.id));
+            this.stages.splice(index, 1, stage);
+        }
+        return stage.id;
+    }
+
+    deleteStage(id: number) {
+        let index = this.stages.findIndex(x => this.locator(x, id));
+        if (index > -1) {
+            this.stages.splice(index, 1);
+        }
     }
 
     getThemes(): Theme[] {
@@ -100,6 +154,14 @@ export class Model {
         }
     }
 
+    getDefaultTheme() {
+        return this.themes[0];
+    }
+
+    getDefaultArtwork() {
+        return this.artworks[0];
+    }
+
     getArtworks(): Artwork[] {
         return this.artworks;
     }
@@ -128,14 +190,15 @@ export class Model {
             let index = this.scripts.findIndex(x => this.locator(x, script.id));
             this.scripts.splice(index, 1, script);
         }
+        return script.id;
     }
 
-    // deleteScript(id: number) {
-    //     let index = this.scripts.findIndex(x => this.locator(x, id));
-    //     if (index > -1) {
-    //         this.scripts.splice(index, 1);
-    //     }
-    // }
+    deleteScript(id: number) {
+        let index = this.scripts.findIndex(x => this.locator(x, id));
+        if (index > -1) {
+            this.scripts.splice(index, 1);
+        }
+    }
 
     getActivity(id: number) {
         return this.activities.find(x => this.locator(x, id));
@@ -185,4 +248,11 @@ export class Model {
         return candidate;
     }
 
+    private generateStageID(): number {
+        let candidate = 1;
+        while (this.getStage(candidate) != null) {
+            candidate++;
+        }
+        return candidate;
+    }
 }
