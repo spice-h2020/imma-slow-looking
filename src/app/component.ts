@@ -196,6 +196,8 @@ export class SlowLookingComponent {
 
     slowLookingTheme: number = 0;
 
+    otherPeopleTheme: number = 0;
+
     slowLookingScript: number = 0;
 
     slowLookingCurrentScriptStageIndex = 0;
@@ -227,6 +229,16 @@ export class SlowLookingComponent {
             this.slowLookingTheme = id;
         }
     }
+
+    updateOtherPeopleTheme(id: number) {
+        if(id == this.otherPeopleTheme) {
+            this.otherPeopleTheme = 0;
+        }
+        else {
+            this.otherPeopleTheme = id;
+        }
+    }
+
     newActivity: Activity = new Activity();
 
     newQuestionAction: questionAction = new questionAction();

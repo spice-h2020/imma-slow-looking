@@ -21,7 +21,7 @@
                 <p>There is a link to the public display of shared Slow Looking responses in the Other People section of this page. But first, try some Slow Looking activities for yourself.</p>
                 
                 <h2>Take Part</h2>
-                <p>The Slow Looking activities are organised into the themes below. Select a theme to view the Slow Looking activities. Each activity is based around a particular artwork in the IMMA collection.</p>
+                <p>The Slow Looking activities are organised into the themes below. Select a theme to view the Slow Looking activities. Each activity is based around a particular artwork in the IMMA collection. Tap on the artwork image to try the Slow Looking activity.</p>
                 <div class="row">
                     <div *ngFor="let theme of getThemes()" >
                         <div (click)="updateSlowLookingTheme(theme.id)" class="col-md-12 card my-3 shadow-sm rounded">
@@ -319,7 +319,7 @@
         </div> 
         <div *ngSwitchCase="3">
             <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark hidenav">
-                <a class="navbar-brand" href="#">IMMA Slow Looking</a>
+                <a class="navbar-brand" href="#">IMMA Slow Looking: Other People</a>
             </nav>
                           
             <h2>Other People</h2>
@@ -327,13 +327,13 @@
  
             <div class="row">
                 <div *ngFor="let theme of getThemes()" >
-                    <div (click)="updateSlowLookingTheme(theme.id)" class="col-md-12 card my-3 shadow-sm rounded">
+                    <div (click)="updateOtherPeopleTheme(theme.id)" class="col-md-12 card my-3 shadow-sm rounded">
                         <h4>{{theme.name}}</h4>
                         <p>{{theme.description}}</p>
                     </div>
                     <div class="col-md-12  my-3 rounded">
-                        <div *ngIf="slowLookingTheme==theme.id">
-                            <div *ngFor="let script of getScriptsOfTheme(slowLookingTheme); let i = index" class="col-sm-12 pb-4">
+                        <div *ngIf="otherPeopleTheme==theme.id">
+                            <div *ngFor="let script of getScriptsOfTheme(otherPeopleTheme); let i = index" class="col-sm-12 pb-4">
                                 <h5 class="col-sm-12">{{script.name}}</h5> 
                                 <div>
                                     <img class="col-sm-12" src="{{script.artwork.fileLocation}}" >
