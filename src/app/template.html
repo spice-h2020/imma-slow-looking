@@ -102,7 +102,7 @@
                                 <!-- continue if not last stage -->
                                 <span *ngIf="slowLookingMaximumScriptStageIndex != i">
                                     <div class="text-right">
-                                        <button (click)="slowLookingCurrentScriptStageIndex=i+1; addActionToActivity(newQuestionAction); resetNewQuestionAction();">Continue</button>
+                                        <button (click)="slowLookingCurrentScriptStageIndex=i+1; addActionToActivity(newQuestionAction); resetNewQuestionAction(); showQuestionHelp=false;">Continue</button>
                                     </div>
                                 </span>
                             </div>
