@@ -1,9 +1,9 @@
 <div class="container-fluid"> 
-    <button (click)="mode=1">Slow Looking</button>
-    <button (click)="mode=2">Management</button>
-    <button (click)="mode=3">Other People</button>
-    <button (click)="mode=4">Authoring</button>
-    <button (click)="mode=5">Themes</button>
+    <button class="btn btn-outline-dark" (click)="mode=1">Slow Looking</button>
+    <button class="btn btn-outline-dark" (click)="mode=2">Management</button>
+    <button class="btn btn-outline-dark" (click)="mode=3">Other People</button>
+    <button class="btn btn-outline-dark" (click)="mode=4">Authoring</button>
+    <button class="btn btn-outline-dark" (click)="mode=5">Themes</button>
 
     <div [ngSwitch]="mode">  
         <div *ngSwitchCase="1">
@@ -63,7 +63,7 @@
 
                 </div><br/>
                 <h2>Other People</h2>
-                <button class="m-3" (click)="mode=3">Find out how others have responded to these artworks</button>
+                <button class="m-3 btn btn-warning" (click)="mode=3">Find out how others have responded to these artworks</button>
             </div>
 
             <div *ngIf="slowLookingScript>0">
@@ -74,12 +74,12 @@
                             <p>{{stage.body}}</p>
                             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                                 <div class="text-center">
-                                    <button (click)="slowLookingScript=0">Return to the list of Slow Looking activities</button>
+                                    <button class="m-3 btn btn-warning" (click)="slowLookingScript=0">Return to the list of Slow Looking activities</button>
                                 </div>
                             </span>
                             <span *ngIf="slowLookingMaximumScriptStageIndex != i">
                                 <div class="text-right">
-                                    <button (click)="slowLookingCurrentScriptStageIndex=i+1; ">Continue</button>
+                                    <button  class="m-3 btn btn-warning" (click)="slowLookingCurrentScriptStageIndex=i+1; ">Continue</button>
                                 </div>
                             </span>
                         </div>
@@ -88,12 +88,12 @@
                             <p>{{stage.body}}</p>
                             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                                 <div class="text-center">
-                                    <button (click)="slowLookingScript=0">Return to the list of Slow Looking activities</button>
+                                    <button class="m-3 btn btn-warning" (click)="slowLookingScript=0">Return to the list of Slow Looking activities</button>
                                 </div>
                             </span>
                             <span *ngIf="slowLookingMaximumScriptStageIndex != i">
                                 <div class="text-right">
-                                    <button (click)="slowLookingCurrentScriptStageIndex=i+1; ">Continue</button>
+                                    <button class="m-3 btn btn-warning" (click)="slowLookingCurrentScriptStageIndex=i+1; ">Continue</button>
                                 </div>
                             </span>
                         </div>
@@ -115,13 +115,13 @@
                                 <!-- return to list if last stage -->
                                 <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                                     <div class="text-center">
-                                        <button (click)="slowLookingScript=0; addActionToActivity(newQuestionAction); resetNewQuestionAction();">Return to the list of Slow Looking activities</button>
+                                        <button class="m-3 btn btn-warning" (click)="slowLookingScript=0; addActionToActivity(newQuestionAction); resetNewQuestionAction();">Return to the list of Slow Looking activities</button>
                                     </div>
                                 </span>
                                 <!-- continue if not last stage -->
                                 <span *ngIf="slowLookingMaximumScriptStageIndex != i">
                                     <div class="text-right">
-                                        <button (click)="slowLookingCurrentScriptStageIndex=i+1; addActionToActivity(newQuestionAction); resetNewQuestionAction(); showQuestionHelp=false;">Continue</button>
+                                        <button class="m-3 btn btn-warning" (click)="slowLookingCurrentScriptStageIndex=i+1; addActionToActivity(newQuestionAction); resetNewQuestionAction(); showQuestionHelp=false;">Continue</button>
                                     </div>
                                 </span>
                             </div>
@@ -154,12 +154,12 @@
 
                             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                                 <div class="text-center">
-                                    <button (click)="slowLookingScript=0; addActionToActivity(newShareWithMusemAction); resetNewShareWithMusemAction();">Return to the list of Slow Looking activities</button>
+                                    <button class="m-3 btn btn-warning" (click)="slowLookingScript=0; addActionToActivity(newShareWithMusemAction); resetNewShareWithMusemAction();">Return to the list of Slow Looking activities</button>
                                 </div>
                             </span>
                             <span *ngIf="slowLookingMaximumScriptStageIndex != i">
                                 <div class="text-right">
-                                    <button (click)="slowLookingCurrentScriptStageIndex=i+1; addActionToActivity(newShareWithMusemAction); resetNewShareWithMusemAction();">Continue</button>
+                                    <button class="m-3 btn btn-warning" (click)="slowLookingCurrentScriptStageIndex=i+1; addActionToActivity(newShareWithMusemAction); resetNewShareWithMusemAction();">Continue</button>
                                 </div>
                             </span>
                         </div>
@@ -175,12 +175,12 @@
                             </div>
                             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                                 <div class="text-center">
-                                    <button (click)="slowLookingScript=0; addActionToActivity(newFollowAction); resetFollowAction();">Return to the list of Slow Looking activities</button>
+                                    <button class="m-3 btn btn-warning" (click)="slowLookingScript=0; addActionToActivity(newFollowAction); resetFollowAction();">Return to the list of Slow Looking activities</button>
                                 </div>
                             </span>
                             <span *ngIf="slowLookingMaximumScriptStageIndex != i">
                                 <div class="text-right">
-                                    <button (click)="slowLookingCurrentScriptStageIndex=i+1; addActionToActivity(newFollowAction); resetFollowAction();">Continue</button>
+                                    <button class="m-3 btn btn-warning" (click)="slowLookingCurrentScriptStageIndex=i+1; addActionToActivity(newFollowAction); resetFollowAction();">Continue</button>
                                 </div>
                             </span>
                         </div>
@@ -200,12 +200,12 @@
                             </div>
                             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                                 <div class="text-center">
-                                    <button (click)="slowLookingScript=0; addActionToActivity(newShareWithFriendAction); resetShareWithSomeoneAction();">Return to the list of Slow Looking activities</button>
+                                    <button class="m-3 btn btn-warning" (click)="slowLookingScript=0; addActionToActivity(newShareWithFriendAction); resetShareWithSomeoneAction();">Return to the list of Slow Looking activities</button>
                                 </div>
                             </span>
                             <span *ngIf="slowLookingMaximumScriptStageIndex != i">
                                 <div class="text-right">
-                                    <button (click)="slowLookingCurrentScriptStageIndex=i+1;  addActionToActivity(newShareWithFriendAction); resetShareWithSomeoneAction();">Continue</button>
+                                    <button class="m-3 btn btn-warning" (click)="slowLookingCurrentScriptStageIndex=i+1;  addActionToActivity(newShareWithFriendAction); resetShareWithSomeoneAction();">Continue</button>
                                 </div>
                             </span>
                         </div>
@@ -213,16 +213,16 @@
                             <h5>{{stage.title}}</h5>
                             <p>{{stage.body}}</p>
                             <div>
-                                [Social media butons to be added here]                            
+                                [Social media butons to be added here]<br/>                            
                             </div>
                             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                                 <div class="text-center">
-                                    <button (click)="slowLookingScript=0; addActivity();">Return to the list of Slow Looking activities</button>
+                                    <button class="m-3 btn btn-warning" (click)="slowLookingScript=0; addActivity();">Return to the list of Slow Looking activities</button>
                                 </div>
                             </span>
                             <span *ngIf="slowLookingMaximumScriptStageIndex != i">
                                 <div class="text-right">
-                                    <button (click)="slowLookingCurrentScriptStageIndex=i+1; ">Continue</button>
+                                    <button class="m-3 btn btn-warning" (click)="slowLookingCurrentScriptStageIndex=i+1; ">Continue</button>
                                 </div>
                             </span>
                         </div>
@@ -241,9 +241,9 @@
                 Show:
             </div>
             <div class="mb-4">
-                <button (click)="managementMode=1" class="col-sm-4 text-center">All</button>
-                <button (click)="managementMode=2" class="col-sm-4 text-center">Approved</button>
-                <button (click)="managementMode=3" class="col-sm-4 text-center">Awaiting approval</button>
+                <button (click)="managementMode=1" class="btn btn-secondary col-sm-4 text-center">All</button>
+                <button (click)="managementMode=2" class="btn btn-success col-sm-4 text-center">Approved</button>
+                <button (click)="managementMode=3" class="btn btn-warning col-sm-4 text-center">Awaiting approval</button>
             </div>
 
             <div [ngSwitch]="managementMode">  
@@ -267,12 +267,12 @@
                         </div>
                         <div class="text-sm-left border">
                             <div *ngIf="item.approved">
-                                <button class="col-sm-4 text-center" (click)="item.approved=false">Reject</button>
-                                <button class="col-sm-4 text-center float-right" (click)="deleteActivity(item.id)">Delete</button>            
+                                <button class="col-sm-4 text-center btn btn-warning" (click)="item.approved=false">Reject</button>
+                                <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item.id)">Delete</button>            
                             </div>
                             <span *ngIf="!(item.approved)">
-                                <button class="col-sm-4 text-center" (click)="item.approved=true">Approve</button>
-                                <button class="col-sm-4 text-center float-right" (click)="deleteActivity(item.id)">Delete</button>   
+                                <button class="col-sm-4 text-center btn btn-success" (click)="item.approved=true">Approve</button>
+                                <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item.id)">Delete</button>   
                             </span>
                         </div>
                     </div>
@@ -297,12 +297,12 @@
                         </div>
                         <div class="text-sm-left border">
                             <div *ngIf="item.approved">
-                                <button class="col-sm-4 text-center" (click)="item.approved=false">Reject</button>
-                                <button class="col-sm-4 text-center float-right" (click)="deleteActivity(item.id)">Delete</button>            
+                                <button class="col-sm-4 text-center btn btn-warning" (click)="item.approved=false">Reject</button>
+                                <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item.id)">Delete</button>            
                             </div>
                             <span *ngIf="!(item.approved)">
-                                <button class="col-sm-4 text-center" (click)="item.approved=true">Approve</button>
-                                <button class="col-sm-4 text-center float-right" (click)="deleteActivity(item.id)">Delete</button>   
+                                <button class="col-sm-4 text-center btn btn-success" (click)="item.approved=true">Approve</button>
+                                <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item.id)">Delete</button>   
                             </span>
                         </div>
                     </div>
@@ -327,12 +327,12 @@
                         </div>
                         <div class="text-sm-left border">
                             <div *ngIf="item.approved">
-                                <button class="col-sm-4 text-center" (click)="item.approved=false">Reject</button>
-                                <button class="col-sm-4 text-center float-right" (click)="deleteActivity(item.id)">Delete</button>            
+                                <button class="col-sm-4 text-center btn btn-warning" (click)="item.approved=false">Reject</button>
+                                <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item.id)">Delete</button>            
                             </div>
                             <span *ngIf="!(item.approved)">
-                                <button class="col-sm-4 text-center" (click)="item.approved=true">Approve</button>
-                                <button class="col-sm-4 text-center float-right" (click)="deleteActivity(item.id)">Delete</button>   
+                                <button class="col-sm-4 text-center btn btn-success" (click)="item.approved=true">Approve</button>
+                                <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item.id)">Delete</button>   
                             </span>
                         </div>
                     </div>
@@ -413,7 +413,7 @@
                 </div>
             </div>           
             <h2>Take part</h2>
-                <button class="m-3" (click)="mode=1">Try Slow Looking activities for yourself</button>
+                <button class="m-3 btn btn-warning" (click)="mode=1">Try Slow Looking activities for yourself</button>
         </div> 
         <div *ngSwitchCase="4">
             <!-- floating nav bar -->
@@ -429,7 +429,7 @@
                     </span>
                 </div>
                 <div class="col-xs-12 mb-1">
-                    <button class="float-right" *ngIf="viewScript==0" (click)="addScript()">Add new script</button><br/>
+                    <button class="float-right btn btn-success" *ngIf="viewScript==0" (click)="addScript()">Add new script</button><br/>
                 </div>
                 <div class="col-xs-12 ml-1 mr-1" *ngFor="let script of getScripts(); let i = index">
                     <div *ngIf="((script.open && showOpenScripts) || (!(script.open) && showClosedScripts)) && (viewScript == 0 || viewScript==script.id)" class="border">
@@ -439,11 +439,11 @@
                             </div>
                             <div class="col-xs-4 float-right">
                                 <span *ngIf="viewScript==0">
-                                    <button class="mr-5" (click)="viewScript=script.id">View</button>
-                                    <button (click)="deleteScript(script.id)">Delete</button>
+                                    <button class="mr-5 btn btn-info" (click)="viewScript=script.id">View</button>
+                                    <button class="btn btn-danger" (click)="deleteScript(script.id)">Delete</button>
                                 </span>
                                 <span *ngIf="viewScript==script.id && editScriptDescription==0 && editScriptStage==0">
-                                    <button (click)="viewScript=0">Return to list of scripts</button>
+                                    <button class="mr-5 btn btn-info" (click)="viewScript=0">Return to list of scripts</button>
                                 </span>
                             </div>
                         </div>
@@ -471,11 +471,11 @@
                                 <span *ngIf="script.visible">Public</span>
                                 <span *ngIf="!script.visible">Private</span><br/>
                                 <span *ngIf="viewScript==script.id && editScriptDescription==0 && editScriptStage==0">
-                                    <button (click)="editScriptDescription=script.id; editScriptStage=0">Edit description</button><br/>
+                                    <button class="btn btn-secondary" (click)="editScriptDescription=script.id; editScriptStage=0">Edit description</button><br/>
                                 </span>
                                 <div class="border" *ngIf="viewScript==script.id">
                                     <span class="font-weight-bold">Stages</span><br/>
-                                    <span *ngIf="editScriptStage==0">Add new stage: <button (click)="addWelcomeStageToScript(script)">welcome</button> <button (click)="addContextStageToScript(script)">context</button> <button (click)="addQuestionStageToScript(script)">question</button> <button (click)="addShareWithMuseumStageToScript(script)">shareWithMuseum</button> <button (click)="addFollowStageToScript(script)">follow</button> <button (click)="addShareWithSomeoneStageToScript(script)">shareWithSomeone</button> <button (click)="addThankyouStageToScript(script)">thankyou</button></span>
+                                    <span *ngIf="editScriptStage==0">Add new stage: <button class="btn btn-success mr-1" (click)="addWelcomeStageToScript(script)">welcome</button> <button class="btn btn-success mr-1" (click)="addContextStageToScript(script)">context</button> <button class="btn btn-success mr-1" (click)="addQuestionStageToScript(script)">question</button> <button class="btn btn-success mr-1" (click)="addShareWithMuseumStageToScript(script)">shareWithMuseum</button> <button class="btn btn-success mr-1" (click)="addFollowStageToScript(script)">follow</button> <button class="btn btn-success mr-1" (click)="addShareWithSomeoneStageToScript(script)">shareWithSomeone</button> <button class="btn btn-success mr-1" (click)="addThankyouStageToScript(script)">thankyou</button></span>
                                 </div>
                             </span>
 
@@ -584,8 +584,8 @@
                                             <span class="font-weight-bold">Help text: </span><span>{{stage.help}}</span><br/>
                                         </span>
                                         <span *ngIf="editScriptStage==0 && editScriptDescription==0"> 
-                                            <button class="mr-5" (click)="editScriptStage=stage.id">Edit stage</button>
-                                            <button (click)="deleteStage(script, stage.id)">Delete stage</button><br/>
+                                            <button class="mr-5 btn btn-secondary" (click)="editScriptStage=stage.id">Edit stage</button>
+                                            <button class="btn btn-danger" (click)="deleteStage(script, stage.id)">Delete stage</button><br/>
                                         </span>
                                     </span>
                                     <!-- edit script stage -->
@@ -677,15 +677,15 @@
                         </td>
                         <td>
                             <span *ngIf="!tableEditing">
-                                <button (click)="deleteTheme(item.id)">Delete</button>
+                                <button class="btn btn-danger" (click)="deleteTheme(item.id)">Delete</button>
                             </span>
                         </td>
                         <td>
                             <span *ngIf="!tableEditing">
-                                <button (click)="editrow=item.id" (click)="tableEditing=true">Edit</button>
+                                <button class="btn btn-secondary" (click)="editrow=item.id" (click)="tableEditing=true">Edit</button>
                             </span>
                             <span *ngIf="tableEditing && editrow==item.id">
-                                <button (click)="tableEditing=false" [disabled]="!item.name || !item.description">Done</button>
+                                <button class="btn btn-success" (click)="tableEditing=false" [disabled]="!item.name || !item.description">Done</button>
                             </span>
                         </td>
                     </tr>
@@ -705,7 +705,7 @@
                         </td>
                         <td>
                             <span *ngIf="!tableEditing">
-                                <button (click)="addTheme(newTheme)" [disabled]="!newTheme.name || !newTheme.description">Add</button>
+                                <button class="btn btn-success" (click)="addTheme(newTheme)" [disabled]="!newTheme.name || !newTheme.description">Add</button>
                             </span>
                         </td>
                     </tr> 

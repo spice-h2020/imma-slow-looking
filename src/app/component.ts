@@ -190,7 +190,7 @@ export class SlowLookingComponent {
 
     model: Model = new Model();
     
-    mode: number = 4;
+    mode: number = 1;
 
     managementMode: number = 1;
 
