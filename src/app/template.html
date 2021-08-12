@@ -23,26 +23,45 @@
                 <h2>Take Part</h2>
                 <p>The Slow Looking activities are organised into the themes below. Select a theme to view the Slow Looking activities. Each activity is based around a particular artwork in the IMMA collection. Tap on the artwork image to try the Slow Looking activity.</p>
                 <div class="row">
-                    <div *ngFor="let theme of getThemes()" >
-                        <div (click)="updateSlowLookingTheme(theme.id)" class="col-md-12 card my-3 shadow-sm rounded">
-                            <h4>{{theme.name}}</h4>
-                            <p>{{theme.description}}</p>
-                        </div>
-                        <div class="col-md-12  my-3 rounded">
-                            <div *ngIf="slowLookingTheme==theme.id">
-                                <div *ngFor="let script of getScriptsOfTheme(slowLookingTheme); let i = index" class="col-sm-12 pb-4">
-                                    <h5 class="col-sm-12">{{script.name}}</h5> 
-                                    <div>
-                                        <img (click)="setSlowLookingScript(script.id)" class="col-sm-12" src="{{script.artwork.fileLocation}}" >
+
+                    <div *ngFor="let theme of getThemes(); let i = index">
+                        <div class="accordion " id="accordionFlushExample">
+                            <div class="accordion-item">
+                            <h2 class="accordion-header" id="{{'heading_' + theme.id}}">
+                                <button 
+                                    class="accordion-button collapsed" 
+                                    type="button" 
+                                    data-bs-toggle="collapse" 
+                                    [attr.data-bs-target]="'#collapse_' + theme.id"
+                                    aria-expanded="false" 
+                                    [attr.aria-controls]="'collapse_'+ theme.id">
+                                    <div><strong>{{theme.name}}</strong><br/>
+                                    {{theme.description}}
                                     </div>
-                                    <div class="col-sm-12"><strong>{{script.artwork.name}}</strong></div>
-                                    <div class="col-sm-12">{{script.artwork.artist}}</div>
-                                    <div class="col-sm-12">{{script.artwork.year}}</div>
+                                </button>
+                            </h2>
+                            <div 
+                                id="{{'collapse_' + theme.id}}" 
+                                class="accordion-collapse collapse" 
+                                [attr.aria-labelledby]="'heading_' + theme.id"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <div *ngFor="let script of getScriptsOfTheme(theme.id); let i = index" class="col-sm-12 pb-4">
+                                        <h5 class="col-sm-12">{{script.name}}</h5> 
+                                        <div>
+                                            <img (click)="setSlowLookingScript(script.id)" class="col-sm-12" src="{{script.artwork.fileLocation}}" >
+                                        </div>
+                                        <div class="col-sm-12"><strong>{{script.artwork.name}}</strong></div>
+                                        <div class="col-sm-12">{{script.artwork.artist}}</div>
+                                        <div class="col-sm-12">{{script.artwork.year}}</div>
+                                    </div>
                                 </div>
+                            </div>
                             </div>
                         </div>
                     </div>
-                </div>
+
+                </div><br/>
                 <h2>Other People</h2>
                 <button class="m-3" (click)="mode=3">Find out how others have responded to these artworks</button>
             </div>
@@ -210,6 +229,9 @@
                     </div>
                 </div> 
             </div>
+
+
+       
         </div>
         <div *ngSwitchCase="2">
             <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark hidenav">
@@ -324,40 +346,72 @@
                           
             <h2>Other People</h2>
             <p>Find out how others have responded to IMMA artworks. Select one of the themes to view the responses. Follow @IMMASlowLooking on Twitter to keep track of the responses of others.</p> 
- 
-            <div class="row">
-                <div *ngFor="let theme of getThemes()" >
-                    <div (click)="updateOtherPeopleTheme(theme.id)" class="col-md-12 card my-3 shadow-sm rounded">
-                        <h4>{{theme.name}}</h4>
-                        <p>{{theme.description}}</p>
-                    </div>
-                    <div class="col-md-12  my-3 rounded">
-                        <div *ngIf="otherPeopleTheme==theme.id">
-                            <div *ngFor="let script of getScriptsOfTheme(otherPeopleTheme); let i = index" class="col-sm-12 pb-4">
-                                <h5 class="col-sm-12">{{script.name}}</h5> 
-                                <div>
-                                    <img class="col-sm-12" src="{{script.artwork.fileLocation}}" >
+            
+            <div *ngFor="let theme of getThemes(); let i = index">
+                <div class="accordion " id="accordionFlushExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="{{'heading_' + theme.id}}">
+                            <button 
+                                class="accordion-button collapsed" 
+                                type="button" 
+                                data-bs-toggle="collapse" 
+                                [attr.data-bs-target]="'#collapse_' + theme.id"
+                                aria-expanded="false" 
+                                [attr.aria-controls]="'collapse_'+ theme.id">
+                                <div><strong>{{theme.name}}</strong><br/>
+                                {{theme.description}}
                                 </div>
-                                <div class="col-sm-12"><strong>{{script.artwork.name}}</strong></div>
-                                <div class="col-sm-12">{{script.artwork.artist}}</div>
-                                <div class="col-sm-12">{{script.artwork.year}}</div>
-                                <div class="col-sm-12 border" (click)="selectScript(script.id)">
-                                    Recent responses
-                                    <div *ngIf="script.id==selectedScript">
-                                        <!-- get approved activities of a script -->
-                                        <div *ngFor="let activity of getApprovedActivitiesOfAScript(script.id); let i = index" class="border">
-                                            <div *ngFor="let action of activity.actions;">
-                                                <span class="font-weight-bold">{{action.question}}</span>
-                                                <p class="font-weight-normal">{{action.answer}}</p>
+                            </button>
+                        </h2>
+                        <div 
+                            id="{{'collapse_' + theme.id}}" 
+                            class="accordion-collapse collapse" 
+                            [attr.aria-labelledby]="'heading_' + theme.id"
+                            data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <div *ngFor="let script of getScriptsOfTheme(theme.id); let i = index" class="col-sm-12 pb-4">
+                                    <h5 class="col-sm-12">{{script.name}}</h5> 
+                                    <div>
+                                        <img class="col-sm-12" src="{{script.artwork.fileLocation}}" >
+                                    </div>
+                                    <div class="col-sm-12"><strong>{{script.artwork.name}}</strong></div>
+                                    <div class="col-sm-12">{{script.artwork.artist}}</div>
+                                    <div class="col-sm-12">{{script.artwork.year}}</div>
+                                    <div class="accordion " id="{{'#theme'+theme.id+'script'+script.id}}">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="{{'heading_' + 'theme'+theme.id+'script'+script.id}}">
+                                                <button 
+                                                    class="accordion-button collapsed" 
+                                                    type="button" 
+                                                    data-bs-toggle="collapse" 
+                                                    [attr.data-bs-target]="'#collapse_' + 'theme'+theme.id+'script'+script.id"
+                                                    aria-expanded="false" 
+                                                    [attr.aria-controls]="'collapse_'+ 'theme'+theme.id+'script'+script.id">
+                                                    Recent responses
+                                                </button>
+                                            </h2>
+                                            <div 
+                                                id="{{'collapse_' + 'theme'+theme.id+'script'+script.id}}" 
+                                                class="accordion-collapse collapse" 
+                                                [attr.aria-labelledby]="'heading_' + 'theme'+theme.id+'script'+script.id"
+                                                [attr.data-bs-parent]="'#theme'+theme.id+'script'+script.id">
+                                                <div class="accordion-body">
+                                                    <div *ngFor="let activity of getApprovedActivitiesOfAScript(script.id); let i = index" class="border">
+                                                        <div *ngFor="let action of activity.actions;">
+                                                            <span class="font-weight-bold">{{action.question}}</span>
+                                                            <p class="font-weight-normal">{{action.answer}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>                            
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>           
             <h2>Take part</h2>
                 <button class="m-3" (click)="mode=1">Try Slow Looking activities for yourself</button>
         </div> 

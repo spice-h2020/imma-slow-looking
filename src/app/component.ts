@@ -194,7 +194,7 @@ export class SlowLookingComponent {
 
     managementMode: number = 1;
 
-    slowLookingTheme: number = 0;
+    // slowLookingTheme: number = 0;
 
     otherPeopleTheme: number = 0;
 
@@ -221,14 +221,14 @@ export class SlowLookingComponent {
         this.newActivity.approved = false;
     }
 
-    updateSlowLookingTheme(id: number) {
-        if(id == this.slowLookingTheme) {
-            this.slowLookingTheme = 0;
-        }
-        else {
-            this.slowLookingTheme = id;
-        }
-    }
+    // updateSlowLookingTheme(id: number) {
+    //     if(id == this.slowLookingTheme) {
+    //         this.slowLookingTheme = 0;
+    //     }
+    //     else {
+    //         this.slowLookingTheme = id;
+    //     }
+    // }
 
     updateOtherPeopleTheme(id: number) {
         if(id == this.otherPeopleTheme) {
