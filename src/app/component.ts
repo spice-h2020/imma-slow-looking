@@ -314,7 +314,6 @@ export class SlowLookingComponent {
     deleteTheme(id: number) {
         //delete theme from scripts
         let theme = this.getTheme(id);
-        console.log(theme);
         this.model.deleteThemeFromScripts(id, theme);
 
         //delete theme from theme list

@@ -156,10 +156,7 @@ export class Model {
 
     deleteThemeFromScripts(id: number, theme: Theme) {
         let scripts = this.getScriptsAllOfTheme(id);
-        console.log(id, theme);
-        console.log(scripts);
         scripts.forEach((script) => {
-            console.log(script);
             this.removeThemeFromScript(script, theme);
           });
     }
