@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "Saddle",
+    "artist": "Dorothy Cross",
+    "year": "1993",
+    "fileLocation": "assets/img/saddle.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Barrel",
+    "artist": "Fergus Martin",
+    "year": "2020",
+    "fileLocation": "assets/img/barrel.jpg"
+  },
+  {
+    "id": 3,
+    "name": "The Drummer",
+    "artist": "Barry Flanagan",
+    "year": "1996",
+    "fileLocation": "assets/img/drummer.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Back of Snowman",
+    "artist": "Gary Hume",
+    "year": "2003",
+    "fileLocation": "assets/img/snowman.jpg"
+  },
+  {
+    "id": 5,
+    "name": "8 Limestones cut to a specific size from rough blocks 150 x 50 x 50cm split into parts and reassembled into their original form",
+    "artist": "Ulrich Rückriem ",
+    "year": "1988",
+    "fileLocation": "assets/img/limestones.jpg"
+  }
+]

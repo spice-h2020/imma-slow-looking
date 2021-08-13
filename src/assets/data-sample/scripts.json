@@ -1,0 +1,334 @@
+[
+  {
+    "id": 1,
+    "name": "Slow Looking at Saddle",
+    "themes": [
+      {
+        "id": 1,
+        "name": "Family",
+        "description": "What are the different meanings of family? How do families change over time and place? What is the role of family within society?"
+      },
+      {
+        "id": 2,
+        "name": "The Past",
+        "description": "How does the past influence how we live today? How does the present change what we think of the past?"
+      },
+      {
+        "id": 3,
+        "name": "Storytelling",
+        "description": "Why do sories become connected to physical objects? Why do people tell them? How can artworks inspire new stories? "
+      },
+      {
+        "id": 4,
+        "name": "LGBTQ+",
+        "description": "What can artworks tell us about the life of LGBTQ+ people? What are some of the LGBTQ+ perspectives on IMMA artworks?"
+      },
+      {
+        "id": 5,
+        "name": "Black and Irish",
+        "description": "What does it mean to be Black and Irish? What are some of the Black and Irish perspectives on IMMA artworks?"
+      }
+    ],
+    "artwork": {
+      "id": 1,
+      "name": "Saddle",
+      "artist": "Dorothy Cross",
+      "year": "1993",
+      "fileLocation": "assets/img/saddle.jpg"
+    },
+    "open": true,
+    "visible": true,
+    "stages": [
+      {
+        "id": 1,
+        "position": 1,
+        "type": "welcome",
+        "title": "Saddle",
+        "body": "Hello and welcome to the IMMA Slow Looking Series. My name is Paola and I'm going to share some time exploring an artwork from the IMMA Collection with you. So once you're comfortable and relaxed, we can begin by taking a good, slow look at this work. "
+      },
+      {
+        "id": 2,
+        "position": 2,
+        "type": "context",
+        "title": "Saddle",
+        "body": "So we can allow our eyes to wander over the piece. Nice and slowly, from top to bottom, from left to right. Nearly like we're writing an inventory, or a list of what we see. We keep it simple, just noticing colours, materials, shapes. There is absolutely no right or wrong way of doing this, but simply giving ourselves the time to notice and to discover this object. As this is a sculptural work, you are able to move around and examine it closely."
+      },
+      {
+        "id": 3,
+        "position": 3,
+        "type": "question",
+        "title": "What do you see?",
+        "body": "As we take our time to observe, what do we notice? What is our attention drawn to first? What is this sculpture made of? Are there several parts to it? What materials do you see?",
+        "help": "Here are some words that might help you with your response: saddle, chair, udder, stirrups, leather, horse"
+      },
+      {
+        "id": 4,
+        "position": 4,
+        "type": "question",
+        "title": "What would you make?",
+        "body": "If you were given the chance of making a sculpture by mixing two or more everyday objects, would you want to do so?",
+        "help": "Think of a personal possession you would save if there was a fire. Think of an object you recieved as a gift from a friend or family member. Can you put them together?"
+      },
+      {
+        "id": 5,
+        "position": 5,
+        "type": "shareWithMuseum",
+        "title": "Share with IMMA",
+        "body": "Do you give IMMA permission to share your responses anonymously online, including social media?",
+        "share": true
+      },
+      {
+        "id": 6,
+        "position": 6,
+        "type": "follow",
+        "title": "Keep in touch",
+        "body": "Would you like to receive a link to your Slow Looking activity via email? If so, enter your email address."
+      },
+      {
+        "id": 7,
+        "position": 7,
+        "type": "shareWithSomeone",
+        "title": "Share with someone",
+        "body": "Would you like to share your response with someone such as friend or family member? If so, enter their email address and a message. Remember to include your name in the message so they know who sent it"
+      },
+      {
+        "id": 8,
+        "position": 8,
+        "type": "thankyou",
+        "title": "Thankyou",
+        "body": "Thankyou for taking part in this Slow Looking activity. Share the activity over social media. This shares the activity, not your own response to it."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Slow Looking at Barrel",
+    "themes": [
+      {
+        "id": 1,
+        "name": "Family",
+        "description": "What are the different meanings of family? How do families change over time and place? What is the role of family within society?"
+      },
+      {
+        "id": 3,
+        "name": "Storytelling",
+        "description": "Why do sories become connected to physical objects? Why do people tell them? How can artworks inspire new stories? "
+      }
+    ],
+    "artwork": {
+      "id": 2,
+      "name": "Barrel",
+      "artist": "Fergus Martin",
+      "year": "2020",
+      "fileLocation": "assets/img/barrel.jpg"
+    },
+    "open": true,
+    "visible": true,
+    "stages": [
+      {
+        "id": 9,
+        "position": 1,
+        "type": "welcome",
+        "title": "Barrel",
+        "body": "Hello and welcome to the IMMA Slow Looking Series. My name is Paola and I'm going to share some time exploring an artwork from the IMMA Collection with you. So once you're comfortable and relaxed, we can begin by taking a good, slow look at this work. "
+      },
+      {
+        "id": 10,
+        "position": 2,
+        "type": "context",
+        "title": "Barrel",
+        "body": "So we can allow our eyes to wander over the piece. Nice and slowly, from top to bottom, from left to right. Nearly like we're writing an inventory, or a list of what we see. We keep it simple, just noticing colours, materials, shapes. There is absolutely no right or wrong way of doing this, but simply giving ourselves the time to notice and to discover this object. As this is a sculptural work, you are able to move around and examine it closely."
+      },
+      {
+        "id": 11,
+        "position": 3,
+        "type": "question",
+        "title": "What do you see?",
+        "body": "As we take our time to observe, what do we notice? What is our attention drawn to first? What is this sculpture made of? Are there several parts to it? What materials do you see?"
+      },
+      {
+        "id": 12,
+        "position": 5,
+        "type": "shareWithMuseum",
+        "title": "Share with IMMA",
+        "body": "Do you give IMMA permission to share your responses anonymously online, including social media?",
+        "share": true
+      },
+      {
+        "id": 13,
+        "position": 6,
+        "type": "follow",
+        "title": "Keep in touch",
+        "body": "Would you like to receive a link to your Slow Looking activity via email? If so, enter your email address."
+      },
+      {
+        "id": 14,
+        "position": 7,
+        "type": "shareWithSomeone",
+        "title": "Share with someone",
+        "body": "Would you like to share your response with someone such as friend or family member? If so, enter their email address and a message. Remember to include your name in the message so they know who sent it"
+      },
+      {
+        "id": 15,
+        "position": 8,
+        "type": "thankyou",
+        "title": "Thankyou",
+        "body": "Thankyou for taking part in this Slow Looking activity. Share the activity over social media. This shares the activity, not your own response to it."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Slow Looking at The Drummer",
+    "themes": [
+      {
+        "id": 1,
+        "name": "Family",
+        "description": "What are the different meanings of family? How do families change over time and place? What is the role of family within society?"
+      },
+      {
+        "id": 4,
+        "name": "LGBTQ+",
+        "description": "What can artworks tell us about the life of LGBTQ+ people? What are some of the LGBTQ+ perspectives on IMMA artworks?"
+      }
+    ],
+    "artwork": {
+      "id": 3,
+      "name": "The Drummer",
+      "artist": "Barry Flanagan",
+      "year": "1996",
+      "fileLocation": "assets/img/drummer.jpg"
+    },
+    "open": false,
+    "visible": true,
+    "stages": [
+      {
+        "id": 16,
+        "position": 1,
+        "type": "welcome",
+        "title": "The Drummer",
+        "body": "Hello and welcome to the IMMA Slow Looking Series. My name is Paola and I'm going to share some time exploring an artwork from the IMMA Collection with you. So once you're comfortable and relaxed, we can begin by taking a good, slow look at this work. "
+      },
+      {
+        "id": 17,
+        "position": 2,
+        "type": "context",
+        "title": "The Drummer",
+        "body": "So we can allow our eyes to wander over the piece. Nice and slowly, from top to bottom, from left to right. Nearly like we're writing an inventory, or a list of what we see. We keep it simple, just noticing colours, materials, shapes. There is absolutely no right or wrong way of doing this, but simply giving ourselves the time to notice and to discover this object. As this is a sculptural work, you are able to move around and examine it closely."
+      },
+      {
+        "id": 18,
+        "position": 3,
+        "type": "question",
+        "title": "What do you see?",
+        "body": "As we take our time to observe, what do we notice? What is our attention drawn to first? What is this sculpture made of? Are there several parts to it? What materials do you see?"
+      },
+      {
+        "id": 19,
+        "position": 5,
+        "type": "shareWithMuseum",
+        "title": "Share with IMMA",
+        "body": "Do you give IMMA permission to share your responses anonymously online, including social media?",
+        "share": true
+      },
+      {
+        "id": 20,
+        "position": 6,
+        "type": "follow",
+        "title": "Keep in touch",
+        "body": "Would you like to receive a link to your Slow Looking activity via email? If so, enter your email address."
+      },
+      {
+        "id": 21,
+        "position": 7,
+        "type": "shareWithSomeone",
+        "title": "Share with someone",
+        "body": "Would you like to share your response with someone such as friend or family member? If so, enter their email address and a message. Remember to include your name in the message so they know who sent it"
+      },
+      {
+        "id": 22,
+        "position": 8,
+        "type": "thankyou",
+        "title": "Thankyou",
+        "body": "Thankyou for taking part in this Slow Looking activity. Share the activity over social media. This shares the activity, not your own response to it."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Slow Looking at Back of Snowman",
+    "themes": [
+      {
+        "id": 1,
+        "name": "Family",
+        "description": "What are the different meanings of family? How do families change over time and place? What is the role of family within society?"
+      },
+      {
+        "id": 5,
+        "name": "Black and Irish",
+        "description": "What does it mean to be Black and Irish? What are some of the Black and Irish perspectives on IMMA artworks?"
+      }
+    ],
+    "artwork": {
+      "id": 4,
+      "name": "Back of Snowman",
+      "artist": "Gary Hume",
+      "year": "2003",
+      "fileLocation": "assets/img/snowman.jpg"
+    },
+    "open": true,
+    "visible": false,
+    "stages": [
+      {
+        "id": 23,
+        "position": 1,
+        "type": "welcome",
+        "title": "Back of Snowman",
+        "body": "Hello and welcome to the IMMA Slow Looking Series. My name is Paola and I'm going to share some time exploring an artwork from the IMMA Collection with you. So once you're comfortable and relaxed, we can begin by taking a good, slow look at this work. "
+      },
+      {
+        "id": 24,
+        "position": 2,
+        "type": "context",
+        "title": "Back of Snowman",
+        "body": "So we can allow our eyes to wander over the piece. Nice and slowly, from top to bottom, from left to right. Nearly like we're writing an inventory, or a list of what we see. We keep it simple, just noticing colours, materials, shapes. There is absolutely no right or wrong way of doing this, but simply giving ourselves the time to notice and to discover this object. As this is a sculptural work, you are able to move around and examine it closely."
+      },
+      {
+        "id": 25,
+        "position": 3,
+        "type": "question",
+        "title": "What do you see?",
+        "body": "As we take our time to observe, what do we notice? What is our attention drawn to first? What is this sculpture made of? Are there several parts to it? What materials do you see?"
+      },
+      {
+        "id": 26,
+        "position": 5,
+        "type": "shareWithMuseum",
+        "title": "Share with IMMA",
+        "body": "Do you give IMMA permission to share your responses anonymously online, including social media?",
+        "share": true
+      },
+      {
+        "id": 27,
+        "position": 6,
+        "type": "follow",
+        "title": "Keep in touch",
+        "body": "Would you like to receive a link to your Slow Looking activity via email? If so, enter your email address."
+      },
+      {
+        "id": 28,
+        "position": 7,
+        "type": "shareWithSomeone",
+        "title": "Share with someone",
+        "body": "Would you like to share your response with someone such as friend or family member? If so, enter their email address and a message. Remember to include your name in the message so they know who sent it"
+      },
+      {
+        "id": 29,
+        "position": 8,
+        "type": "thankyou",
+        "title": "Thankyou",
+        "body": "Thankyou for taking part in this Slow Looking activity. Share the activity over social media. This shares the activity, not your own response to it."
+      }
+    ]
+  }
+]

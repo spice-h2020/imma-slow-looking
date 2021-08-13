@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "name": "Family",
+    "description": "What are the different meanings of family? How do families change over time and place? What is the role of family within society?"
+  },
+  {
+    "id": 2,
+    "name": "The Past",
+    "description": "How does the past influence how we live today? How does the present change what we think of the past?"
+  },
+  {
+    "id": 3,
+    "name": "Storytelling",
+    "description": "Why do sories become connected to physical objects? Why do people tell them? How can artworks inspire new stories? "
+  },
+  {
+    "id": 4,
+    "name": "LGBTQ+",
+    "description": "What can artworks tell us about the life of LGBTQ+ people? What are some of the LGBTQ+ perspectives on IMMA artworks?"
+  },
+  {
+    "id": 5,
+    "name": "Black and Irish",
+    "description": "What does it mean to be Black and Irish? What are some of the Black and Irish perspectives on IMMA artworks?"
+  }
+]
