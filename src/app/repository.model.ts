@@ -154,6 +154,16 @@ export class Model {
         }
     }
 
+    deleteThemeFromScripts(id: number, theme: Theme) {
+        let scripts = this.getScriptsAllOfTheme(id);
+        console.log(id, theme);
+        console.log(scripts);
+        scripts.forEach((script) => {
+            console.log(script);
+            this.removeThemeFromScript(script, theme);
+          });
+    }
+
     getDefaultTheme() {
         return this.themes[0];
     }
@@ -176,6 +186,10 @@ export class Model {
 
     getScriptsOfTheme(id: number): Script[] {
         return this.getOpenVisibleScripts().filter(x => this.hasTheme(x, id))
+    }
+
+    getScriptsAllOfTheme(id: number): Script[] {
+        return this.getScripts().filter(x => this.hasTheme(x, id))
     }
 
     getScript(id: number): Script {

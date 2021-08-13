@@ -312,8 +312,13 @@ export class SlowLookingComponent {
     }
 
     deleteTheme(id: number) {
+        //delete theme from scripts
+        let theme = this.getTheme(id);
+        console.log(theme);
+        this.model.deleteThemeFromScripts(id, theme);
+
+        //delete theme from theme list
         this.model.deleteTheme(id);
-        this.newTheme = new Theme();
         this.tableEditing = false;
     }
 
@@ -323,6 +328,10 @@ export class SlowLookingComponent {
 
     getThemes(): Theme[] {
         return this.model.getThemes();
+    }
+
+    getTheme(id: number): Theme {
+        return this.model.getTheme(id);
     }
 
     getScripts(): Script[] {
