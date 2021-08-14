@@ -4,7 +4,6 @@
     <button class="btn btn-outline-dark" (click)="mode=3">Other People</button>
     <button class="btn btn-outline-dark" (click)="mode=4">Authoring</button>
     <button class="btn btn-outline-dark" (click)="mode=5">Themes</button>
-
     <div [ngSwitch]="mode">  
         <div *ngSwitchCase="1">
             <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark hidenav">
@@ -636,82 +635,8 @@
             </div>
         </div> 
         
-        
         <div *ngSwitchDefault>
-            <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark hidenav">
-                <a class="navbar-brand" href="#">IMMA Slow Looking: Themes</a>
-            </nav> 
-            <p>Add, edit and delete themes used in Slow Looking.</p>
-            <div class="form-group">
-            <table class="table table-sm table-striped"> 
-                <tr><th>Position</th><th>Theme</th><th>Description</th><th></th><th></th></tr> 
-                <tbody class="text-black"> 
-                    <tr *ngFor="let item of getThemes(); let i = index"> 
-                        <td>
-                            <span *ngIf="!tableEditing || editrow!=item.id">
-                                {{i+1}}
-                            </span>
-                            <span *ngIf="tableEditing && editrow==item.id">
-                                <select (change)="shiftThemePosition($event,i); tableEditing=false">
-                                    <option *ngFor="let pos of getThemes(); let ind = index" [selected]="ind==i" value="{{ind}}">   
-                                        {{ind+1}}           
-                                     </option> 
-                                </select>
-                            </span>
-                        </td>
-                        <td>
-                            <span *ngIf="!tableEditing || editrow!=item.id">
-                                {{item.name}}
-                            </span>
-                            <span *ngIf="tableEditing && editrow==item.id">
-                                <textarea rows="3" class="form-control" [(ngModel)]="item.name"></textarea>
-                            </span>
-                        </td>
-                        <td>
-                            <span *ngIf="!tableEditing || editrow!=item.id">
-                                {{item.description}}
-                            </span>
-                            <span *ngIf="tableEditing && editrow==item.id">
-                                <textarea rows="3" class="form-control" [(ngModel)]="item.description"></textarea>
-                            </span>
-                        </td>
-                        <td>
-                            <span *ngIf="!tableEditing">
-                                <button class="btn btn-danger" (click)="deleteTheme(item.id)">Delete</button>
-                            </span>
-                        </td>
-                        <td>
-                            <span *ngIf="!tableEditing">
-                                <button class="btn btn-secondary" (click)="editrow=item.id" (click)="tableEditing=true">Edit</button>
-                            </span>
-                            <span *ngIf="tableEditing && editrow==item.id">
-                                <button class="btn btn-success" (click)="tableEditing=false" [disabled]="!item.name || !item.description">Done</button>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <span *ngIf="!tableEditing">
-                                <textarea rows="3" class="form-control" [(ngModel)]="newTheme.name"></textarea>
-                            </span>
-                        </td>
-                        <td>
-                            <span *ngIf="!tableEditing">
-                                <textarea rows="3" class="form-control" [(ngModel)]="newTheme.description"></textarea>
-                            </span>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                            <span *ngIf="!tableEditing">
-                                <button class="btn btn-success" (click)="addTheme(newTheme)" [disabled]="!newTheme.name || !newTheme.description">Add</button>
-                            </span>
-                        </td>
-                    </tr> 
-                </tbody> 
-            </table> 
-            </div>
+            <paThemeTable></paThemeTable>
         </div>
     </div>
   </div> 

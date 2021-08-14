@@ -1,5 +1,4 @@
 import { Component } from "@angular/core";
-import { isArray } from "util";
 import { Action, followAction, questionAction, shareWithFriendAction, shareWithMusemAction } from "./action.model";
 import { Activity } from "./activity.model";
 import { Artwork } from "./artwork.model";
@@ -221,15 +220,6 @@ export class SlowLookingComponent {
         this.newActivity.approved = false;
     }
 
-    // updateSlowLookingTheme(id: number) {
-    //     if(id == this.slowLookingTheme) {
-    //         this.slowLookingTheme = 0;
-    //     }
-    //     else {
-    //         this.slowLookingTheme = id;
-    //     }
-    // }
-
     updateOtherPeopleTheme(id: number) {
         if(id == this.otherPeopleTheme) {
             this.otherPeopleTheme = 0;
@@ -248,12 +238,6 @@ export class SlowLookingComponent {
     newFollowAction: followAction = new followAction();
 
     newShareWithFriendAction: shareWithFriendAction = new shareWithFriendAction();
-
-    editrow: number = 0;
-
-    tableEditing: boolean = false;
-
-    newTheme: Theme = new Theme();
 
     intialiseShareWithSomeoneAction(stage: shareWithSomeoneStage) {
         this.newShareWithFriendAction.shareWithOtherStage = stage;
@@ -303,22 +287,6 @@ export class SlowLookingComponent {
 
     resetNewShareWithMusemAction() {
         this.newShareWithMusemAction = new shareWithMusemAction();
-    }
-
-    addTheme(theme: Theme) {
-        this.model.saveTheme(theme);
-        this.newTheme = new Theme();
-        this.tableEditing = false;
-    }
-
-    deleteTheme(id: number) {
-        //delete theme from scripts
-        let theme = this.getTheme(id);
-        this.model.deleteThemeFromScripts(id, theme);
-
-        //delete theme from theme list
-        this.model.deleteTheme(id);
-        this.tableEditing = false;
     }
 
     getArtworks(): Artwork[] {
