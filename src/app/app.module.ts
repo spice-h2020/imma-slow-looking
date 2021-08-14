@@ -5,13 +5,15 @@ import { FormsModule } from '@angular/forms';
 import { ThemeTableComponent } from './themeTable.component';
 import { ContributionManagementComponent } from './contributionManagement.component';
 import { OtherPeopleComponent} from './otherPeople.component';
+import { ScriptAuthoringComponent } from './scriptAuthoring.component';
 
 @NgModule({
   declarations: [
     SlowLookingComponent,
     ThemeTableComponent,
     ContributionManagementComponent,
-    OtherPeopleComponent
+    OtherPeopleComponent,
+    ScriptAuthoringComponent
   ],
   imports: [
     BrowserModule,

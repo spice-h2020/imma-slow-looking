@@ -1,0 +1,215 @@
+<nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark hidenav">
+    <a class="navbar-brand" href="#">IMMA Slow Looking: Authoring</a>
+</nav> 
+<div>
+    <div *ngIf="viewScript==0">
+        <span>Show:</span><br/>
+        <span>
+            <span class="mr-3"><input type="checkbox" [checked]="showOpenScripts" (change)="showOpenScripts = !showOpenScripts"/><label class="ml-2"> Open </label></span>
+            <span class="mr-3"><input type="checkbox" [checked]="showClosedScripts" (change)="showClosedScripts = !showClosedScripts"/><label class="ml-2"> Closed </label></span>
+        </span>
+    </div>
+    <div class="col-xs-12 mb-1">
+        <button class="float-right btn btn-success" *ngIf="viewScript==0" (click)="addScript()">Add new script</button><br/>
+    </div>
+    <div class="col-xs-12 ml-1 mr-1" *ngFor="let script of getScripts(); let i = index">
+        <div *ngIf="((script.open && showOpenScripts) || (!(script.open) && showClosedScripts)) && (viewScript == 0 || viewScript==script.id)" class="border">
+            <div *ngIf="editScriptDescription!=script.id" class="col-xs-12">
+                <div  class="col-xs-8  mr-5 left">
+                    <span  class="font-weight-bold">{{script.name}}</span>
+                </div>
+                <div class="col-xs-4 float-right">
+                    <span *ngIf="viewScript==0">
+                        <button class="mr-5 btn btn-info" (click)="viewScript=script.id">View</button>
+                        <button class="btn btn-danger" (click)="deleteScript(script.id)">Delete</button>
+                    </span>
+                    <span *ngIf="viewScript==script.id && editScriptDescription==0 && editScriptStage==0">
+                        <button class="mr-5 btn btn-info" (click)="viewScript=0">Return to list of scripts</button>
+                    </span>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <!-- show script description -->
+                <span *ngIf="editScriptDescription!=script.id">
+                    <span class="font-weight-bold">
+                        Themes: 
+                    </span>
+                    <span *ngFor="let theme of script.themes; let i = index; let last = last">
+                        {{theme.name}}<span *ngIf="!last">, </span>
+                    </span>
+                    <br/>
+                    <span class="font-weight-bold">
+                        Artwork: 
+                    </span><span *ngIf="script.artwork">{{script.artwork.name}}, {{script.artwork.artist}}, {{script.artwork.year}}</span><br/>
+                    <span class="font-weight-bold">
+                        Status: 
+                    </span>
+                    <span *ngIf="script.open">Open</span>
+                    <span *ngIf="!script.open">Closed</span><br/>
+                    <span class="font-weight-bold">
+                        Visibilty: 
+                    </span>
+                    <span *ngIf="script.visible">Public</span>
+                    <span *ngIf="!script.visible">Private</span><br/>
+                    <span *ngIf="viewScript==script.id && editScriptDescription==0 && editScriptStage==0">
+                        <button class="btn btn-secondary" (click)="editScriptDescription=script.id; editScriptStage=0">Edit description</button><br/>
+                    </span>
+                    <div class="border" *ngIf="viewScript==script.id">
+                        <span class="font-weight-bold">Stages</span><br/>
+                        <span *ngIf="editScriptStage==0">Add new stage: <button class="btn btn-success mr-1" (click)="addWelcomeStageToScript(script)">welcome</button> <button class="btn btn-success mr-1" (click)="addContextStageToScript(script)">context</button> <button class="btn btn-success mr-1" (click)="addQuestionStageToScript(script)">question</button> <button class="btn btn-success mr-1" (click)="addShareWithMuseumStageToScript(script)">shareWithMuseum</button> <button class="btn btn-success mr-1" (click)="addFollowStageToScript(script)">follow</button> <button class="btn btn-success mr-1" (click)="addShareWithSomeoneStageToScript(script)">shareWithSomeone</button> <button class="btn btn-success mr-1" (click)="addThankyouStageToScript(script)">thankyou</button></span>
+                    </div>
+                </span>
+
+                <!-- edit script description -->
+                <table *ngIf="editScriptDescription==script.id" width=100% class="border"><th></th><th></th>
+                    <tr><td class="align-top">
+                        <!-- script name -->
+                        <span class="font-weight-bold">Title: </span>
+                    </td><td>
+                    <textarea rows="1" class="form-control" [(ngModel)]="script.name"></textarea>
+                    </td></tr>
+                    <tr><td class="align-top">
+                        <span class="font-weight-bold">Themes: </span>
+                    </td><td>
+                        <span *ngFor="let theme of getThemes()" class="mr-3">
+                            <input
+                            type="checkbox"
+                            [value]=theme.id
+                            [ngModel] = "script.themes.includes(theme)"
+                            (change) = "themesChange(script, theme, $event)"
+                            />
+                            <label class="form-check-label"> {{theme.name}} </label>
+                        </span>
+                    </td></tr>
+                    <tr><td  class="align-top">
+                        <span class="font-weight-bold">Artwork: </span>
+                    </td><td>
+                        <span *ngFor="let artwork of getArtworks()" class="mr-3">
+                            <input
+                            type="radio"
+                            [value]="artwork"
+                            name="artwork.name"
+                            [(ngModel)] = "script.artwork"
+                            />
+                            <label class="form-check-label"> {{artwork.name}}, {{artwork.artist}}, {{artwork.year}} </label>
+                            <br/>
+                        </span>
+                    </td></tr>
+                    <tr><td class="align-top">
+                        <!-- script status -->
+                        <span class="mr-3 font-weight-bold">
+                            Status: 
+                        </span>
+                    </td><td>
+                        <span class="mr-3">
+                            <input
+                            type="radio"
+                            [value]=true
+                            name="open"
+                            [(ngModel)] = "script.open"
+                            checked
+                            />
+                            <label class="form-check-label"> Open </label>
+                        </span>
+                        <span class="mr-3">
+                            <input
+                                type="radio"
+                                [value]=false
+                                name="open"
+                                [(ngModel)] = "script.open"
+                            />
+                            <label class="form-check-label"> Closed </label>
+                        </span> 
+                    </td></tr>
+                    <tr><td class="align-top">
+                        <!-- script visibility -->
+                        <span class="mr-3 font-weight-bold">
+                            Visibility: 
+                        </span>
+                    </td><td>
+                        <span class="mr-3">
+                            <input
+                                type="radio"
+                                [value]=true
+                                name="visible"
+                                [(ngModel)] = "script.visible"
+                                checked
+                            />
+                            <label class="form-check-label"> Public </label>
+                        </span>
+                        <span class="mr-3">
+                            <input
+                                type="radio"
+                                [value]=false
+                                name="visible"
+                                [(ngModel)] = "script.visible"
+                            />
+                            <label class="form-check-label"> Private </label>
+                        </span>
+                    </td></tr><tr><td colspan="2">
+                        <button class="btn btn-success" (click)="editScriptDescription=0">Done</button> 
+                    </td></tr>
+                </table>
+            
+                <span *ngIf="viewScript==script.id">
+                   <!-- stages of selected script -->
+                    <div *ngFor="let stage of script.stages; let i = index" class="border">
+                        <!-- show script stage -->
+                        <span *ngIf="stage.id!=editScriptStage"> 
+                            <span class="font-weight-bold">Type: </span><span>{{stage.type}}</span><br/>
+                            <span class="font-weight-bold">Position: </span><span>{{i+1}}</span><br/>
+                            <span class="font-weight-bold">Title: </span><span>{{stage.title}}</span><br/>
+                            
+                            <span class="font-weight-bold">Text: </span><span>{{stage.body}}</span><br/>
+                            <span *ngIf='stage.type=="question"'>
+                                <span class="font-weight-bold">Help text: </span><span>{{stage.help}}</span><br/>
+                            </span>
+                            <span *ngIf="editScriptStage==0 && editScriptDescription==0"> 
+                                <button class="mr-5 btn btn-secondary" (click)="editScriptStage=stage.id">Edit stage</button>
+                                <button class="btn btn-danger" (click)="deleteStage(script, stage.id)">Delete stage</button><br/>
+                            </span>
+                        </span>
+                        <!-- edit script stage -->
+                        <span *ngIf="stage.id==editScriptStage">
+                            <table width=100%><th></th><th></th>
+                            <tr><td>
+                                <span class="font-weight-bold">Type:</span>
+                            </td><td>
+                                <span>{{stage.type}}</span>
+                            </td></tr>
+                            <tr><td>
+                                <span class="font-weight-bold">Position:</span>
+                            </td><td>
+                                <select (change)="shiftStagePosition(script, $event, i); editScriptStage=0">
+                                    <option *ngFor="let pos of script.stages; let ind = index" [selected]="ind==i" value="{{ind}}">   
+                                        {{ind+1}}           
+                                    </option> 
+                                </select>
+                                <!-- <textarea rows="1" class="form-control" [(ngModel)]="stage.title"></textarea> -->
+                            </td></tr>
+                            <tr><td>
+                                <span class="font-weight-bold">Title:</span>
+                            </td><td>
+                                <textarea rows="1" class="form-control" [(ngModel)]="stage.title"></textarea>
+                            </td></tr> 
+                            <tr><td>
+                                <span class="font-weight-bold">Text:</span>
+                            </td><td>
+                                <textarea rows="5" class="form-control" [(ngModel)]="stage.body"></textarea>
+                            </td></tr>
+                            <tr *ngIf='stage.type=="question"'><td>
+                                <span class="font-weight-bold">Help text:</span>
+                            </td><td>
+                                <textarea rows="5" class="form-control" [(ngModel)]="stage.help"></textarea>
+                            </td></tr>
+                            </table>
+                            <span>
+                                <button class="btn btn-success" (click)="editScriptStage=0">Done</button><br/>
+                            </span>
+                        </span>
+                    </div>
+                </span>
+            </div>
+        </div>
+    </div><br/>
+</div>
