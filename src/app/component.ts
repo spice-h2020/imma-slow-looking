@@ -16,7 +16,6 @@ export class SlowLookingComponent {
     // remove
 
  
-
     // remove
     
     addWelcomeStage() {
@@ -315,10 +314,6 @@ export class SlowLookingComponent {
 
     getScriptsOfTheme(id: number): Script[] {
         return this.model.getScriptsOfTheme(id);
-    }
-
-    getApprovedActivitiesOfAScript(id: number): Activity[] {
-        return this.model.getApprovedActivitiesOfAScript(id);
     }
 
     getApprovedActivities(): Activity[] {

@@ -1,0 +1,74 @@
+<nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark hidenav">
+    <a class="navbar-brand" href="#">IMMA Slow Looking: Other People</a>
+</nav>
+              
+<h2>Other People</h2>
+<p>Find out how others have responded to IMMA artworks. Select one of the themes to view the responses. Follow @IMMASlowLooking on Twitter to keep track of the responses of others.</p> 
+
+<div *ngFor="let theme of getThemes(); let i = index">
+    <div class="accordion " id="accordionFlushExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="{{'heading_' + theme.id}}">
+                <button 
+                    class="accordion-button collapsed" 
+                    type="button" 
+                    data-bs-toggle="collapse" 
+                    [attr.data-bs-target]="'#collapse_' + theme.id"
+                    aria-expanded="false" 
+                    [attr.aria-controls]="'collapse_'+ theme.id">
+                    <div><strong>{{theme.name}}</strong><br/>
+                    {{theme.description}}
+                    </div>
+                </button>
+            </h2>
+            <div 
+                id="{{'collapse_' + theme.id}}" 
+                class="accordion-collapse collapse" 
+                [attr.aria-labelledby]="'heading_' + theme.id"
+                data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    <div *ngFor="let script of getScriptsOfTheme(theme.id); let i = index" class="col-sm-12 pb-4">
+                        <h5 class="col-sm-12">{{script.name}}</h5> 
+                        <div>
+                            <img class="col-sm-12" src="{{script.artwork.fileLocation}}" >
+                        </div>
+                        <div class="col-sm-12"><strong>{{script.artwork.name}}</strong></div>
+                        <div class="col-sm-12">{{script.artwork.artist}}</div>
+                        <div class="col-sm-12">{{script.artwork.year}}</div>
+                        <div class="accordion " id="{{'#theme'+theme.id+'script'+script.id}}">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="{{'heading_' + 'theme'+theme.id+'script'+script.id}}">
+                                    <button 
+                                        class="accordion-button collapsed" 
+                                        type="button" 
+                                        data-bs-toggle="collapse" 
+                                        [attr.data-bs-target]="'#collapse_' + 'theme'+theme.id+'script'+script.id"
+                                        aria-expanded="false" 
+                                        [attr.aria-controls]="'collapse_'+ 'theme'+theme.id+'script'+script.id">
+                                        Recent responses
+                                    </button>
+                                </h2>
+                                <div 
+                                    id="{{'collapse_' + 'theme'+theme.id+'script'+script.id}}" 
+                                    class="accordion-collapse collapse" 
+                                    [attr.aria-labelledby]="'heading_' + 'theme'+theme.id+'script'+script.id"
+                                    [attr.data-bs-parent]="'#theme'+theme.id+'script'+script.id">
+                                    <div class="accordion-body">
+                                        <div *ngFor="let activity of getApprovedActivitiesOfAScript(script.id); let i = index" class="border">
+                                            <div *ngFor="let action of activity.actions;">
+                                                <span class="font-weight-bold">{{action.question}}</span>
+                                                <p class="font-weight-normal">{{action.answer}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                            
+                </div>
+            </div>
+        </div>
+    </div>
+</div>           
+<h2>Take part</h2>
+    <button class="m-3 btn btn-warning" (click)="mode=1">Try Slow Looking activities for yourself</button>
