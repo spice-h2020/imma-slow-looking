@@ -13,6 +13,12 @@ import { Theme } from "./theme.model";
 })
 export class SlowLookingComponent {
 
+    // remove
+
+ 
+
+    // remove
+    
     addWelcomeStage() {
         let stage = new welcomeStage();
         stage.id = this.model.saveStage(stage);
@@ -191,8 +197,6 @@ export class SlowLookingComponent {
     
     mode: number = 1;
 
-    managementMode: number = 1;
-
     // slowLookingTheme: number = 0;
 
     otherPeopleTheme: number = 0;
@@ -260,10 +264,6 @@ export class SlowLookingComponent {
         this.model.saveActivity(this.newActivity);
     }
 
-    deleteActivity(id: number) {
-        this.model.deleteActivity(id);
-    }
-
     addActionToActivity(action: Action) {
         if(this.newActivity.actions) {
             this.newActivity.actions.push(action);
@@ -309,10 +309,6 @@ export class SlowLookingComponent {
         return this.model.getOpenVisibleScripts();
     }
 
-    getActivities(): Activity[] {
-        return this.model.getActivities();
-    }
-
     getScript(id: number): Script {
         return this.model.getScript(id);
     }
@@ -331,10 +327,6 @@ export class SlowLookingComponent {
 
     getApprovedVisibleActivities(): Activity[] {
         return this.model.getApprovedVisibleActivities();
-    }
-
-    getUnpprovedActivities(): Activity[] {
-        return this.model.getUnapprovedActivities();
     }
 
 }

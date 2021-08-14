@@ -4,6 +4,7 @@
     <button class="btn btn-outline-dark" (click)="mode=3">Other People</button>
     <button class="btn btn-outline-dark" (click)="mode=4">Authoring</button>
     <button class="btn btn-outline-dark" (click)="mode=5">Themes</button>
+    
     <div [ngSwitch]="mode">  
         <div *ngSwitchCase="1">
             <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark hidenav">
@@ -228,115 +229,9 @@
                     </div>
                 </div> 
             </div>
-
-
-       
         </div>
         <div *ngSwitchCase="2">
-            <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark hidenav">
-                <a class="navbar-brand" href="#">IMMA Slow Looking: Management</a>
-            </nav>
-            <div>
-                Show:
-            </div>
-            <div class="mb-4">
-                <button (click)="managementMode=1" class="btn btn-secondary col-sm-4 text-center">All</button>
-                <button (click)="managementMode=2" class="btn btn-success col-sm-4 text-center">Approved</button>
-                <button (click)="managementMode=3" class="btn btn-warning col-sm-4 text-center">Awaiting approval</button>
-            </div>
-
-            <div [ngSwitch]="managementMode">  
-                <div *ngSwitchCase="1">
-                    <!-- show all -->
-                    <div *ngFor="let item of getActivities(); let i = index" class="mb-4 border">
-                        <div class="text-center border">
-                            <span *ngIf="item.approved">
-                                Approved
-                            </span>
-                            <span *ngIf="!(item.approved)">
-                                Awaiting approval
-                            </span>
-                        </div>
-                        <div class="text-sm-left border">
-                            <p class="text-sm-left font-weight-bold">{{item.script.name}}</p>
-                            <div *ngFor="let action of item.actions;">
-                                <span class="font-italic">{{action.question}}</span>
-                                <p class="font-weight-normal">{{action.answer}}</p>
-                            </div>
-                        </div>
-                        <div class="text-sm-left border">
-                            <div *ngIf="item.approved">
-                                <button class="col-sm-4 text-center btn btn-warning" (click)="item.approved=false">Reject</button>
-                                <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item.id)">Delete</button>            
-                            </div>
-                            <span *ngIf="!(item.approved)">
-                                <button class="col-sm-4 text-center btn btn-success" (click)="item.approved=true">Approve</button>
-                                <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item.id)">Delete</button>   
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div *ngSwitchCase="2">
-                    <!-- show approved -->
-                    <div *ngFor="let item of getApprovedActivities(); let i = index" class="mb-4 border">
-                        <div class="text-center border">
-                            <span *ngIf="item.approved">
-                                Approved
-                            </span>
-                            <span *ngIf="!(item.approved)">
-                                Awaiting approval
-                            </span>
-                        </div>
-                        <div class="text-sm-left border">
-                            <p class="text-sm-left font-weight-bold">{{item.script.name}}</p>
-                            <div *ngFor="let action of item.actions;">
-                                <span class="font-italic">{{action.question}}</span>
-                                <p class="font-weight-normal">{{action.answer}}</p>
-                            </div>
-                        </div>
-                        <div class="text-sm-left border">
-                            <div *ngIf="item.approved">
-                                <button class="col-sm-4 text-center btn btn-warning" (click)="item.approved=false">Reject</button>
-                                <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item.id)">Delete</button>            
-                            </div>
-                            <span *ngIf="!(item.approved)">
-                                <button class="col-sm-4 text-center btn btn-success" (click)="item.approved=true">Approve</button>
-                                <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item.id)">Delete</button>   
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div *ngSwitchCase="3">
-                    <!-- show waiting approval -->
-                    <div *ngFor="let item of getUnpprovedActivities(); let i = index" class="mb4 border">
-                        <div class="text-center border">
-                            <span *ngIf="item.approved">
-                                Approved
-                            </span>
-                            <span *ngIf="!(item.approved)">
-                                Awaiting approval
-                            </span>
-                        </div>
-                        <div class="text-sm-left border">
-                            <p class="text-sm-left font-weight-bold">{{item.script.name}}</p>
-                            <div *ngFor="let action of item.actions;">
-                                <span class="font-italic">{{action.question}}</span>
-                                <p class="font-weight-normal">{{action.answer}}</p>
-                            </div>
-                        </div>
-                        <div class="text-sm-left border">
-                            <div *ngIf="item.approved">
-                                <button class="col-sm-4 text-center btn btn-warning" (click)="item.approved=false">Reject</button>
-                                <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item.id)">Delete</button>            
-                            </div>
-                            <span *ngIf="!(item.approved)">
-                                <button class="col-sm-4 text-center btn btn-success" (click)="item.approved=true">Approve</button>
-                                <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item.id)">Delete</button>   
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <paContributionManagement></paContributionManagement>
         </div> 
         <div *ngSwitchCase="3">
             <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark hidenav">

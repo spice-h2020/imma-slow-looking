@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 import { SlowLookingComponent } from './component';
 import { FormsModule } from '@angular/forms';
 import { ThemeTableComponent } from './themeTable.component';
+import { ContributionManagementComponent } from './contributionManagement.component';
 
 @NgModule({
   declarations: [
     SlowLookingComponent,
-    ThemeTableComponent
+    ThemeTableComponent,
+    ContributionManagementComponent
   ],
   imports: [
     BrowserModule,
