@@ -1,21 +1,18 @@
 import { Component } from "@angular/core";
-import { Activity } from "./activity.model";
 import { Model } from "./repository.model";
 import { Script } from "./script.model";
 import { Theme } from "./theme.model";
 
 @Component({
-    selector: "paOtherPeople",
-    templateUrl: "otherPeople.component.html"
+    selector: "paHomepage",
+    templateUrl: "homepage.component.html"
 })
 
-export class OtherPeopleComponent {
+export class HomepageComponent {
 
     constructor(private model: Model){}
     // model: Model = new Model();
 
-    mode: number = 1;
-    
     getThemes(): Theme[] {
         return this.model.getThemes();
     }
@@ -24,8 +21,5 @@ export class OtherPeopleComponent {
         return this.model.getScriptsOfTheme(id);
     }
 
-    getApprovedActivitiesOfAScript(id: number): Activity[] {
-        return this.model.getApprovedActivitiesOfAScript(id);
-    }
-
+    mode: number = 1;
 }

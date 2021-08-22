@@ -113,10 +113,10 @@ export class StaticDataSource {
             new Script(2, "Slow Looking at Barrel", new Array<Theme>(this.themeData[0], this.themeData[2]), this.artworkData[1], true, true,
             new Array<Stage>(this.stageData[8],this.stageData[9],this.stageData[10],this.stageData[11],this.stageData[12],this.stageData[13],this.stageData[14])
             ),
-            new Script(3, "Slow Looking at The Drummer", new Array<Theme>(this.themeData[0], this.themeData[3]), this.artworkData[2], false, true,
+            new Script(3, "Slow Looking at The Drummer", new Array<Theme>(this.themeData[0], this.themeData[3]), this.artworkData[2], true, true,
             new Array<Stage>(this.stageData[15],this.stageData[16],this.stageData[17],this.stageData[18],this.stageData[19],this.stageData[20],this.stageData[21])
             ),
-            new Script(4, "Slow Looking at Back of Snowman", new Array<Theme>(this.themeData[0], this.themeData[4]), this.artworkData[3], true, false,
+            new Script(4, "Slow Looking at Back of Snowman", new Array<Theme>(this.themeData[0], this.themeData[4]), this.artworkData[3], true, true,
             new Array<Stage>(this.stageData[22],this.stageData[23],this.stageData[24],this.stageData[25],this.stageData[26],this.stageData[27],this.stageData[28])
             ),
         );

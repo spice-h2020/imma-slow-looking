@@ -4,7 +4,11 @@ import { Script } from "./script.model";
 import { StaticDataSource } from "./datasource.model";
 import { Theme } from "./theme.model";
 import { Stage } from "./stage.model";
+import { Observable } from "rxjs"; 
+import { RestDataSource } from "./rest.datasource";
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class Model {
     private dataSource: StaticDataSource;
     private themes: Theme[];
@@ -17,8 +21,21 @@ export class Model {
     private approved = (x: any) => (x.approved);
     private unapproved = (x: any) => (!x.approved);
     private hasTheme = (x: any, id: number) => x.themes.find(e => e.id == id);
+    private dbArtworks: Artwork[] = new Array<Artwork>();
+    private dbScripts: Script[] = new Array<Script>();
+    private dbStages: Stage[] = new Array<Stage>();
+    private dbThemes: Theme[] = new Array<Theme>();
+    private dbActivities: Activity[] = new Array<Activity>();
 
-    constructor() {
+    constructor(private dbDataSource: RestDataSource) {
+
+        this.dbDataSource.getThemeData().subscribe(data => this.dbThemes = data);
+        this.dbDataSource.getArtworkData().subscribe(data => this.dbArtworks = data);
+        this.dbDataSource.getActivityData().subscribe(data => this.dbActivities = data);
+        this.dbDataSource.getScriptData().subscribe(data => this.dbScripts = data);
+        this.dbDataSource.getStageData().subscribe(data => this.dbStages = data);
+
+        
         this.dataSource = new StaticDataSource;
 
         this.themes = new Array<Theme>();
@@ -35,6 +52,7 @@ export class Model {
 
         this.stages = new Array<Stage>();
         this.dataSource.getStageData().forEach(x => this.stages.push(x));
+
     }
 
     moveScriptStage(script: Script, oldPosition: number, newPosition: number) {
@@ -92,6 +110,7 @@ export class Model {
     }
 
     getStages(): Stage[] {
+        // return this.dbStages;
         return this.stages;
     }
 
@@ -118,6 +137,7 @@ export class Model {
     }
 
     getThemes(): Theme[] {
+        // return this.dbThemes;
         return this.themes;
     }
 
@@ -170,10 +190,12 @@ export class Model {
     }
 
     getArtworks(): Artwork[] {
+        // return this.dbArtworks;
         return this.artworks;
     }
 
     getScripts(): Script[] {
+        // return this.dbScripts;
         return this.scripts;
     }
 
@@ -216,6 +238,7 @@ export class Model {
     }
 
     getActivities(): Activity[] {
+        // return this.dbActivities;
         return this.activities;
     }
     

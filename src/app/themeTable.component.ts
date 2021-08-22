@@ -1,3 +1,4 @@
+// import { Component, OnInit } from "@angular/core";
 import { Component } from "@angular/core";
 import { Theme } from "./theme.model";
 import { Model } from "./repository.model";
@@ -9,13 +10,15 @@ import { Model } from "./repository.model";
 
 export class ThemeTableComponent {
 
+    constructor(private model: Model){}
+
     editrow: number = 0;
 
     tableEditing: boolean = false;
 
     newTheme: Theme = new Theme();
 
-    model: Model = new Model();
+    // model: Model = new Model();
 
     addTheme(theme: Theme) {
         this.model.saveTheme(theme);
@@ -38,6 +41,7 @@ export class ThemeTableComponent {
     }
 
     getThemes(): Theme[] {
+        // return this.dbthemes;
         return this.model.getThemes();
     }
 

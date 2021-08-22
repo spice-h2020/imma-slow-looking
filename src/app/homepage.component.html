@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark hidenav">
+    <a class="navbar-brand" href="#">IMMA Slow Looking</a>
+</nav>
+<div><img class="col-sm-12" src="assets/img/IMMA30_LOGO_RGB_small.png"></div>
+<p class="lead">Weclome to IMMA Slow Looking. Dive deeper into IMMA artworks. Share your own responses to IMMA artworks and view the responses of others.</p>
+
+<h2>Find Out More</h2>
+<p>Weclome to IMMA Slow Looking. Look closely at these IMMA artworks and develop your own interpretation. How do you view these artworks? How do other people view them?</p> 
+<p>Below are some Slow Looking activities. Each one focusses on a particular IMMA artwork. Each Slow Looking activity helps you to look deeper, find out more about the artwork and develop you own interpretation.</p>
+<p>Within each activity you may have the opportunity to share your response with IMMA, send it to friends and family as well as keep a copy for yourself as a momento of your experience.</p>
+<p>There is a link to the public display of shared Slow Looking responses in the Other People section of this page. But first, try some Slow Looking activities for yourself.</p>
+
+<h2>Take Part</h2>
+<p>The Slow Looking activities are organised into the themes below. Select a theme to view the Slow Looking activities. Each activity is based around a particular artwork in the IMMA collection. Tap on the artwork image to try the Slow Looking activity.</p>
+<div class="row">
+    <div *ngFor="let theme of getThemes(); let i = index">
+        <div class="accordion " id="accordionFlushExample">
+            <div class="accordion-item">
+            <h2 class="accordion-header" id="{{'heading_' + theme.id}}">
+                <button 
+                    class="accordion-button collapsed" 
+                    type="button" 
+                    data-bs-toggle="collapse" 
+                    [attr.data-bs-target]="'#collapse_' + theme.id"
+                    aria-expanded="false" 
+                    [attr.aria-controls]="'collapse_'+ theme.id">
+                    <div><strong>{{theme.name}}</strong><br/>
+                    {{theme.description}}
+                    </div>
+                </button>
+            </h2>
+            <div 
+                id="{{'collapse_' + theme.id}}" 
+                class="accordion-collapse collapse" 
+                [attr.aria-labelledby]="'heading_' + theme.id"
+                data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    <div *ngFor="let script of getScriptsOfTheme(theme.id); let i = index" class="col-sm-12 pb-4">
+                        <h5 class="col-sm-12">{{script.name}}</h5> 
+                        <div>
+                            <!-- <img (click)="setSlowLookingScript(script.id)" class="col-sm-12" src="{{script.artwork.fileLocation}}" > -->
+                            <img routerLink="/slowLooking/{{script.id}}" class="col-sm-12" src="{{script.artwork.fileLocation}}" >
+
+                        </div>
+                        <div class="col-sm-12"><strong>{{script.artwork.name}}</strong></div>
+                        <div class="col-sm-12">{{script.artwork.artist}}</div>
+                        <div class="col-sm-12">{{script.artwork.year}}</div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div><br/>
+<h2>Other People</h2>
+<button class="m-3 btn btn-warning" routerLink="/otherPeople">Find out how others have responded to these artworks</button>

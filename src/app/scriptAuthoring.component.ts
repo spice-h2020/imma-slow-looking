@@ -12,7 +12,8 @@ import { Theme } from "./theme.model";
 
 export class ScriptAuthoringComponent {
 
-    model: Model = new Model();
+    constructor(private model: Model){}
+    // model: Model = new Model();
 
     showOpenScripts: boolean = true;
 

@@ -9,9 +9,10 @@ import { Model } from "./repository.model";
 
 export class ContributionManagementComponent {
 
-    managementMode: number = 1;
+    constructor(private model: Model){}
+    // model: Model = new Model();
 
-    model: Model = new Model();
+    managementMode: number = 1;
 
     getActivities(): Activity[] {
         return this.model.getActivities();
