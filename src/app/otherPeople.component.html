@@ -1,9 +1,29 @@
 <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark hidenav">
-    <a class="navbar-brand" href="#">IMMA Slow Looking: Other People</a>
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">IMMA Slow Looking</a>
+      <!-- <img class="img-fluid" src="assets/img/IMMA30_LOGO_RGB.png"> -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" class="nav-link" routerLink="/home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/otherPeople">Other People</a>
+          </li>
+        </ul>
+      </div>
+    </div>
 </nav>
-              
-<h2>Other People</h2>
-<p>Find out how others have responded to IMMA artworks. Select one of the themes to view the responses. Follow @IMMASlowLooking on Twitter to keep track of the responses of others.</p> 
+
+<p class="lead">
+    Find out how others have responded to IMMA artworks.
+</p>
+<p>
+    Select one of the themes to view the responses. Follow @IMMASlowLooking on Twitter to keep track of the responses of others.
+</p> 
 
 <div *ngFor="let theme of getThemes(); let i = index">
     <div class="accordion " id="accordionFlushExample">
