@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'management', component: ContributionManagementComponent },
   { path: 'otherPeople', component: OtherPeopleComponent },
   { path: 'authoring', component: ScriptAuthoringComponent },
-  { path: 'themes', component: ThemeTableComponent },
+  { path: 'themes', component: ThemeTableComponent, runGuardsAndResolvers: 'always'},
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 

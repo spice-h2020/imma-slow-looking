@@ -1,18 +1,20 @@
 // import { Component, OnInit } from "@angular/core";
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Theme } from "./theme.model";
 import { Model } from "./repository.model";
+import { by } from "protractor";
 
 @Component({
     selector: "paThemeTable",
     templateUrl: "themeTable.component.html"
 })
 
+
 export class ThemeTableComponent {
 
     constructor(private model: Model){}
 
-    editrow: number = 0;
+    editrow: string = "";
 
     tableEditing: boolean = false;
 
@@ -26,23 +28,30 @@ export class ThemeTableComponent {
         this.tableEditing = false;
     }
 
-    deleteTheme(id: number) {
+    deleteTheme(_id: string) {
         //delete theme from scripts
-        let theme = this.getTheme(id);
-        this.model.deleteThemeFromScripts(id, theme);
+        let theme = this.getTheme(_id);
+        this.model.deleteThemeFromScripts(_id, theme);
 
         //delete theme from theme list
-        this.model.deleteTheme(id);
+        this.model.deleteTheme(_id);
         this.tableEditing = false;
     }
     
-    getTheme(id: number): Theme {
-        return this.model.getTheme(id);
+    getTheme(_id: string): Theme {
+        return this.model.getTheme(_id);
     }
 
     getThemes(): Theme[] {
         // return this.dbthemes;
-        return this.model.getThemes();
+        let themes =  this.model.getThemes();
+        let sortedThemes = themes.sort((a, b) => (a.id < b.id) ? -1 : 1);
+        return sortedThemes;
+    }
+
+    updateThemePosition(theme: Theme, event) {
+        let newPosition = event.target.value;
+        this.model.updateThemePosition(theme, newPosition);
     }
 
     shiftThemePosition(event,old){

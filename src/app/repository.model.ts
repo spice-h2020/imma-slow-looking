@@ -17,10 +17,14 @@ export class Model {
     private activities: Activity[];
     private stages: Stage[];
     private locator = (x: any, id: number) => x.id == id;
+    private themeLocator = (theme: Theme, id: string) => theme._id == id;
+    private locator2 = (x: any, id: any) => x._id == id;
+    private stringLocator = (x: any, id: any) => x._id == id;
     private openAndVisible = (x: any) => (x.open && x.visible);
     private approved = (x: any) => (x.approved);
     private unapproved = (x: any) => (!x.approved);
     private hasTheme = (x: any, id: number) => x.themes.find(e => e.id == id);
+    private hasTheme_id = (x: any, id: string) => x.themes.find(e => e._id === id);
     private dbArtworks: Artwork[] = new Array<Artwork>();
     private dbScripts: Script[] = new Array<Script>();
     private dbStages: Stage[] = new Array<Stage>();
@@ -36,24 +40,72 @@ export class Model {
         this.dbDataSource.getStageData().subscribe(data => this.dbStages = data);
 
         
-        this.dataSource = new StaticDataSource;
+        // this.dataSource = new StaticDataSource;
 
-        this.themes = new Array<Theme>();
-        this.dataSource.getThemeData().forEach(x => this.themes.push(x));
+        // this.themes = new Array<Theme>();
+        // this.dataSource.getThemeData().forEach(x => this.themes.push(x));
 
-        this.artworks = new Array<Artwork>();
-        this.dataSource.getArtworkData().forEach(x => this.artworks.push(x));
+        // this.artworks = new Array<Artwork>();
+        // this.dataSource.getArtworkData().forEach(x => this.artworks.push(x));
 
-        this.scripts = new Array<Script>();
-        this.dataSource.getScriptData().forEach(x => this.scripts.push(x));
+        // this.scripts = new Array<Script>();
+        // this.dataSource.getScriptData().forEach(x => this.scripts.push(x));
 
-        this.activities = new Array<Activity>();
-        this.dataSource.getActivityData().forEach(x => this.activities.push(x));
+        // this.activities = new Array<Activity>();
+        // this.dataSource.getActivityData().forEach(x => this.activities.push(x));
 
-        this.stages = new Array<Stage>();
-        this.dataSource.getStageData().forEach(x => this.stages.push(x));
+        // this.stages = new Array<Stage>();
+        // this.dataSource.getStageData().forEach(x => this.stages.push(x));
 
     }
+
+    // Theme
+    getThemes(): Theme[] {
+        return this.dbThemes;
+        // return this.themes;
+    }
+
+    getTheme(_id: string) {
+        return this.dbThemes.find(x => this.stringLocator(x, _id));
+    }
+
+    saveTheme(theme: Theme) {
+        if(theme.id == 0 || theme.id == null) {
+            theme.id = this.generateThemeID();
+        }
+        if (theme._id == undefined) {
+            this.dbDataSource.saveTheme(theme).subscribe(p => this.dbThemes.push(p));
+        } 
+        else {
+            this.dbDataSource.updateTheme(theme).subscribe(p => {
+                let index = this.dbThemes.findIndex(item => this.themeLocator(item, p._id));
+                this.dbThemes.splice(index, 1, p);
+        });
+        }
+    }
+
+    deleteTheme(_id: string) {
+        this.dbDataSource.deleteTheme(_id).subscribe(() => {
+            let index = this.dbThemes.findIndex(p => this.stringLocator(p, _id));
+            if (index > -1) {
+                this.dbThemes.splice(index, 1);
+            }
+        })
+    }
+
+    deleteThemeFromScripts(_id: string, theme: Theme) {
+        let scripts = this.getScriptsAllOfTheme(_id);
+        scripts.forEach((script) => {
+            this.removeThemeFromScript(script, theme);
+          });
+    }
+
+    getScriptsAllOfTheme(_id: string): Script[] {
+        return this.getScripts().filter(x => this.hasTheme_id(x, _id))
+    }
+
+
+
 
     moveScriptStage(script: Script, oldPosition: number, newPosition: number) {
         //move script stage position
@@ -96,9 +148,41 @@ export class Model {
     }
 
     shiftThemePosition(from: number, to: number) {
-        this.insertAndShiftThemes(this.themes, from, to);
+        this.insertAndShiftThemes(this.dbThemes, from, to);
+        // let myid = 1;
+        // this.dbThemes.forEach(theme => {
+        //     theme.id = myid;
+        //     this.saveTheme(theme);
+        //     myid = myid+1;
+        // });
     }
     
+    updateThemePosition(theme: Theme, newPosition: number) {
+        //if old position < new
+        if(theme.id < newPosition) {
+            for(var item of this.dbThemes) {
+                if(item.id <= newPosition && item.id > theme.id) {
+                    item.id = item.id-1;
+                    this.saveTheme(item);
+                }
+            }
+        }
+        // if old position > new
+        else if(theme.id > newPosition) {
+            for(var item of this.dbThemes) {
+                if(item.id >= newPosition && item.id < theme.id) {
+                    item.id = item.id+1;
+                    this.saveTheme(item);
+                }
+            }
+        }
+        //if both positions are the same then no shifting needed
+        if(theme.id !== newPosition) {
+            theme.id = newPosition;
+            this.saveTheme(theme);
+        }
+    }
+
     insertAndShiftStages(arr: Stage[], from: number, to: number) {
         let cutOut = arr.splice(from, 1) [0]; // cut the element at index 'from'
         arr.splice(to, 0, cutOut);            // insert it at index 'to'
@@ -110,8 +194,8 @@ export class Model {
     }
 
     getStages(): Stage[] {
-        // return this.dbStages;
-        return this.stages;
+        return this.dbStages;
+        // return this.stages;
     }
 
     getStage(id: number) {
@@ -136,15 +220,6 @@ export class Model {
         }
     }
 
-    getThemes(): Theme[] {
-        // return this.dbThemes;
-        return this.themes;
-    }
-
-    getTheme(id: number) {
-        return this.themes.find(x => this.locator(x, id));
-    }
-
     saveActivity(activity: Activity) {
         activity.id = this.generateActivityID();
         this.activities.push(activity);
@@ -157,30 +232,6 @@ export class Model {
         }
     }
 
-    saveTheme(theme: Theme) {
-        if (theme.id == 0 || theme.id == null) {
-            theme.id = this.generateThemeID();
-            this.themes.push(theme);
-        } else {
-            let index = this.themes.findIndex(x => this.locator(x, theme.id));
-            this.themes.splice(index, 1, theme);
-        }
-    }
-
-    deleteTheme(id: number) {
-        let index = this.themes.findIndex(x => this.locator(x, id));
-        if (index > -1) {
-            this.themes.splice(index, 1);
-        }
-    }
-
-    deleteThemeFromScripts(id: number, theme: Theme) {
-        let scripts = this.getScriptsAllOfTheme(id);
-        scripts.forEach((script) => {
-            this.removeThemeFromScript(script, theme);
-          });
-    }
-
     getDefaultTheme() {
         return this.themes[0];
     }
@@ -190,25 +241,21 @@ export class Model {
     }
 
     getArtworks(): Artwork[] {
-        // return this.dbArtworks;
-        return this.artworks;
+        return this.dbArtworks;
+        // return this.artworks;
     }
 
     getScripts(): Script[] {
-        // return this.dbScripts;
-        return this.scripts;
+        return this.dbScripts;
+        // return this.scripts;
     }
 
     getOpenVisibleScripts(): Script[] {
-        return this.scripts.filter(x => this.openAndVisible(x))
+        return this.dbScripts.filter(x => this.openAndVisible(x))
     }
 
     getScriptsOfTheme(id: number): Script[] {
         return this.getOpenVisibleScripts().filter(x => this.hasTheme(x, id))
-    }
-
-    getScriptsAllOfTheme(id: number): Script[] {
-        return this.getScripts().filter(x => this.hasTheme(x, id))
     }
 
     getScript(id: number): Script {
@@ -238,8 +285,8 @@ export class Model {
     }
 
     getActivities(): Activity[] {
-        // return this.dbActivities;
-        return this.activities;
+        return this.dbActivities;
+        // return this.activities;
     }
     
     getApprovedActivitiesOfAScript(scriptId: number): Activity[] {
@@ -268,7 +315,7 @@ export class Model {
 
     private generateThemeID(): number {
         let candidate = 1;
-        while (this.getTheme(candidate) != null) {
+        while(this.dbThemes.find(element => element.id == candidate)) {
             candidate++;
         }
         return candidate;

@@ -8,44 +8,44 @@
     <tbody class="text-black"> 
         <tr *ngFor="let item of getThemes(); let i = index"> 
             <td>
-                <span *ngIf="!tableEditing || editrow!=item.id">
-                    {{i+1}}
+                <span *ngIf="!tableEditing || editrow!=item._id">
+                    {{item.id}}
                 </span>
-                <span *ngIf="tableEditing && editrow==item.id">
-                    <select (change)="shiftThemePosition($event,i); tableEditing=false">
-                        <option *ngFor="let pos of getThemes(); let ind = index" [selected]="ind==i" value="{{ind}}">   
-                            {{ind+1}}           
+                <span *ngIf="tableEditing && editrow==item._id">
+                    <select (change)="updateThemePosition(item, $event); tableEditing=false">
+                        <option *ngFor="let pos of getThemes(); let ind = index" [selected]="item.id==pos.id" value="{{pos.id}}">   
+                            {{pos.id}}           
                          </option> 
                     </select>
                 </span>
             </td>
             <td>
-                <span *ngIf="!tableEditing || editrow!=item.id">
+                <span *ngIf="!tableEditing || editrow!=item._id">
                     {{item.name}}
                 </span>
-                <span *ngIf="tableEditing && editrow==item.id">
+                <span *ngIf="tableEditing && editrow==item._id">
                     <textarea rows="3" class="form-control" [(ngModel)]="item.name"></textarea>
                 </span>
             </td>
             <td>
-                <span *ngIf="!tableEditing || editrow!=item.id">
+                <span *ngIf="!tableEditing || editrow!=item._id">
                     {{item.description}}
                 </span>
-                <span *ngIf="tableEditing && editrow==item.id">
+                <span *ngIf="tableEditing && editrow==item._id">
                     <textarea rows="3" class="form-control" [(ngModel)]="item.description"></textarea>
                 </span>
-            </td>
+            </td> 
             <td>
                 <span *ngIf="!tableEditing">
-                    <button class="btn btn-danger" (click)="deleteTheme(item.id)">Delete</button>
+                    <button class="btn btn-danger" (click)="deleteTheme(item._id)">Delete</button>
                 </span>
             </td>
             <td>
                 <span *ngIf="!tableEditing">
-                    <button class="btn btn-secondary" (click)="editrow=item.id" (click)="tableEditing=true">Edit</button>
+                    <button class="btn btn-secondary" (click)="editrow=item._id" (click)="tableEditing=true">Edit</button>
                 </span>
-                <span *ngIf="tableEditing && editrow==item.id">
-                    <button class="btn btn-success" (click)="tableEditing=false" [disabled]="!item.name || !item.description">Done</button>
+                <span *ngIf="tableEditing && editrow==item._id">
+                    <button class="btn btn-success" (click)="tableEditing=false; addTheme(item);" [disabled]="!item.name || !item.description">Done</button>
                 </span>
             </td>
         </tr>

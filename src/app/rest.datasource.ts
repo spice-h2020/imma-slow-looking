@@ -9,7 +9,7 @@ import { Activity } from "./activity.model";
 
 
 @Injectable() export class RestDataSource { 
-
+   
     private themeUrl = '';
     private artworkUrl = '';
     private scriptUrl = '';
@@ -21,31 +21,79 @@ import { Activity } from "./activity.model";
         }};
 
     constructor(private http: HttpClient) { }
-        
-    getThemeData(): Observable<Theme[]> { 
 
+    // Theme
+    getThemeData(): Observable<Theme[]> { 
         return this.http.get<Theme[]>(this.themeUrl, this.config); 
     } 
 
-    getArtworkData(): Observable<Artwork[]> { 
+    saveTheme(theme: Theme): Observable<Theme> { 
+        return this.http.post<Theme>(this.saveUrl, theme, this.config); 
+    }
 
+    updateTheme(theme: Theme): Observable<Theme> {
+        console.log(`${this.saveUrl}/${theme._id}`);
+        console.log(theme);
+        console.log(this.config);
+        return this.http.put<Theme>(`${this.saveUrl}/${theme._id}`, theme, this.config); 
+    }
+
+    deleteTheme(_id: string): Observable<Theme> { 
+        return this.http.delete<Theme>(`${this.saveUrl}/${_id}`); 
+    }
+
+
+    // Artwork
+    getArtworkData(): Observable<Artwork[]> { 
         return this.http.get<Artwork[]>(this.artworkUrl, this.config); 
     } 
 
-    getScriptData(): Observable<Script[]> { 
+    saveArtwork(artwork: Artwork): Observable<Artwork> { 
+        return this.http.post<Artwork>(this.saveUrl, artwork, this.config); 
+    }
 
+    updateArtwork(artwork: Artwork): Observable<Artwork> {
+        return this.http.put<Artwork>(`${this.saveUrl}/artwork_${artwork.id}`, artwork, this.config); 
+    }
+
+    // Script
+    getScriptData(): Observable<Script[]> { 
         return this.http.get<Script[]>(this.scriptUrl, this.config); 
     } 
 
-    getActivityData(): Observable<Activity[]> { 
+    saveScript(script: Script): Observable<Script> { 
+        return this.http.post<Script>(this.saveUrl, script, this.config); 
+    }
 
+    updateScript(script: Script): Observable<Script> {
+        return this.http.put<Script>(`${this.saveUrl}/script_${script.id}`, script, this.config); 
+    }
+
+    // Activity
+    getActivityData(): Observable<Activity[]> { 
         return this.http.get<Activity[]>(this.activityUrl, this.config); 
     } 
 
-    getStageData(): Observable<Stage[]> { 
+    saveActivity(activity: Activity): Observable<Activity> { 
+        return this.http.post<Activity>(this.saveUrl, activity, this.config); 
+    }
 
+    updateActivity(activity: Activity): Observable<Activity> {
+        return this.http.put<Activity>(`${this.saveUrl}/activity_${activity.id}`, activity, this.config); 
+    }
+
+    // Stage
+    getStageData(): Observable<Stage[]> { 
         return this.http.get<Stage[]>(this.stageUrl, this.config); 
     } 
+
+    saveStage(stage: Stage): Observable<Stage> { 
+        return this.http.post<Stage>(this.saveUrl, stage, this.config); 
+    }
+
+    updateStage(stage: Stage): Observable<Stage> {
+        return this.http.put<Stage>(`${this.saveUrl}/stage_${stage.id}`, stage, this.config); 
+    }
 }
 
 
