@@ -85,12 +85,21 @@ export class Model {
     }
 
     deleteTheme(_id: string) {
+        let deletedTheme = this.getTheme(_id);
+        
         this.dbDataSource.deleteTheme(_id).subscribe(() => {
             let index = this.dbThemes.findIndex(p => this.stringLocator(p, _id));
             if (index > -1) {
                 this.dbThemes.splice(index, 1);
             }
         })
+        //shift higher theme ids down
+        for(var item of this.dbThemes) {
+            if(item.id > deletedTheme.id) {
+                item.id = item.id-1;
+                this.saveTheme(item);
+            }
+        }
     }
 
     deleteThemeFromScripts(_id: string, theme: Theme) {
@@ -159,26 +168,26 @@ export class Model {
     
     updateThemePosition(theme: Theme, newPosition: number) {
         //if old position < new
-        if(theme.id < newPosition) {
-            for(var item of this.dbThemes) {
-                if(item.id <= newPosition && item.id > theme.id) {
-                    item.id = item.id-1;
-                    this.saveTheme(item);
-                }
-            }
-        }
+        // if(theme.id < newPosition) {
+        //     for(var item of this.dbThemes) {
+        //         if(item.id <= newPosition && item.id > theme.id) {
+        //             item.id = item.id-1;
+        //             this.saveTheme(item);
+        //         }
+        //     }
+        // }
         // if old position > new
-        else if(theme.id > newPosition) {
-            for(var item of this.dbThemes) {
-                if(item.id >= newPosition && item.id < theme.id) {
-                    item.id = item.id+1;
-                    this.saveTheme(item);
-                }
-            }
-        }
+        // else if(theme.id > newPosition) {
+        //     for(var item of this.dbThemes) {
+        //         if(item.id >= newPosition && item.id < theme.id) {
+        //             item.id = item.id+1;
+        //             this.saveTheme(item);
+        //         }
+        //     }
+        // }
         //if both positions are the same then no shifting needed
         if(theme.id !== newPosition) {
-            theme.id = newPosition;
+            theme.id = 5;//newPosition;
             this.saveTheme(theme);
         }
     }
@@ -233,11 +242,13 @@ export class Model {
     }
 
     getDefaultTheme() {
-        return this.themes[0];
+        return this.dbThemes[0];
+        //return this.themes[0];
     }
 
     getDefaultArtwork() {
-        return this.artworks[0];
+        return this.dbArtworks[0];
+        //return this.artworks[0];
     }
 
     getArtworks(): Artwork[] {
@@ -281,7 +292,8 @@ export class Model {
     }
 
     getActivity(id: number) {
-        return this.activities.find(x => this.locator(x, id));
+        return this.dbActivities.find(x => this.locator(x, id));
+        // return this.activities.find(x => this.locator(x, id));
     }
 
     getActivities(): Activity[] {
@@ -294,7 +306,8 @@ export class Model {
     }
 
     getApprovedActivities(): Activity[] {
-        return this.activities.filter(x => this.approved(x))
+        return this.dbActivities.filter(x => this.approved(x))
+        // return this.activities.filter(x => this.approved(x))
     }
 
     getApprovedVisibleActivities(): Activity[] {
@@ -302,7 +315,8 @@ export class Model {
     }
 
     getUnapprovedActivities(): Activity[] {
-        return this.activities.filter(x => this.unapproved(x))
+        return this.dbActivities.filter(x => this.unapproved(x))
+        // return this.activities.filter(x => this.unapproved(x))
     }
 
     private generateActivityID(): number {

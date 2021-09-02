@@ -15,6 +15,7 @@ import { Activity } from "./activity.model";
     private scriptUrl = '';
     private activityUrl = '';
     private stageUrl = '';
+    private saveUrl = '';
     private config = {
         headers: {
         'Authorization': '"Basic xyz"'
@@ -33,8 +34,6 @@ import { Activity } from "./activity.model";
 
     updateTheme(theme: Theme): Observable<Theme> {
         console.log(`${this.saveUrl}/${theme._id}`);
-        console.log(theme);
-        console.log(this.config);
         return this.http.put<Theme>(`${this.saveUrl}/${theme._id}`, theme, this.config); 
     }
 
@@ -53,7 +52,7 @@ import { Activity } from "./activity.model";
     }
 
     updateArtwork(artwork: Artwork): Observable<Artwork> {
-        return this.http.put<Artwork>(`${this.saveUrl}/artwork_${artwork.id}`, artwork, this.config); 
+        return this.http.put<Artwork>(`${this.saveUrl}/${artwork.id}`, artwork, this.config); 
     }
 
     // Script
@@ -66,7 +65,7 @@ import { Activity } from "./activity.model";
     }
 
     updateScript(script: Script): Observable<Script> {
-        return this.http.put<Script>(`${this.saveUrl}/script_${script.id}`, script, this.config); 
+        return this.http.put<Script>(`${this.saveUrl}/${script.id}`, script, this.config); 
     }
 
     // Activity
@@ -79,7 +78,7 @@ import { Activity } from "./activity.model";
     }
 
     updateActivity(activity: Activity): Observable<Activity> {
-        return this.http.put<Activity>(`${this.saveUrl}/activity_${activity.id}`, activity, this.config); 
+        return this.http.put<Activity>(`${this.saveUrl}/${activity.id}`, activity, this.config); 
     }
 
     // Stage
@@ -92,7 +91,7 @@ import { Activity } from "./activity.model";
     }
 
     updateStage(stage: Stage): Observable<Stage> {
-        return this.http.put<Stage>(`${this.saveUrl}/stage_${stage.id}`, stage, this.config); 
+        return this.http.put<Stage>(`${this.saveUrl}/${stage.id}`, stage, this.config); 
     }
 }
 
