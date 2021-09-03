@@ -14,7 +14,9 @@ export class HomepageComponent {
     // model: Model = new Model();
 
     getThemes(): Theme[] {
-        return this.model.getThemes();
+        let themes =  this.model.getThemes();
+        let sortedThemes = themes.sort((a, b) => (a.id < b.id) ? -1 : 1);
+        return sortedThemes;
     }
 
     getScriptsOfTheme(id: number): Script[] {
