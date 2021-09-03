@@ -168,26 +168,29 @@ export class Model {
     
     updateThemePosition(theme: Theme, newPosition: number) {
         //if old position < new
-        // if(theme.id < newPosition) {
-        //     for(var item of this.dbThemes) {
-        //         if(item.id <= newPosition && item.id > theme.id) {
-        //             item.id = item.id-1;
-        //             this.saveTheme(item);
-        //         }
-        //     }
-        // }
+        if(theme.id < newPosition) {
+            for(var item of this.dbThemes) {
+                if(item.id <= newPosition && item.id > theme.id) {
+                    let idnumber: number = +item.id
+                    item.id = idnumber-1;
+                    this.saveTheme(item);
+                }
+            }
+        }
         // if old position > new
-        // else if(theme.id > newPosition) {
-        //     for(var item of this.dbThemes) {
-        //         if(item.id >= newPosition && item.id < theme.id) {
-        //             item.id = item.id+1;
-        //             this.saveTheme(item);
-        //         }
-        //     }
-        // }
+        else if(theme.id > newPosition) {
+            for(var item of this.dbThemes) {
+                if(item.id >= newPosition && item.id < theme.id) {
+                    let idnumber: number = +item.id
+                    item.id = idnumber+1;
+                    this.saveTheme(item);
+                }
+            }
+        }
         //if both positions are the same then no shifting needed
         if(theme.id !== newPosition) {
-            theme.id = 5;//newPosition;
+            let idnumber: number = +newPosition
+            theme.id = idnumber;
             this.saveTheme(theme);
         }
     }
