@@ -10,16 +10,19 @@ import { Model } from "./repository.model";
 export class ContributionManagementComponent {
 
     constructor(private model: Model){}
-    // model: Model = new Model();
 
     managementMode: number = 1;
+
+    saveActivity(activity: Activity) {
+        this.model.saveActivity(activity);
+    }
 
     getActivities(): Activity[] {
         return this.model.getActivities();
     }
 
-    deleteActivity(id: number) {
-        this.model.deleteActivity(id);
+    deleteActivity(_id: string) {
+        this.model.deleteActivity(_id);
     }
 
     getApprovedActivities(): Activity[] {

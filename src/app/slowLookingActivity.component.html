@@ -3,12 +3,12 @@
 </nav>
 <div *ngFor="let stage of getScript(slowLookingScript).stages; let i = index">
     <div *ngIf="slowLookingCurrentScriptStageIndex == i">
-        <div *ngIf="stage.type == 'welcome'">  
+        <div *ngIf="stage.stagetype == 'welcome'">  
             <h5>{{stage.title}}</h5>
             <p>{{stage.body}}</p>
             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                 <div class="text-center">
-                    <button class="m-3 btn btn-warning" (click)="slowLookingScript=0" routerLink="/home">Return to the list of Slow Looking activities</button>
+                    <button class="m-3 btn btn-warning" (click)="slowLookingScript='0'; addActivity();" routerLink="/home">Return to the list of Slow Looking activities</button>
                 </div>
             </span>
             <span *ngIf="slowLookingMaximumScriptStageIndex != i">
@@ -17,12 +17,12 @@
                 </div>
             </span>
         </div>
-        <div *ngIf="stage.type == 'context'">  
+        <div *ngIf="stage.stagetype == 'context'">  
             <h5>{{stage.title}}</h5>
             <p>{{stage.body}}</p>
             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                 <div class="text-center">
-                    <button class="m-3 btn btn-warning" (click)="slowLookingScript=0" routerLink="/home">Return to the list of Slow Looking activities</button>
+                    <button class="m-3 btn btn-warning" (click)="slowLookingScript='0'; addActivity();" routerLink="/home">Return to the list of Slow Looking activities</button>
                 </div>
             </span>
             <span *ngIf="slowLookingMaximumScriptStageIndex != i">
@@ -31,7 +31,7 @@
                 </div>
             </span>
         </div>
-        <div *ngIf="stage.type == 'question'"> 
+        <div *ngIf="stage.stagetype == 'question'"> 
             <div class="form-group">
                 <!-- initialise a new action and add its stage and question  -->
                 {{intialiseQuestionAction(stage, stage.body)}}
@@ -49,7 +49,7 @@
                 <!-- return to list if last stage -->
                 <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                     <div class="text-center">
-                        <button class="m-3 btn btn-warning" (click)="slowLookingScript=0; addActionToActivity(newQuestionAction); resetNewQuestionAction();" routerLink="/home">Return to the list of Slow Looking activities</button>
+                        <button class="m-3 btn btn-warning" (click)="slowLookingScript='0'; addActionToActivity(newQuestionAction); resetNewQuestionAction(); addActivity();" routerLink="/home">Return to the list of Slow Looking activities</button>
                     </div>
                 </span>
                 <!-- continue if not last stage -->
@@ -60,7 +60,7 @@
                 </span>
             </div>
         </div>   
-        <div *ngIf="stage.type == 'shareWithMuseum'">  
+        <div *ngIf="stage.stagetype == 'shareWithMuseum'">  
             <div class="form-group">
                 {{intialiseShareWithMuseumAction(stage)}}
                 <h5>{{stage.title}}</h5>
@@ -88,7 +88,7 @@
 
             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                 <div class="text-center">
-                    <button class="m-3 btn btn-warning" (click)="slowLookingScript=0; addActionToActivity(newShareWithMusemAction); resetNewShareWithMusemAction();" routerLink="/home">Return to the list of Slow Looking activities</button>
+                    <button class="m-3 btn btn-warning" (click)="slowLookingScript='0'; addActionToActivity(newShareWithMusemAction); resetNewShareWithMusemAction(); addActivity();" routerLink="/home">Return to the list of Slow Looking activities</button>
                 </div>
             </span>
             <span *ngIf="slowLookingMaximumScriptStageIndex != i">
@@ -97,7 +97,7 @@
                 </div>
             </span>
         </div>
-        <div *ngIf="stage.type == 'follow'">  
+        <div *ngIf="stage.stagetype == 'follow'">  
             <div class="form-group">
                 {{intialiseFollowAction(stage)}}
                 <h5>{{stage.title}}</h5>
@@ -109,7 +109,7 @@
             </div>
             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                 <div class="text-center">
-                    <button class="m-3 btn btn-warning" (click)="slowLookingScript=0; addActionToActivity(newFollowAction); resetFollowAction();" routerLink="/home">Return to the list of Slow Looking activities</button>
+                    <button class="m-3 btn btn-warning" (click)="slowLookingScript='0'; addActionToActivity(newFollowAction); resetFollowAction(); addActivity();" routerLink="/home">Return to the list of Slow Looking activities</button>
                 </div>
             </span>
             <span *ngIf="slowLookingMaximumScriptStageIndex != i">
@@ -118,7 +118,7 @@
                 </div>
             </span>
         </div>
-        <div *ngIf="stage.type == 'shareWithSomeone'">  
+        <div *ngIf="stage.stagetype == 'shareWithSomeone'">  
             <div class="form-group">
                 {{intialiseShareWithSomeoneAction(stage)}}
                 <h5>{{stage.title}}</h5>
@@ -134,7 +134,7 @@
             </div>
             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                 <div class="text-center">
-                    <button class="m-3 btn btn-warning" (click)="slowLookingScript=0; addActionToActivity(newShareWithFriendAction); resetShareWithSomeoneAction();" routerLink="/home">Return to the list of Slow Looking activities</button>
+                    <button class="m-3 btn btn-warning" (click)="slowLookingScript='0'; addActionToActivity(newShareWithFriendAction); resetShareWithSomeoneAction(); addActivity();" routerLink="/home">Return to the list of Slow Looking activities</button>
                 </div>
             </span>
             <span *ngIf="slowLookingMaximumScriptStageIndex != i">
@@ -143,15 +143,15 @@
                 </div>
             </span>
         </div>
-        <div *ngIf="stage.type == 'thankyou'">  
+        <div *ngIf="stage.stagetype == 'thankyou'">  
             <h5>{{stage.title}}</h5>
             <p>{{stage.body}}</p>
             <div>
-                [Social media butons to be added here]<br/>                            
+                [Social media buttons to be added here]<br/>                            
             </div>
             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                 <div class="text-center">
-                    <button class="m-3 btn btn-warning" (click)="slowLookingScript=0; addActivity();" routerLink="/home">Return to the list of Slow Looking activities</button>
+                    <button class="m-3 btn btn-warning" (click)="slowLookingScript='0'; addActivity(); " routerLink="/home">Return to the list of Slow Looking activities</button>
                 </div>
             </span>
             <span *ngIf="slowLookingMaximumScriptStageIndex != i">

@@ -45,7 +45,7 @@
                     <button class="btn btn-secondary" (click)="editrow=item._id" (click)="tableEditing=true">Edit</button>
                 </span>
                 <span *ngIf="tableEditing && editrow==item._id">
-                    <button class="btn btn-success" (click)="tableEditing=false; addTheme(item);" [disabled]="!item.name || !item.description">Done</button>
+                    <button class="btn btn-success" (click)="tableEditing=false; addTheme(item)" [disabled]="!item.name || !item.description">Done</button>
                 </span>
             </td>
         </tr>

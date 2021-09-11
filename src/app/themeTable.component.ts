@@ -1,14 +1,11 @@
-// import { Component, OnInit } from "@angular/core";
 import { Component, OnInit } from "@angular/core";
 import { Theme } from "./theme.model";
 import { Model } from "./repository.model";
-import { by } from "protractor";
 
 @Component({
     selector: "paThemeTable",
     templateUrl: "themeTable.component.html"
 })
-
 
 export class ThemeTableComponent {
 
@@ -19,8 +16,6 @@ export class ThemeTableComponent {
     tableEditing: boolean = false;
 
     newTheme: Theme = new Theme();
-
-    // model: Model = new Model();
 
     addTheme(theme: Theme) {
         this.model.saveTheme(theme);
@@ -54,8 +49,12 @@ export class ThemeTableComponent {
         this.model.updateThemePosition(theme, newPosition);
     }
 
-    shiftThemePosition(event,old){
-        this.model.shiftThemePosition(old, event.target.value);
+    set_theme_id() {
+        let _id: string = "theme_1";
+        let id: number = 1;
+        let theme = this.getTheme(_id);
+        theme.id = id;
+        this.model.saveTheme(theme);
     }
 
 }

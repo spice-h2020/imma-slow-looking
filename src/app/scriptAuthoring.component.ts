@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { Artwork } from "./artwork.model";
 import { Model } from "./repository.model";
 import { Script } from "./script.model";
-import { contextStage, followStage, questionStage, shareWithMuseumStage, shareWithSomeoneStage, thankyouStage, welcomeStage } from "./stage.model";
+import { contextStage, followStage, questionStage, shareWithMuseumStage, shareWithSomeoneStage, Stage, thankyouStage, welcomeStage } from "./stage.model";
 import { Theme } from "./theme.model";
 
 @Component({
@@ -13,7 +13,6 @@ import { Theme } from "./theme.model";
 export class ScriptAuthoringComponent {
 
     constructor(private model: Model){}
-    // model: Model = new Model();
 
     showOpenScripts: boolean = true;
 
@@ -21,65 +20,84 @@ export class ScriptAuthoringComponent {
 
     newScript: Script = new Script();
 
-    viewScript: number = 0;
+    viewScript: string = "0";
 
-    editScriptDescription: number = 0;
+    editScriptDescription: string = "0";
 
     editScriptStage: number = 0;
+
+    saveScript(script: Script) {
+        this.model.saveScript(script);
+    }
+    stagesOfAScript(script: Script) {
+        return script.stages.length;
+    }
+    genscriptid() {
+        return this.model.generateScriptID();
+    }
 
     addScript() {
         let newscript = this.newScript;
         newscript.name = "Untitled script";
         newscript.open = false;
         newscript.visible = false;
-        newscript.artwork = this.model.getDefaultArtwork();
-        newscript.themes = [this.model.getDefaultTheme()];
-        newscript.stages = [this.addWelcomeStage(), this.addContextStage(), this.addQuestionStage(), this.addShareWithMuseumStage(), this.addFollowStage(), this.addShareWithSomeoneStage(), this.addThankyouStage()];
-        let scriptid = this.model.saveScript(newscript);
-        this.viewScript = scriptid;
-        this.editScriptDescription=0; 
+        newscript.artworkid = this.model.getDefaultArtworkId();
+        newscript.themeids = [this.model.getDefaultThemeId()];
+        newscript.stages = [];
+        this.model.saveScript(newscript);
+        this.editScriptDescription="0"; 
         this.editScriptStage=0;
     }
 
-    addWelcomeStage() {
+    addDefaultStagesToScript(script: Script) {
+        script.stages = [this.addWelcomeStage(script), this.addContextStage(script), this.addQuestionStage(script), this.addShareWithMuseumStage(script), this.addFollowStage(script), this.addShareWithSomeoneStage(script), this.addThankyouStage(script)];
+        this.model.saveScript(script);
+    }
+
+    getScript(_id: string) {
+        return this.model.getScript(_id);
+    }
+
+    addWelcomeStage(script: Script) {
         let stage = new welcomeStage();
-        stage.id = this.model.saveStage(stage);
+        stage.id = this.model.generateScriptStageId(script)
+        stage.id = this.model.saveStage(stage, script);
         return stage;
     }
 
-    addContextStage() {
+    addContextStage(script: Script) {
         let stage = new contextStage();
-        stage.id = this.model.saveStage(stage);
+        stage.id = this.model.saveStage(stage, script);
         return stage;
     }
     
-    addQuestionStage() {
+    addQuestionStage(script: Script) {
         let stage = new questionStage();
-        stage.id = this.model.saveStage(stage);
+        stage.id = this.model.saveStage(stage, script);
         return stage;
     }
 
-    addShareWithMuseumStage() {
+    addShareWithMuseumStage(script: Script) {
         let stage = new shareWithMuseumStage();
-        stage.id = this.model.saveStage(stage);
+        stage.id = this.model.saveStage(stage, script);
         return stage;
     }
 
-    addFollowStage() {
+    addFollowStage(script: Script) {
         let stage = new followStage();
-        stage.id = this.model.saveStage(stage);
+        stage.id = this.model.saveStage(stage, script);
         return stage;
     }
 
-    addShareWithSomeoneStage() {
+    addShareWithSomeoneStage(script: Script) {
         let stage = new shareWithSomeoneStage();
-        stage.id = this.model.saveStage(stage);
+        stage.id = this.model.saveStage(stage, script);
         return stage;
     }
 
-    addThankyouStage() {
+    addThankyouStage(script: Script) {
         let stage = new thankyouStage();
-        stage.id = this.model.saveStage(stage);
+        stage.id = this.model.saveStage(stage, script);
         return stage;
     }
 
@@ -88,90 +106,113 @@ export class ScriptAuthoringComponent {
         this.model.moveScriptStage(script, old, event.target.value);
     }
 
-    themesChange(script: Script, theme: Theme, selected: any) {
+    themesChange(script: Script, themeid: string, selected: any) {
         if(selected.target.checked) {
-            this.model.addThemeToScript(script, theme);
+            this.model.addThemeToScript(script, themeid);
         }
         else {
-            this.model.removeThemeFromScript(script, theme);
+            this.model.removeThemeFromScript(script, themeid);
         }
+        this.model.saveScript(script);
     }
 
-    deleteStage(script: Script, stageid: number) {
-        this.model.removeStageFromScript(script, stageid);
-        this.model.deleteStage(stageid);
+    deleteStage(script: Script, stage: Stage) {
+        this.model.removeStageFromScript(script, stage);
     }
 
     getArtworks(): Artwork[] {
         return this.model.getArtworks();
     }
 
+    getArtwork(_id: string) {
+        return this.model.getArtwork(_id);
+    }
+
     getThemes(): Theme[] {
         return this.model.getThemes();
     }
 
+    getTheme(_id: string): Theme {
+        return this.model.getTheme(_id);
+    }
+
     addWelcomeStageToScript(script: Script) {
-        let stage = this.addWelcomeStage();
+        let stage = this.addWelcomeStage(script);
         this.model.addStageToScript(script, stage);
         //set vars
-        this.viewScript = script.id;
+        this.viewScript = script._id;
         this.editScriptStage = stage.id;
     }
 
     addContextStageToScript(script: Script) {
-        let stage = this.addContextStage();
+        let stage = this.addContextStage(script);
         this.model.addStageToScript(script, stage);
         //set vars
-        this.viewScript = script.id;
+        this.viewScript = script._id;
         this.editScriptStage = stage.id;
     }
 
     addQuestionStageToScript(script: Script) {
-        let stage = this.addQuestionStage();
+        let stage = this.addQuestionStage(script);
         this.model.addStageToScript(script, stage);
         //set vars
-        this.viewScript = script.id;
+        this.viewScript = script._id;
         this.editScriptStage = stage.id;
     }
 
     addShareWithMuseumStageToScript(script: Script) {
-        let stage = this.addShareWithMuseumStage();
+        let stage = this.addShareWithMuseumStage(script);
         this.model.addStageToScript(script, stage);
         //set vars
-        this.viewScript = script.id;
+        this.viewScript = script._id;
         this.editScriptStage = stage.id;
     }
 
     addFollowStageToScript(script: Script) {
-        let stage = this.addFollowStage();
+        let stage = this.addFollowStage(script);
         this.model.addStageToScript(script, stage);
         //set vars
-        this.viewScript = script.id;
+        this.viewScript = script._id;
         this.editScriptStage = stage.id;
     }
 
     addShareWithSomeoneStageToScript(script: Script) {
-        let stage = this.addShareWithSomeoneStage();
+        let stage = this.addShareWithSomeoneStage(script);
         this.model.addStageToScript(script, stage);
         //set vars
-        this.viewScript = script.id;
+        this.viewScript = script._id;
         this.editScriptStage = stage.id;
     }
 
     addThankyouStageToScript(script: Script) {
-        let stage = this.addThankyouStage();
+        let stage = this.addThankyouStage(script);
         this.model.addStageToScript(script, stage);
         //set vars
-        this.viewScript = script.id;
+        this.viewScript = script._id;
         this.editScriptStage = stage.id;
     }
 
-    deleteScript(id: number) {
-        this.model.deleteScript(id);
+    deleteScript(_id: string) {
+        this.model.deleteScript(_id);
+    }
+
+    getThemesFromIds(themeIds: Array<string>) {
+        let mythemes: Array<Theme> = [];
+        for(var themeid of themeIds) {
+            let mytheme = this.getTheme(themeid);
+            mythemes.push(mytheme);
+        }
+        return mythemes;
+    }
+
+    getArtworkFromId(artworkId: string) {
+        return [this.getArtwork(artworkId)];
     }
 
     getScripts(): Script[] {
-        return this.model.getScripts();
+        let scripts = this.model.getScripts();
+        let sortedScripts = scripts.sort((a, b) => (a.id > b.id) ? -1 : 1);
+        return sortedScripts;
     }
 
 }

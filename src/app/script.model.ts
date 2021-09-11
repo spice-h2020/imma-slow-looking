@@ -1,13 +1,13 @@
-import { Artwork } from "./artwork.model";
 import { Stage } from "./stage.model";
-import { Theme } from "./theme.model";
 
 export class Script {
     constructor (
+        public _id?: string,
+        public type: string = "script",
         public id?: number,
         public name?: string,
-        public themes?: Array<Theme>,
-        public artwork?: Artwork,
+        public themeids?: Array<string>,
+        public artworkid?: string,
         public open?: boolean,
         public visible?: boolean,
         public stages?: Array<Stage>

@@ -11,7 +11,6 @@ import { Theme } from "./theme.model";
 export class HomepageComponent {
 
     constructor(private model: Model){}
-    // model: Model = new Model();
 
     getThemes(): Theme[] {
         let themes =  this.model.getThemes();
@@ -19,9 +18,17 @@ export class HomepageComponent {
         return sortedThemes;
     }
 
-    getScriptsOfTheme(id: number): Script[] {
-        return this.model.getScriptsOfTheme(id);
+    getScriptsOfTheme(_id: string): Script[] {
+        return this.model.getScriptsOfTheme(_id);
     }
 
+    getArtworkFromId(artworkId: string) {
+        return [this.getArtwork(artworkId)];
+    }
+
+    getArtwork(_id: string) {
+        return this.model.getArtwork(_id);
+    }
+    
     mode: number = 1;
 }

@@ -20,12 +20,20 @@ export class OtherPeopleComponent {
         return this.model.getThemes();
     }
 
-    getScriptsOfTheme(id: number): Script[] {
-        return this.model.getScriptsOfTheme(id);
+    getScriptsOfTheme(_id: string): Script[] {
+        return this.model.getVisibleScriptsOfTheme(_id);
     }
 
-    getApprovedActivitiesOfAScript(id: number): Activity[] {
-        return this.model.getApprovedActivitiesOfAScript(id);
+    getApprovedActivitiesOfAScript(_id: string): Activity[] {
+        return this.model.getApprovedActivitiesOfAScript(_id);
+    }
+
+    getArtworkFromId(artworkId: string) {
+        return [this.getArtwork(artworkId)];
+    }
+
+    getArtwork(_id: string) {
+        return this.model.getArtwork(_id);
     }
 
 }

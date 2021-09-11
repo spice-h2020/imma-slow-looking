@@ -1,21 +1,20 @@
-import { Injectable, Inject, InjectionToken } from "@angular/core"; 
+import { Injectable } from "@angular/core"; 
 import { HttpClient } from "@angular/common/http"; 
 import { Observable } from "rxjs"; 
 import { Theme } from "./theme.model";
 import { Artwork } from "./artwork.model";
 import { Script } from "./script.model";
-import { Stage } from "./stage.model";
 import { Activity } from "./activity.model";
 
 
 @Injectable() export class RestDataSource { 
-   
+
     private themeUrl = '';
-    private artworkUrl = '';
+    private artworkUrl =  '';
     private scriptUrl = '';
     private activityUrl = '';
-    private stageUrl = '';
     private saveUrl = '';
+
     private config = {
         headers: {
         'Authorization': '"Basic xyz"'
@@ -33,7 +32,6 @@ import { Activity } from "./activity.model";
     }
 
     updateTheme(theme: Theme): Observable<Theme> {
-        console.log(`${this.saveUrl}/${theme._id}`);
         return this.http.put<Theme>(`${this.saveUrl}/${theme._id}`, theme, this.config); 
     }
 
@@ -52,7 +50,11 @@ import { Activity } from "./activity.model";
     }
 
     updateArtwork(artwork: Artwork): Observable<Artwork> {
-        return this.http.put<Artwork>(`${this.saveUrl}/${artwork.id}`, artwork, this.config); 
+        return this.http.put<Artwork>(`${this.saveUrl}/${artwork._id}`, artwork, this.config); 
+    }
+
+    deleteArtwork(_id: string): Observable<Artwork> { 
+        return this.http.delete<Artwork>(`${this.saveUrl}/${_id}`); 
     }
 
     // Script
@@ -65,7 +67,11 @@ import { Activity } from "./activity.model";
     }
 
     updateScript(script: Script): Observable<Script> {
-        return this.http.put<Script>(`${this.saveUrl}/${script.id}`, script, this.config); 
+        return this.http.put<Script>(`${this.saveUrl}/${script._id}`, script, this.config); 
+    }
+
+    deleteScript(_id: string): Observable<Script> { 
+        return this.http.delete<Script>(`${this.saveUrl}/${_id}`); 
     }
 
     // Activity
@@ -74,25 +80,17 @@ import { Activity } from "./activity.model";
     } 
 
     saveActivity(activity: Activity): Observable<Activity> { 
-        return this.http.post<Activity>(this.saveUrl, activity, this.config); 
+        return  this.http.post<Activity>(this.saveUrl, activity, this.config); 
     }
 
     updateActivity(activity: Activity): Observable<Activity> {
-        return this.http.put<Activity>(`${this.saveUrl}/${activity.id}`, activity, this.config); 
+        return this.http.put<Activity>(`${this.saveUrl}/${activity._id}`, activity, this.config); 
     }
 
-    // Stage
-    getStageData(): Observable<Stage[]> { 
-        return this.http.get<Stage[]>(this.stageUrl, this.config); 
-    } 
-
-    saveStage(stage: Stage): Observable<Stage> { 
-        return this.http.post<Stage>(this.saveUrl, stage, this.config); 
+    deleteActivity(_id: string): Observable<Activity> { 
+        return this.http.delete<Activity>(`${this.saveUrl}/${_id}`); 
     }
 
-    updateStage(stage: Stage): Observable<Stage> {
-        return this.http.put<Stage>(`${this.saveUrl}/${stage.id}`, stage, this.config); 
-    }
 }
 
 

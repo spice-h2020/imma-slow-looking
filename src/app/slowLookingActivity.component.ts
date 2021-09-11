@@ -13,10 +13,7 @@ import { ActivatedRoute } from "@angular/router";
 
 export class SlowLookingActivityComponent {
 
-    // constructor(private model: Model){}
-    // model: Model = new Model();
-
-    slowLookingScript = 1;
+    slowLookingScript = "0";
 
     slowLookingMaximumScriptStageIndex = 0;
 
@@ -30,13 +27,13 @@ export class SlowLookingActivityComponent {
         this.setSlowLookingScript(this.slowLookingScript);
     }
 
-    setSlowLookingScript(id: number) {
+    setSlowLookingScript(_id: string) {
 
         // get the script
-        var SLscript = this.getScript(id);
+        var SLscript = this.getScript(_id);
 
         // set script id
-        this.slowLookingScript = id;
+        this.slowLookingScript = _id;
 
         // set current stage index to zero
         this.slowLookingCurrentScriptStageIndex = 0;
@@ -55,8 +52,8 @@ export class SlowLookingActivityComponent {
 
     newActivity: Activity = new Activity();
 
-    getScript(id: number): Script {
-        return this.model.getScript(id);
+    getScript(_id: string): Script {
+        return this.model.getScript(_id);
     }
 
     showQuestionHelp = false;
@@ -95,7 +92,6 @@ export class SlowLookingActivityComponent {
         }
     }
 
-    //??
     addActivity() {
         this.model.saveActivity(this.newActivity);
     }
@@ -107,7 +103,6 @@ export class SlowLookingActivityComponent {
         else{
             this.newActivity.actions = new Array(action);
         }
-        console.log(this.newActivity.actions);
     }
 
     resetShareWithSomeoneAction() {

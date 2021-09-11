@@ -31,12 +31,12 @@
             </div>
             <div class="text-sm-left border">
                 <div *ngIf="item.approved">
-                    <button class="col-sm-4 text-center btn btn-warning" (click)="item.approved=false">Reject</button>
-                    <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item.id)">Delete</button>            
+                    <button class="col-sm-4 text-center btn btn-warning" (click)="item.approved=false; saveActivity(item)">Reject</button>
+                    <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item._id)">Delete</button>            
                 </div>
                 <span *ngIf="!(item.approved)">
-                    <button class="col-sm-4 text-center btn btn-success" (click)="item.approved=true">Approve</button>
-                    <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item.id)">Delete</button>   
+                    <button class="col-sm-4 text-center btn btn-success" (click)="item.approved=true; saveActivity(item)">Approve</button>
+                    <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item._id)">Delete</button>   
                 </span>
             </div>
         </div>
@@ -61,12 +61,12 @@
             </div>
             <div class="text-sm-left border">
                 <div *ngIf="item.approved">
-                    <button class="col-sm-4 text-center btn btn-warning" (click)="item.approved=false">Reject</button>
-                    <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item.id)">Delete</button>            
+                    <button class="col-sm-4 text-center btn btn-warning" (click)="item.approved=false; saveActivity(item)">Reject</button>
+                    <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item._id)">Delete</button>            
                 </div>
                 <span *ngIf="!(item.approved)">
-                    <button class="col-sm-4 text-center btn btn-success" (click)="item.approved=true">Approve</button>
-                    <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item.id)">Delete</button>   
+                    <button class="col-sm-4 text-center btn btn-success" (click)="item.approved=true; saveActivity(item)">Approve</button>
+                    <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item._id)">Delete</button>   
                 </span>
             </div>
         </div>
@@ -91,12 +91,12 @@
             </div>
             <div class="text-sm-left border">
                 <div *ngIf="item.approved">
-                    <button class="col-sm-4 text-center btn btn-warning" (click)="item.approved=false">Reject</button>
-                    <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item.id)">Delete</button>            
+                    <button class="col-sm-4 text-center btn btn-warning" (click)="item.approved=false; saveActivity(item)">Reject</button>
+                    <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item._id)">Delete</button>            
                 </div>
                 <span *ngIf="!(item.approved)">
-                    <button class="col-sm-4 text-center btn btn-success" (click)="item.approved=true">Approve</button>
-                    <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item.id)">Delete</button>   
+                    <button class="col-sm-4 text-center btn btn-success" (click)="item.approved=true; saveActivity(item)">Approve</button>
+                    <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item._id)">Delete</button>   
                 </span>
             </div>
         </div>

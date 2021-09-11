@@ -1,5 +1,7 @@
 export class Artwork {
     constructor (
+        public _id?: string,
+        public type: string = "artwork",
         public id?: number,
         public name?: string,
         public artist?: string,
