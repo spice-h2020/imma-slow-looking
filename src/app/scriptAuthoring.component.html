@@ -174,9 +174,9 @@
                             <span class="font-weight-bold">Position: </span><span>{{i+1}}</span><br/>
                             <span class="font-weight-bold">Title: </span><span>{{stage.title}}</span><br/>
                             
-                            <span class="font-weight-bold">Text: </span><span>{{stage.body}}</span><br/>
+                            <span class="font-weight-bold">Text: </span><span style="white-space: pre-wrap;" [innerHTML]="stage.body"></span><br/>
                             <span *ngIf='stage.stagetype=="question"'>
-                                <span class="font-weight-bold">Help text: </span><span>{{stage.help}}</span><br/>
+                                <span class="font-weight-bold">Help text: </span><span style="white-space: pre-wrap;">{{stage.help}}</span><br/>
                             </span>
                             <span *ngIf="editScriptStage==0 && editScriptDescription=='0'"> 
                                 <button class="mr-5 btn btn-secondary" (click)="editScriptStage=stage.id">Edit stage</button>

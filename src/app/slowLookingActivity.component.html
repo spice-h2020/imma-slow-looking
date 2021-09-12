@@ -5,7 +5,7 @@
     <div *ngIf="slowLookingCurrentScriptStageIndex == i">
         <div *ngIf="stage.stagetype == 'welcome'">  
             <h5>{{stage.title}}</h5>
-            <p>{{stage.body}}</p>
+            <p style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                 <div class="text-center">
                     <button class="m-3 btn btn-warning" (click)="slowLookingScript='0'; addActivity();" routerLink="/home">Return to the list of Slow Looking activities</button>
@@ -19,7 +19,7 @@
         </div>
         <div *ngIf="stage.stagetype == 'context'">  
             <h5>{{stage.title}}</h5>
-            <p>{{stage.body}}</p>
+            <p style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                 <div class="text-center">
                     <button class="m-3 btn btn-warning" (click)="slowLookingScript='0'; addActivity();" routerLink="/home">Return to the list of Slow Looking activities</button>
@@ -38,10 +38,10 @@
 
                 <!-- show title and question  -->
                 <h5>{{stage.title}}</h5>
-                <p>{{stage.body}}</p>
+                <p style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
                 <div *ngIf="stage.help">
                     <span style="float:right"><img width="20" style="background-color:white;" src="assets/img/question-help.png" (click)="toggleQuestionHelp()"></span>
-                    <span style="float:left" *ngIf="showQuestionHelp">{{stage.help}}</span>
+                    <span style="float:left; white-space: pre-wrap;" *ngIf="showQuestionHelp">{{stage.help}}</span>
                 </div>
                 <!-- get the answer -->
                 <textarea rows="3" class="form-control" [(ngModel)]="newQuestionAction.answer"></textarea>
@@ -64,7 +64,7 @@
             <div class="form-group">
                 {{intialiseShareWithMuseumAction(stage)}}
                 <h5>{{stage.title}}</h5>
-                <p>{{stage.body}}</p>
+                <p style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
             </div>
             <div class="form-check">
                 <input
@@ -101,7 +101,7 @@
             <div class="form-group">
                 {{intialiseFollowAction(stage)}}
                 <h5>{{stage.title}}</h5>
-                <p>{{stage.body}}</p>
+                <p style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
                 <div class="form-group">
                     <label for="emailaddress">Your email address:</label>
                     <textarea id="emailaddress" rows="1" class="form-control" [(ngModel)]="newFollowAction.emailAddress"></textarea>
@@ -122,7 +122,7 @@
             <div class="form-group">
                 {{intialiseShareWithSomeoneAction(stage)}}
                 <h5>{{stage.title}}</h5>
-                <p>{{stage.body}}</p>
+                <p style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
                 <div class="form-group">
                     <label for="emailaddress">Their email address:</label>
                     <textarea id="emailaddress" rows="1" class="form-control" [(ngModel)]="newShareWithFriendAction.emailAddress"></textarea>
@@ -145,9 +145,11 @@
         </div>
         <div *ngIf="stage.stagetype == 'thankyou'">  
             <h5>{{stage.title}}</h5>
-            <p>{{stage.body}}</p>
+            <p style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
             <div>
-                [Social media buttons to be added here]<br/>                            
+                <div class="btn btn-primary" style="background-color: #55acee;" href="#!" role="button">
+                    <i class="fab fa-twitter"></i>
+                </div>                       
             </div>
             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                 <div class="text-center">

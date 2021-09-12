@@ -50,7 +50,7 @@ export class ScriptAuthoringComponent {
     }
 
     addDefaultStagesToScript(script: Script) {
-        script.stages = [this.addWelcomeStage(script), this.addContextStage(script), this.addQuestionStage(script), this.addShareWithMuseumStage(script), this.addFollowStage(script), this.addShareWithSomeoneStage(script), this.addThankyouStage(script)];
+        script.stages = [this.addWelcomeStage(script, 1), this.addContextStage(script, 2), this.addQuestionStage(script, 3), this.addShareWithMuseumStage(script, 4), this.addFollowStage(script, 5), this.addShareWithSomeoneStage(script, 6), this.addThankyouStage(script, 7)];
         this.model.saveScript(script);
     }
 
@@ -58,45 +58,66 @@ export class ScriptAuthoringComponent {
         return this.model.getScript(_id);
     }
 
-    addWelcomeStage(script: Script) {
+    addWelcomeStage(script: Script, id?: number) {
         let stage = new welcomeStage();
+        if(id != null && id != 0) {
+            stage.id = id;
+        }
         stage.id = this.model.generateScriptStageId(script)
         stage.id = this.model.saveStage(stage, script);
         return stage;
     }
 
-    addContextStage(script: Script) {
+    addContextStage(script: Script, id?: number) {
         let stage = new contextStage();
+        if(id != null && id != 0) {
+            stage.id = id;
+        }
         stage.id = this.model.saveStage(stage, script);
         return stage;
     }
     
-    addQuestionStage(script: Script) {
+    addQuestionStage(script: Script, id?: number) {
         let stage = new questionStage();
+        if(id != null && id != 0) {
+            stage.id = id;
+        }
         stage.id = this.model.saveStage(stage, script);
         return stage;
     }
 
-    addShareWithMuseumStage(script: Script) {
+    addShareWithMuseumStage(script: Script, id?: number) {
         let stage = new shareWithMuseumStage();
+        if(id != null && id != 0) {
+            stage.id = id;
+        }
         stage.id = this.model.saveStage(stage, script);
         return stage;
     }
 
-    addFollowStage(script: Script) {
+    addFollowStage(script: Script, id?: number) {
         let stage = new followStage();
+        if(id != null && id != 0) {
+            stage.id = id;
+        }
         stage.id = this.model.saveStage(stage, script);
         return stage;
     }
 
-    addShareWithSomeoneStage(script: Script) {
+    addShareWithSomeoneStage(script: Script, id?: number) {
         let stage = new shareWithSomeoneStage();
+        if(id != null && id != 0) {
+            stage.id = id;
+        }
         stage.id = this.model.saveStage(stage, script);
         return stage;
     }
 
-    addThankyouStage(script: Script) {
+    addThankyouStage(script: Script, id?: number) {
         let stage = new thankyouStage();
+        if(id != null && id != 0) {
+            stage.id = id;
+        }
         stage.id = this.model.saveStage(stage, script);
         return stage;
     }
