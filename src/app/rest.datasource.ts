@@ -9,15 +9,15 @@ import { Activity } from "./activity.model";
 
 @Injectable() export class RestDataSource { 
 
-    private themeUrl = 'https://api2.mksmart.org/object/e7d38f43-26bb-41e0-ba72-7bc4bd3f0a1c?query=%7B%22type%22:%22theme%22%7D';
-    private artworkUrl =  'https://api2.mksmart.org/object/e7d38f43-26bb-41e0-ba72-7bc4bd3f0a1c?query=%7B%22type%22:%22artwork%22%7D';
-    private scriptUrl = 'https://api2.mksmart.org/object/e7d38f43-26bb-41e0-ba72-7bc4bd3f0a1c?query=%7B%22type%22:%22script%22%7D';
-    private activityUrl = 'https://api2.mksmart.org/object/e7d38f43-26bb-41e0-ba72-7bc4bd3f0a1c?query=%7B%22type%22:%22activity%22%7D';
-    private saveUrl = 'https://api2.mksmart.org/object/e7d38f43-26bb-41e0-ba72-7bc4bd3f0a1c';
+    private themeUrl = '';
+    private artworkUrl =  '';
+    private scriptUrl = '';
+    private activityUrl = '';
+    private saveUrl = '';
 
     private config = {
         headers: {
-        'Authorization': '"Basic MDBiOWE3ZWItYjRkZS00NTdiLWJmMzUtODQxYjhkMzdjODA3OjAwYjlhN2ViLWI0ZGUtNDU3Yi1iZjM1LTg0MWI4ZDM3YzgwNw=="'
+        'Authorization': '"Basic xyz"'
         }};
 
     constructor(private http: HttpClient) { }

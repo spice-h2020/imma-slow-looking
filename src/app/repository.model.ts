@@ -190,6 +190,7 @@ export class Model {
     }
 
     saveScript(script: Script) {
+        console.log(script);
         if (script.id == 0 || script.id == null) {
             script.id = this.generateScriptID();
         }
@@ -327,10 +328,13 @@ export class Model {
     }
 
     generateScriptID(): number {
-        let candidate = 1;
-        while(this.dbScripts.find(element => element.id == candidate)) {
-            candidate++;
+        let candidate = 0;
+        for (var script of this.dbScripts) {
+            if(script.id > candidate) {
+                candidate = script.id;
+            }
         }
+        candidate = candidate+1;
         return candidate;
     }
 
