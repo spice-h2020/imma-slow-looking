@@ -18,8 +18,6 @@ export class ScriptAuthoringComponent {
 
     showClosedScripts: boolean = true;
 
-    newScript: Script = new Script();
-
     viewScript: string = "0";
 
     editScriptDescription: string = "0";
@@ -32,12 +30,9 @@ export class ScriptAuthoringComponent {
     stagesOfAScript(script: Script) {
         return script.stages.length;
     }
-    genscriptid() {
-        return this.model.generateScriptID();
-    }
 
     addScript() {
-        let newscript = this.newScript;
+        let newscript = new Script();
         newscript.name = "Untitled script";
         newscript.open = false;
         newscript.visible = false;
@@ -63,7 +58,6 @@ export class ScriptAuthoringComponent {
         if(id != null && id != 0) {
             stage.id = id;
         }
-        stage.id = this.model.generateScriptStageId(script)
         stage.id = this.model.saveStage(stage, script);
         return stage;
     }
