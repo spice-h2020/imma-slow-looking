@@ -17,7 +17,7 @@ import { Activity } from "./activity.model";
 
     private config = {
         headers: {
-        'Authorization': '"Basic xyz"'
+            Authorization: 'Basic xyz'
         }};
 
     constructor(private http: HttpClient) { }
@@ -36,9 +36,8 @@ import { Activity } from "./activity.model";
     }
 
     deleteTheme(_id: string): Observable<Theme> { 
-        return this.http.delete<Theme>(`${this.saveUrl}/${_id}`); 
+        return this.http.delete<Theme>(`${this.saveUrl}/${_id}`, this.config); 
     }
-
 
     // Artwork
     getArtworkData(): Observable<Artwork[]> { 
@@ -54,7 +53,7 @@ import { Activity } from "./activity.model";
     }
 
     deleteArtwork(_id: string): Observable<Artwork> { 
-        return this.http.delete<Artwork>(`${this.saveUrl}/${_id}`); 
+        return this.http.delete<Artwork>(`${this.saveUrl}/${_id}`, this.config); 
     }
 
     // Script
@@ -71,7 +70,7 @@ import { Activity } from "./activity.model";
     }
 
     deleteScript(_id: string): Observable<Script> { 
-        return this.http.delete<Script>(`${this.saveUrl}/${_id}`); 
+        return this.http.delete<Script>(`${this.saveUrl}/${_id}`, this.config); 
     }
 
     // Activity
@@ -88,7 +87,7 @@ import { Activity } from "./activity.model";
     }
 
     deleteActivity(_id: string): Observable<Activity> { 
-        return this.http.delete<Activity>(`${this.saveUrl}/${_id}`); 
+        return this.http.delete<Activity>(`${this.saveUrl}/${_id}`, this.config); 
     }
 
 }
