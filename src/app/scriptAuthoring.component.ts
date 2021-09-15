@@ -215,7 +215,9 @@ export class ScriptAuthoringComponent {
         let mythemes: Array<Theme> = [];
         for(var themeid of themeIds) {
             let mytheme = this.getTheme(themeid);
-            mythemes.push(mytheme);
+            if(mytheme != undefined) {
+                mythemes.push(mytheme);
+            }
         }
         return mythemes;
     }

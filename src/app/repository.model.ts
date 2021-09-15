@@ -19,7 +19,6 @@ export class Model {
     private approved = (x: any) => (x.approved);
     private unapproved = (x: any) => (!x.approved);
     private hasTheme = (x: any, _id: string) => x.themeids.find(e => e == _id);
-    private hasTheme_id = (x: any, id: string) => x.themes.find(e => e._id === id);
     private dbArtworks: Artwork[] = new Array<Artwork>();
     private dbScripts: Script[] = new Array<Script>();
     private dbThemes: Theme[] = new Array<Theme>();
@@ -84,7 +83,7 @@ export class Model {
     }
 
     getScriptsAllOfTheme(_id: string): Script[] {
-        return this.getScripts().filter(x => this.hasTheme_id(x, _id))
+        return this.getScripts().filter(x => x.themeids.includes(_id));
     }
 
     getDefaultThemeId() {
@@ -190,7 +189,6 @@ export class Model {
     }
 
     saveScript(script: Script) {
-        console.log(script);
         if (script.id == 0 || script.id == null) {
             script.id = this.generateScriptID();
         }
