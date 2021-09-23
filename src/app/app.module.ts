@@ -11,6 +11,8 @@ import { SlowLookingActivityComponent } from './slowLookingActivity.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ModelModule } from './model.module';
+import { ArtworkTableComponent } from './artworkTable.component';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
 @NgModule({
   declarations: [
@@ -21,13 +23,15 @@ import { ModelModule } from './model.module';
     ScriptAuthoringComponent,
     HomepageComponent,
     SlowLookingActivityComponent,
+    ArtworkTableComponent
     ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    ModelModule
+    ModelModule,
+    AutocompleteLibModule
   ],
   bootstrap: [SlowLookingComponent]
 })

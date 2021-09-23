@@ -14,6 +14,14 @@ export class ScriptAuthoringComponent {
 
     constructor(private model: Model){}
 
+    deleteConfirmation_Id = "";
+
+    confirmDelete(_id: string) {
+        this.deleteConfirmation_Id = _id;
+    }
+
+    showArchivedScripts = false;
+
     showOpenScripts: boolean = true;
 
     showClosedScripts: boolean = true;
@@ -35,9 +43,11 @@ export class ScriptAuthoringComponent {
         let newscript = new Script();
         newscript.name = "Untitled script";
         newscript.open = false;
-        newscript.visible = false;
-        newscript.artworkid = this.model.getDefaultArtworkId();
-        newscript.themeids = [this.model.getDefaultThemeId()];
+        newscript.visible = true;
+        newscript.archived = false;
+        // newscript.artworkid = this.model.getDefaultArtworkId();
+        // newscript.themeids = [this.model.getDefaultThemeId()];
+        newscript.themeids = [];
         newscript.stages = [];
         this.model.saveScript(newscript);
         this.editScriptDescription="0"; 

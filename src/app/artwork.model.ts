@@ -6,6 +6,7 @@ export class Artwork {
         public name?: string,
         public artist?: string,
         public year?: string,
-        public fileLocation?: string
+        public fileLocation?: string,
+        public url?: string
     ) {}
 }

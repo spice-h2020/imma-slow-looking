@@ -17,6 +17,12 @@ export class ThemeTableComponent {
 
     newTheme: Theme = new Theme();
 
+    deleteConfirmation_Id = "";
+
+    confirmDelete(_id: string) {
+        this.deleteConfirmation_Id = _id;
+    }
+
     addTheme(theme: Theme) {
         this.model.saveTheme(theme);
         this.newTheme = new Theme();

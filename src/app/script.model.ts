@@ -10,6 +10,8 @@ export class Script {
         public artworkid?: string,
         public open?: boolean,
         public visible?: boolean,
-        public stages?: Array<Stage>
+        public stages?: Array<Stage>,
+        public author?: string,
+        public archived: boolean = false
     ) {}
 }

@@ -19,7 +19,9 @@
     "@angular/platform-browser": "~9.0.0",
     "@angular/platform-browser-dynamic": "~9.0.0",
     "@angular/router": "~9.0.0",
+    "angular-ng-autocomplete": "^2.0.5",
     "bootstrap": "^4.4.1",
+    "cors": "^2.8.5",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

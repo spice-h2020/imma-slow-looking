@@ -6,6 +6,7 @@ import { OtherPeopleComponent } from './otherPeople.component';
 import { ScriptAuthoringComponent } from './scriptAuthoring.component';
 import { ThemeTableComponent } from './themeTable.component';
 import { SlowLookingActivityComponent } from './slowLookingActivity.component';
+import { ArtworkTableComponent } from './artworkTable.component';
 
 const routes: Routes = [
   { path: 'home', component: HomepageComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'otherPeople', component: OtherPeopleComponent },
   { path: 'authoring', component: ScriptAuthoringComponent },
   { path: 'themes', component: ThemeTableComponent, runGuardsAndResolvers: 'always'},
+  { path: 'artworks', component: ArtworkTableComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 

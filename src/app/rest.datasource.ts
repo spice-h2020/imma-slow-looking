@@ -1,10 +1,11 @@
 import { Injectable } from "@angular/core"; 
-import { HttpClient } from "@angular/common/http"; 
-import { Observable } from "rxjs"; 
+import { HttpClient, HttpHeaders } from "@angular/common/http"; 
+import { observable, Observable, Observer } from "rxjs"; 
 import { Theme } from "./theme.model";
 import { Artwork } from "./artwork.model";
 import { Script } from "./script.model";
 import { Activity } from "./activity.model";
+import { CollectionArtwork } from "./collectionArtwork.model";
 
 
 @Injectable() export class RestDataSource { 
@@ -89,6 +90,37 @@ import { Activity } from "./activity.model";
     deleteActivity(_id: string): Observable<Activity> { 
         return this.http.delete<Activity>(`${this.saveUrl}/${_id}`, this.config); 
     }
+
+    //IMMA collection
+
+    private collectionQuery = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns%23> " +
+    "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema%23> " +
+    "SELECT ?artwork ?title ?creatorname ?artworkurl ?year " +
+    "WHERE { " +
+    "?artwork rdf:type <http://schema.org/CreativeWork> . " +
+    "?artwork <https://w3id.org/arco/ontology/context-description/hasTitle> ?title . " +
+    "?artwork <http://purl.org/dc/elements/1.1/creator> ?creator . " +
+    "?creator <http://www.w3.org/2000/01/rdf-schema%23label> ?creatorname . " +
+    "?artwork <http://schema.org/image> ?image . " +
+    "?image <http://schema.org/url> ?artworkurl . " +
+    "?artwork  <http://schema.org/dateCreated> ?year } ";
+
+    private collectionURL = "https://api2.mksmart.org/query/f9e601f0-06e6-4733-a791-ec42f3aab80e/sparql?query=" + this.collectionQuery;
+      
+    getCollection(): Observable<CollectionArtwork> {
+
+        const obs = new Observable((observer) => {
+            this.http.get<any>(this.collectionURL, this.config).subscribe(data => {
+                let resarray:  Array<CollectionArtwork> = [];
+                for(var item of data["results"]["bindings"]) {
+                    observer.next(new CollectionArtwork(item["title"]["value"], item["creatorname"]["value"], item["year"]["value"], item["artworkurl"]["value"]));
+                }
+                observer.complete();
+            });
+        })
+        return obs;
+    }
+    
 
 }
 

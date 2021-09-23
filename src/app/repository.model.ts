@@ -4,7 +4,8 @@ import { Script } from "./script.model";
 import { Theme } from "./theme.model";
 import { Stage } from "./stage.model";
 import { RestDataSource } from "./rest.datasource";
-import { ComponentFactoryResolver, Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
+import { CollectionArtwork } from "./collectionArtwork.model";
 
 @Injectable()
 export class Model {
@@ -13,16 +14,20 @@ export class Model {
     private themeLocator = (theme: Theme, id: string) => theme._id === id;
     private scriptLocator = (script: Script, id: string) => script._id == id;
     private activityLocator = (activity: Activity, id: string) => activity._id == id;
+    private artworkLocator = (artwork: Artwork, id: string) => artwork._id == id;
     private stringLocator = (x: any, id: any) => x._id == id;
     private openAndVisible = (x: any) => (x.open && x.visible);
     private visible = (x: any) => (x.visible);
     private approved = (x: any) => (x.approved);
     private unapproved = (x: any) => (!x.approved);
     private hasTheme = (x: any, _id: string) => x.themeids.find(e => e == _id);
+    private scriptHasArtworkAndStage = (x: Script) => (x.artworkid != undefined && x.stages.length > 0);
     private dbArtworks: Artwork[] = new Array<Artwork>();
     private dbScripts: Script[] = new Array<Script>();
     private dbThemes: Theme[] = new Array<Theme>();
     private dbActivities: Activity[] = new Array<Activity>();
+    private dbCollectionArtworks: CollectionArtwork[] = new Array<CollectionArtwork>();
+
 
     constructor(private dbDataSource: RestDataSource) {
 
@@ -30,7 +35,12 @@ export class Model {
         this.dbDataSource.getArtworkData().subscribe(data => this.dbArtworks = data);
         this.dbDataSource.getActivityData().subscribe(data => this.dbActivities = data);
         this.dbDataSource.getScriptData().subscribe(data => this.dbScripts = data);
+        this.dbDataSource.getCollection().subscribe(val => {this.dbCollectionArtworks.push(val)});
 
+    }
+
+    getCollection() {
+        return this.dbCollectionArtworks;
     }
 
     // Theme
@@ -125,10 +135,6 @@ export class Model {
 
 
     // Artwork
-    getDefaultArtworkId() {
-        return this.dbArtworks[0]._id;
-    }
-
     getArtworks(): Artwork[] {
         return this.dbArtworks;
     }
@@ -148,7 +154,7 @@ export class Model {
         }
         else {
             this.dbDataSource.updateArtwork(artwork).subscribe(() => {
-                let index = this.dbArtworks.findIndex(item => this.scriptLocator(item, artwork._id));
+                let index = this.dbArtworks.findIndex(item => this.artworkLocator(item, artwork._id));
                 this.dbArtworks.splice(index, 1, artwork);
             });
         }
@@ -168,6 +174,17 @@ export class Model {
         return this.dbScripts;
     }
 
+    getScriptsOfAnArtwork(_id: string): Script[] {
+        return this.getScripts().filter(x => x.artworkid == _id);
+    }
+
+    removeArtworkFromScripts(scripts: Script[], _id: string) {
+        for(var script of scripts) {
+            script.artworkid = undefined;
+            this.saveScript(script);
+        }
+    }
+
     getOpenVisibleScripts(): Script[] {
         return this.dbScripts.filter(x => this.openAndVisible(x));
     }
@@ -181,7 +198,9 @@ export class Model {
     }
 
     getScriptsOfTheme(_id: string): Script[] {
-        return this.getOpenVisibleScripts().filter(x => this.hasTheme(x, _id));
+        let scripts = this.getOpenVisibleScripts().filter(x => this.hasTheme(x, _id));
+        scripts = scripts.filter(x => this.scriptHasArtworkAndStage(x));
+        return scripts;
     }
 
     getScript(_id: string): Script {

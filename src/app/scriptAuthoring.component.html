@@ -2,15 +2,15 @@
     <span class="navbar-brand">IMMA Deeper Viewpoints: Authoring</span>
 </nav> 
 <div>
-    <div *ngIf="viewScript=='0'">
+    <!-- <div *ngIf="viewScript=='0'">
         <span>Show:</span><br/>
         <span>
             <span class="mr-3"><input type="checkbox" [checked]="showOpenScripts" (change)="showOpenScripts = !showOpenScripts"/><label class="ml-2"> Open </label></span>
             <span class="mr-3"><input type="checkbox" [checked]="showClosedScripts" (change)="showClosedScripts = !showClosedScripts"/><label class="ml-2"> Closed </label></span>
         </span>
-    </div>
-    <div class="col-xs-12 mb-1">
-        <button class="float-right btn btn-success" *ngIf="viewScript=='0'" (click)="addScript()">Add new script</button><br/>
+    </div> -->
+    <div class="col-xs-12 mb-3 mt-2">
+        <button class="float-right btn btn-success" *ngIf="viewScript=='0'" (click)="addScript(); deleteConfirmation_Id=''">Add new script</button><br/>
     </div>
     <div class="col-xs-12 ml-1 mr-1" *ngFor="let script of getScripts(); let i = index">
         <div *ngIf="((script.open && showOpenScripts) || (!(script.open) && showClosedScripts)) && (viewScript == '0' || viewScript==script._id)" class="border">
@@ -21,8 +21,8 @@
             </div>
             <div class="col-xs-4 float-right">
                 <span *ngIf="viewScript=='0'">
-                    <button class="mr-5 btn btn-info" (click)="viewScript=script._id">View</button>
-                    <button class="btn btn-danger" (click)="deleteScript(script._id)">Delete</button>
+                    <button class="mr-5 btn btn-info" (click)="viewScript=script._id; deleteConfirmation_Id=''">View</button>
+                    <button class="btn btn-danger" (click)="confirmDelete(script._id)">Delete</button>
                 </span>
                 <span *ngIf="viewScript==script._id && editScriptDescription=='0' && editScriptStage==0">
                     <button class="mr-5 btn btn-info" (click)="viewScript='0'">Return to list of scripts</button>
@@ -31,6 +31,14 @@
             <div class="col-xs-12">
                 <!-- show script description -->
                 <span *ngIf="editScriptDescription!=script._id">
+                    <span class="font-weight-bold">
+                        Author: 
+                    </span>
+                    <span>
+                        {{script.author}}
+                    </span>
+                    <br/>
+
                     <span class="font-weight-bold">
                         Themes: 
                     </span>
@@ -45,8 +53,10 @@
                             Artwork: 
                         </span>
                         <span>
-                            <span *ngIf="artwork.name && artwork.artist && artwork.year">
-                                {{artwork.name}}, {{artwork.artist}}, {{artwork.year}}
+                            <span *ngIf="artwork">
+                                <span *ngIf="artwork.name && artwork.artist && artwork.year">
+                                    {{artwork.name}}, {{artwork.artist}}, {{artwork.year}}
+                                </span>
                             </span>
                         </span><br/>     
                     </span>
@@ -56,12 +66,17 @@
                     <span *ngIf="script.open">Open</span>
                     <span *ngIf="!script.open">Closed</span><br/>
                     <span class="font-weight-bold">
-                        Visibilty: 
+                        Visibility: 
                     </span>
                     <span *ngIf="script.visible">Public</span>
                     <span *ngIf="!script.visible">Private</span><br/>
                     <span *ngIf="viewScript==script._id && editScriptDescription=='0' && editScriptStage==0">
                         <button class="btn btn-secondary" (click)="editScriptDescription=script._id; editScriptStage=0">Edit description</button><br/>
+                    </span>
+                    <span *ngIf="viewScript=='0'">
+                        <span *ngIf="deleteConfirmation_Id==script._id">
+                            <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this script?</strong> <span><button class="btn btn-danger ml-2" (click)="deleteScript(script._id)">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteConfirmation_Id=''">Cancel</button></span></div>
+                        </span>
                     </span>
                     <div class="border" *ngIf="viewScript==script._id">
                         <span class="font-weight-bold">Stages</span><br/>
@@ -95,6 +110,14 @@
                             <label class="form-check-label"> {{theme.name}} </label>
                         </span>
                     </td></tr>
+                    <tr>
+                        <td class="align-top">
+                            <span class="font-weight-bold">Author: </span>
+                        </td>
+                        <td>
+                            <textarea rows="1" class="form-control" [(ngModel)]="script.author"></textarea>
+                        </td> 
+                    </tr>
                     <tr><td  class="align-top">
                         <span class="font-weight-bold">Artwork: </span>
                     </td><td>
