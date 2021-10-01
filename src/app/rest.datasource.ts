@@ -7,7 +7,6 @@ import { Script } from "./script.model";
 import { Activity } from "./activity.model";
 import { CollectionArtwork } from "./collectionArtwork.model";
 
-
 @Injectable() export class RestDataSource { 
 
     private themeUrl = '';
@@ -117,7 +116,7 @@ import { CollectionArtwork } from "./collectionArtwork.model";
                 }
                 observer.complete();
             });
-        })
+        });
         return obs;
     }
     
