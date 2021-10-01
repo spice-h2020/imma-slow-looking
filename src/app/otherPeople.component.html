@@ -2,7 +2,7 @@
     Find out how others have responded to IMMA artworks.
 </p>
 <p>
-    Select one of the themes to view the responses. Follow @IMMADeeperViewpoints on Twitter to keep track of the responses of others.
+    Select one of the themes to view the responses. Follow @IMMADeepViewpoints on Twitter to keep track of the responses of others.
 </p> 
 
 <div *ngFor="let theme of getThemes(); let i = index">
@@ -54,10 +54,18 @@
                                     [attr.aria-labelledby]="'heading_' + 'theme'+theme._id+'script'+script._id"
                                     [attr.data-bs-parent]="'#theme'+theme._id+'script'+script._id">
                                     <div class="accordion-body">
-                                        <div *ngFor="let activity of getApprovedActivitiesOfAScript(script._id); let i = index" class="border">
-                                            <div *ngFor="let action of activity.actions;">
-                                                <span class="font-italic" style="white-space: pre-wrap;" [innerHTML]="action.question"></span>
-                                                <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
+                                        <div *ngFor="let activity of getApprovedActivitiesOfAScript(script._id); let i = index; let even=even">
+                                            <div *ngIf="even" style="background-color: #E6E6E6;" class="w-100">
+                                                <div *ngFor="let action of activity.actions;">
+                                                    <span class="font-italic" style="white-space: pre-wrap;" [innerHTML]="action.question"></span>
+                                                    <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
+                                                </div>
+                                            </div>
+                                            <div *ngIf="!even" style="background-color: #FFFFFF;" class="w-100">
+                                                <div *ngFor="let action of activity.actions;">
+                                                    <span class="font-italic" style="white-space: pre-wrap;" [innerHTML]="action.question"></span>
+                                                    <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
