@@ -4,7 +4,7 @@
 <div class="mb-4">
     <button (click)="managementMode=1" class="btn btn-secondary col-sm-4 text-center">All</button>
     <button (click)="managementMode=2" class="btn btn-success col-sm-4 text-center">Approved</button>
-    <button (click)="managementMode=3" class="btn btn-warning col-sm-4 text-center">Awaiting approval</button>
+    <button (click)="managementMode=3" class="btn btn-info col-sm-4 text-center">Awaiting approval</button>
 </div>
 
 <div [ngSwitch]="managementMode">  
@@ -28,7 +28,7 @@
             </div>
             <div class="text-sm-left border">
                 <div *ngIf="item.approved">
-                    <button class="col-sm-4 text-center btn btn-warning" (click)="item.approved=false; saveActivity(item)">Reject</button>
+                    <button class="col-sm-4 text-center btn btn-info" (click)="item.approved=false; saveActivity(item)">Reject</button>
                     <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item._id)">Delete</button>            
                 </div>
                 <span *ngIf="!(item.approved)">
@@ -36,7 +36,7 @@
                     <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item._id)">Delete</button>   
                 </span>
             </div>
-        </div>
+        </div><br/>
     </div>
     <div *ngSwitchCase="2">
         <!-- show approved -->
@@ -58,7 +58,7 @@
             </div>
             <div class="text-sm-left border">
                 <div *ngIf="item.approved">
-                    <button class="col-sm-4 text-center btn btn-warning" (click)="item.approved=false; saveActivity(item)">Reject</button>
+                    <button class="col-sm-4 text-center btn btn-info" (click)="item.approved=false; saveActivity(item)">Reject</button>
                     <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item._id)">Delete</button>            
                 </div>
                 <span *ngIf="!(item.approved)">
@@ -66,7 +66,7 @@
                     <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item._id)">Delete</button>   
                 </span>
             </div>
-        </div>
+        </div><br/>
     </div>
     <div *ngSwitchCase="3">
         <!-- show waiting approval -->
@@ -88,14 +88,14 @@
             </div>
             <div class="text-sm-left border">
                 <div *ngIf="item.approved">
-                    <button class="col-sm-4 text-center btn btn-warning" (click)="item.approved=false; saveActivity(item)">Reject</button>
+                    <button class="col-sm-4 text-center btn btn-info" (click)="item.approved=false; saveActivity(item)">Reject</button>
                     <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item._id)">Delete</button>            
                 </div>
                 <span *ngIf="!(item.approved)">
                     <button class="col-sm-4 text-center btn btn-success" (click)="item.approved=true; saveActivity(item)">Approve</button>
                     <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item._id)">Delete</button>   
                 </span>
-            </div>
+            </div><br/>
         </div>
     </div>
 </div>

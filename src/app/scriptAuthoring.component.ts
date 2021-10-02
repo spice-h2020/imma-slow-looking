@@ -33,8 +33,12 @@ export class ScriptAuthoringComponent {
     editScriptStage: number = 0;
 
     saveScript(script: Script) {
+        if(script.artworkids == undefined) {
+            script.artworkids = [];
+        }
         this.model.saveScript(script);
     }
+
     stagesOfAScript(script: Script) {
         return script.stages.length;
     }
@@ -48,6 +52,7 @@ export class ScriptAuthoringComponent {
         // newscript.artworkid = this.model.getDefaultArtworkId();
         // newscript.themeids = [this.model.getDefaultThemeId()];
         newscript.themeids = [];
+        newscript.artworkids = [];
         newscript.stages = [];
         this.model.saveScript(newscript);
         this.editScriptDescription="0"; 
@@ -145,8 +150,29 @@ export class ScriptAuthoringComponent {
         this.model.removeStageFromScript(script, stage);
     }
 
+    artworksChange(script: Script, artworkid: string, selected: any) {
+        if(selected.target.checked) {
+            this.model.addArtworkToScript(script, artworkid);
+        }
+        else {
+            this.model.removeArtworkFromScript(script, artworkid);
+        }
+        this.model.saveScript(script);
+    }
+
     getArtworks(): Artwork[] {
         return this.model.getArtworks();
+    }
+
+    getArtworksFromIds(artworkIds: Array<string>): Array<Theme> {
+        let myartworks: Array<Theme> = [];
+        for(var artworkid of artworkIds) {
+            let myartwork = this.getArtwork(artworkid);
+            if(myartwork != undefined) {
+                myartworks.push(myartwork);
+            }
+        }
+        return myartworks;
     }
 
     getArtwork(_id: string) {
@@ -233,7 +259,12 @@ export class ScriptAuthoringComponent {
     }
 
     getArtworkFromId(artworkId: string) {
-        return [this.getArtwork(artworkId)];
+        if(artworkId == undefined) {
+            return [];
+        }
+        else {
+            return [this.getArtwork(artworkId)];
+        }
     }
 
     getScripts(): Script[] {

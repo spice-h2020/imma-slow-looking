@@ -21,7 +21,7 @@ export class Model {
     private approved = (x: any) => (x.approved);
     private unapproved = (x: any) => (!x.approved);
     private hasTheme = (x: any, _id: string) => x.themeids.find(e => e == _id);
-    private scriptHasArtworkAndStage = (x: Script) => (x.artworkid != undefined && x.stages.length > 0);
+    private scriptHasArtworkAndStage = (x: Script) => (x.homepageartworkid != undefined && x.artworkids.length > 0 && x.stages.length > 0);
     private dbArtworks: Artwork[] = new Array<Artwork>();
     private dbScripts: Script[] = new Array<Script>();
     private dbThemes: Theme[] = new Array<Theme>();
@@ -169,21 +169,46 @@ export class Model {
         })
     }
 
+    addArtworkToScript(script: Script, artworkid: string) {
+        //add theme
+        script.artworkids.push(artworkid);
+    }
+
+    removeArtworkFromScript(script: Script, artworkid: string) {
+        let index = script.artworkids.findIndex(x => x == artworkid);
+        script.artworkids.splice(index, 1);
+        if(script.homepageartworkid == artworkid) {
+            script.homepageartworkid = undefined;
+        }
+    }
+
     // Script
     getScripts(): Script[] {
         return this.dbScripts;
     }
 
     getScriptsOfAnArtwork(_id: string): Script[] {
-        return this.getScripts().filter(x => x.artworkid == _id);
+        return this.getScripts().filter(x => x.artworkids.some(y => y == _id));
     }
 
     removeArtworkFromScripts(scripts: Script[], _id: string) {
         for(var script of scripts) {
-            script.artworkid = undefined;
+            //remove artwork from artworkids
+            let index = script.artworkids.findIndex(p => p == _id);
+            if (index > -1) {
+                script.artworkids.splice(index, 1);
+            }
+            //remove artwork from homepageartworkid
+            if(script.homepageartworkid == _id) {
+                script.homepageartworkid = undefined;
+                //replace homepageartworkid if artworkids is not empty
+                if(script.artworkids.length > 0) {
+                    script.homepageartworkid = script.artworkids[0];
+                }
+            }
             this.saveScript(script);
         }
-    }
+    } 
 
     getOpenVisibleScripts(): Script[] {
         return this.dbScripts.filter(x => this.openAndVisible(x));
@@ -194,7 +219,9 @@ export class Model {
     }
 
     getVisibleScriptsOfTheme(_id: string): Script[] {
-        return this.getVisibleScripts().filter(x => this.hasTheme(x, _id));
+        let scripts = this.getVisibleScripts().filter(x => this.hasTheme(x, _id));
+        scripts = scripts.filter(x => this.scriptHasArtworkAndStage(x));
+        return scripts;
     }
 
     getScriptsOfTheme(_id: string): Script[] {

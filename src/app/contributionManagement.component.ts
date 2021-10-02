@@ -18,7 +18,7 @@ export class ContributionManagementComponent {
     }
 
     getActivities(): Activity[] {
-        return this.model.getActivities();
+        return this.model.getActivities().sort((a, b) => (a.id > b.id) ? -1 : 1);
     }
 
     deleteActivity(_id: string) {
@@ -26,11 +26,11 @@ export class ContributionManagementComponent {
     }
 
     getApprovedActivities(): Activity[] {
-        return this.model.getApprovedActivities();
+        return this.model.getApprovedActivities().sort((a, b) => (a.id > b.id) ? -1 : 1);
     }
 
     getUnpprovedActivities(): Activity[] {
-        return this.model.getUnapprovedActivities();
+        return this.model.getUnapprovedActivities().sort((a, b) => (a.id > b.id) ? -1 : 1);
     }
 
 }

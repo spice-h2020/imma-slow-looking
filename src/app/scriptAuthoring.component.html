@@ -39,13 +39,27 @@
                     <span class="font-weight-bold">
                         Themes: 
                     </span>
-
                     <span *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
                             {{theme.name}}<span *ngIf="!last">, </span>
                     </span>
                     <br/>
 
-                    <span *ngFor="let artwork of getArtworkFromId(script.artworkid);">
+                    <span *ngIf="!getArtworksFromIds(script.artworkids).length" class="font-weight-bold">
+                        Artworks: 
+                    </span>
+                    <table>
+                    <tr *ngFor="let artwork of getArtworksFromIds(script.artworkids); let first = first">
+                            <td><span *ngIf="first" class="font-weight-bold">Artworks:</span></td><td>{{artwork.name}}, {{artwork.artist}}, {{artwork.year}}</td>
+                    </tr>
+                    </table>
+                    <span class="font-weight-bold">
+                        Homepage artwork: 
+                    </span>
+                    <span *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
+                        {{artwork.name}}, {{artwork.artist}}, {{artwork.year}}
+                    </span><br/>
+
+                    <!-- <span *ngFor="let artwork of getArtworkFromId(script.artworkid);">
                         <span class="font-weight-bold">
                             Artwork: 
                         </span>
@@ -56,7 +70,7 @@
                                 </span>
                             </span>
                         </span><br/>     
-                    </span>
+                    </span> -->
                     <span class="font-weight-bold">
                         Status: 
                     </span>
@@ -105,7 +119,8 @@
                             (change) = "themesChange(script, theme._id, $event)"
                             />
                             <label class="form-check-label"> {{theme.name}} </label>
-                        </span>
+                        </span><br/>
+                        <span *ngIf="!getThemesFromIds(script.themeids).length" class="text-warning">At least one theme must be selected</span>
                     </td></tr>
                     <tr>
                         <td class="align-top">
@@ -116,19 +131,44 @@
                         </td> 
                     </tr>
                     <tr><td  class="align-top">
-                        <span class="font-weight-bold">Artwork: </span>
+                        <span class="font-weight-bold">Artworks: </span>
                     </td><td>
                         <span *ngFor="let artwork of getArtworks()" class="mr-3">
                             <input
+                            type="checkbox"
+                            [value]=artwork._id
+                            [ngModel] = "script.artworkids.includes(artwork._id)"
+                            (change) = "artworksChange(script, artwork._id, $event)"
+                            />
+                            <!-- <input
                             type="radio"
                             [value]="artwork._id"
                             name="artwork.name"
                             [(ngModel)] = "script.artworkid"
+                            /> -->
+                            <label class="form-check-label"> {{artwork.name}}, {{artwork.artist}}, {{artwork.year}} </label>
+                            <br/>
+                        </span>
+                        <span *ngIf="!getArtworksFromIds(script.artworkids).length" class="text-warning">At least one artwork must be selected</span>
+                    </td></tr>
+
+                    <tr><td  class="align-top">
+                        <span class="font-weight-bold">Homepage artwork: </span>
+                    </td><td>
+                        <span *ngFor="let artwork of getArtworksFromIds(script.artworkids)" class="mr-3">
+                            <input
+                            type="radio"
+                            [value]="artwork._id"
+                            name="artwork.name"
+                            [(ngModel)] = "script.homepageartworkid"
                             />
                             <label class="form-check-label"> {{artwork.name}}, {{artwork.artist}}, {{artwork.year}} </label>
                             <br/>
                         </span>
+                        <span *ngIf="script.homepageartworkid==undefined" class="text-warning">An artwork for the homepage must be selected</span>
                     </td></tr>
+
+
                     <tr><td class="align-top">
                         <!-- script status -->
                         <span class="mr-3 font-weight-bold">
@@ -181,7 +221,7 @@
                             <label class="form-check-label"> Private </label>
                         </span>
                     </td></tr><tr><td colspan="2">
-                        <button class="btn btn-success" (click)="editScriptDescription='0'; saveScript(script)">Done</button> 
+                        <button class="btn btn-success" (click)="editScriptDescription='0'; saveScript(script)" [disabled]="!getThemesFromIds(script.themeids).length || !getArtworksFromIds(script.artworkids).length || script.homepageartworkid==undefined">Done</button> 
                     </td></tr>
                 </table>
             
