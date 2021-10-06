@@ -14,10 +14,27 @@ export class ScriptAuthoringComponent {
 
     constructor(private model: Model){}
 
+    showStageHelp = false;
+    
+    toggleStageHelp() {
+        if(this.showStageHelp) {
+            this.showStageHelp = false;
+        }
+        else {
+            this.showStageHelp = true;
+        }
+    }
+
     deleteConfirmation_Id = "";
 
     confirmDelete(_id: string) {
         this.deleteConfirmation_Id = _id;
+    }
+
+    deleteStageConfirmationId = 0;
+
+    confirmStageDelete(id:number) {
+        this.deleteStageConfirmationId = id;
     }
 
     trackByIdx(index: number, obj: any): any {

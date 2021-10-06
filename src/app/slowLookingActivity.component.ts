@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Action, followAction, questionAction, shareWithFriendAction, shareWithMusemAction, multiquestionAction, questionanswer } from "./action.model";
 import { Activity } from "./activity.model";
 import { Model } from "./repository.model";
@@ -13,7 +13,7 @@ import { FormControl } from "@angular/forms";
     templateUrl: "slowLookingActivity.component.html"
 })
 
-export class SlowLookingActivityComponent {
+export class SlowLookingActivityComponent implements OnInit {
 
     multiquestionIndex = 0;
 
