@@ -1,10 +1,12 @@
 import { Component } from "@angular/core";
-import { Action, followAction, questionAction, shareWithFriendAction, shareWithMusemAction } from "./action.model";
+import { Action, followAction, questionAction, shareWithFriendAction, shareWithMusemAction, multiquestionAction, questionanswer } from "./action.model";
 import { Activity } from "./activity.model";
 import { Model } from "./repository.model";
 import { Script } from "./script.model";
-import { followStage, questionStage, shareWithMuseumStage, shareWithSomeoneStage } from "./stage.model";
+import { Artwork } from "./artwork.model";
+import { followStage, questionStage, shareWithMuseumStage, shareWithSomeoneStage, multiquestionStage } from "./stage.model";
 import { ActivatedRoute } from "@angular/router";
+import { FormControl } from "@angular/forms";
 
 @Component({
     selector: "paSlowLookingActivity",
@@ -13,9 +15,33 @@ import { ActivatedRoute } from "@angular/router";
 
 export class SlowLookingActivityComponent {
 
+    multiquestionIndex = 0;
+
+    multiquestionMax = 0;
+
+    incrementMultiquestionIndex(len: number) {
+        if(this.multiquestionIndex <= len) {
+            this.multiquestionIndex = this.multiquestionIndex + 1;
+        }
+    }
+
+    decrementMultiquestionIndex() {
+        if(this.multiquestionIndex >= 0) {
+            this.multiquestionIndex = this.multiquestionIndex - 1;
+        }
+    }
+
+    //current script _id retrieved from route
     slowLookingScript = "0";
 
+    // index of final stage of current script
     slowLookingMaximumScriptStageIndex = 0;
+
+    // current script stage
+    slowLookingCurrentScriptStageIndex = 0;
+
+    // new activity initialised on init
+    newActivity: Activity = new Activity();
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -28,15 +54,14 @@ export class SlowLookingActivityComponent {
     }
 
     setSlowLookingScript(_id: string) {
-
         // get the script
-        var SLscript = this.getScript(_id);
-
+        let SLscript = this.getScript(_id);
         // set script id
         this.slowLookingScript = _id;
 
         // set current stage index to zero
         this.slowLookingCurrentScriptStageIndex = 0;
+
         // set maximum stage index to length -1
         this.slowLookingMaximumScriptStageIndex = SLscript.stages.length-1;
 
@@ -44,13 +69,49 @@ export class SlowLookingActivityComponent {
         this.newActivity = new Activity();
         this.newActivity.script = SLscript;
         this.newActivity.approved = false;
+
     }
 
-    // slowLookingScript: number = 1;
+    randomInt = (min: number, max: number): number => {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+      };
 
-    slowLookingCurrentScriptStageIndex = 0;
+    randomiseQuestion(len:number) {
+        len = len-1;
+        let rand = this.randomInt(0, len);
+        if(rand >= this.multiquestionIndex) {
+            rand=rand+1;
+        }
+        this.multiquestionIndex = rand;
+        this.setAnswerValue(rand);
+    }
+    submittedAnswer = false;
+    answervalue = new FormControl();
+    setAnswerValue(index: number) {
+        if(this.newMultiquestionAction.answers == undefined) {
+            this.newMultiquestionAction.answers = [];
+        }
+        let qa = this.newMultiquestionAction.answers.find(x => x.question == index)
+        if(qa) {
+            this.answervalue.setValue(qa.answer);
+        }
+        else {
+            this.answervalue.setValue("");
+        }
+    };
 
-    newActivity: Activity = new Activity();
+    updateAnswers(index: number, value: string) {
+        let nqa = new questionanswer(index, value);
+        if(this.newMultiquestionAction.answers == undefined) {
+            this.newMultiquestionAction.answers = [];
+        }
+
+        let newarray = this.newMultiquestionAction.answers.filter(answer => answer.question != index)
+        newarray.push(nqa);
+        this.newMultiquestionAction.answers = newarray;
+    }
+
+    myanswers: Array<questionanswer> = [];
 
     getScript(_id: string): Script {
         return this.model.getScript(_id);
@@ -71,11 +132,19 @@ export class SlowLookingActivityComponent {
         this.newQuestionAction.question = question;
     }
 
+    intialiseMultiquestionAction(stage: multiquestionStage, questions: Array<string>) {
+        this.newMultiquestionAction.questionStage = stage;
+        this.newMultiquestionAction.questions = questions;
+        this.multiquestionMax = questions.length;
+    }
+
     intialiseShareWithMuseumAction(stage: shareWithMuseumStage) {
         this.newShareWithMusemAction.shareWithMuseumStage = stage;
     }
     
     newQuestionAction: questionAction = new questionAction();
+
+    newMultiquestionAction: multiquestionAction = new multiquestionAction();
 
     newShareWithMusemAction: shareWithMusemAction = new shareWithMusemAction();
 
@@ -117,8 +186,27 @@ export class SlowLookingActivityComponent {
         this.newQuestionAction = new questionAction();
     }
 
+    resetNewMultiQuestionAction() {
+        this.newMultiquestionAction = new multiquestionAction();
+    }
+
     resetNewShareWithMusemAction() {
         this.newShareWithMusemAction = new shareWithMusemAction();
+    }
+
+    getArtworksFromIds(artworkIds: Array<string>): Array<Artwork> {
+        let myartworks: Array<Artwork> = [];
+        for(var artworkid of artworkIds) {
+            let myartwork = this.getArtwork(artworkid);
+            if(myartwork != undefined) {
+                myartworks.push(myartwork);
+            }
+        }
+        return myartworks;
+    }
+
+    getArtwork(_id: string) {
+        return this.model.getArtwork(_id);
     }
 
 }

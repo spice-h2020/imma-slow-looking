@@ -22,8 +22,22 @@
             <div class="text-sm-left border">
                 <p class="text-sm-left font-weight-bold">{{item.script.name}}</p>
                 <div *ngFor="let action of item.actions;">
-                    <span class="font-italic" style="white-space: pre-wrap;" [innerHTML]="action.question"></span>
-                    <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
+
+                    <span *ngIf="action.questionStage">
+                        <span *ngIf="action.questionStage.stagetype">
+                            <span *ngIf="action.questionStage.stagetype != 'multiquestion'">
+                                <span class="font-italic" style="white-space: pre-wrap;" [innerHTML]="action.question"></span>
+                                <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
+                            </span>
+                            <span *ngIf="action.questionStage.stagetype == 'multiquestion' && action.answers">
+                                <span *ngFor="let answer of action.answers">
+                                    <span class="font-italic" style="white-space: pre-wrap;" [innerHTML]="action.questionStage.body[answer.question]"></span>
+                                    <p class="font-weight-normal" style="white-space: pre-wrap;">{{answer.answer}}</p>
+                                </span>
+                            </span>
+                        </span>
+                    </span>
+
                 </div>
             </div>
             <div class="text-sm-left border">
@@ -52,8 +66,22 @@
             <div class="text-sm-left border">
                 <p class="text-sm-left font-weight-bold">{{item.script.name}}</p>
                 <div *ngFor="let action of item.actions;">
-                    <span class="font-italic" style="white-space: pre-wrap;" [innerHTML]="action.question"></span>
-                    <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
+
+                    <span *ngIf="action.questionStage">
+                        <span *ngIf="action.questionStage.stagetype">
+                            <span *ngIf="action.questionStage.stagetype != 'multiquestion'">
+                                <span class="font-italic" style="white-space: pre-wrap;" [innerHTML]="action.question"></span>
+                                <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
+                            </span>
+                            <span *ngIf="action.questionStage.stagetype == 'multiquestion' && action.answers">
+                                <span *ngFor="let answer of action.answers">
+                                    <span class="font-italic" style="white-space: pre-wrap;" [innerHTML]="action.questionStage.body[answer.question]"></span>
+                                    <p class="font-weight-normal" style="white-space: pre-wrap;">{{answer.answer}}</p>
+                                </span>
+                            </span>
+                        </span>
+                    </span>
+
                 </div>
             </div>
             <div class="text-sm-left border">
@@ -82,8 +110,22 @@
             <div class="text-sm-left border">
                 <p class="text-sm-left font-weight-bold">{{item.script.name}}</p>
                 <div *ngFor="let action of item.actions;">
-                    <span class="font-italic" style="white-space: pre-wrap;" [innerHTML]="action.question"></span>
-                    <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
+                    
+                    <span *ngIf="action.questionStage">
+                        <span *ngIf="action.questionStage.stagetype">
+                            <span *ngIf="action.questionStage.stagetype != 'multiquestion'">
+                                <span class="font-italic" style="white-space: pre-wrap;" [innerHTML]="action.question"></span>
+                                <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
+                            </span>
+                            <span *ngIf="action.questionStage.stagetype == 'multiquestion' && action.answers">
+                                <span *ngFor="let answer of action.answers">
+                                    <span class="font-italic" style="white-space: pre-wrap;" [innerHTML]="action.questionStage.body[answer.question]"></span>
+                                    <p class="font-weight-normal" style="white-space: pre-wrap;">{{answer.answer}}</p>
+                                </span>
+                            </span>
+                        </span>
+                    </span>
+
                 </div>
             </div>
             <div class="text-sm-left border">

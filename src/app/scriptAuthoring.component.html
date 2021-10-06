@@ -22,11 +22,11 @@
                     <button class="btn btn-danger" (click)="confirmDelete(script._id)">Delete</button>
                 </span>
                 <span *ngIf="viewScript==script._id && editScriptDescription=='0' && editScriptStage==0">
-                    <button class="mr-5 btn btn-info" (click)="viewScript='0'">Return to list of scripts</button>
+                    <button class="btn btn-info" (click)="viewScript='0'">Return to list of scripts</button>
                 </span>
             </div>
             <div class="col-xs-12">
-                <!-- show script description -->
+                <!-- show script description --> 
                 <span *ngIf="editScriptDescription!=script._id">
                     <span class="font-weight-bold">
                         Author: 
@@ -96,7 +96,7 @@
                                 <button class="btn btn-success mr-1" (click)="addDefaultStagesToScript(script);">Add suggested stages to new script</button>
                             </span><br/>
                         </span>
-                        <span *ngIf="editScriptStage==0">Add new stage: <button class="btn btn-success mr-1" (click)="addWelcomeStageToScript(script)">welcome</button> <button class="btn btn-success mr-1" (click)="addContextStageToScript(script)">context</button> <button class="btn btn-success mr-1" (click)="addQuestionStageToScript(script)">question</button> <button class="btn btn-success mr-1" (click)="addShareWithMuseumStageToScript(script)">shareWithMuseum</button> <button class="btn btn-success mr-1" (click)="addFollowStageToScript(script)">follow</button> <button class="btn btn-success mr-1" (click)="addShareWithSomeoneStageToScript(script)">shareWithSomeone</button> <button class="btn btn-success mr-1" (click)="addThankyouStageToScript(script)">thankyou</button></span>
+                        <span *ngIf="editScriptStage==0">Add new stage: <button class="btn btn-success mr-1" (click)="addWelcomeStageToScript(script)">welcome</button> <button class="btn btn-success mr-1" (click)="addContextStageToScript(script)">context</button> <button class="btn btn-success mr-1" (click)="addQuestionStageToScript(script)">question</button> <button class="btn btn-success mr-1" (click)="addMultiQuestionStageToScript(script)">multiquestion</button> <button class="btn btn-success mr-1" (click)="addShareWithMuseumStageToScript(script)">shareWithMuseum</button> <button class="btn btn-success mr-1" (click)="addFollowStageToScript(script)">follow</button> <button class="btn btn-success mr-1" (click)="addShareWithSomeoneStageToScript(script)">shareWithSomeone</button> <button class="btn btn-success mr-1" (click)="addThankyouStageToScript(script)">thankyou</button></span>
                     </div>
                 </span>
 
@@ -233,8 +233,31 @@
                             <span class="font-weight-bold">Type: </span><span>{{stage.stagetype}}</span><br/>
                             <span class="font-weight-bold">Position: </span><span>{{i+1}}</span><br/>
                             <span class="font-weight-bold">Title: </span><span>{{stage.title}}</span><br/>
-                            
-                            <span class="font-weight-bold">Text: </span><span style="white-space: pre-wrap;" [innerHTML]="stage.body"></span><br/>
+
+                            <span *ngIf="!getArtworksFromIds(stage.includeartworks).length" class="font-weight-bold">
+                                Show artworks: 
+                            </span>
+                            <table>
+                            <tr *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
+                                    <td><span *ngIf="first" class="font-weight-bold">Show artworks:</span></td><td>{{artwork.name}}, {{artwork.artist}}, {{artwork.year}}</td>
+                            </tr>
+                            </table>
+
+
+                            <span *ngIf='stage.stagetype=="multiquestion"'>
+                                <span class="font-weight-bold">Style: </span>
+                                <span *ngIf='stage.sequential'>Questions presented in sequence</span>
+                                <span *ngIf='!stage.sequential'>Random question that can be reloaded</span>
+                                <br/>
+                            </span>
+                            <span *ngIf='stage.stagetype=="multiquestion"'>
+                                <span *ngFor="let question of stage.body; let i=index" class="mr-3">
+                                    <span class="font-weight-bold">Text {{i+1}} : </span><span style="white-space: pre-wrap;" [innerHTML]="question"></span><br/>
+                                </span>
+                            </span>
+                            <span *ngIf='stage.stagetype!=="multiquestion"'>
+                                <span class="font-weight-bold">Text: </span><span style="white-space: pre-wrap;" [innerHTML]="stage.body"></span><br/>
+                            </span>
                             <span *ngIf='stage.stagetype=="question"'>
                                 <span class="font-weight-bold">Help text: </span><span style="white-space: pre-wrap;">{{stage.help}}</span><br/>
                             </span>
@@ -245,6 +268,7 @@
                         </span>
                         <!-- edit script stage -->
                         <span *ngIf="stage.id==editScriptStage">
+
                             <table width=100%><th></th><th></th>
                             <tr><td>
                                 <span class="font-weight-bold">Type:</span>
@@ -265,17 +289,62 @@
                                 <span class="font-weight-bold">Title:</span>
                             </td><td>
                                 <textarea rows="1" class="form-control" [(ngModel)]="stage.title"></textarea>
-                            </td></tr> 
-                            <tr><td>
+                            </td></tr>
+                            <tr>
+                                <td class="align-top">
+                                    <span class="font-weight-bold">Show artworks: </span>
+                                </td>
+                                <td>
+                                    <span *ngFor="let artwork of getArtworksFromIds(script.artworkids)" class="mr-3">
+                                        <input
+                                        type="checkbox"
+                                        [value]=artwork._id
+                                        [ngModel] = "stage.includeartworks.includes(artwork._id)"
+                                        (change) = "includeArtworksChange(script, stage, artwork._id, $event)"
+                                        />
+                                        <label class="form-check-label ml-1"> {{artwork.name}}, {{artwork.artist}}, {{artwork.year}} </label>
+                                        <br/>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr *ngIf='stage.stagetype=="multiquestion"'>
+                                <td class="align-top"><span class="font-weight-bold">Style: </span></td>
+                                <td>
+                                    <input
+                                    type="radio"
+                                    [value]=true
+                                    name="sequential"
+                                    [(ngModel)] = "stage.sequential"
+                                    />
+                                    <label class="form-check-label ml-1">Questions presented in sequence</label><br/>
+                                    <input
+                                    type="radio"
+                                    [value]=false
+                                    name="sequential"
+                                    [(ngModel)] = "stage.sequential"
+                                    />
+                                    <label class="form-check-label ml-1">Random question that can be reloaded</label><br/>
+                                </td>
+                            </tr>
+                            <tr><td class="align-top">
                                 <span class="font-weight-bold">Text:</span>
                             </td><td>
-                                <textarea rows="5" class="form-control" [(ngModel)]="stage.body"></textarea>
+                                <span *ngIf='stage.stagetype!="multiquestion"'>
+                                    <textarea rows="3" class="form-control" [(ngModel)]="stage.body"></textarea>
+                                </span>
+                                <span *ngIf='stage.stagetype=="multiquestion"'>
+
+                                    <span *ngFor="let q of stage.body; let index=index; trackBy:trackByIdx" class="mr-3">
+                                        <span class="font-weight-bold">Question {{index+1}}: </span><br/><textarea rows="3" class="form-control" [(ngModel)]="stage.body[index]"></textarea>
+                                    </span>
+                                </span>
                             </td></tr>
                             <tr *ngIf='stage.stagetype=="question"'><td>
                                 <span class="font-weight-bold">Help text:</span>
                             </td><td>
-                                <textarea rows="5" class="form-control" [(ngModel)]="stage.help"></textarea>
+                                <textarea rows="3" class="form-control" [(ngModel)]="stage.help"></textarea>
                             </td></tr>
+                            <tr><td></td><td><button class="btn btn-success mr-3" (click)='stage.body = stage.body.concat("Question goes here")'>Add new question</button>    <button class="float-right btn btn-danger" (click)="stage.body.splice(stage.body.length -1)" [disabled]="stage.body.length <= 2">Delete last question</button></td></tr>
                             </table>
                             <span>
                                 <button class="btn btn-success" (click)="editScriptStage=0; saveScript(script)">Done</button><br/>

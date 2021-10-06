@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { SlowLookingComponent } from './component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ThemeTableComponent } from './themeTable.component';
 import { ContributionManagementComponent } from './contributionManagement.component';
 import { OtherPeopleComponent} from './otherPeople.component';
@@ -31,7 +31,8 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
     AppRoutingModule,
     HttpClientModule,
     ModelModule,
-    AutocompleteLibModule
+    AutocompleteLibModule,
+    ReactiveFormsModule
   ],
   bootstrap: [SlowLookingComponent]
 })

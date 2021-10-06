@@ -64,14 +64,42 @@
                                         <div *ngFor="let activity of getApprovedActivitiesOfAScript(script._id); let i = index; let even=even">
                                             <div *ngIf="even" style="background-color: #E6E6E6;" class="w-100">
                                                 <div *ngFor="let action of activity.actions;">
-                                                    <span class="font-italic" style="white-space: pre-wrap;" [innerHTML]="action.question"></span>
-                                                    <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
+
+                                                    <span *ngIf="action.questionStage">
+                                                        <span *ngIf="action.questionStage.stagetype">
+                                                            <span *ngIf="action.questionStage.stagetype != 'multiquestion'">
+                                                                <span class="font-italic" style="white-space: pre-wrap;" [innerHTML]="action.question"></span>
+                                                                <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
+                                                            </span>
+                                                            <span *ngIf="action.questionStage.stagetype == 'multiquestion' && action.answers">
+                                                                <span *ngFor="let answer of action.answers">
+                                                                    <span class="font-italic" style="white-space: pre-wrap;" [innerHTML]="action.questionStage.body[answer.question]"></span>
+                                                                    <p class="font-weight-normal" style="white-space: pre-wrap;">{{answer.answer}}</p>
+                                                                </span>
+                                                            </span>
+                                                        </span>
+                                                    </span>
+
                                                 </div>
                                             </div>
                                             <div *ngIf="!even" style="background-color: #FFFFFF;" class="w-100">
                                                 <div *ngFor="let action of activity.actions;">
-                                                    <span class="font-italic" style="white-space: pre-wrap;" [innerHTML]="action.question"></span>
-                                                    <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
+
+                                                    <span *ngIf="action.questionStage">
+                                                        <span *ngIf="action.questionStage.stagetype">
+                                                            <span *ngIf="action.questionStage.stagetype != 'multiquestion'">
+                                                                <span class="font-italic" style="white-space: pre-wrap;" [innerHTML]="action.question"></span>
+                                                                <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
+                                                            </span>
+                                                            <span *ngIf="action.questionStage.stagetype == 'multiquestion' && action.answers">
+                                                                <span *ngFor="let answer of action.answers">
+                                                                    <span class="font-italic" style="white-space: pre-wrap;" [innerHTML]="action.questionStage.body[answer.question]"></span>
+                                                                    <p class="font-weight-normal" style="white-space: pre-wrap;">{{answer.answer}}</p>
+                                                                </span>
+                                                            </span>
+                                                        </span>
+                                                    </span>
+
                                                 </div>
                                             </div>
                                         </div>

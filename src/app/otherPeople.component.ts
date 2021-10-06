@@ -19,7 +19,7 @@ export class OtherPeopleComponent {
     getThemes(): Theme[] {
         return this.model.getThemes();
     }
-
+    
     getScriptsOfTheme(_id: string): Script[] {
         return this.model.getVisibleScriptsOfTheme(_id);
     }

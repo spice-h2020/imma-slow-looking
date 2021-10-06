@@ -1,4 +1,4 @@
-import { followStage, questionStage, shareWithMuseumStage, shareWithSomeoneStage } from "./stage.model";
+import { followStage, multiquestionStage, questionStage, shareWithMuseumStage, shareWithSomeoneStage } from "./stage.model";
 
 export class Action {
     constructor (
@@ -13,6 +13,26 @@ export class questionAction extends Action {
         public position?: number,
         public question?: string,
         public answer?: string,
+    ) {
+        super(position);
+    }
+}
+
+export class questionanswer {
+
+    constructor (
+        public question?: number,
+        public answer?: string
+    ) {}
+
+}
+export class multiquestionAction extends Action {
+
+    constructor (
+        public questionStage?: multiquestionStage,
+        public position?: number,
+        public questions?: Array<string>,
+        public answers: Array<questionanswer> = [],
     ) {
         super(position);
     }

@@ -182,6 +182,25 @@ export class Model {
         }
     }
 
+    addArtworkToIncludedArtworks(script: Script, stage: Stage, artworkid: string) {
+        //find stage in script
+        let index = script.stages.findIndex(x => x.id == stage.id);
+
+        //add artworkid to stage
+        script.stages[index].includeartworks.push(artworkid);
+    }
+
+    removeArtworkFromIncludedArtworks(script: Script, stage: Stage, artworkid: string) {
+        //find stage in script
+        let index = script.stages.findIndex(x => x.id == stage.id);
+
+        //remove artworkid from stage
+        let scriptindex = script.stages[index].includeartworks.findIndex(p => p == artworkid);
+        if (index > -1) {
+            script.stages[index].includeartworks.splice(scriptindex, 1);
+        }
+    }
+
     // Script
     getScripts(): Script[] {
         return this.dbScripts;

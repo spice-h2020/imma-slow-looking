@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { Artwork } from "./artwork.model";
 import { Model } from "./repository.model";
 import { Script } from "./script.model";
-import { contextStage, followStage, questionStage, shareWithMuseumStage, shareWithSomeoneStage, Stage, thankyouStage, welcomeStage } from "./stage.model";
+import { contextStage, followStage, multiquestionStage, questionStage, shareWithMuseumStage, shareWithSomeoneStage, Stage, thankyouStage, welcomeStage } from "./stage.model";
 import { Theme } from "./theme.model";
 
 @Component({
@@ -19,6 +19,10 @@ export class ScriptAuthoringComponent {
     confirmDelete(_id: string) {
         this.deleteConfirmation_Id = _id;
     }
+
+    trackByIdx(index: number, obj: any): any {
+        return index;
+      }
 
     showArchivedScripts = false;
 
@@ -95,6 +99,15 @@ export class ScriptAuthoringComponent {
         return stage;
     }
 
+    addMultiQuestionStage(script: Script, id?: number) {
+        let stage = new multiquestionStage();
+        if(id != null && id != 0) {
+            stage.id = id;
+        }
+        stage.id = this.model.saveStage(stage, script);
+        return stage;
+    }
+
     addShareWithMuseumStage(script: Script, id?: number) {
         let stage = new shareWithMuseumStage();
         if(id != null && id != 0) {
@@ -164,8 +177,8 @@ export class ScriptAuthoringComponent {
         return this.model.getArtworks();
     }
 
-    getArtworksFromIds(artworkIds: Array<string>): Array<Theme> {
-        let myartworks: Array<Theme> = [];
+    getArtworksFromIds(artworkIds: Array<string>): Array<Artwork> {
+        let myartworks: Array<Artwork> = [];
         for(var artworkid of artworkIds) {
             let myartwork = this.getArtwork(artworkid);
             if(myartwork != undefined) {
@@ -205,6 +218,14 @@ export class ScriptAuthoringComponent {
 
     addQuestionStageToScript(script: Script) {
         let stage = this.addQuestionStage(script);
+        this.model.addStageToScript(script, stage);
+        //set vars
+        this.viewScript = script._id;
+        this.editScriptStage = stage.id;
+    }
+
+    addMultiQuestionStageToScript(script: Script) {
+        let stage = this.addMultiQuestionStage(script);
         this.model.addStageToScript(script, stage);
         //set vars
         this.viewScript = script._id;
@@ -273,4 +294,19 @@ export class ScriptAuthoringComponent {
         return sortedScripts;
     }
 
+    includeArtworksChange(script: Script, stage: Stage, artworkid: string, selected: any) {
+        if(selected.target.checked) {
+            //add artwork to included artworks
+            this.model.addArtworkToIncludedArtworks(script, stage, artworkid);
+        }
+        else {
+            //remove artwork from included artworks
+            this.model.removeArtworkFromIncludedArtworks(script, stage, artworkid);
+        }
+        this.model.saveScript(script);
+    }
+    
+    foo(x: any) {
+        console.log(x);
+    }
 }

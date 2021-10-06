@@ -2,6 +2,22 @@
     <div *ngIf="slowLookingCurrentScriptStageIndex == i">
         <div *ngIf="stage.stagetype == 'welcome'">  
             <h5>{{stage.title}}</h5>
+
+            <!-- show included artworks -->
+            <table>
+                <tr *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
+                    <span *ngIf="artwork.url">
+                        <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
+                    </span>
+                    <span *ngIf="!artwork.url && artwork.fileLocation">
+                        <img class="col-sm-12" src="{{artwork.fileLocation}}" >
+                    </span>
+                    <div class="col-sm-12"><strong>{{artwork.name}}</strong></div>
+                    <div class="col-sm-12">{{artwork.artist}}</div>
+                    <div class="col-sm-12">{{artwork.year}}</div><br/>
+                </tr>
+            </table>
+
             <p style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                 <div class="text-center">
@@ -16,6 +32,22 @@
         </div>
         <div *ngIf="stage.stagetype == 'context'">  
             <h5>{{stage.title}}</h5>
+
+            <!-- show included artworks -->
+            <table>
+                <tr *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
+                    <span *ngIf="artwork.url">
+                        <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
+                    </span>
+                    <span *ngIf="!artwork.url && artwork.fileLocation">
+                        <img class="col-sm-12" src="{{artwork.fileLocation}}" >
+                    </span>
+                    <div class="col-sm-12"><strong>{{artwork.name}}</strong></div>
+                    <div class="col-sm-12">{{artwork.artist}}</div>
+                    <div class="col-sm-12">{{artwork.year}}</div><br/>
+                </tr>
+            </table>
+
             <p style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                 <div class="text-center">
@@ -28,13 +60,86 @@
                 </div>
             </span>
         </div>
-        <div *ngIf="stage.stagetype == 'question'"> 
+        <div *ngIf="stage.stagetype == 'multiquestion'"> 
             <div class="form-group">
+
                 <!-- initialise a new action and add its stage and question  -->
-                {{intialiseQuestionAction(stage, stage.body)}}
+                {{intialiseMultiquestionAction(stage, stage.body)}}
 
                 <!-- show title and question  -->
                 <h5>{{stage.title}}</h5>
+
+                <!-- show included artworks -->
+                <table>
+                    <tr *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
+                        <span *ngIf="artwork.url">
+                            <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
+                        </span>
+                        <span *ngIf="!artwork.url && artwork.fileLocation">
+                            <img class="col-sm-12" src="{{artwork.fileLocation}}" >
+                        </span>
+                        <div class="col-sm-12"><strong>{{artwork.name}}</strong></div>
+                        <div class="col-sm-12">{{artwork.artist}}</div>
+                        <div class="col-sm-12">{{artwork.year}}</div><br/>
+                    </tr>
+                </table>
+
+                <span *ngIf="stage.sequential">
+                    <span>{{stage.body[multiquestionIndex]}}</span><br/><br/>
+                    <input [formControl]="answervalue" type="text" #answer class="form-control">
+                    <button class="m-3 btn btn-warning" [disabled]="multiquestionIndex <= 0" (click)="updateAnswers(multiquestionIndex, answer.value); setAnswerValue(multiquestionIndex-1); decrementMultiquestionIndex(); ">Previous question</button> 
+                    <button class="m-3 btn btn-warning" [disabled]="multiquestionIndex >= stage.body.length-1" (click)="updateAnswers(multiquestionIndex, answer.value); setAnswerValue(multiquestionIndex+1); incrementMultiquestionIndex(stage.body.length-1); ">Next question</button> 
+                </span>
+                
+                <span *ngIf="!stage.sequential">
+                    <span>{{stage.body[multiquestionIndex]}}</span><br/><br/>
+                    <button class="m-3 btn btn-warning" (click)="randomiseQuestion(stage.body.length-1); submittedAnswer=false;">Reload question</button>
+                    <input [formControl]="answervalue" type="text" #answer class="form-control">
+                    <span *ngIf="submittedAnswer" class="text-warning">Your answer has been submitted</span><br/>
+                    <button class="m-3 btn btn-warning" (click)="updateAnswers(multiquestionIndex, answer.value); submittedAnswer=true;">Submit answer</button>
+                </span>
+
+                <!-- return to list if last stage -->
+                <span *ngIf="slowLookingMaximumScriptStageIndex == i">
+                    <div class="text-center">
+                        <button class="m-3 btn btn-warning" (click)="slowLookingScript='0'; addActionToActivity(newMultiquestionAction); resetNewMultiQuestionAction(); addActivity();" routerLink="/home">Return to the list of Slow Looking activities</button>
+                    </div>
+                </span>
+                <!-- continue if not last stage -->
+                <span *ngIf="slowLookingMaximumScriptStageIndex != i">
+                    <div class="text-right">
+                        <button class="m-3 btn btn-warning" (click)="slowLookingCurrentScriptStageIndex=i+1; addActionToActivity(newMultiquestionAction); resetNewMultiQuestionAction(); showQuestionHelp=false;">Continue</button>
+                    </div>
+                </span>
+
+
+        
+            </div>
+        </div>
+
+        <div *ngIf="stage.stagetype == 'question'"> 
+            <div class="form-group">
+                <!-- initialise a new action and add its stage and question  -->
+                <!-- {{intialiseQuestionAction(stage, stage.body)}} -->
+
+                <!-- show title and question  -->
+                <h5>{{stage.title}}</h5>
+
+                <!-- show included artworks -->
+                <table>
+                    <tr *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
+                        <span *ngIf="artwork.url">
+                            <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
+                        </span>
+                        <span *ngIf="!artwork.url && artwork.fileLocation">
+                            <img class="col-sm-12" src="{{artwork.fileLocation}}" >
+                        </span>
+                        <div class="col-sm-12"><strong>{{artwork.name}}</strong></div>
+                        <div class="col-sm-12">{{artwork.artist}}</div>
+                        <div class="col-sm-12">{{artwork.year}}</div><br/>
+                    </tr>
+                </table>
+
                 <p style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
                 <div *ngIf="stage.help">
                     <span style="float:right"><img width="20" style="background-color:white;" src="assets/img/question-help.png" (click)="toggleQuestionHelp()"></span>
@@ -46,13 +151,13 @@
                 <!-- return to list if last stage -->
                 <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                     <div class="text-center">
-                        <button class="m-3 btn btn-warning" (click)="slowLookingScript='0'; addActionToActivity(newQuestionAction); resetNewQuestionAction(); addActivity();" routerLink="/home">Return to the list of Slow Looking activities</button>
+                        <button class="m-3 btn btn-warning" (click)="slowLookingScript='0'; newQuestionAction.questionStage = stage; newQuestionAction.question = stage.body; addActionToActivity(newQuestionAction); resetNewQuestionAction(); addActivity();" routerLink="/home">Return to the list of Slow Looking activities</button>
                     </div>
                 </span>
                 <!-- continue if not last stage -->
                 <span *ngIf="slowLookingMaximumScriptStageIndex != i">
                     <div class="text-right">
-                        <button class="m-3 btn btn-warning" (click)="slowLookingCurrentScriptStageIndex=i+1; addActionToActivity(newQuestionAction); resetNewQuestionAction(); showQuestionHelp=false;">Continue</button>
+                        <button class="m-3 btn btn-warning" (click)="slowLookingCurrentScriptStageIndex=i+1; newQuestionAction.questionStage = stage; newQuestionAction.question = stage.body; addActionToActivity(newQuestionAction); resetNewQuestionAction(); showQuestionHelp=false;">Continue</button>
                     </div>
                 </span>
             </div>
@@ -61,6 +166,22 @@
             <div class="form-group">
                 {{intialiseShareWithMuseumAction(stage)}}
                 <h5>{{stage.title}}</h5>
+
+                 <!-- show included artworks -->
+                <table>
+                    <tr *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
+                        <span *ngIf="artwork.url">
+                            <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
+                        </span>
+                        <span *ngIf="!artwork.url && artwork.fileLocation">
+                            <img class="col-sm-12" src="{{artwork.fileLocation}}" >
+                        </span>
+                        <div class="col-sm-12"><strong>{{artwork.name}}</strong></div>
+                        <div class="col-sm-12">{{artwork.artist}}</div>
+                        <div class="col-sm-12">{{artwork.year}}</div><br/>
+                    </tr>
+                </table>
+
                 <p style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
             </div>
             <div class="form-check">
@@ -98,6 +219,22 @@
             <div class="form-group">
                 {{intialiseFollowAction(stage)}}
                 <h5>{{stage.title}}</h5>
+
+                <!-- show included artworks -->
+                <table>
+                    <tr *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
+                        <span *ngIf="artwork.url">
+                            <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
+                        </span>
+                        <span *ngIf="!artwork.url && artwork.fileLocation">
+                            <img class="col-sm-12" src="{{artwork.fileLocation}}" >
+                        </span>
+                        <div class="col-sm-12"><strong>{{artwork.name}}</strong></div>
+                        <div class="col-sm-12">{{artwork.artist}}</div>
+                        <div class="col-sm-12">{{artwork.year}}</div><br/>
+                    </tr>
+                </table>
+
                 <p style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
                 <div class="form-group">
                     <label for="emailaddress">Your email address:</label>
@@ -119,6 +256,22 @@
             <div class="form-group">
                 {{intialiseShareWithSomeoneAction(stage)}}
                 <h5>{{stage.title}}</h5>
+
+                <!-- show included artworks -->
+                <table>
+                    <tr *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
+                        <span *ngIf="artwork.url">
+                            <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
+                        </span>
+                        <span *ngIf="!artwork.url && artwork.fileLocation">
+                            <img class="col-sm-12" src="{{artwork.fileLocation}}" >
+                        </span>
+                        <div class="col-sm-12"><strong>{{artwork.name}}</strong></div>
+                        <div class="col-sm-12">{{artwork.artist}}</div>
+                        <div class="col-sm-12">{{artwork.year}}</div><br/>
+                    </tr>
+                </table>
+
                 <p style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
                 <div class="form-group">
                     <label for="emailaddress">Their email address:</label>
@@ -142,6 +295,22 @@
         </div>
         <div *ngIf="stage.stagetype == 'thankyou'">  
             <h5>{{stage.title}}</h5>
+
+            <!-- show included artworks -->
+            <table>
+                <tr *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
+                    <span *ngIf="artwork.url">
+                        <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
+                    </span>
+                    <span *ngIf="!artwork.url && artwork.fileLocation">
+                        <img class="col-sm-12" src="{{artwork.fileLocation}}" >
+                    </span>
+                    <div class="col-sm-12"><strong>{{artwork.name}}</strong></div>
+                    <div class="col-sm-12">{{artwork.artist}}</div>
+                    <div class="col-sm-12">{{artwork.year}}</div><br/>
+                </tr>
+            </table>
+
             <p style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
             <div>
                 <div class="btn btn-primary" style="background-color: #55acee;" href="#!" role="button">
