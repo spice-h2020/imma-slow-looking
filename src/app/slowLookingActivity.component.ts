@@ -17,8 +17,6 @@ export class SlowLookingActivityComponent implements OnInit {
 
     multiquestionIndex = 0;
 
-    multiquestionMax = 0;
-
     incrementMultiquestionIndex(len: number) {
         if(this.multiquestionIndex <= len) {
             this.multiquestionIndex = this.multiquestionIndex + 1;
@@ -53,6 +51,10 @@ export class SlowLookingActivityComponent implements OnInit {
         this.setSlowLookingScript(this.slowLookingScript);
     }
 
+    answerChanged(event) {
+        console.log("hello");
+        this.submittedAnswer = false;
+    }
     setSlowLookingScript(_id: string) {
         // get the script
         let SLscript = this.getScript(_id);
@@ -135,7 +137,6 @@ export class SlowLookingActivityComponent implements OnInit {
     intialiseMultiquestionAction(stage: multiquestionStage, questions: Array<string>) {
         this.newMultiquestionAction.questionStage = stage;
         this.newMultiquestionAction.questions = questions;
-        this.multiquestionMax = questions.length;
     }
 
     intialiseShareWithMuseumAction(stage: shareWithMuseumStage) {

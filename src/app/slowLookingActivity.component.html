@@ -64,7 +64,7 @@
             <div class="form-group">
 
                 <!-- initialise a new action and add its stage and question  -->
-                {{intialiseMultiquestionAction(stage, stage.body)}}
+                <!-- {{intialiseMultiquestionAction(stage, stage.body)}} -->
 
                 <!-- show title and question  -->
                 <h5>{{stage.title}}</h5>
@@ -86,29 +86,40 @@
 
                 <span *ngIf="stage.sequential">
                     <span>{{stage.body[multiquestionIndex]}}</span><br/><br/>
-                    <input [formControl]="answervalue" type="text" #answer class="form-control">
-                    <button class="m-3 btn btn-warning" [disabled]="multiquestionIndex <= 0" (click)="updateAnswers(multiquestionIndex, answer.value); setAnswerValue(multiquestionIndex-1); decrementMultiquestionIndex(); ">Previous question</button> 
-                    <button class="m-3 btn btn-warning" [disabled]="multiquestionIndex >= stage.body.length-1" (click)="updateAnswers(multiquestionIndex, answer.value); setAnswerValue(multiquestionIndex+1); incrementMultiquestionIndex(stage.body.length-1); ">Next question</button> 
+                    <input [formControl]="answervalue" type="text" #answer class="form-control" (keyup)="answerChanged($event)">
+                    <span *ngIf="submittedAnswer" class="text-warning">Your answer has been saved</span><br/>
+                    <span *ngIf="multiquestionIndex <= 0">
+                        <button class="m-3 btn btn-warning" (click)="updateAnswers(multiquestionIndex, answer.value); submittedAnswer=true;">Save</button> 
+                    </span>
+                    <span *ngIf="multiquestionIndex > 0">
+                        <button class="m-3 btn btn-warning" [disabled]="multiquestionIndex <= 0" (click)="updateAnswers(multiquestionIndex, answer.value); setAnswerValue(multiquestionIndex-1); decrementMultiquestionIndex(); submittedAnswer=true;">Save and previous</button> 
+                    </span>
+                    <span *ngIf="multiquestionIndex >= stage.body.length-1">
+                        <button class="m-3 btn btn-warning" (click)="updateAnswers(multiquestionIndex, answer.value); submittedAnswer=true;">Save</button> 
+                    </span>
+                    <span *ngIf="multiquestionIndex < stage.body.length-1">
+                        <button class="m-3 btn btn-warning" [disabled]="multiquestionIndex >= stage.body.length-1" (click)="updateAnswers(multiquestionIndex, answer.value); setAnswerValue(multiquestionIndex+1); incrementMultiquestionIndex(stage.body.length-1); submittedAnswer=true;">Save and next</button> 
+                    </span>
                 </span>
                 
                 <span *ngIf="!stage.sequential">
                     <span>{{stage.body[multiquestionIndex]}}</span><br/><br/>
                     <button class="m-3 btn btn-warning" (click)="randomiseQuestion(stage.body.length-1); submittedAnswer=false;">Reload question</button>
-                    <input [formControl]="answervalue" type="text" #answer class="form-control">
-                    <span *ngIf="submittedAnswer" class="text-warning">Your answer has been submitted</span><br/>
-                    <button class="m-3 btn btn-warning" (click)="updateAnswers(multiquestionIndex, answer.value); submittedAnswer=true;">Submit answer</button>
+                    <input [formControl]="answervalue" type="text" #answer class="form-control" (keyup)="answerChanged($event)">
+                    <span *ngIf="submittedAnswer" class="text-warning">Your answer has been saved</span><br/>
+                    <button class="m-3 btn btn-warning" (click)="updateAnswers(multiquestionIndex, answer.value); submittedAnswer=true;">Save</button>
                 </span>
 
                 <!-- return to list if last stage -->
                 <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                     <div class="text-center">
-                        <button class="m-3 btn btn-warning" (click)="slowLookingScript='0'; addActionToActivity(newMultiquestionAction); resetNewMultiQuestionAction(); addActivity();" routerLink="/home">Return to the list of Slow Looking activities</button>
+                        <button class="m-3 btn btn-warning" (click)="newMultiquestionAction.questionStage = stage; newMultiquestionAction.questions = stage.body; slowLookingScript='0'; addActionToActivity(newMultiquestionAction); resetNewMultiQuestionAction(); addActivity();" routerLink="/home">Return to the list of Slow Looking activities</button>
                     </div>
                 </span>
                 <!-- continue if not last stage -->
                 <span *ngIf="slowLookingMaximumScriptStageIndex != i">
                     <div class="text-right">
-                        <button class="m-3 btn btn-warning" (click)="slowLookingCurrentScriptStageIndex=i+1; addActionToActivity(newMultiquestionAction); resetNewMultiQuestionAction(); showQuestionHelp=false;">Continue</button>
+                        <button class="m-3 btn btn-warning" (click)="newMultiquestionAction.questionStage = stage; newMultiquestionAction.questions = stage.body; slowLookingCurrentScriptStageIndex=i+1; addActionToActivity(newMultiquestionAction); resetNewMultiQuestionAction(); showQuestionHelp=false;">Continue</button>
                     </div>
                 </span>
 
@@ -164,7 +175,7 @@
         </div>   
         <div *ngIf="stage.stagetype == 'shareWithMuseum'">  
             <div class="form-group">
-                {{intialiseShareWithMuseumAction(stage)}}
+                <!-- {{intialiseShareWithMuseumAction(stage)}} -->
                 <h5>{{stage.title}}</h5>
 
                  <!-- show included artworks -->
@@ -206,18 +217,18 @@
 
             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                 <div class="text-center">
-                    <button class="m-3 btn btn-warning" (click)="slowLookingScript='0'; addActionToActivity(newShareWithMusemAction); resetNewShareWithMusemAction(); addActivity();" routerLink="/home">Return to the list of Slow Looking activities</button>
+                    <button class="m-3 btn btn-warning" (click)="newShareWithMusemAction.shareWithMuseumStage = stage; slowLookingScript='0'; addActionToActivity(newShareWithMusemAction); resetNewShareWithMusemAction(); addActivity();" routerLink="/home">Return to the list of Slow Looking activities</button>
                 </div>
             </span>
             <span *ngIf="slowLookingMaximumScriptStageIndex != i">
                 <div class="text-right">
-                    <button class="m-3 btn btn-warning" (click)="slowLookingCurrentScriptStageIndex=i+1; addActionToActivity(newShareWithMusemAction); resetNewShareWithMusemAction();">Continue</button>
+                    <button class="m-3 btn btn-warning" (click)="newShareWithMusemAction.shareWithMuseumStage = stage; slowLookingCurrentScriptStageIndex=i+1; addActionToActivity(newShareWithMusemAction); resetNewShareWithMusemAction();">Continue</button>
                 </div>
             </span>
         </div>
         <div *ngIf="stage.stagetype == 'follow'">  
             <div class="form-group">
-                {{intialiseFollowAction(stage)}}
+                <!-- {{intialiseFollowAction(stage)}} -->
                 <h5>{{stage.title}}</h5>
 
                 <!-- show included artworks -->
@@ -243,18 +254,18 @@
             </div>
             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                 <div class="text-center">
-                    <button class="m-3 btn btn-warning" (click)="slowLookingScript='0'; addActionToActivity(newFollowAction); resetFollowAction(); addActivity();" routerLink="/home">Return to the list of Slow Looking activities</button>
+                    <button class="m-3 btn btn-warning" (click)="newFollowAction.followStage = stage; slowLookingScript='0'; addActionToActivity(newFollowAction); resetFollowAction(); addActivity();" routerLink="/home">Return to the list of Slow Looking activities</button>
                 </div>
             </span>
             <span *ngIf="slowLookingMaximumScriptStageIndex != i">
                 <div class="text-right">
-                    <button class="m-3 btn btn-warning" (click)="slowLookingCurrentScriptStageIndex=i+1; addActionToActivity(newFollowAction); resetFollowAction();">Continue</button>
+                    <button class="m-3 btn btn-warning" (click)="newFollowAction.followStage = stage; slowLookingCurrentScriptStageIndex=i+1; addActionToActivity(newFollowAction); resetFollowAction();">Continue</button>
                 </div>
             </span>
         </div>
         <div *ngIf="stage.stagetype == 'shareWithSomeone'">  
             <div class="form-group">
-                {{intialiseShareWithSomeoneAction(stage)}}
+                <!-- {{intialiseShareWithSomeoneAction(stage)}} -->
                 <h5>{{stage.title}}</h5>
 
                 <!-- show included artworks -->
@@ -284,12 +295,12 @@
             </div>
             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                 <div class="text-center">
-                    <button class="m-3 btn btn-warning" (click)="slowLookingScript='0'; addActionToActivity(newShareWithFriendAction); resetShareWithSomeoneAction(); addActivity();" routerLink="/home">Return to the list of Slow Looking activities</button>
+                    <button class="m-3 btn btn-warning" (click)="newShareWithFriendAction.shareWithOtherStage = stage; slowLookingScript='0'; addActionToActivity(newShareWithFriendAction); resetShareWithSomeoneAction(); addActivity();" routerLink="/home">Return to the list of Slow Looking activities</button>
                 </div>
             </span>
             <span *ngIf="slowLookingMaximumScriptStageIndex != i">
                 <div class="text-right">
-                    <button class="m-3 btn btn-warning" (click)="slowLookingCurrentScriptStageIndex=i+1;  addActionToActivity(newShareWithFriendAction); resetShareWithSomeoneAction();">Continue</button>
+                    <button class="m-3 btn btn-warning" (click)="newShareWithFriendAction.shareWithOtherStage = stage; slowLookingCurrentScriptStageIndex=i+1;  addActionToActivity(newShareWithFriendAction); resetShareWithSomeoneAction();">Continue</button>
                 </div>
             </span>
         </div>

@@ -37,18 +37,18 @@ export class ArtworkTableComponent {
         return this.selectItem["filelocation"];
     }
     keyword = 'name';
-    // data = this.model.getCollection();
+    data = this.model.getCollection();
 
     // data for testing
-    data = [
-        {name: "Jacob’s Dream", artist: "Patrick Hall", year: "2002", filelocation: "https://imma.ie/wp-content/uploads/2018/11/1551.jpg"},
-        {name: "Tarot Set", artist: "Ulla von Brandenburg", year: "2008", filelocation: "https://imma.ie/wp-content/uploads/2018/11/2260.jpg"},
-        {name: "Patrick Hall", artist: "Nick Miller", year: "1994", filelocation: "https://imma.ie/wp-content/uploads/2018/11/487.jpg"},
-        {name: "Burning Tree", artist: "Patrick Hall", year: "2006", filelocation: "https://imma.ie/wp-content/uploads/2021/03/33.jpg"},
-        {name: "Sphère-Trame", artist: "François Morellet", year: "1962", filelocation: "https://imma.ie/wp-content/uploads/2018/11/1989.jpg"},
-        {name: "Ancestors", artist: "Patrick Hall", year: "1991", filelocation: "https://imma.ie/wp-content/uploads/2018/11/911.jpg"},
-        {name: "Rising of Faust", artist: "Patrick Hall", year: "1996", filelocation: "https://imma.ie/wp-content/uploads/2018/11/1066.jpg"}
-    ];
+    // data = [
+    //     {name: "Jacob’s Dream", artist: "Patrick Hall", year: "2002", filelocation: "https://imma.ie/wp-content/uploads/2018/11/1551.jpg"},
+    //     {name: "Tarot Set", artist: "Ulla von Brandenburg", year: "2008", filelocation: "https://imma.ie/wp-content/uploads/2018/11/2260.jpg"},
+    //     {name: "Patrick Hall", artist: "Nick Miller", year: "1994", filelocation: "https://imma.ie/wp-content/uploads/2018/11/487.jpg"},
+    //     {name: "Burning Tree", artist: "Patrick Hall", year: "2006", filelocation: "https://imma.ie/wp-content/uploads/2021/03/33.jpg"},
+    //     {name: "Sphère-Trame", artist: "François Morellet", year: "1962", filelocation: "https://imma.ie/wp-content/uploads/2018/11/1989.jpg"},
+    //     {name: "Ancestors", artist: "Patrick Hall", year: "1991", filelocation: "https://imma.ie/wp-content/uploads/2018/11/911.jpg"},
+    //     {name: "Rising of Faust", artist: "Patrick Hall", year: "1996", filelocation: "https://imma.ie/wp-content/uploads/2018/11/1066.jpg"}
+    // ];
   
   
     selectEvent(item) {
