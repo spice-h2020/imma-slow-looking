@@ -361,7 +361,9 @@
                             </td><td>
                                 <textarea rows="3" class="form-control" [(ngModel)]="stage.help"></textarea>
                             </td></tr>
-                            <tr><td></td><td><button class="btn btn-success mr-3" (click)='stage.body = stage.body.concat("Question goes here")'>Add new question</button>    <button class="float-right btn btn-danger" (click)="stage.body.splice(stage.body.length -1)" [disabled]="stage.body.length <= 2">Delete last question</button></td></tr>
+                           
+                            <tr *ngIf='stage.stagetype=="multiquestion"'><td></td><td><button class="btn btn-success mr-3" (click)='stage.body = stage.body.concat("Question goes here")'>Add new question</button>    <button class="float-right btn btn-danger" (click)="stage.body.splice(stage.body.length -1)" [disabled]="stage.body.length <= 2">Delete last question</button></td></tr>
+                            
                             </table>
                             <span>
                                 <button class="btn btn-success" (click)="editScriptStage=0; saveScript(script)">Done</button><br/>
