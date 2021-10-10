@@ -4,19 +4,17 @@
             <h5>{{stage.title}}</h5>
 
             <!-- show included artworks -->
-            <table>
-                <tr *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
-                    <span *ngIf="artwork.url">
-                        <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
-                    </span>
-                    <span *ngIf="!artwork.url && artwork.fileLocation">
-                        <img class="col-sm-12" src="{{artwork.fileLocation}}" >
-                    </span>
-                    <div class="col-sm-12"><strong>{{artwork.name}}</strong></div>
-                    <div class="col-sm-12">{{artwork.artist}}</div>
-                    <div class="col-sm-12">{{artwork.year}}</div><br/>
-                </tr>
-            </table>
+            <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
+                <span *ngIf="artwork.url">
+                    <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
+                </span>
+                <span *ngIf="!artwork.url && artwork.fileLocation">
+                    <img class="col-sm-12" src="{{artwork.fileLocation}}" >
+                </span>
+                <div class="col-sm-12"><strong>{{artwork.name}}</strong></div>
+                <div class="col-sm-12">{{artwork.artist}}</div>
+                <div class="col-sm-12">{{artwork.year}}</div><br/>
+            </div> 
 
             <p style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
@@ -34,19 +32,17 @@
             <h5>{{stage.title}}</h5>
 
             <!-- show included artworks -->
-            <table>
-                <tr *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
-                    <span *ngIf="artwork.url">
-                        <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
-                    </span>
-                    <span *ngIf="!artwork.url && artwork.fileLocation">
-                        <img class="col-sm-12" src="{{artwork.fileLocation}}" >
-                    </span>
-                    <div class="col-sm-12"><strong>{{artwork.name}}</strong></div>
-                    <div class="col-sm-12">{{artwork.artist}}</div>
-                    <div class="col-sm-12">{{artwork.year}}</div><br/>
-                </tr>
-            </table>
+            <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
+                <span *ngIf="artwork.url">
+                    <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
+                </span>
+                <span *ngIf="!artwork.url && artwork.fileLocation">
+                    <img class="col-sm-12" src="{{artwork.fileLocation}}" >
+                </span>
+                <div class="col-sm-12"><strong>{{artwork.name}}</strong></div>
+                <div class="col-sm-12">{{artwork.artist}}</div>
+                <div class="col-sm-12">{{artwork.year}}</div><br/>
+            </div>
 
             <p style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
@@ -70,19 +66,17 @@
                 <h5>{{stage.title}}</h5>
 
                 <!-- show included artworks -->
-                <table>
-                    <tr *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
-                        <span *ngIf="artwork.url">
-                            <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
-                        </span>
-                        <span *ngIf="!artwork.url && artwork.fileLocation">
-                            <img class="col-sm-12" src="{{artwork.fileLocation}}" >
-                        </span>
-                        <div class="col-sm-12"><strong>{{artwork.name}}</strong></div>
-                        <div class="col-sm-12">{{artwork.artist}}</div>
-                        <div class="col-sm-12">{{artwork.year}}</div><br/>
-                    </tr>
-                </table>
+                <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
+                    <span *ngIf="artwork.url">
+                        <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
+                    </span>
+                    <span *ngIf="!artwork.url && artwork.fileLocation">
+                        <img class="col-sm-12" src="{{artwork.fileLocation}}" >
+                    </span>
+                    <div class="col-sm-12"><strong>{{artwork.name}}</strong></div>
+                    <div class="col-sm-12">{{artwork.artist}}</div>
+                    <div class="col-sm-12">{{artwork.year}}</div><br/>
+                </div>
 
                 <span *ngIf="stage.sequential">
                     <span>{{stage.body[multiquestionIndex]}}</span><br/><br/>
@@ -137,19 +131,17 @@
                 <h5>{{stage.title}}</h5>
 
                 <!-- show included artworks -->
-                <table>
-                    <tr *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
-                        <span *ngIf="artwork.url">
-                            <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
-                        </span>
-                        <span *ngIf="!artwork.url && artwork.fileLocation">
-                            <img class="col-sm-12" src="{{artwork.fileLocation}}" >
-                        </span>
-                        <div class="col-sm-12"><strong>{{artwork.name}}</strong></div>
-                        <div class="col-sm-12">{{artwork.artist}}</div>
-                        <div class="col-sm-12">{{artwork.year}}</div><br/>
-                    </tr>
-                </table>
+                <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
+                    <span *ngIf="artwork.url">
+                        <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
+                    </span>
+                    <span *ngIf="!artwork.url && artwork.fileLocation">
+                        <img class="col-sm-12" src="{{artwork.fileLocation}}" >
+                    </span>
+                    <div class="col-sm-12"><strong>{{artwork.name}}</strong></div>
+                    <div class="col-sm-12">{{artwork.artist}}</div>
+                    <div class="col-sm-12">{{artwork.year}}</div><br/>
+                </div>
 
                 <p style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
                 <div *ngIf="stage.help">
@@ -179,19 +171,17 @@
                 <h5>{{stage.title}}</h5>
 
                  <!-- show included artworks -->
-                <table>
-                    <tr *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
-                        <span *ngIf="artwork.url">
-                            <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
-                        </span>
-                        <span *ngIf="!artwork.url && artwork.fileLocation">
-                            <img class="col-sm-12" src="{{artwork.fileLocation}}" >
-                        </span>
-                        <div class="col-sm-12"><strong>{{artwork.name}}</strong></div>
-                        <div class="col-sm-12">{{artwork.artist}}</div>
-                        <div class="col-sm-12">{{artwork.year}}</div><br/>
-                    </tr>
-                </table>
+                <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
+                    <span *ngIf="artwork.url">
+                        <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
+                    </span>
+                    <span *ngIf="!artwork.url && artwork.fileLocation">
+                        <img class="col-sm-12" src="{{artwork.fileLocation}}" >
+                    </span>
+                    <div class="col-sm-12"><strong>{{artwork.name}}</strong></div>
+                    <div class="col-sm-12">{{artwork.artist}}</div>
+                    <div class="col-sm-12">{{artwork.year}}</div><br/>
+                </div>
 
                 <p style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
             </div>
@@ -232,19 +222,17 @@
                 <h5>{{stage.title}}</h5>
 
                 <!-- show included artworks -->
-                <table>
-                    <tr *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
-                        <span *ngIf="artwork.url">
-                            <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
-                        </span>
-                        <span *ngIf="!artwork.url && artwork.fileLocation">
-                            <img class="col-sm-12" src="{{artwork.fileLocation}}" >
-                        </span>
-                        <div class="col-sm-12"><strong>{{artwork.name}}</strong></div>
-                        <div class="col-sm-12">{{artwork.artist}}</div>
-                        <div class="col-sm-12">{{artwork.year}}</div><br/>
-                    </tr>
-                </table>
+                <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
+                    <span *ngIf="artwork.url">
+                        <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
+                    </span>
+                    <span *ngIf="!artwork.url && artwork.fileLocation">
+                        <img class="col-sm-12" src="{{artwork.fileLocation}}" >
+                    </span>
+                    <div class="col-sm-12"><strong>{{artwork.name}}</strong></div>
+                    <div class="col-sm-12">{{artwork.artist}}</div>
+                    <div class="col-sm-12">{{artwork.year}}</div><br/>
+                </div>
 
                 <p style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
                 <div class="form-group">
@@ -269,19 +257,17 @@
                 <h5>{{stage.title}}</h5>
 
                 <!-- show included artworks -->
-                <table>
-                    <tr *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
-                        <span *ngIf="artwork.url">
-                            <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
-                        </span>
-                        <span *ngIf="!artwork.url && artwork.fileLocation">
-                            <img class="col-sm-12" src="{{artwork.fileLocation}}" >
-                        </span>
-                        <div class="col-sm-12"><strong>{{artwork.name}}</strong></div>
-                        <div class="col-sm-12">{{artwork.artist}}</div>
-                        <div class="col-sm-12">{{artwork.year}}</div><br/>
-                    </tr>
-                </table>
+                <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
+                    <span *ngIf="artwork.url">
+                        <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
+                    </span>
+                    <span *ngIf="!artwork.url && artwork.fileLocation">
+                        <img class="col-sm-12" src="{{artwork.fileLocation}}" >
+                    </span>
+                    <div class="col-sm-12"><strong>{{artwork.name}}</strong></div>
+                    <div class="col-sm-12">{{artwork.artist}}</div>
+                    <div class="col-sm-12">{{artwork.year}}</div><br/>
+                </div>
 
                 <p style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
                 <div class="form-group">
@@ -308,19 +294,17 @@
             <h5>{{stage.title}}</h5>
 
             <!-- show included artworks -->
-            <table>
-                <tr *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
-                    <span *ngIf="artwork.url">
-                        <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
-                    </span>
-                    <span *ngIf="!artwork.url && artwork.fileLocation">
-                        <img class="col-sm-12" src="{{artwork.fileLocation}}" >
-                    </span>
-                    <div class="col-sm-12"><strong>{{artwork.name}}</strong></div>
-                    <div class="col-sm-12">{{artwork.artist}}</div>
-                    <div class="col-sm-12">{{artwork.year}}</div><br/>
-                </tr>
-            </table>
+            <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
+                <span *ngIf="artwork.url">
+                    <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
+                </span>
+                <span *ngIf="!artwork.url && artwork.fileLocation">
+                    <img class="col-sm-12" src="{{artwork.fileLocation}}" >
+                </span>
+                <div class="col-sm-12"><strong>{{artwork.name}}</strong></div>
+                <div class="col-sm-12">{{artwork.artist}}</div>
+                <div class="col-sm-12">{{artwork.year}}</div><br/>
+            </div>
 
             <p style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
             <div>

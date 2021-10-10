@@ -7,10 +7,11 @@ import { ScriptAuthoringComponent } from './scriptAuthoring.component';
 import { ThemeTableComponent } from './themeTable.component';
 import { SlowLookingActivityComponent } from './slowLookingActivity.component';
 import { ArtworkTableComponent } from './artworkTable.component';
+import { ModelResolver } from './model.resolver';
 
 const routes: Routes = [
-  { path: 'home', component: HomepageComponent },
-  { path: 'slowLooking/:id', component: SlowLookingActivityComponent },
+  { path: 'home', component: HomepageComponent, resolve: { model: ModelResolver} },
+  { path: 'slowLooking/:id', component: SlowLookingActivityComponent, resolve: { model: ModelResolver} },
   { path: 'management', component: ContributionManagementComponent },
   { path: 'otherPeople', component: OtherPeopleComponent },
   { path: 'authoring', component: ScriptAuthoringComponent },
@@ -18,7 +19,6 @@ const routes: Routes = [
   { path: 'artworks', component: ArtworkTableComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
-
 
 @NgModule({
   declarations: [],

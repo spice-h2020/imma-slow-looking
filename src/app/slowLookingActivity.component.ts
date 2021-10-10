@@ -44,15 +44,41 @@ export class SlowLookingActivityComponent implements OnInit {
     constructor(
         private activatedRoute: ActivatedRoute,
         private model: Model
-      ) { }
+      ) { } 
 
-    ngOnInit(): void {
-        this.slowLookingScript = this.activatedRoute.snapshot.params.id;
-        this.setSlowLookingScript(this.slowLookingScript);
+    delay(ms: number) {
+        return new Promise( resolve => setTimeout(resolve, ms) );
+    }
+
+    async ngOnInit() {
+        let _id = this.activatedRoute.snapshot.params.id;
+
+        // get the script
+        if(this.model.getScripts().length == 0) { 
+            await this.delay(1000);
+        }
+        let scripts = this.model.getScripts();
+  
+        let SLscript = this.getScript(_id);
+
+        // set script id
+        this.slowLookingScript = _id;
+
+        // set current stage index to zero
+        this.slowLookingCurrentScriptStageIndex = 0;  
+
+        // set maximum stage index to length -1
+        this.slowLookingMaximumScriptStageIndex = SLscript.stages.length-1;
+
+        // initialize activity of the script
+        this.newActivity = new Activity();
+        this.newActivity.script = SLscript;
+        this.newActivity.approved = false;
+
+        // this.setSlowLookingScript(this.slowLookingScript);
     }
 
     answerChanged(event) {
-        console.log("hello");
         this.submittedAnswer = false;
     }
     setSlowLookingScript(_id: string) {
