@@ -323,7 +323,4 @@ export class ScriptAuthoringComponent {
         this.model.saveScript(script);
     }
     
-    foo(x: any) {
-        console.log(x);
-    }
 }

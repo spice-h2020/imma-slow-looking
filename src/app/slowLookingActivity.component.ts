@@ -46,15 +46,11 @@ export class SlowLookingActivityComponent implements OnInit {
         private model: Model
       ) { } 
 
-   async ngOnInit() {
+    ngOnInit() {
         let _id = this.activatedRoute.snapshot.params.id;
-        console.log(_id);
-        // get the script
-        let scripts = this.model.getScripts();
-        console.log(scripts);
 
+        // get the script
         let SLscript = this.getScript(_id);
-        console.log(SLscript);
 
         // set script id
         this.slowLookingScript = _id;
