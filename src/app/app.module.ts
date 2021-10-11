@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ModelModule } from './model.module';
 import { ArtworkTableComponent } from './artworkTable.component';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { MessageModule } from './messages/message.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
     HttpClientModule,
     ModelModule,
     AutocompleteLibModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MessageModule
   ],
   bootstrap: [SlowLookingComponent]
 })

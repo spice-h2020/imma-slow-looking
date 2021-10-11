@@ -46,20 +46,15 @@ export class SlowLookingActivityComponent implements OnInit {
         private model: Model
       ) { } 
 
-    delay(ms: number) {
-        return new Promise( resolve => setTimeout(resolve, ms) );
-    }
-
-    async ngOnInit() {
+   async ngOnInit() {
         let _id = this.activatedRoute.snapshot.params.id;
-
+        console.log(_id);
         // get the script
-        if(this.model.getScripts().length == 0) { 
-            await this.delay(1000);
-        }
         let scripts = this.model.getScripts();
-  
+        console.log(scripts);
+
         let SLscript = this.getScript(_id);
+        console.log(SLscript);
 
         // set script id
         this.slowLookingScript = _id;
@@ -81,24 +76,24 @@ export class SlowLookingActivityComponent implements OnInit {
     answerChanged(event) {
         this.submittedAnswer = false;
     }
-    setSlowLookingScript(_id: string) {
-        // get the script
-        let SLscript = this.getScript(_id);
-        // set script id
-        this.slowLookingScript = _id;
+    // setSlowLookingScript(_id: string) {
+    //     // get the script
+    //     let SLscript = this.getScript(_id);
+    //     // set script id
+    //     this.slowLookingScript = _id;
 
-        // set current stage index to zero
-        this.slowLookingCurrentScriptStageIndex = 0;
+    //     // set current stage index to zero
+    //     this.slowLookingCurrentScriptStageIndex = 0;
 
-        // set maximum stage index to length -1
-        this.slowLookingMaximumScriptStageIndex = SLscript.stages.length-1;
+    //     // set maximum stage index to length -1
+    //     this.slowLookingMaximumScriptStageIndex = SLscript.stages.length-1;
 
-        // initialize activity of the script
-        this.newActivity = new Activity();
-        this.newActivity.script = SLscript;
-        this.newActivity.approved = false;
+    //     // initialize activity of the script
+    //     this.newActivity = new Activity();
+    //     this.newActivity.script = SLscript;
+    //     this.newActivity.approved = false;
 
-    }
+    // }
 
     randomInt = (min: number, max: number): number => {
         return Math.floor(Math.random() * (max - min + 1) + min);
