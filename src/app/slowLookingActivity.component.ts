@@ -64,7 +64,7 @@ export class SlowLookingActivityComponent implements OnInit {
         // initialize activity of the script
         this.newActivity = new Activity();
         this.newActivity.script = SLscript;
-        this.newActivity.approved = false;
+        this.newActivity.approved = true;
 
         // this.setSlowLookingScript(this.slowLookingScript);
     }

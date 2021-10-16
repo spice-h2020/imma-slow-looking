@@ -1,7 +1,7 @@
 <div *ngFor="let stage of getScript(slowLookingScript).stages; let i = index">
     <div *ngIf="slowLookingCurrentScriptStageIndex == i">
         <div *ngIf="stage.stagetype == 'welcome'">  
-            <h5>{{stage.title}}</h5>
+            <h5 class="col-sm-12">{{stage.title}}</h5>
 
             <!-- show included artworks -->
             <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
@@ -16,7 +16,7 @@
                 <div class="col-sm-12">{{artwork.year}}</div><br/>
             </div> 
 
-            <p style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
+            <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                 <div class="text-center">
                     <button class="m-3 btn btn-warning" (click)="slowLookingScript='0'; addActivity();" routerLink="/home">Return to the list of Slow Looking activities</button>
@@ -29,7 +29,7 @@
             </span>
         </div>
         <div *ngIf="stage.stagetype == 'context'">  
-            <h5>{{stage.title}}</h5>
+            <h5 class="col-sm-12">{{stage.title}}</h5>
 
             <!-- show included artworks -->
             <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
@@ -44,7 +44,7 @@
                 <div class="col-sm-12">{{artwork.year}}</div><br/>
             </div>
 
-            <p style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
+            <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                 <div class="text-center">
                     <button class="m-3 btn btn-warning" (click)="slowLookingScript='0'; addActivity();" routerLink="/home">Return to the list of Slow Looking activities</button>
@@ -63,7 +63,7 @@
                 <!-- {{intialiseMultiquestionAction(stage, stage.body)}} -->
 
                 <!-- show title and question  -->
-                <h5>{{stage.title}}</h5>
+                <h5 class="col-sm-12">{{stage.title}}</h5>
 
                 <!-- show included artworks -->
                 <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
@@ -79,8 +79,8 @@
                 </div>
 
                 <span *ngIf="stage.sequential">
-                    <span>{{stage.body[multiquestionIndex]}}</span><br/><br/>
-                    <input [formControl]="answervalue" type="text" #answer class="form-control" (keyup)="answerChanged($event)">
+                    <span class="col-sm-12">{{stage.body[multiquestionIndex]}}</span><br/><br/>
+                    <textarea [formControl]="answervalue" type="text" rows="3" #answer class="form-control" (keyup)="answerChanged($event)"></textarea>
                     <span *ngIf="submittedAnswer" class="text-warning">Your answer has been saved</span><br/>
                     <span *ngIf="multiquestionIndex <= 0">
                         <button class="m-3 btn btn-warning" (click)="updateAnswers(multiquestionIndex, answer.value); submittedAnswer=true;">Save</button> 
@@ -97,9 +97,9 @@
                 </span>
                 
                 <span *ngIf="!stage.sequential">
-                    <span>{{stage.body[multiquestionIndex]}}</span><br/><br/>
+                    <span class="col-sm-12">{{stage.body[multiquestionIndex]}}</span><br/><br/>
                     <button class="m-3 btn btn-warning" (click)="randomiseQuestion(stage.body.length-1); submittedAnswer=false;">Reload question</button>
-                    <input [formControl]="answervalue" type="text" #answer class="form-control" (keyup)="answerChanged($event)">
+                    <textarea [formControl]="answervalue" type="text" rows="3" #answer class="form-control" (keyup)="answerChanged($event)"></textarea>
                     <span *ngIf="submittedAnswer" class="text-warning">Your answer has been saved</span><br/>
                     <button class="m-3 btn btn-warning" (click)="updateAnswers(multiquestionIndex, answer.value); submittedAnswer=true;">Save</button>
                 </span>
@@ -128,7 +128,7 @@
                 <!-- {{intialiseQuestionAction(stage, stage.body)}} -->
 
                 <!-- show title and question  -->
-                <h5>{{stage.title}}</h5>
+                <h5 class="col-sm-12">{{stage.title}}</h5>
 
                 <!-- show included artworks -->
                 <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
@@ -143,13 +143,13 @@
                     <div class="col-sm-12">{{artwork.year}}</div><br/>
                 </div>
 
-                <p style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
+                <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
                 <div *ngIf="stage.help">
                     <span style="float:right"><img width="20" style="background-color:white;" src="assets/img/question-help.png" (click)="toggleQuestionHelp()"></span>
-                    <span style="float:left; white-space: pre-wrap;" *ngIf="showQuestionHelp">{{stage.help}}</span>
+                    <span class="col-sm-12" style="float:left; white-space: pre-wrap;" *ngIf="showQuestionHelp">{{stage.help}}</span>
                 </div>
                 <!-- get the answer -->
-                <textarea rows="3" class="form-control" [(ngModel)]="newQuestionAction.answer"></textarea>
+                <textarea class="col-sm-12" rows="3" class="form-control" [(ngModel)]="newQuestionAction.answer"></textarea>
 
                 <!-- return to list if last stage -->
                 <span *ngIf="slowLookingMaximumScriptStageIndex == i">
@@ -168,7 +168,7 @@
         <div *ngIf="stage.stagetype == 'shareWithMuseum'">  
             <div class="form-group">
                 <!-- {{intialiseShareWithMuseumAction(stage)}} -->
-                <h5>{{stage.title}}</h5>
+                <h5 class="col-sm-12">{{stage.title}}</h5>
 
                  <!-- show included artworks -->
                 <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
@@ -183,7 +183,7 @@
                     <div class="col-sm-12">{{artwork.year}}</div><br/>
                 </div>
 
-                <p style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
+                <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
             </div>
             <div class="form-check">
                 <input
@@ -219,7 +219,7 @@
         <div *ngIf="stage.stagetype == 'follow'">  
             <div class="form-group">
                 <!-- {{intialiseFollowAction(stage)}} -->
-                <h5>{{stage.title}}</h5>
+                <h5 class="col-sm-12">{{stage.title}}</h5>
 
                 <!-- show included artworks -->
                 <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
@@ -234,10 +234,10 @@
                     <div class="col-sm-12">{{artwork.year}}</div><br/>
                 </div>
 
-                <p style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
+                <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
                 <div class="form-group">
-                    <label for="emailaddress">Your email address:</label>
-                    <textarea id="emailaddress" rows="1" class="form-control" [(ngModel)]="newFollowAction.emailAddress"></textarea>
+                    <label class="col-sm-12" for="emailaddress">Your email address:</label>
+                    <textarea id="emailaddress" rows="1" class="form-control col-sm-12" [(ngModel)]="newFollowAction.emailAddress"></textarea>
                 </div>
             </div>
             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
@@ -254,7 +254,7 @@
         <div *ngIf="stage.stagetype == 'shareWithSomeone'">  
             <div class="form-group">
                 <!-- {{intialiseShareWithSomeoneAction(stage)}} -->
-                <h5>{{stage.title}}</h5>
+                <h5 class="col-sm-12">{{stage.title}}</h5>
 
                 <!-- show included artworks -->
                 <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
@@ -269,13 +269,13 @@
                     <div class="col-sm-12">{{artwork.year}}</div><br/>
                 </div>
 
-                <p style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
+                <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
                 <div class="form-group">
-                    <label for="emailaddress">Their email address:</label>
-                    <textarea id="emailaddress" rows="1" class="form-control" [(ngModel)]="newShareWithFriendAction.emailAddress"></textarea>
+                    <label class="col-sm-12" for="emailaddress">Their email address:</label>
+                    <textarea id="emailaddress" rows="1" class="form-control col-sm-12" [(ngModel)]="newShareWithFriendAction.emailAddress"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="emailaddress">Message:</label>
+                    <label class="col-sm-12" for="emailaddress">Message:</label>
                     <textarea id="emailaddress" rows="5" class="form-control" [(ngModel)]="newShareWithFriendAction.message"></textarea>
                 </div>
             </div>
@@ -291,7 +291,7 @@
             </span>
         </div>
         <div *ngIf="stage.stagetype == 'thankyou'">  
-            <h5>{{stage.title}}</h5>
+            <h5 class="col-sm-12">{{stage.title}}</h5>
 
             <!-- show included artworks -->
             <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
@@ -306,12 +306,12 @@
                 <div class="col-sm-12">{{artwork.year}}</div><br/>
             </div>
 
-            <p style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
-            <div>
-                <div class="btn btn-primary" style="background-color: #55acee;" href="#!" role="button">
+            <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
+            <!-- <div>
+                <div class="btn btn-primary text-center" style="background-color: #55acee;" href="#!" role="button">
                     <i class="fab fa-twitter"></i>
                 </div>                       
-            </div>
+            </div> -->
             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                 <div class="text-center">
                     <button class="m-3 btn btn-warning" (click)="slowLookingScript='0'; addActivity(); " routerLink="/home">Return to the list of Slow Looking activities</button>

@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* set a max-width for horizontal fluid layout and make it centered */
+.container-fluid {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 900px 
+  }
+

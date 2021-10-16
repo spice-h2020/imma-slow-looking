@@ -81,7 +81,9 @@ export class ScriptAuthoringComponent {
     }
 
     addDefaultStagesToScript(script: Script) {
-        script.stages = [this.addWelcomeStage(script, 1), this.addContextStage(script, 2), this.addQuestionStage(script, 3), this.addShareWithMuseumStage(script, 4), this.addFollowStage(script, 5), this.addShareWithSomeoneStage(script, 6), this.addThankyouStage(script, 7)];
+        script.stages = [this.addWelcomeStage(script, 1), this.addContextStage(script, 2), this.addQuestionStage(script, 3), 
+            // this.addShareWithMuseumStage(script, 4), this.addFollowStage(script, 5), this.addShareWithSomeoneStage(script, 6), 
+            this.addThankyouStage(script, 7)];
         this.model.saveScript(script);
     }
 

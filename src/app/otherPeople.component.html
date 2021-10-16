@@ -68,12 +68,12 @@
                                                     <span *ngIf="action.questionStage">
                                                         <span *ngIf="action.questionStage.stagetype">
                                                             <span *ngIf="action.questionStage.stagetype != 'multiquestion'">
-                                                                <span class="font-italic" style="white-space: pre-wrap;" [innerHTML]="action.question"></span>
+                                                                <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question"></span>
                                                                 <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
                                                             </span>
                                                             <span *ngIf="action.questionStage.stagetype == 'multiquestion' && action.answers">
                                                                 <span *ngFor="let answer of action.answers">
-                                                                    <span class="font-italic" style="white-space: pre-wrap;" [innerHTML]="action.questionStage.body[answer.question]"></span>
+                                                                    <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.questionStage.body[answer.question]"></span>
                                                                     <p class="font-weight-normal" style="white-space: pre-wrap;">{{answer.answer}}</p>
                                                                 </span>
                                                             </span>
@@ -88,12 +88,12 @@
                                                     <span *ngIf="action.questionStage">
                                                         <span *ngIf="action.questionStage.stagetype">
                                                             <span *ngIf="action.questionStage.stagetype != 'multiquestion'">
-                                                                <span class="font-italic" style="white-space: pre-wrap;" [innerHTML]="action.question"></span>
+                                                                <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question"></span>
                                                                 <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
                                                             </span>
                                                             <span *ngIf="action.questionStage.stagetype == 'multiquestion' && action.answers">
                                                                 <span *ngFor="let answer of action.answers">
-                                                                    <span class="font-italic" style="white-space: pre-wrap;" [innerHTML]="action.questionStage.body[answer.question]"></span>
+                                                                    <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.questionStage.body[answer.question]"></span>
                                                                     <p class="font-weight-normal" style="white-space: pre-wrap;">{{answer.answer}}</p>
                                                                 </span>
                                                             </span>
@@ -112,6 +112,6 @@
             </div>
         </div>
     </div>
-</div>           
+</div><br/>           
 <h2>Take part</h2>
-    <button class="m-3 btn btn-secondary" routerLink="/home">Try Deep Viewpoints activities for yourself</button>
+    <button class="btn btn-secondary" routerLink="/home">Try Deep Viewpoints activities for yourself</button><br/><br/>

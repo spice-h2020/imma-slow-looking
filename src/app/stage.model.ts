@@ -127,8 +127,8 @@ export class thankyouStage extends Stage {
         public id?: number,
         public position?: number,
         public title: string = "Thankyou",
-        public body: string = "Thankyou for taking part in this Slow Looking activity. " +
-        "Share the activity over social media. This shares the activity, not your own response to it.",
+        public body: string = "Thankyou for taking part in this Slow Looking activity. ",
+        //  + "Share the activity over social media. This shares the activity, not your own response to it.",
         public stagetype: string = "thankyou",
         public includeartworks: Array<string> = [],
     ) {
