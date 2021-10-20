@@ -99,7 +99,10 @@
                         </span>
                         <span *ngIf="editScriptStage==0">Add new stage: <button class="btn btn-success mr-1" (click)="addWelcomeStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">welcome</button> <button class="btn btn-success mr-1" (click)="addContextStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">context</button> <button class="btn btn-success mr-1" (click)="addQuestionStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">question</button> <button class="btn btn-success mr-1" (click)="addMultiQuestionStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">multiquestion</button> 
                             <!-- <button class="btn btn-success mr-1" (click)="addShareWithMuseumStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">shareWithMuseum</button> <button class="btn btn-success mr-1" (click)="addFollowStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">follow</button> <button class="btn btn-success mr-1" (click)="addShareWithSomeoneStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">shareWithSomeone</button>  -->
-                            <button class="btn btn-success mr-1" (click)="addThankyouStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">thankyou</button></span><span><img class="ml-3" width="20" style="background-color:white;" src="assets/img/question-help.png" (click)="toggleStageHelp()">
+                            <button class="btn btn-success mr-1" (click)="addThankyouStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">thankyou</button>
+                            <img class="ml-3" width="20" style="background-color:white;" src="assets/img/question-help.png" (click)="toggleStageHelp()">
+                        </span>
+                   
                         <br/>
                         <span *ngIf="showStageHelp">
                             <span class="font-weight-bold">welcome: </span><span>Add a welcome message introducing the activity</span><br/>
@@ -111,7 +114,7 @@
                             <span class="font-weight-bold">shareWithSomeone: </span><span>Give the option to send the response to a friend or relation</span><br/> -->
                             <span class="font-weight-bold">thankyou: </span><span>Give a thankyou message for completing the activity</span><br/>
                         </span>
-                        </span>
+                       
                         
                     </div>
                 </span>

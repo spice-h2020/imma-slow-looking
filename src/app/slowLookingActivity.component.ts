@@ -105,6 +105,9 @@ export class SlowLookingActivityComponent implements OnInit {
         this.setAnswerValue(rand);
     }
     submittedAnswer = false;
+    resetAnswerValue() {
+        this.answervalue = new FormControl();
+    }
     answervalue = new FormControl();
     setAnswerValue(index: number) {
         if(this.newMultiquestionAction.answers == undefined) {
@@ -118,6 +121,18 @@ export class SlowLookingActivityComponent implements OnInit {
             this.answervalue.setValue("");
         }
     };
+
+    myanswertext = "";
+
+    getCurrentAnswer(index: number) {
+        let answer = this.newMultiquestionAction.answers.find(x => x.question == index);
+        if (answer == undefined) {
+            return "";
+        }
+        else {
+            return answer.answer;
+        }
+    }
 
     updateAnswers(index: number, value: string) {
         let nqa = new questionanswer(index, value);
