@@ -62,9 +62,8 @@
                                     [attr.data-bs-parent]="'#theme'+theme._id+'script'+script._id">
                                     <div class="accordion-body">
                                         <div *ngFor="let activity of getApprovedActivitiesOfAScript(script._id); let i = index; let even=even">
-                                            <div *ngIf="even" style="background-color: #E6E6E6;" class="w-100">
+                                            <div style="background-color: #f2f2f2;" class="rounded-3">
                                                 <div *ngFor="let action of activity.actions;">
-
                                                     <span *ngIf="action.questionStage">
                                                         <span *ngIf="action.questionStage.stagetype">
                                                             <span *ngIf="action.questionStage.stagetype != 'multiquestion'">
@@ -79,27 +78,6 @@
                                                             </span>
                                                         </span>
                                                     </span>
-
-                                                </div>
-                                            </div>
-                                            <div *ngIf="!even" style="background-color: #FFFFFF;" class="w-100">
-                                                <div *ngFor="let action of activity.actions;">
-
-                                                    <span *ngIf="action.questionStage">
-                                                        <span *ngIf="action.questionStage.stagetype">
-                                                            <span *ngIf="action.questionStage.stagetype != 'multiquestion'">
-                                                                <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question"></span>
-                                                                <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
-                                                            </span>
-                                                            <span *ngIf="action.questionStage.stagetype == 'multiquestion' && action.answers">
-                                                                <span *ngFor="let answer of action.answers">
-                                                                    <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.questionStage.body[answer.question]"></span>
-                                                                    <p class="font-weight-normal" style="white-space: pre-wrap;">{{answer.answer}}</p>
-                                                                </span>
-                                                            </span>
-                                                        </span>
-                                                    </span>
-
                                                 </div>
                                             </div>
                                         </div>
