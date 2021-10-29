@@ -26,7 +26,8 @@ export class OtherPeopleComponent {
     }
 
     getApprovedActivitiesOfAScript(_id: string): Activity[] {
-        return this.model.getApprovedActivitiesOfAScript(_id);
+        let activities = this.model.getApprovedActivitiesOfAScript(_id);
+        return activities.sort((a, b) => (a.id > b.id) ? -1 : 1);
     }
 
     getArtworkFromId(artworkId: string) {
