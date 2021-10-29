@@ -6,11 +6,12 @@
 </p> 
 
 <div *ngFor="let theme of getThemes(); let i = index">
-    <div class="accordion " id="accordionFlushExample">
+    <div class="accordion" id="accordionFlushExample">
         <div class="accordion-item">
             <h2 class="accordion-header" id="{{'heading_' + theme._id}}">
                 <button 
-                    class="accordion-button collapsed" 
+                    style="background-color: #1f959b;"
+                    class="accordion-button collapsed text-white" 
                     type="button" 
                     data-bs-toggle="collapse" 
                     [attr.data-bs-target]="'#collapse_' + theme._id"
@@ -46,7 +47,8 @@
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="{{'heading_' + 'theme'+theme._id+'script'+script._id}}">
                                     <button 
-                                        class="accordion-button collapsed" 
+                                        style="background-color: #1f959b;"
+                                        class="accordion-button collapsed text-white" 
                                         type="button" 
                                         data-bs-toggle="collapse" 
                                         [attr.data-bs-target]="'#collapse_' + 'theme'+theme._id+'script'+script._id"
@@ -56,6 +58,7 @@
                                     </button>
                                 </h2>
                                 <div 
+                                    style="background-color: black;"
                                     id="{{'collapse_' + 'theme'+theme._id+'script'+script._id}}" 
                                     class="accordion-collapse collapse" 
                                     [attr.aria-labelledby]="'heading_' + 'theme'+theme._id+'script'+script._id"
