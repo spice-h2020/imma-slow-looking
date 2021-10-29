@@ -12,12 +12,13 @@ import { Theme } from "./theme.model";
 export class OtherPeopleComponent {
 
     constructor(private model: Model){}
-    // model: Model = new Model();
 
     mode: number = 1;
     
     getThemes(): Theme[] {
-        return this.model.getThemes();
+        let themes =  this.model.getThemes();
+        let sortedThemes = themes.sort((a, b) => (a.id < b.id) ? -1 : 1);
+        return sortedThemes;
     }
     
     getScriptsOfTheme(_id: string): Script[] {
@@ -36,4 +37,8 @@ export class OtherPeopleComponent {
         return this.model.getArtwork(_id);
     }
 
+    addLikeToActivity(activity: Activity) {
+        activity.likes = activity.likes+1;
+        this.model.saveActivity(activity);
+    }
 }

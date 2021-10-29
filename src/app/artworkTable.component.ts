@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { Artwork } from "./artwork.model";
+import { CurrentUser } from "./currentUser.service";
 import { Model } from "./repository.model";
 
 
@@ -68,17 +69,39 @@ export class ArtworkTableComponent {
     }
 
 
-    constructor(private model: Model){}
+    constructor(public currentuser: CurrentUser, private model: Model){}
 
     getArtworks() {
         let artworks =  this.model.getArtworks();
-        let sortedArtworks = artworks.sort((a, b) => (a.id > b.id) ? -1 : 1);
+
+        // filter artworks for login
+        let filteredArtworks = this.filterArtworksForLogin(artworks);
+
+        let sortedArtworks = filteredArtworks.sort((a, b) => (a.id > b.id) ? -1 : 1);
+
         return sortedArtworks;
+    }
+
+    filterArtworksForLogin(artworks: Artwork[]): Artwork[] {
+        let userID = this.currentuser.getUserID();
+        let user = this.currentuser.getUser();
+
+        if (userID == 0) {
+            return [];
+        }
+
+        let filteredArtworks = artworks.filter(x => x.owner == user._id);
+        return filteredArtworks;
     }
 
     saveArtwork() {
         let artwork: Artwork = {type: "artwork", name: this.selectItem["name"], 
         artist: this.selectItem["artist"], year: this.selectItem["year"], url: this.selectItem["filelocation"]};
+
+        //add current user_ID as owner
+        let user_ID = this.currentuser.getUser()._id;
+        artwork.owner = user_ID;
+
         this.model.saveArtwork(artwork);
     }
 
@@ -89,6 +112,10 @@ export class ArtworkTableComponent {
 
         //delete artwork
         this.model.deleteArtwork(_id);
+    }
+
+    isLoggedIn() {
+        return this.currentuser.getUserID() != 0;
     }
 
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Theme } from "./theme.model";
 import { Model } from "./repository.model";
+import { CurrentUser } from "./currentUser.service";
+import { User } from "./user.model";
 
 @Component({
     selector: "paThemeTable",
@@ -9,7 +11,46 @@ import { Model } from "./repository.model";
 
 export class ThemeTableComponent {
 
-    constructor(private model: Model){}
+    constructor(public currentuser: CurrentUser, private model: Model){}
+
+    getCurrentUserID() {
+        return this.currentuser.getUserID();
+    }
+
+    getUsers(): User[] {
+        return this.model.getUsers();
+    }
+
+    getCurrentUser_ID() {
+        let user = this.currentuser.getUser();
+        if(user._id != undefined) {
+            return user._id;
+        }
+        else {
+            return "";
+        }
+    }
+
+    isAdmin() {
+        return this.currentuser.getUserID() == 1;
+    }
+
+    isLoggedIn() {
+        return this.currentuser.getUserID() != 0;
+    }
+
+    writeAccess(theme: Theme): boolean {
+        if(this.isAdmin()) {
+            return true;
+        }
+        if(theme.owner == undefined) {
+            return false;
+        }
+        if(theme.owner == this.getCurrentUser_ID()) {
+            return true;
+        }
+        return false;
+    }
 
     editrow: string = "";
 
@@ -24,6 +65,12 @@ export class ThemeTableComponent {
     }
 
     addTheme(theme: Theme) {
+        //add current user as owner
+        let currentUser_ID = this.getCurrentUser_ID();
+        if (currentUser_ID != "") {
+            theme.owner = currentUser_ID;
+        }
+
         this.model.saveTheme(theme);
         this.newTheme = new Theme();
         this.tableEditing = false;

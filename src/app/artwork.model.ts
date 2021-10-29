@@ -7,6 +7,7 @@ export class Artwork {
         public artist?: string,
         public year?: string,
         public fileLocation?: string,
-        public url?: string
+        public url?: string,
+        public owner?: string
     ) {}
 }

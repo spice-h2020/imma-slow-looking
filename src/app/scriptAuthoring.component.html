@@ -8,7 +8,7 @@
         </span>
     </div> -->
     <div class="col-xs-12 mb-3 mt-2">
-        <button class="float-right btn btn-success" *ngIf="viewScript=='0'" (click)="addScript(); deleteConfirmation_Id=''">Add new script</button><br/>
+        <button class="float-right btn btn-success" *ngIf="viewScript=='0' && isLoggedIn()" (click)="addScript(); deleteConfirmation_Id=''">Add new script</button><br/>
     </div>
     <div class="col-xs-12 ml-1 mr-1" *ngFor="let script of getScripts(); let i = index">
         <div *ngIf="((script.open && showOpenScripts) || (!(script.open) && showClosedScripts)) && (viewScript == '0' || viewScript==script._id)" class="border">
@@ -82,6 +82,11 @@
                     </span>
                     <span *ngIf="script.visible">Public</span>
                     <span *ngIf="!script.visible">Private</span><br/>
+                    <span class="font-weight-bold">
+                        New contributions: 
+                    </span>
+                    <span *ngIf="!script.autoapproved">Awaiting approval</span>
+                    <span *ngIf="script.autoapproved">Approved</span><br/>
                     <span *ngIf="viewScript==script._id && editScriptDescription=='0' && editScriptStage==0">
                         <button class="btn btn-secondary" (click)="editScriptDescription=script._id; editScriptStage=0; deleteStageConfirmationId=0; showStageHelp=false;">Edit description</button><br/>
                     </span>
@@ -239,6 +244,31 @@
                             />
                             <label class="form-check-label"> Private </label>
                         </span>
+                    </td></tr><tr><td class="align-top">
+                        <!-- script visibility -->
+                        <span class="mr-3 font-weight-bold">
+                            New contributions: 
+                        </span>
+                    </td><td>
+                        <span class="mr-3">
+                            <input
+                                type="radio"
+                                [value]=false
+                                name="autoapproved"
+                                [(ngModel)] = "script.autoapproved"
+                                checked
+                            />
+                            <label class="form-check-label"> Awaiting approval </label>
+                        </span>
+                        <span class="mr-3">
+                            <input
+                                type="radio"
+                                [value]=true
+                                name="autoapproved"
+                                [(ngModel)] = "script.autoapproved"
+                            />
+                            <label class="form-check-label"> Approved </label>
+                        </span>
                     </td></tr><tr><td colspan="2">
                         <button class="btn btn-success" (click)="editScriptDescription='0'; saveScript(script)" [disabled]="!getThemesFromIds(script.themeids).length || !getArtworksFromIds(script.artworkids).length || script.homepageartworkid==undefined">Done</button> 
                     </td></tr>
@@ -285,7 +315,7 @@
                                 <button class="btn btn-danger" (click)="confirmStageDelete(stage.id); showStageHelp=false;">Delete stage</button><br/>
                             </span>
                             <span *ngIf="deleteStageConfirmationId==stage.id">
-                                <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this stage?</strong> <span><button class="btn btn-danger ml-2" (click)="deleteStage(script, stage); deleteStageConfirmationId=0; showStageHelp=false;">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteStageConfirmationId=0; showStageHelp=false;">Cancel</button></span></div>
+                                <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this stage?</strong> <div><button class="btn btn-danger ml-2" (click)="deleteStage(script, stage); deleteStageConfirmationId=0; showStageHelp=false;">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteStageConfirmationId=0; showStageHelp=false;">Cancel</button></div></div>
                             </span>
                         </span>
                         <!-- edit script stage -->

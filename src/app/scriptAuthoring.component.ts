@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { Artwork } from "./artwork.model";
+import { CurrentUser } from "./currentUser.service";
 import { Model } from "./repository.model";
 import { Script } from "./script.model";
 import { contextStage, followStage, multiquestionStage, questionStage, shareWithMuseumStage, shareWithSomeoneStage, Stage, thankyouStage, welcomeStage } from "./stage.model";
@@ -8,14 +9,14 @@ import { Theme } from "./theme.model";
 @Component({
     selector: "paScriptAuthoring",
     templateUrl: "scriptAuthoring.component.html"
-})
+}) 
 
 export class ScriptAuthoringComponent {
 
-    constructor(private model: Model){}
+    constructor(public currentuser: CurrentUser, private model: Model){}
 
     showStageHelp = false;
-    
+
     toggleStageHelp() {
         if(this.showStageHelp) {
             this.showStageHelp = false;
@@ -75,6 +76,13 @@ export class ScriptAuthoringComponent {
         newscript.themeids = [];
         newscript.artworkids = [];
         newscript.stages = [];
+
+        let userID = this.currentuser.getUserID();
+        let user = this.currentuser.getUser();
+        if (userID != 0) {
+            newscript.owner = user._id;
+        }
+
         this.model.saveScript(newscript);
         this.editScriptDescription="0"; 
         this.editScriptStage=0;
@@ -309,8 +317,29 @@ export class ScriptAuthoringComponent {
 
     getScripts(): Script[] {
         let scripts = this.model.getScripts();
-        let sortedScripts = scripts.sort((a, b) => (a.id > b.id) ? -1 : 1);
+
+        // filter scripts for login
+        let filteredScripts = this.filterScriptsForLogin(scripts);
+
+        let sortedScripts = filteredScripts.sort((a, b) => (a.id > b.id) ? -1 : 1);
         return sortedScripts;
+    }
+
+    filterScriptsForLogin(scripts: Script[]): Script[] {
+        let userID = this.currentuser.getUserID();
+        let user = this.currentuser.getUser();
+
+        if (userID == 0) {
+            return [];
+        }
+
+        // admin sees all scripts
+        if(userID == 1) {
+            return scripts;
+        }
+
+        let filteredScripts = scripts.filter(x => x.owner == user._id);
+        return filteredScripts;
     }
 
     includeArtworksChange(script: Script, stage: Stage, artworkid: string, selected: any) {
@@ -323,6 +352,10 @@ export class ScriptAuthoringComponent {
             this.model.removeArtworkFromIncludedArtworks(script, stage, artworkid);
         }
         this.model.saveScript(script);
+    }
+
+    isLoggedIn() {
+        return this.currentuser.getUserID() != 0;
     }
     
 }

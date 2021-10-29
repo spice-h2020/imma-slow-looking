@@ -13,6 +13,8 @@ export class Script {
         public visible?: boolean,
         public stages?: Array<Stage>,
         public author?: string,
-        public archived: boolean = false
+        public archived: boolean = false,
+        public owner?: string,
+        public autoapproved: boolean = false
     ) {}
 }

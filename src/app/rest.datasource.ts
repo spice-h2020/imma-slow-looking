@@ -6,9 +6,11 @@ import { Artwork } from "./artwork.model";
 import { Script } from "./script.model";
 import { Activity } from "./activity.model";
 import { CollectionArtwork } from "./collectionArtwork.model";
+import { User } from "./user.model";
 
 @Injectable() export class RestDataSource { 
 
+    private userUrl = ''
     private themeUrl = '';
     private artworkUrl =  '';
     private scriptUrl = '';
@@ -22,6 +24,23 @@ import { CollectionArtwork } from "./collectionArtwork.model";
 
     constructor(private http: HttpClient) { }
 
+    // User
+    getUserData(): Observable<User[]> {
+        return this.http.get<User[]>(this.userUrl, this.config);
+    }
+
+    saveUser(user: User): Observable<User> {
+        return this.http.post<User>(this.saveUrl, user, this.config);
+    }
+
+    updateUser(user: User) {
+        return this.http.put<User>(`${this.saveUrl}/${user._id}`, user, this.config);
+    }
+
+    deleteUser(_id: string) {
+        return this.http.delete<User>(`${this.saveUrl}/${_id}`, this.config);
+    }
+    
     // Theme
     getThemeData(): Observable<Theme[]> { 
         return this.http.get<Theme[]>(this.themeUrl, this.config); 

@@ -1,14 +1,14 @@
-<p>Manage the themes used to organise your Deep Viewpoints scripts. </p>
+<p>Below are the themes which you can link to your scripts. Where possible, reuse existing themes. This allows your scripts to be displayed in the same section as scripts produced by others. If none of the themes match the script you are authoring, you can add further themes. Other script authors will be able to link their scripts with your theme, but will not be able to edit or delete your theme.</p>
 <div class="form-group">
 <table class="table table-sm table-striped"> 
     <tr><th>Position</th><th>Theme</th><th>Description</th><th></th><th></th></tr> 
     <tbody class="text-black"> 
         <tr *ngFor="let item of getThemes(); let i = index"> 
             <td>
-                <span *ngIf="!tableEditing || editrow!=item._id">
+                <span *ngIf="!tableEditing || editrow!=item._id || !isAdmin()">
                     {{item.id}}
                 </span>
-                <span *ngIf="tableEditing && editrow==item._id">
+                <span *ngIf="tableEditing && editrow==item._id && isAdmin()">
                     <select (change)="updateThemePosition(item, $event); tableEditing=false">
                         <option *ngFor="let pos of getThemes(); let ind = index" [selected]="item.id==pos.id" value="{{pos.id}}">   
                             {{pos.id}}           
@@ -29,7 +29,7 @@
                     {{item.description}}
                     <span *ngIf="deleteConfirmation_Id==item._id">
                         <br/>
-                        <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this theme?</strong> <button class="btn btn-danger ml-2" (click)="deleteTheme(item._id)">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteConfirmation_Id=''">Cancel</button></div>
+                        <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this theme?</strong> <div><button class="btn btn-danger ml-2" (click)="deleteTheme(item._id)">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteConfirmation_Id=''">Cancel</button></div></div>
                         <br/>
                     </span>
                 </span>
@@ -38,12 +38,12 @@
                 </span>
             </td> 
             <td>
-                <span *ngIf="!tableEditing">
+                <span *ngIf="!tableEditing && writeAccess(item)">
                     <button class="btn btn-danger" (click)="confirmDelete(item._id)">Delete</button>
                 </span>
             </td>
             <td>
-                <span *ngIf="!tableEditing">
+                <span *ngIf="!tableEditing && writeAccess(item)">
                     <button class="btn btn-secondary" (click)="editrow=item._id" (click)="tableEditing=true; deleteConfirmation_Id='';">Edit</button>
                 </span>
                 <span *ngIf="tableEditing && editrow==item._id">
@@ -51,7 +51,7 @@
                 </span>
             </td>
         </tr>
-        <tr>
+        <tr *ngIf="isLoggedIn()">
             <td></td>
             <td>
                 <span *ngIf="!tableEditing">

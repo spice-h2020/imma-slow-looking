@@ -8,6 +8,10 @@ export class Activity {
         public id?: number,
         public script?: Script,
         public actions?: Array<Action>,
-        public approved?: boolean
+        public approved?: boolean,
+        public editor?: string,
+        public author?: string,
+        public authorname?: string,
+        public likes: number = 0
     ) {}
 }

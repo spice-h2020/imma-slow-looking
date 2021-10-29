@@ -4,6 +4,7 @@ export class Theme {
         public id?: number,
         public type: string = 'theme',
         public name?: string,
-        public description?: string
+        public description?: string,
+        public owner?: string
     ) {}
 }

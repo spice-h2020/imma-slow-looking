@@ -14,6 +14,9 @@ import { ModelModule } from './model.module';
 import { ArtworkTableComponent } from './artworkTable.component';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { MessageModule } from './messages/message.module';
+import { UserTableComponent } from './userTable.component';
+import { CurrentUser } from './currentUser.service';
+import { UserLoginComponent } from './userLogin.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import { MessageModule } from './messages/message.module';
     ScriptAuthoringComponent,
     HomepageComponent,
     SlowLookingActivityComponent,
-    ArtworkTableComponent
+    ArtworkTableComponent,
+    UserTableComponent,
+    UserLoginComponent
     ],
   imports: [
     BrowserModule,
@@ -36,6 +41,7 @@ import { MessageModule } from './messages/message.module';
     ReactiveFormsModule,
     MessageModule
   ],
+  providers: [CurrentUser],
   bootstrap: [SlowLookingComponent]
 })
 export class AppModule { }

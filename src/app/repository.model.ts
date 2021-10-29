@@ -6,6 +6,7 @@ import { Stage } from "./stage.model";
 import { RestDataSource } from "./rest.datasource";
 import { Injectable } from "@angular/core";
 import { CollectionArtwork } from "./collectionArtwork.model";
+import { User } from "./user.model";
 
 @Injectable()
 export class Model {
@@ -15,6 +16,7 @@ export class Model {
     private scriptLocator = (script: Script, id: string) => script._id == id;
     private activityLocator = (activity: Activity, id: string) => activity._id == id;
     private artworkLocator = (artwork: Artwork, id: string) => artwork._id == id;
+    private userLocator = (user: User, id: string) => user._id == id;
     private stringLocator = (x: any, id: any) => x._id == id;
     private openAndVisible = (x: any) => (x.open && x.visible);
     private visible = (x: any) => (x.visible);
@@ -26,11 +28,13 @@ export class Model {
     private dbScripts: Script[] = new Array<Script>();
     private dbThemes: Theme[] = new Array<Theme>();
     private dbActivities: Activity[] = new Array<Activity>();
+    private dbUsers: User[] = new Array<User>();
     private dbCollectionArtworks: CollectionArtwork[] = new Array<CollectionArtwork>();
 
 
     constructor(private dbDataSource: RestDataSource) {
 
+        this.dbDataSource.getUserData().subscribe(data => this.dbUsers = data);
         this.dbDataSource.getThemeData().subscribe(data => this.dbThemes = data);
         this.dbDataSource.getArtworkData().subscribe(data => this.dbArtworks = data);
         this.dbDataSource.getActivityData().subscribe(data => this.dbActivities = data);
@@ -39,8 +43,42 @@ export class Model {
 
     }
 
+    // Collection
     getCollection() {
         return this.dbCollectionArtworks;
+    }
+
+    // User
+    getUsers(): User[] {
+        return this.dbUsers;
+    }
+
+    getUser(_id: string) {
+        return this.dbUsers.find(x => this.stringLocator(x, _id));
+    }
+
+    saveUser(user: User) {
+        if(user.id == 0 || user.id == null) {
+            user.id = this.generateUserID();
+        }
+        if (user._id == undefined) {
+            this.dbDataSource.saveUser(user).subscribe(p => this.dbUsers.push(p));
+        }
+        else {
+            this.dbDataSource.updateUser(user).subscribe(() => {
+                let index = this.dbUsers.findIndex(item => this.userLocator(item, user._id));
+                this.dbUsers.splice(index, 1, user);
+            });
+        } 
+    }
+
+    deleteUser(_id: string) {
+        this.dbDataSource.deleteUser(_id).subscribe(() => {
+            let index = this.dbUsers.findIndex(p => this.stringLocator(p, _id));
+            if (index > -1) {
+                this.dbUsers.splice(index, 1);
+            }
+        })
     }
 
     // Theme
@@ -374,6 +412,14 @@ export class Model {
     }
 
     // ID generators
+    private generateUserID(): number {
+        let candidate = 1;
+        while(this.dbUsers.find(element => element.id == candidate)) {
+            candidate++;
+        }
+        return candidate;
+    }
+
     private generateActivityID(): number {
         let candidate = 1;
         while(this.dbActivities.find(element => element.id == candidate)) {

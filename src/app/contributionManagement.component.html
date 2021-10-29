@@ -1,8 +1,8 @@
 <p>Manage responses to your scripts.</p>
-<div>
+<div *ngIf="isLoggedIn()">
     Show:
 </div>
-<div class="mb-4">
+<div *ngIf="isLoggedIn()" class="mb-4">
     <button (click)="managementMode=1" class="btn btn-secondary col-sm-4 text-center">All</button>
     <button (click)="managementMode=2" class="btn btn-success col-sm-4 text-center">Approved</button>
     <button (click)="managementMode=3" class="btn btn-info col-sm-4 text-center">Awaiting approval</button>
@@ -22,33 +22,45 @@
             </div>
             <div class="text-sm-left border">
                 <p class="text-sm-left font-weight-bold">{{item.script.name}}</p>
-                <div *ngFor="let action of item.actions;">
 
-                    <span *ngIf="action.questionStage">
-                        <span *ngIf="action.questionStage.stagetype">
-                            <span *ngIf="action.questionStage.stagetype != 'multiquestion'">
-                                <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question"></span>
-                                <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
-                            </span>
-                            <span *ngIf="action.questionStage.stagetype == 'multiquestion' && action.answers">
-                                <span *ngFor="let answer of action.answers">
-                                    <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.questionStage.body[answer.question]"></span>
-                                    <p class="font-weight-normal" style="white-space: pre-wrap;">{{answer.answer}}</p>
+                <div class="card text-white mb-3" style="background-color: #1f959b; border-radius: 15px;">
+                    <div class="card-body p-5">
+                        <div *ngFor="let action of item.actions;">
+                            <span *ngIf="action.questionStage">
+                                <span *ngIf="action.questionStage.stagetype">
+                                    <span *ngIf="action.questionStage.stagetype != 'multiquestion'">
+                                        <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question"></span>
+                                        <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
+                                    </span>
+                                    <span *ngIf="action.questionStage.stagetype == 'multiquestion' && action.answers">
+                                        <span *ngFor="let answer of action.answers">
+                                            <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.questionStage.body[answer.question]"></span>
+                                            <p class="font-weight-normal" style="white-space: pre-wrap;">{{answer.answer}}</p>
+                                        </span>
+                                    </span>
                                 </span>
                             </span>
-                        </span>
-                    </span>
-
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <p class="mb-0">{{item.authorname}}</p>
+                            <h6 class="mb-0"><span class="badge rounded-pill" style="background-color: rgba(0,0,0, 0.2);">{{item.likes}}</span> <i class="fas fa-heart ms-2"></i></h6>
+                        </div>
+                    </div>
                 </div>
+
+                <span *ngIf="deleteConfirmation_Id==item._id">
+                    <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this activity?</strong> <div><button class="btn btn-danger ml-2" (click)="deleteActivity(item._id)">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteConfirmation_Id=''">Cancel</button></div></div>
+                </span>
             </div>
             <div class="text-sm-left border">
                 <div *ngIf="item.approved">
                     <button class="col-sm-4 text-center btn btn-info" (click)="item.approved=false; saveActivity(item)">Reject</button>
-                    <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item._id)">Delete</button>            
+                    <button class="col-sm-4 text-center float-right btn btn-danger" (click)="confirmDelete(item._id)">Delete</button>            
                 </div>
                 <span *ngIf="!(item.approved)">
                     <button class="col-sm-4 text-center btn btn-success" (click)="item.approved=true; saveActivity(item)">Approve</button>
-                    <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item._id)">Delete</button>   
+                    <button class="col-sm-4 text-center float-right btn btn-danger" (click)="confirmDelete(item._id)">Delete</button>   
                 </span>
             </div>
         </div><br/>
@@ -66,33 +78,45 @@
             </div>
             <div class="text-sm-left border">
                 <p class="text-sm-left font-weight-bold">{{item.script.name}}</p>
-                <div *ngFor="let action of item.actions;">
 
-                    <span *ngIf="action.questionStage">
-                        <span *ngIf="action.questionStage.stagetype">
-                            <span *ngIf="action.questionStage.stagetype != 'multiquestion'">
-                                <span class="font-italic" style="white-space: pre-wrap;" [innerHTML]="action.question"></span>
-                                <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
-                            </span>
-                            <span *ngIf="action.questionStage.stagetype == 'multiquestion' && action.answers">
-                                <span *ngFor="let answer of action.answers">
-                                    <span class="font-italic" style="white-space: pre-wrap;" [innerHTML]="action.questionStage.body[answer.question]"></span>
-                                    <p class="font-weight-normal" style="white-space: pre-wrap;">{{answer.answer}}</p>
+                <div class="card text-white mb-3" style="background-color: #1f959b; border-radius: 15px;">
+                    <div class="card-body p-5">
+                        <div *ngFor="let action of item.actions;">
+                            <span *ngIf="action.questionStage">
+                                <span *ngIf="action.questionStage.stagetype">
+                                    <span *ngIf="action.questionStage.stagetype != 'multiquestion'">
+                                        <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question"></span>
+                                        <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
+                                    </span>
+                                    <span *ngIf="action.questionStage.stagetype == 'multiquestion' && action.answers">
+                                        <span *ngFor="let answer of action.answers">
+                                            <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.questionStage.body[answer.question]"></span>
+                                            <p class="font-weight-normal" style="white-space: pre-wrap;">{{answer.answer}}</p>
+                                        </span>
+                                    </span>
                                 </span>
                             </span>
-                        </span>
-                    </span>
-
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <p class="mb-0">{{item.authorname}}</p>
+                            <h6 class="mb-0"><span class="badge rounded-pill" style="background-color: rgba(0,0,0, 0.2);">{{item.likes}}</span> <i class="fas fa-heart ms-2"></i></h6>
+                        </div>
+                    </div>
                 </div>
+
+                <span *ngIf="deleteConfirmation_Id==item._id">
+                    <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this activity?</strong> <div><button class="btn btn-danger ml-2" (click)="deleteActivity(item._id)">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteConfirmation_Id=''">Cancel</button></div></div>
+                </span>
             </div>
             <div class="text-sm-left border">
                 <div *ngIf="item.approved">
                     <button class="col-sm-4 text-center btn btn-info" (click)="item.approved=false; saveActivity(item)">Reject</button>
-                    <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item._id)">Delete</button>            
+                    <button class="col-sm-4 text-center float-right btn btn-danger" (click)="confirmDelete(item._id)">Delete</button>            
                 </div>
                 <span *ngIf="!(item.approved)">
                     <button class="col-sm-4 text-center btn btn-success" (click)="item.approved=true; saveActivity(item)">Approve</button>
-                    <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item._id)">Delete</button>   
+                    <button class="col-sm-4 text-center float-right btn btn-danger" (click)="confirmDelete(item._id)">Delete</button>   
                 </span>
             </div>
         </div><br/>
@@ -110,33 +134,46 @@
             </div>
             <div class="text-sm-left border">
                 <p class="text-sm-left font-weight-bold">{{item.script.name}}</p>
-                <div *ngFor="let action of item.actions;">
-                    
-                    <span *ngIf="action.questionStage">
-                        <span *ngIf="action.questionStage.stagetype">
-                            <span *ngIf="action.questionStage.stagetype != 'multiquestion'">
-                                <span class="font-italic" style="white-space: pre-wrap;" [innerHTML]="action.question"></span>
-                                <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
-                            </span>
-                            <span *ngIf="action.questionStage.stagetype == 'multiquestion' && action.answers">
-                                <span *ngFor="let answer of action.answers">
-                                    <span class="font-italic" style="white-space: pre-wrap;" [innerHTML]="action.questionStage.body[answer.question]"></span>
-                                    <p class="font-weight-normal" style="white-space: pre-wrap;">{{answer.answer}}</p>
+
+                <div class="card text-white mb-3" style="background-color: #1f959b; border-radius: 15px;">
+                    <div class="card-body p-5">
+                        <div *ngFor="let action of item.actions;">
+                            <span *ngIf="action.questionStage">
+                                <span *ngIf="action.questionStage.stagetype">
+                                    <span *ngIf="action.questionStage.stagetype != 'multiquestion'">
+                                        <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question"></span>
+                                        <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
+                                    </span>
+                                    <span *ngIf="action.questionStage.stagetype == 'multiquestion' && action.answers">
+                                        <span *ngFor="let answer of action.answers">
+                                            <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.questionStage.body[answer.question]"></span>
+                                            <p class="font-weight-normal" style="white-space: pre-wrap;">{{answer.answer}}</p>
+                                        </span>
+                                    </span>
                                 </span>
                             </span>
-                        </span>
-                    </span>
-
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <p class="mb-0">{{item.authorname}}</p>
+                            <h6 class="mb-0"><span class="badge rounded-pill" style="background-color: rgba(0,0,0, 0.2);">{{item.likes}}</span> <i class="fas fa-heart ms-2"></i></h6>
+                        </div>
+                    </div>
                 </div>
+
+                <span *ngIf="deleteConfirmation_Id==item._id">
+                    <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this activity?</strong> <div><button class="btn btn-danger ml-2" (click)="deleteActivity(item._id)">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteConfirmation_Id=''">Cancel</button></div></div>
+                </span>
+
             </div>
             <div class="text-sm-left border">
                 <div *ngIf="item.approved">
                     <button class="col-sm-4 text-center btn btn-info" (click)="item.approved=false; saveActivity(item)">Reject</button>
-                    <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item._id)">Delete</button>            
+                    <button class="col-sm-4 text-center float-right btn btn-danger" (click)="confirmDelete(item._id)">Delete</button>            
                 </div>
                 <span *ngIf="!(item.approved)">
                     <button class="col-sm-4 text-center btn btn-success" (click)="item.approved=true; saveActivity(item)">Approve</button>
-                    <button class="col-sm-4 text-center float-right btn btn-danger" (click)="deleteActivity(item._id)">Delete</button>   
+                    <button class="col-sm-4 text-center float-right btn btn-danger" (click)="confirmDelete(item._id)">Delete</button>   
                 </span>
             </div><br/>
         </div>

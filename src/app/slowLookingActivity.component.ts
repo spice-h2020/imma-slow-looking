@@ -7,6 +7,7 @@ import { Artwork } from "./artwork.model";
 import { followStage, questionStage, shareWithMuseumStage, shareWithSomeoneStage, multiquestionStage } from "./stage.model";
 import { ActivatedRoute } from "@angular/router";
 import { FormControl } from "@angular/forms";
+import { CurrentUser } from "./currentUser.service";
 
 @Component({
     selector: "paSlowLookingActivity",
@@ -42,6 +43,7 @@ export class SlowLookingActivityComponent implements OnInit {
     newActivity: Activity = new Activity();
 
     constructor(
+        public currentuser: CurrentUser, 
         private activatedRoute: ActivatedRoute,
         private model: Model
       ) { } 
@@ -64,7 +66,7 @@ export class SlowLookingActivityComponent implements OnInit {
         // initialize activity of the script
         this.newActivity = new Activity();
         this.newActivity.script = SLscript;
-        this.newActivity.approved = true;
+        this.newActivity.approved = SLscript.autoapproved;
 
         // this.setSlowLookingScript(this.slowLookingScript);
     }
@@ -195,6 +197,22 @@ export class SlowLookingActivityComponent implements OnInit {
     }
 
     addActivity() {
+        // add editor to activity
+        if(this.slowLookingScript != "0") {
+            this.newActivity.editor = this.getScript(this.slowLookingScript).owner;
+        }
+        
+        // add author to activity
+        let userID = this.currentuser.getUserID();
+        let user = this.currentuser.getUser();
+        if(userID == 0) {
+            this.newActivity.author = "";
+            this.newActivity.authorname = "anonymous";
+        }
+        else {
+            this.newActivity.author = user._id;
+            this.newActivity.authorname = user.username;
+        }
         this.model.saveActivity(this.newActivity);
     }
 

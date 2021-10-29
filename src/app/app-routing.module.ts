@@ -11,6 +11,9 @@ import { ModelResolver1 } from './model.resolver1';
 import { ModelResolver2 } from './model.resolver2';
 import { ModelResolver3 } from './model.resolver3';
 import { ModelResolver4 } from './model.resolver4';
+import { UserTableComponent } from './userTable.component';
+import { ModelResolver5 } from './model.resolver5';
+import { UserLoginComponent } from './userLogin.component';
 
 const routes: Routes = [
   { path: 'home', component: HomepageComponent, resolve: { model1: ModelResolver1, model2: ModelResolver2, model3: ModelResolver3 } },
@@ -20,6 +23,8 @@ const routes: Routes = [
   { path: 'authoring', component: ScriptAuthoringComponent, resolve: { model1: ModelResolver1, model3: ModelResolver3} },
   { path: 'themes', component: ThemeTableComponent, resolve: { model3: ModelResolver3 } },
   { path: 'artworks', component: ArtworkTableComponent, resolve: { model2: ModelResolver2 } },
+  { path: 'users', component: UserTableComponent, resolve: { model5: ModelResolver5 } },
+  { path: 'login', component: UserLoginComponent, resolve: { model5: ModelResolver5 } },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 

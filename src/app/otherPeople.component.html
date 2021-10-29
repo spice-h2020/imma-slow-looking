@@ -2,7 +2,7 @@
     Find out how others have responded to IMMA artworks.
 </p>
 <p>
-    Select one of the themes to view the responses. Follow @IMMADeepViewpoints on Twitter to keep track of the responses of others.
+    Select one of the themes to view the responses.
 </p> 
 
 <div *ngFor="let theme of getThemes(); let i = index">
@@ -62,7 +62,9 @@
                                     [attr.data-bs-parent]="'#theme'+theme._id+'script'+script._id">
                                     <div class="accordion-body">
                                         <div *ngFor="let activity of getApprovedActivitiesOfAScript(script._id); let i = index; let even=even">
-                                            <div style="background-color: #f2f2f2;" class="rounded-3">
+                                            <!-- <div style="background-color: #f2f2f2;" class="rounded-3"> -->
+                                            <div class="card text-white mb-3" style="background-color: #1f959b; border-radius: 15px;">
+                                            <div class="card-body p-5">
                                                 <div *ngFor="let action of activity.actions;">
                                                     <span *ngIf="action.questionStage">
                                                         <span *ngIf="action.questionStage.stagetype">
@@ -79,6 +81,12 @@
                                                         </span>
                                                     </span>
                                                 </div>
+                                                <hr>
+                                                <div class="d-flex justify-content-between">
+                                                    <p class="mb-0">{{activity.authorname}}</p>
+                                                    <h6 class="mb-0"><span class="badge rounded-pill" style="background-color: rgba(0,0,0, 0.2);">{{activity.likes}}</span> <i (click)="addLikeToActivity(activity);" class="fas fa-heart ms-2"></i></h6>
+                                                </div>
+                                            </div>
                                             </div>
                                         </div>
                                     </div>

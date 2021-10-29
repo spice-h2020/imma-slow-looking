@@ -1,4 +1,4 @@
-<p>Manage the collection of artworks used in your Deep Viewpoints scripts.</p>
+<p>Manage the collection of artworks that can be used in your Deep Viewpoints scripts.</p>
 <div class="form-group">
     <table class="table table-sm table-striped"> 
         <tr><th width="20%">Artwork</th><th></th><th></th></tr>
@@ -12,7 +12,7 @@
                     {{item.artist}}<br/>
                     {{item.year}}
                     <span *ngIf="deleteConfirmation_Id==item._id">
-                        <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this artwork?</strong> <span><button class="btn btn-danger ml-2" (click)="deleteArtwork(item._id)">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteConfirmation_Id=''">Cancel</button></span></div>
+                        <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this artwork from your collection?</strong> <div><button class="btn btn-danger ml-2" (click)="deleteArtwork(item._id)">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteConfirmation_Id=''">Cancel</button></div></div>
                     </span>
                 </div>
             </td>
@@ -41,7 +41,7 @@
             </td>
         </tr>
     </table>
-    <div class="ng-autocomplete mb-5">
+    <div *ngIf="isLoggedIn()" class="ng-autocomplete mb-5">
         <span>Search IMMA collection:</span>
         <ng-autocomplete 
           [data]="data"
