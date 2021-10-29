@@ -4,7 +4,7 @@
 <h2>Find Out More</h2>
 <p>Welcome to Deep Viewpoints. Look closely at IMMA artworks and develop your own interpretations. How do you view these artworks? How do other people view them?</p> 
 <p>Below are some Deep Viewpoints activities. Each one focusses on particular IMMA artworks. Each activity helps you to look deeper, find out more about the artwork and develop your own interpretations.</p>
-<p>You can explore how others have responded in the <a routerLink="/otherPeople">Other People</a> section. But first, try some activities for yourself.</p>
+<p>You can explore how others have responded in the <a routerLink="/otherPeople" style="color: rgb(108, 117, 125);">Other People</a> section. But first, try some activities for yourself.</p>
 
 <h2>Take Part</h2>
 <p>Deep Viewpoints activities are organised into themes. Each activity is based on a particular artwork in the IMMA collection. Select a theme to begin. Tap on the artwork to start the activity. </p>
@@ -27,8 +27,9 @@
                 </button>
             </h2>
             <div 
+                style="background-color: black;"
                 id="{{'collapse_' + theme._id}}" 
-                class="accordion-collapse collapse" 
+                class="accordion-collapse collapse text-white" 
                 [attr.aria-labelledby]="'heading_' + theme._id"
                 data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">

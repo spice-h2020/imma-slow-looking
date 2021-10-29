@@ -23,8 +23,9 @@
                 </button>
             </h2>
             <div 
+                style="background-color: black;"
                 id="{{'collapse_' + theme._id}}" 
-                class="accordion-collapse collapse" 
+                class="accordion-collapse collapse text-white" 
                 [attr.aria-labelledby]="'heading_' + theme._id"
                 data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
@@ -44,7 +45,7 @@
                             <div class="col-sm-12">{{artwork.year}}</div>
                         </span>
                         <div class="accordion " id="{{'theme'+theme._id+'script'+script._id}}">
-                            <div class="accordion-item">
+                            <div class="accordion-item" style="background-color: #1f959b;">
                                 <h2 class="accordion-header" id="{{'heading_' + 'theme'+theme._id+'script'+script._id}}">
                                     <button 
                                         style="background-color: #1f959b;"
@@ -58,7 +59,7 @@
                                     </button>
                                 </h2>
                                 <div 
-                                    style="background-color: black;"
+                                    style="background-color: white;"
                                     id="{{'collapse_' + 'theme'+theme._id+'script'+script._id}}" 
                                     class="accordion-collapse collapse" 
                                     [attr.aria-labelledby]="'heading_' + 'theme'+theme._id+'script'+script._id"
