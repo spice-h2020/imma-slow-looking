@@ -1,4 +1,4 @@
-<div><img class="col-sm-12" src="assets/img/IMMA30_LOGO_RGB_small.png"></div>
+<div><img style="width: 100%;" src="assets/img/IMMA-DV1.png"></div>
 <p class="lead">Welcome to Deep Viewpoints. Dive deeper into IMMA artworks. Share your viewpoint and explore the views of others.</p>
 
 <h2>Find Out More</h2>
@@ -14,7 +14,7 @@
             <div class="accordion-item">
             <h2 class="accordion-header" id="{{'heading_' + theme._id}}">
                 <button 
-                    style="background-color: #1f959b;"
+                    style="background-color: rgb(41, 161, 184);"
                     class="accordion-button collapsed text-white" 
                     type="button" 
                     data-bs-toggle="collapse" 
@@ -37,7 +37,7 @@
                         <h5 class="col-sm-12">{{script.name}}</h5> 
                         <span *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
                             <span *ngIf="artwork.url">
-                            <img routerLink="/slowLooking/{{script._id}}" class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
+                            <a routerLink="/slowLooking/{{script._id}}"><img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}"></a>
                             </span>
                             <span *ngIf="!artwork.url && artwork.fileLocation">
                             <img routerLink="/slowLooking/{{script._id}}" class="col-sm-12" src="{{artwork.fileLocation}}" >

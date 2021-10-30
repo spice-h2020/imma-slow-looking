@@ -19,11 +19,11 @@
             </div>
             <div class="col-xs-4 float-right">
                 <span *ngIf="viewScript=='0'">
-                    <button class="mr-5 btn btn-info" (click)="viewScript=script._id; deleteConfirmation_Id=''">View</button>
+                    <button class="mr-5 btn btn-secondary" (click)="viewScript=script._id; deleteConfirmation_Id=''">View</button>
                     <button class="btn btn-danger" (click)="confirmDelete(script._id)">Delete</button>
                 </span>
                 <span *ngIf="viewScript==script._id && editScriptDescription=='0' && editScriptStage==0">
-                    <button class="btn btn-info" (click)="viewScript='0'; deleteStageConfirmationId=0; showStageHelp=false;">Return to list of scripts</button>
+                    <button class="btn btn-secondary" (click)="viewScript='0'; deleteStageConfirmationId=0; showStageHelp=false;">Return to list of scripts</button>
                 </span>
             </div>
             <div class="col-xs-12">
@@ -88,7 +88,7 @@
                     <span *ngIf="!script.autoapproved">Awaiting approval</span>
                     <span *ngIf="script.autoapproved">Approved</span><br/>
                     <span *ngIf="viewScript==script._id && editScriptDescription=='0' && editScriptStage==0">
-                        <button class="btn btn-secondary" (click)="editScriptDescription=script._id; editScriptStage=0; deleteStageConfirmationId=0; showStageHelp=false;">Edit description</button><br/>
+                        <button class="btn btn-warning" (click)="editScriptDescription=script._id; editScriptStage=0; deleteStageConfirmationId=0; showStageHelp=false;">Edit description</button><br/>
                     </span>
                     <span *ngIf="viewScript=='0'">
                         <span *ngIf="deleteConfirmation_Id==script._id">
@@ -270,7 +270,7 @@
                             <label class="form-check-label"> Approved </label>
                         </span>
                     </td></tr><tr><td colspan="2">
-                        <button class="btn btn-success" (click)="editScriptDescription='0'; saveScript(script)" [disabled]="!getThemesFromIds(script.themeids).length || !getArtworksFromIds(script.artworkids).length || script.homepageartworkid==undefined">Done</button> 
+                        <button class="btn btn-warning" (click)="editScriptDescription='0'; saveScript(script)" [disabled]="!getThemesFromIds(script.themeids).length || !getArtworksFromIds(script.artworkids).length || script.homepageartworkid==undefined">Done</button> 
                     </td></tr>
                 </table>
             
@@ -311,7 +311,7 @@
                                 <span class="font-weight-bold">Help text: </span><span style="white-space: pre-wrap;">{{stage.help}}</span><br/>
                             </span>
                             <span *ngIf="editScriptStage==0 && editScriptDescription=='0'"> 
-                                <button class="mr-5 btn btn-secondary" (click)="editScriptStage=stage.id; deleteStageConfirmationId=0; showStageHelp=false;">Edit stage</button>
+                                <button class="mr-5 btn btn-warning" (click)="editScriptStage=stage.id; deleteStageConfirmationId=0; showStageHelp=false;">Edit stage</button>
                                 <button class="btn btn-danger" (click)="confirmStageDelete(stage.id); showStageHelp=false;">Delete stage</button><br/>
                             </span>
                             <span *ngIf="deleteStageConfirmationId==stage.id">
@@ -401,7 +401,7 @@
                             
                             </table>
                             <span>
-                                <button class="btn btn-success" (click)="editScriptStage=0; saveScript(script)">Done</button><br/>
+                                <button class="btn btn-warning" (click)="editScriptStage=0; saveScript(script)">Done</button><br/>
                             </span>
                         </span>
                     </div>

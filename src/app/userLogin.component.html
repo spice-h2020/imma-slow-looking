@@ -1,16 +1,17 @@
 <p>Deep Viewpoints login.</p>
 <span *ngIf="getCurrentUserID()==0">
-    <p>Username</p>
+    <span>Username</span>
     <textarea rows="1" class="form-control" [(ngModel)]="username"></textarea>
-    <p>Password</p>
+    <br/>
+    <span>Password</span>
     <textarea rows="1" class="form-control" [(ngModel)]="password"></textarea>
     <span *ngIf="loginFailed" class="text-warning">Username and/or password incorrect</span><br/>
-    <button class="btn btn-success" (click)="loginAttempt()" [disabled]="!username || !password">Login</button>
+    <button class="btn btn-secondary" (click)="loginAttempt()" [disabled]="!username || !password">Login</button>
 </span>
 <span *ngIf="getCurrentUserID()!=0">
-    <p>Username</p>
+    <span>Username</span>
     <p><strong>{{getCurrentUsername()}}</strong></p>
-    <button class="btn btn-success" (click)="logout(); clearNewUser();">Logout</button>
+    <button class="btn btn-secondary" (click)="logout(); clearNewUser();">Logout</button>
 <br/>
 <br/>
 <br/>

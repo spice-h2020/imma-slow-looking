@@ -10,7 +10,7 @@
         <div class="accordion-item">
             <h2 class="accordion-header" id="{{'heading_' + theme._id}}">
                 <button 
-                    style="background-color: #1f959b;"
+                    style="background-color: rgb(41, 161, 184);"
                     class="accordion-button collapsed text-white" 
                     type="button" 
                     data-bs-toggle="collapse" 
@@ -45,10 +45,10 @@
                             <div class="col-sm-12">{{artwork.year}}</div>
                         </span>
                         <div class="accordion " id="{{'theme'+theme._id+'script'+script._id}}">
-                            <div class="accordion-item" style="background-color: #1f959b;">
+                            <div class="accordion-item" style="background-color: rgb(41, 161, 184);">
                                 <h2 class="accordion-header" id="{{'heading_' + 'theme'+theme._id+'script'+script._id}}">
                                     <button 
-                                        style="background-color: #1f959b;"
+                                        style="background-color: rgb(41, 161, 184);"
                                         class="accordion-button collapsed text-white" 
                                         type="button" 
                                         data-bs-toggle="collapse" 
@@ -67,7 +67,7 @@
                                     <div class="accordion-body">
                                         <div *ngFor="let activity of getApprovedActivitiesOfAScript(script._id); let i = index; let even=even">
                                             <!-- <div style="background-color: #f2f2f2;" class="rounded-3"> -->
-                                            <div class="card text-white mb-3" style="background-color: #1f959b; border-radius: 15px;">
+                                            <div class="card text-white mb-3" style="background-color: rgb(41, 161, 184); border-radius: 15px;">
                                             <div class="card-body p-5">
                                                 <div *ngFor="let action of activity.actions;">
                                                     <span *ngIf="action.questionStage">

@@ -1,5 +1,5 @@
 <p>Manage the collection of artworks that can be used in your Deep Viewpoints scripts.</p>
-<div class="form-group">
+<div *ngIf="isLoggedIn()" class="form-group">
     <table class="table table-sm table-striped"> 
         <tr><th width="20%">Artwork</th><th></th><th></th></tr>
         <tr *ngFor="let item of getArtworks(); let i = index">
@@ -41,7 +41,7 @@
             </td>
         </tr>
     </table>
-    <div *ngIf="isLoggedIn()" class="ng-autocomplete mb-5">
+    <div class="ng-autocomplete mb-5">
         <span>Search IMMA collection:</span>
         <ng-autocomplete 
           [data]="data"

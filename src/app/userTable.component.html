@@ -36,10 +36,10 @@
                     </td>
                     <td>
                         <span *ngIf="!tableEditing">
-                            <button class="btn btn-secondary" (click)="editrow=item._id" (click)="tableEditing=true; deleteConfirmation_Id='';">Edit</button>
+                            <button class="btn btn-warning" (click)="editrow=item._id" (click)="tableEditing=true; deleteConfirmation_Id='';">Edit</button>
                         </span>
                         <span *ngIf="tableEditing && editrow==item._id">
-                            <button class="btn btn-success" (click)="tableEditing=false; addUser(item)" [disabled]="!item.username || !item.password">Done</button>
+                            <button class="btn btn-warning" (click)="tableEditing=false; addUser(item)" [disabled]="!item.username || !item.password">Done</button>
                         </span>
                     </td>
                 </tr>
