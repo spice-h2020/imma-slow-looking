@@ -63,7 +63,7 @@
                     <button class="col-sm-4 text-center float-right btn btn-danger" (click)="confirmDelete(item._id)">Delete</button>   
                 </span>
             </div>
-        </div><br/>
+        </div><br/><br/>
     </div>
     <div *ngSwitchCase="2">
         <!-- show approved -->
@@ -119,7 +119,7 @@
                     <button class="col-sm-4 text-center float-right btn btn-danger" (click)="confirmDelete(item._id)">Delete</button>   
                 </span>
             </div>
-        </div><br/>
+        </div><br/><br/>
     </div>
     <div *ngSwitchCase="3">
         <!-- show waiting approval -->
@@ -175,7 +175,7 @@
                     <button class="col-sm-4 text-center btn btn-success" (click)="item.approved=true; saveActivity(item)">Approve</button>
                     <button class="col-sm-4 text-center float-right btn btn-danger" (click)="confirmDelete(item._id)">Delete</button>   
                 </span>
-            </div><br/>
+            </div><br/><br/>
         </div>
     </div>
 </div>

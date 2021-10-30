@@ -81,6 +81,7 @@ export class ScriptAuthoringComponent {
         let user = this.currentuser.getUser();
         if (userID != 0) {
             newscript.owner = user._id;
+            newscript.author = this.currentuser.getUser().username;
         }
 
         this.model.saveScript(newscript);
