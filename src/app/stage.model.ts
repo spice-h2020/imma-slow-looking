@@ -16,7 +16,7 @@ export class welcomeStage extends Stage {
         public id?: number,
         public position?: number,
         public title: string = "Welcome",
-        public body: string = "Hello and welcome to this Slow Looking activity.",
+        public body: string = "Hello and welcome to this Deep Viewpoints activity.",
         public stagetype: string = "welcome",
         public includeartworks: Array<string> = [],
     ) {
@@ -95,7 +95,7 @@ export class followStage extends Stage {
         public id?: number,
         public position?: number,
         public title: string = "Keep in touch",
-        public body: string = "Would you like to receive a link to your Slow Looking activity via email? If so, enter your email address.",
+        public body: string = "Would you like to receive a link to your Deep Viewpoints activity via email? If so, enter your email address.",
         public stagetype: string = "follow",
         public includeartworks: Array<string> = [],
     ) {
@@ -127,7 +127,7 @@ export class thankyouStage extends Stage {
         public id?: number,
         public position?: number,
         public title: string = "Thankyou",
-        public body: string = "Thankyou for taking part in this Slow Looking activity. ",
+        public body: string = "Thankyou for taking part in this Deep Viewpoints activity. Press the button below to save your response.",
         //  + "Share the activity over social media. This shares the activity, not your own response to it.",
         public stagetype: string = "thankyou",
         public includeartworks: Array<string> = [],

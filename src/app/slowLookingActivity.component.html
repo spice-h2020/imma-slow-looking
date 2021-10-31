@@ -19,7 +19,7 @@
             <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                 <div class="text-center">
-                    <button class="m-3 btn btn-warning" (click)="addActivity(); slowLookingScript='0'; " routerLink="/home">Return to the list of Slow Looking activities</button>
+                    <button class="m-3 btn btn-warning" (click)="addActivity(); slowLookingScript='0'; " routerLink="/home">Save your Deep Viewpoints activity</button>
                 </div>
             </span>
             <span *ngIf="slowLookingMaximumScriptStageIndex != i">
@@ -47,7 +47,7 @@
             <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                 <div class="text-center">
-                    <button class="m-3 btn btn-warning" (click)="addActivity(); slowLookingScript='0';" routerLink="/home">Return to the list of Slow Looking activities</button>
+                    <button class="m-3 btn btn-warning" (click)="addActivity(); slowLookingScript='0';" routerLink="/home">Save your Deep Viewpoints activity</button>
                 </div>
             </span>
             <span *ngIf="slowLookingMaximumScriptStageIndex != i">
@@ -107,7 +107,7 @@
                 <!-- return to list if last stage -->
                 <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                     <div class="text-center">
-                        <button class="m-3 btn btn-warning" (click)="newMultiquestionAction.questionStage = stage; newMultiquestionAction.questions = stage.body; addActionToActivity(newMultiquestionAction); resetNewMultiQuestionAction(); resetAnswerValue(); addActivity(); slowLookingScript='0';" routerLink="/home">Return to the list of Slow Looking activities</button>
+                        <button class="m-3 btn btn-warning" (click)="newMultiquestionAction.questionStage = stage; newMultiquestionAction.questions = stage.body; addActionToActivity(newMultiquestionAction); resetNewMultiQuestionAction(); resetAnswerValue(); addActivity(); slowLookingScript='0';" routerLink="/home">Save your Deep Viewpoints activity</button>
                     </div>
                 </span>
                 <!-- continue if not last stage -->
@@ -154,7 +154,7 @@
                 <!-- return to list if last stage -->
                 <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                     <div class="text-center">
-                        <button class="m-3 btn btn-warning" (click)="newQuestionAction.questionStage = stage; newQuestionAction.question = stage.body; addActionToActivity(newQuestionAction); resetNewQuestionAction(); addActivity(); slowLookingScript='0';" routerLink="/home">Return to the list of Slow Looking activities</button>
+                        <button class="m-3 btn btn-warning" (click)="newQuestionAction.questionStage = stage; newQuestionAction.question = stage.body; addActionToActivity(newQuestionAction); resetNewQuestionAction(); addActivity(); slowLookingScript='0';" routerLink="/home">Save your Deep Viewpoints activity</button>
                     </div>
                 </span>
                 <!-- continue if not last stage -->
@@ -207,7 +207,7 @@
 
             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                 <div class="text-center">
-                    <button class="m-3 btn btn-warning" (click)="newShareWithMusemAction.shareWithMuseumStage = stage; addActionToActivity(newShareWithMusemAction); resetNewShareWithMusemAction(); addActivity(); slowLookingScript='0';" routerLink="/home">Return to the list of Slow Looking activities</button>
+                    <button class="m-3 btn btn-warning" (click)="newShareWithMusemAction.shareWithMuseumStage = stage; addActionToActivity(newShareWithMusemAction); resetNewShareWithMusemAction(); addActivity(); slowLookingScript='0';" routerLink="/home">Save your Deep Viewpoints activity</button>
                 </div>
             </span>
             <span *ngIf="slowLookingMaximumScriptStageIndex != i">
@@ -242,7 +242,7 @@
             </div>
             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                 <div class="text-center">
-                    <button class="m-3 btn btn-warning" (click)="newFollowAction.followStage = stage; addActionToActivity(newFollowAction); resetFollowAction(); addActivity(); slowLookingScript='0';" routerLink="/home">Return to the list of Slow Looking activities</button>
+                    <button class="m-3 btn btn-warning" (click)="newFollowAction.followStage = stage; addActionToActivity(newFollowAction); resetFollowAction(); addActivity(); slowLookingScript='0';" routerLink="/home">Save your Deep Viewpoints activity</button>
                 </div>
             </span>
             <span *ngIf="slowLookingMaximumScriptStageIndex != i">
@@ -281,7 +281,7 @@
             </div>
             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                 <div class="text-center">
-                    <button class="m-3 btn btn-warning" (click)="newShareWithFriendAction.shareWithOtherStage = stage; addActionToActivity(newShareWithFriendAction); resetShareWithSomeoneAction(); addActivity(); slowLookingScript='0';" routerLink="/home">Return to the list of Slow Looking activities</button>
+                    <button class="m-3 btn btn-warning" (click)="newShareWithFriendAction.shareWithOtherStage = stage; addActionToActivity(newShareWithFriendAction); resetShareWithSomeoneAction(); addActivity(); slowLookingScript='0';" routerLink="/home">Save your Deep Viewpoints activity</button>
                 </div>
             </span>
             <span *ngIf="slowLookingMaximumScriptStageIndex != i">
@@ -314,7 +314,7 @@
             </div> -->
             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                 <div class="text-center">
-                    <button class="m-3 btn btn-warning" (click)="addActivity(); slowLookingScript='0';" routerLink="/home">Return to the list of Slow Looking activities</button>
+                    <button class="m-3 btn btn-warning" (click)="addActivity(); slowLookingScript='0';" routerLink="/home">Save your Deep Viewpoints activity</button>
                 </div>
             </span>
             <span *ngIf="slowLookingMaximumScriptStageIndex != i">
