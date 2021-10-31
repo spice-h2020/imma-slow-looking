@@ -1,4 +1,5 @@
-<div *ngFor="let stage of getScript(slowLookingScript).stages; let i = index" class="pl-5 pr-5">
+<div class="border pl-5 pr-5 pt-3">
+<div *ngFor="let stage of getScript(slowLookingScript).stages; let i = index">
     <div *ngIf="slowLookingCurrentScriptStageIndex == i">
         <div *ngIf="stage.stagetype == 'welcome'">  
             <h5 class="col-sm-12">{{stage.title}}</h5>
@@ -325,3 +326,5 @@
         </div>
     </div>
 </div> 
+</div>
+<br/><br/>
