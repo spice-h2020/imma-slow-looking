@@ -15,6 +15,8 @@ export class OtherPeopleComponent {
 
     mode: number = 1;
     
+    maximumResponses = 6;
+
     getThemes(): Theme[] {
         let themes =  this.model.getThemes();
         let sortedThemes = themes.sort((a, b) => (a.id < b.id) ? -1 : 1);

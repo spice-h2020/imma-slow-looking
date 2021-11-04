@@ -1,0 +1,73 @@
+<div class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container-fluid">
+        <div class="navbar-brand">IMMA Deep Viewpoints</div>
+    </div>
+</div>
+<div *ngFor="let script of getScriptsOfScriptID(slowLookingScript); let i = index" class="col-sm-12 pb-4">
+    <h5 class="col-sm-12">{{script.name}}</h5>
+    <span *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
+        <span *ngIf="artwork.url">
+            <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
+        </span>
+        <span *ngIf="!artwork.url && artwork.fileLocation">
+            <img class="col-sm-12" src="{{artwork.fileLocation}}" >
+        </span>
+
+        <div class="col-sm-12"><strong>{{artwork.name}}</strong></div>
+        <div class="col-sm-12">{{artwork.artist}}</div>
+        <div class="col-sm-12">{{artwork.year}}</div>
+    </span>
+    <div class="accordion " id="{{'script'+script._id}}">
+        <div class="accordion-item" style="background-color: rgb(41, 161, 184);">
+            <h2 class="accordion-header" id="{{'heading_' + 'script'+script._id}}">
+                <button 
+                    style="background-color: rgb(41, 161, 184);"
+                    class="accordion-button collapsed text-white" 
+                    type="button" 
+                    data-bs-toggle="collapse" 
+                    [attr.data-bs-target]="'#collapse_' + 'script'+script._id"
+                    aria-expanded="false" 
+                    [attr.aria-controls]="'collapse_'+ 'script'+script._id">
+                    All responses
+                </button>
+            </h2>
+            <div 
+                style="background-color: black;"
+                id="{{'collapse_' + 'script'+script._id}}" 
+                class="accordion-collapse collapse" 
+                [attr.aria-labelledby]="'heading_' + 'script'+script._id"
+                [attr.data-bs-parent]="'#script'+script._id">
+                <div class="accordion-body">
+                    <div *ngFor="let activity of getApprovedActivitiesOfAScript(script._id); let i = index; let even=even">
+                        <!-- <div style="background-color: #f2f2f2;" class="rounded-3"> -->
+                        <div class="card text-white mb-3" style="background-color: rgb(41, 161, 184); border-radius: 15px;">
+                        <div class="card-body p-5">
+                            <div *ngFor="let action of activity.actions;">
+                                <span *ngIf="action.questionStage">
+                                    <span *ngIf="action.questionStage.stagetype">
+                                        <span *ngIf="action.questionStage.stagetype != 'multiquestion'">
+                                            <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question"></span>
+                                            <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
+                                        </span>
+                                        <span *ngIf="action.questionStage.stagetype == 'multiquestion' && action.answers">
+                                            <span *ngFor="let answer of action.answers">
+                                                <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.questionStage.body[answer.question]"></span>
+                                                <p class="font-weight-normal" style="white-space: pre-wrap;">{{answer.answer}}</p>
+                                            </span>
+                                        </span>
+                                    </span>
+                                </span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between">
+                                <p class="mb-0">{{activity.authorname}}</p>
+                                <h6 class="mb-0"><span class="badge rounded-pill" style="background-color: rgba(0,0,0, 0.2);">{{activity.likes}}</span> <i (click)="addLikeToActivity(activity);" class="fas fa-heart ms-2"></i></h6>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,3 +1,4 @@
+<paNavBar></paNavBar>
 <p class="lead">
     Find out how others have responded to IMMA artworks.
 </p>
@@ -65,7 +66,7 @@
                                     [attr.aria-labelledby]="'heading_' + 'theme'+theme._id+'script'+script._id"
                                     [attr.data-bs-parent]="'#theme'+theme._id+'script'+script._id">
                                     <div class="accordion-body">
-                                        <div *ngFor="let activity of getApprovedActivitiesOfAScript(script._id); let i = index; let even=even">
+                                        <div *ngFor="let activity of getApprovedActivitiesOfAScript(script._id).slice(0, maximumResponses); let i = index; let even=even">
                                             <!-- <div style="background-color: #f2f2f2;" class="rounded-3"> -->
                                             <div class="card text-white mb-3" style="background-color: rgb(41, 161, 184); border-radius: 15px;">
                                             <div class="card-body p-5">
@@ -93,6 +94,15 @@
                                             </div>
                                             </div>
                                         </div>
+                                        <div *ngIf="getApprovedActivitiesOfAScript(script._id).length > maximumResponses">
+                                            <a routerLink="/allResponses/{{script._id}}" target='_blank'><button type="button" class="btn btn-secondary">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                                                    <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                                                </svg>
+                                                Show all          
+                                            </button></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -102,6 +112,6 @@
             </div>
         </div>
     </div>
-</div><br/>           
+</div><br/>         
 <h2>Take part</h2>
     <button class="btn btn-secondary" routerLink="/home">Try Deep Viewpoints activities for yourself</button><br/><br/>

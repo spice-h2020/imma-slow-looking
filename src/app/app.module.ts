@@ -17,6 +17,8 @@ import { MessageModule } from './messages/message.module';
 import { UserTableComponent } from './userTable.component';
 import { CurrentUser } from './currentUser.service';
 import { UserLoginComponent } from './userLogin.component';
+import { AllResponsesComponent } from './allResponses.component';
+import { NavBarComponent } from './navBar.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { UserLoginComponent } from './userLogin.component';
     SlowLookingActivityComponent,
     ArtworkTableComponent,
     UserTableComponent,
-    UserLoginComponent
+    UserLoginComponent,
+    AllResponsesComponent,
+    NavBarComponent
     ],
   imports: [
     BrowserModule,

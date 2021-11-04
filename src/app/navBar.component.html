@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/home">IMMA Deep Viewpoints</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/home" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/otherPeople" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Other People</a>
+                </li>
+                <li *ngIf="!isLoggedOut()" class="nav-item">
+                  <a class="nav-link" routerLink="/management" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Management</a>
+                </li>
+                <li *ngIf="!isLoggedOut()" class="nav-item">
+                  <a class="nav-link" routerLink="/authoring" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Scripts</a>
+                </li>
+                <li *ngIf="!isLoggedOut()" class="nav-item">
+                  <a class="nav-link" routerLink="/artworks" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Artworks</a>
+                </li>
+                <li *ngIf="!isLoggedOut()" class="nav-item">
+                  <a class="nav-link" routerLink="/themes" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Themes</a>
+                  </li>
+                <li *ngIf="isAdmin()" class="nav-item">
+                  <a class="nav-link" routerLink="/users" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Users</a>
+                </li>
+                <li *ngIf="isLoggedOut()" class="nav-item">
+                  <a class="nav-link" routerLink="/login" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Login</a>
+                  </li>
+                  <li *ngIf="!isLoggedOut()" class="nav-item">
+                  <a class="nav-link" routerLink="/login" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">{{getCurrentUsername()}}</a>
+                  </li>
+            </ul>
+        </div>
+    </div>
+  </nav>

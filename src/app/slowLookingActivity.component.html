@@ -1,3 +1,4 @@
+<paNavBar></paNavBar>
 <div class="border pl-5 pr-5 pt-3">
 <div *ngFor="let stage of getScript(slowLookingScript).stages; let i = index">
     <div *ngIf="slowLookingCurrentScriptStageIndex == i">
@@ -114,7 +115,7 @@
                 <!-- continue if not last stage -->
                 <span *ngIf="slowLookingMaximumScriptStageIndex != i">
                     <div class="text-right">
-                        <button class="m-3 btn btn-warning" (click)="newMultiquestionAction.questionStage = stage; newMultiquestionAction.questions = stage.body; slowLookingCurrentScriptStageIndex=i+1; addActionToActivity(newMultiquestionAction); resetNewMultiQuestionAction(); resetAnswerValue(); showQuestionHelp=false;">Continue</button>
+                        <button class="m-3 btn btn-warning" (click)="newMultiquestionAction.questionStage = stage; newMultiquestionAction.questions = stage.body; slowLookingCurrentScriptStageIndex=i+1; addActionToActivity(newMultiquestionAction); resetNewMultiQuestionAction(); resetAnswerValue(); showQuestionHelp=false; submittedAnswer=false;">Continue</button>
                     </div>
                 </span>
 

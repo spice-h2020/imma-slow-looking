@@ -1,10 +1,11 @@
+<paNavBar></paNavBar>
 <p>Deep Viewpoints login.</p>
 <span *ngIf="getCurrentUserID()==0">
     <span>Username</span>
-    <textarea rows="1" class="form-control" [(ngModel)]="username"></textarea>
+    <input type="text" class="form-control" [(ngModel)]="username"/>
     <br/>
     <span>Password</span>
-    <textarea rows="1" class="form-control" [(ngModel)]="password"></textarea>
+    <input type="password" class="form-control" [(ngModel)]="password"/>
     <span *ngIf="loginFailed" class="text-warning">Username and/or password incorrect</span><br/>
     <button class="btn btn-secondary" (click)="loginAttempt()" [disabled]="!username || !password">Login</button>
 </span>
