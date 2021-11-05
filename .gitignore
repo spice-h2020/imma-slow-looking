@@ -1,5 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# Deep Viewpoints config
+/src/app/config.ts
+
 # compiled output
 /dist
 /tmp
