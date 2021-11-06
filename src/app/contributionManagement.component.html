@@ -12,19 +12,19 @@
 <div [ngSwitch]="managementMode">  
     <div *ngSwitchCase="1">
         <!-- show all -->
-        <div *ngFor="let item of getActivities(); let i = index" class="mb-5">
-            <div class="text-center border">
-                <span *ngIf="item.approved">
+        <div *ngFor="let item of getActivities(); let i = index" class="mb-3 card border p-3" style="border-radius: 15px;">
+            <div class="text-center">
+                <span *ngIf="item.approved" style="color: rgb(33, 136, 56)">
                     Approved
                 </span>
-                <span *ngIf="!(item.approved)">
+                <span *ngIf="!(item.approved)" style="color: rgb(224, 168, 1)">
                     Awaiting approval
                 </span>
             </div>
-            <div class="text-sm-left border">
+            <div class="text-sm-left">
                 <span class="text-sm-left font-weight-bold">{{item.script.name}}</span>
 
-                <div class="card text-white" style="background-color: #1f959b; border-radius: 15px;">
+                <div class="card text-white mb-3" style="background-color: #1f959b; border-radius: 15px;">
                     <div class="card-body p-5">
                         <div *ngFor="let action of item.actions;">
                             <span *ngIf="action.questionStage">
@@ -54,7 +54,7 @@
                     <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this activity?</strong> <div><button class="btn btn-danger ml-2" (click)="deleteActivity(item._id)">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteConfirmation_Id=''">Cancel</button></div></div>
                 </span>
             </div>
-            <div class="text-sm-left border">
+            <div class="text-sm-left">
                 <div *ngIf="item.approved">
                     <button class="col-sm-4 text-center btn btn-warning" (click)="item.approved=false; saveActivity(item)">Reject</button>
                     <button class="col-sm-4 text-center float-right btn btn-danger" (click)="confirmDelete(item._id)">Delete</button>            
@@ -68,17 +68,17 @@
     </div>
     <div *ngSwitchCase="2">
         <!-- show approved -->
-        <div *ngFor="let item of getApprovedActivities(); let i = index" class="mb-5">
-            <div class="text-center border">
-                <span *ngIf="item.approved">
+        <div *ngFor="let item of getApprovedActivities(); let i = index" class="mb-3 card border p-3" style="border-radius: 15px;">
+            <div class="text-center">
+                <span *ngIf="item.approved" style="color: rgb(33, 136, 56)">
                     Approved
                 </span>
-                <span *ngIf="!(item.approved)">
+                <span *ngIf="!(item.approved)" style="color: rgb(224, 168, 1)">
                     Awaiting approval
                 </span>
             </div>
-            <div class="text-sm-left border">
-                <p class="text-sm-left font-weight-bold">{{item.script.name}}</p>
+            <div class="text-sm-left">
+                <span class="text-sm-left font-weight-bold">{{item.script.name}}</span>
 
                 <div class="card text-white mb-3" style="background-color: #1f959b; border-radius: 15px;">
                     <div class="card-body p-5">
@@ -110,7 +110,7 @@
                     <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this activity?</strong> <div><button class="btn btn-danger ml-2" (click)="deleteActivity(item._id)">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteConfirmation_Id=''">Cancel</button></div></div>
                 </span>
             </div>
-            <div class="text-sm-left border">
+            <div class="text-sm-left">
                 <div *ngIf="item.approved">
                     <button class="col-sm-4 text-center btn btn-warning" (click)="item.approved=false; saveActivity(item)">Reject</button>
                     <button class="col-sm-4 text-center float-right btn btn-danger" (click)="confirmDelete(item._id)">Delete</button>            
@@ -124,17 +124,17 @@
     </div>
     <div *ngSwitchCase="3">
         <!-- show waiting approval -->
-        <div *ngFor="let item of getUnpprovedActivities(); let i = index" class="mb5">
-            <div class="text-center border">
-                <span *ngIf="item.approved">
+        <div *ngFor="let item of getUnpprovedActivities(); let i = index" class="mb-3 card border p-3" style="border-radius: 15px;">
+            <div class="text-center">
+                <span *ngIf="item.approved" style="color: rgb(33, 136, 56)">
                     Approved
                 </span>
-                <span *ngIf="!(item.approved)">
+                <span *ngIf="!(item.approved)" style="color: rgb(224, 168, 1)">
                     Awaiting approval
                 </span>
             </div>
-            <div class="text-sm-left border">
-                <p class="text-sm-left font-weight-bold">{{item.script.name}}</p>
+            <div class="text-sm-left">
+                <span class="text-sm-left font-weight-bold">{{item.script.name}}</span>
 
                 <div class="card text-white mb-3" style="background-color: #1f959b; border-radius: 15px;">
                     <div class="card-body p-5">
@@ -167,7 +167,7 @@
                 </span>
 
             </div>
-            <div class="text-sm-left border">
+            <div class="text-sm-left">
                 <div *ngIf="item.approved">
                     <button class="col-sm-4 text-center btn btn-warning" (click)="item.approved=false; saveActivity(item)">Reject</button>
                     <button class="col-sm-4 text-center float-right btn btn-danger" (click)="confirmDelete(item._id)">Delete</button>            
