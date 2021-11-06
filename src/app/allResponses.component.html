@@ -4,7 +4,7 @@
     </div>
 </div>
 <div *ngFor="let script of getScriptsOfScriptID(slowLookingScript); let i = index" class="col-sm-12 pb-4">
-    <h5 class="col-sm-12">{{script.name}}</h5>
+    <h4 class="col-sm-12">{{script.name}}</h4>
     <span *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
         <span *ngIf="artwork.url">
             <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">

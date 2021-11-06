@@ -18,9 +18,9 @@
                     [attr.data-bs-target]="'#collapse_' + theme._id"
                     aria-expanded="false" 
                     [attr.aria-controls]="'collapse_'+ theme._id">
-                    <div><strong>{{theme.name}}</strong><br/>
-                    {{theme.description}}
-                    </div>
+                    <span><h4>{{theme.name}}</h4>
+                        {{theme.description}}
+                    </span>
                 </button>
             </h2>
             <div 
@@ -31,7 +31,7 @@
                 data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
                     <div *ngFor="let script of getScriptsOfTheme(theme._id); let i = index" class="col-sm-12 pb-4">
-                        <h5 class="col-sm-12">{{script.name}}</h5> 
+                        <h4 class="col-sm-12">{{script.name}}</h4> 
                         <span *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
                             
                             <span *ngIf="artwork.url">
@@ -106,7 +106,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div><br/>
                     </div>                            
                 </div>
             </div>

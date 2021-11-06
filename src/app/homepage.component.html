@@ -9,50 +9,49 @@
 
 <h2>Take Part</h2>
 <p>Deep Viewpoints activities are organised into themes. Each activity is based on selected artworks in the IMMA collection. Select a theme to begin. Tap on the artwork to start the activity. </p>
-<div class="row">
-    <div *ngFor="let theme of getThemes(); let i = index">
-        <div class="accordion " id="accordionFlushExample">
-            <div class="accordion-item">
-            <h2 class="accordion-header" id="{{'heading_' + theme._id}}">
-                <button 
-                    style="background-color: rgb(41, 161, 184);"
-                    class="accordion-button collapsed text-white" 
-                    type="button" 
-                    data-bs-toggle="collapse" 
-                    [attr.data-bs-target]="'#collapse_' + theme._id"
-                    aria-expanded="false" 
-                    [attr.aria-controls]="'collapse_'+ theme._id">
-                    <div><strong>{{theme.name}}</strong><br/>
-                    {{theme.description}}
-                    </div>
-                </button>
-            </h2>
-            <div 
-                style="background-color: black;"
-                id="{{'collapse_' + theme._id}}" 
-                class="accordion-collapse collapse text-white" 
-                [attr.aria-labelledby]="'heading_' + theme._id"
-                data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">
-                    <div *ngFor="let script of getScriptsOfTheme(theme._id); let i = index" class="col-sm-12 pb-4">
-                        <h5 class="col-sm-12">{{script.name}}</h5> 
-                        <span *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
-                            <span *ngIf="artwork.url">
-                            <a routerLink="/slowLooking/{{script._id}}"><img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}"></a>
-                            </span>
-                            <span *ngIf="!artwork.url && artwork.fileLocation">
-                            <img routerLink="/slowLooking/{{script._id}}" class="col-sm-12" src="{{artwork.fileLocation}}" >
-                            </span>
-                            <div class="col-sm-12"><strong>{{artwork.name}}</strong></div>
-                            <div class="col-sm-12">{{artwork.artist}}</div>
-                            <div class="col-sm-12">{{artwork.year}}</div>
+
+<div *ngFor="let theme of getThemes(); let i = index">
+    <div class="accordion " id="accordionFlushExample">
+        <div class="accordion-item">
+        <h2 class="accordion-header" id="{{'heading_' + theme._id}}">
+            <button 
+                style="background-color: rgb(41, 161, 184);"
+                class="accordion-button collapsed text-white" 
+                type="button" 
+                data-bs-toggle="collapse" 
+                [attr.data-bs-target]="'#collapse_' + theme._id"
+                aria-expanded="false" 
+                [attr.aria-controls]="'collapse_'+ theme._id">
+                <span><h4>{{theme.name}}</h4>
+                {{theme.description}}</span>
+            </button>
+        </h2>
+        <div 
+            style="background-color: black;"
+            id="{{'collapse_' + theme._id}}" 
+            class="accordion-collapse collapse text-white" 
+            [attr.aria-labelledby]="'heading_' + theme._id"
+            data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+                <div *ngFor="let script of getScriptsOfTheme(theme._id); let i = index" class="col-sm-12 pb-4">
+                    <h4 class="col-sm-12">{{script.name}}</h4> 
+                    <span *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
+                        <span *ngIf="artwork.url">
+                        <a routerLink="/slowLooking/{{script._id}}"><img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}"></a>
                         </span>
-                    </div>
+                        <span *ngIf="!artwork.url && artwork.fileLocation">
+                        <img routerLink="/slowLooking/{{script._id}}" class="col-sm-12" src="{{artwork.fileLocation}}" >
+                        </span>
+                        <div class="col-sm-12"><strong>{{artwork.name}}</strong></div>
+                        <div class="col-sm-12">{{artwork.artist}}</div>
+                        <div class="col-sm-12">{{artwork.year}}</div>
+                    </span><br/>
                 </div>
             </div>
-            </div>
+        </div>
         </div>
     </div>
-</div><br/>
+</div>
+<br/>
 <h2>Other People</h2>
 <button class="btn btn-secondary" routerLink="/otherPeople">Find out how others have responded to these artworks</button><br/><br/>

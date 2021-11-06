@@ -221,7 +221,9 @@ export class ScriptAuthoringComponent {
     }
 
     getThemes(): Theme[] {
-        return this.model.getThemes();
+        let themes = this.model.getThemes();
+        let sortedThemes = themes.sort((a, b) => (a.id < b.id) ? -1 : 1);
+        return sortedThemes;
     }
 
     getTheme(_id: string): Theme {
