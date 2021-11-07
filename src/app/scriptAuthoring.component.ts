@@ -201,8 +201,27 @@ export class ScriptAuthoringComponent {
         this.model.saveScript(script);
     }
 
-    getArtworks(): Artwork[] {
-        return this.model.getArtworks();
+    getArtworks() {
+        let artworks =  this.model.getArtworks();
+
+        // filter artworks for login
+        let filteredArtworks = this.filterArtworksForLogin(artworks);
+
+        let sortedArtworks = filteredArtworks.sort((a, b) => (a.id > b.id) ? -1 : 1);
+
+        return sortedArtworks;
+    }
+
+    filterArtworksForLogin(artworks: Artwork[]): Artwork[] {
+        let userID = this.currentuser.getUserID();
+        let user = this.currentuser.getUser();
+
+        if (userID == 0) {
+            return [];
+        }
+
+        let filteredArtworks = artworks.filter(x => x.owner == user._id);
+        return filteredArtworks;
     }
 
     getArtworksFromIds(artworkIds: Array<string>): Array<Artwork> {
