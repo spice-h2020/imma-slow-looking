@@ -30,8 +30,12 @@
                 [attr.aria-labelledby]="'heading_' + theme._id"
                 data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
-                    <div *ngFor="let script of getScriptsOfTheme(theme._id); let i = index" class="col-sm-12 pb-4">
+                    <div *ngFor="let script of getScriptsOfTheme(theme._id); let i = index; let last = last" class="col-sm-12">
                         <h5 class="col-sm-12">{{script.name}}</h5> 
+                        <div class="col-sm-12">
+                            <p style="white-space: pre-wrap;">{{script.description}}</p>
+                            <figcaption *ngIf="script.author != ''" class="blockquote-footer" style="color: black;">{{script.author}}</figcaption>
+                        </div>
                         <span *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
                             
                             <span *ngIf="artwork.url">
@@ -45,7 +49,7 @@
                             <div class="col-sm-12">{{artwork.artist}}</div>
                             <div class="col-sm-12">{{artwork.year}}</div>
                         </span>
-                        <div class="accordion " id="{{'theme'+theme._id+'script'+script._id}}">
+                        <div class="accordion mt-3" id="{{'theme'+theme._id+'script'+script._id}}">
                             <div class="accordion-item" style="background-color: rgb(41, 161, 184);">
                                 <h2 class="accordion-header" id="{{'heading_' + 'theme'+theme._id+'script'+script._id}}">
                                     <button 
@@ -107,6 +111,9 @@
                                 </div>
                             </div>
                         </div><br/>
+                        <div *ngIf="!last" class="col-sm-12">
+                            <hr>
+                        </div>
                     </div>                            
                 </div>
             </div>

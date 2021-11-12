@@ -207,7 +207,7 @@ export class ScriptAuthoringComponent {
         // filter artworks for login
         let filteredArtworks = this.filterArtworksForLogin(artworks);
 
-        let sortedArtworks = filteredArtworks.sort((a, b) => (a.id > b.id) ? -1 : 1);
+        let sortedArtworks = filteredArtworks.sort((a, b) => (a.artist < b.artist) ? -1 : 1);
 
         return sortedArtworks;
     }

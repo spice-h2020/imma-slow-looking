@@ -15,6 +15,7 @@ export class Script {
         public author?: string,
         public archived: boolean = false,
         public owner?: string,
-        public autoapproved: boolean = false
+        public autoapproved: boolean = false,
+        public description: string = "A short description of what the activity is about, what will it involve, why people should take part"
     ) {}
 }
