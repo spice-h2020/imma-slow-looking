@@ -171,7 +171,7 @@
                     <tr><td  class="align-top">
                         <span class="font-weight-bold">Artworks: </span>
                     </td><td>
-                        <span *ngFor="let artwork of getArtworks()" class="mr-3">
+                        <span *ngFor="let artwork of getArtworks(script)" class="mr-3">
                             <input
                             type="checkbox"
                             [value]=artwork._id
@@ -187,6 +187,7 @@
                             <label class="form-check-label"> {{artwork.name}}, {{artwork.artist}}, {{artwork.year}} </label>
                             <br/>
                         </span>
+                        <span *ngIf="!getArtworks(script).length" class="text-warning">From the artwork tab you need to add at least one artwork to your collection<br/></span>
                         <span *ngIf="!getArtworksFromIds(script.artworkids).length" class="text-warning">At least one artwork must be selected</span>
                     </td></tr>
 

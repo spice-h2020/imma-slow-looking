@@ -201,26 +201,24 @@ export class ScriptAuthoringComponent {
         this.model.saveScript(script);
     }
 
-    getArtworks() {
+    getArtworks(script: Script) {
         let artworks =  this.model.getArtworks();
 
         // filter artworks for login
-        let filteredArtworks = this.filterArtworksForLogin(artworks);
+        let filteredArtworks = this.filterArtworksForScriptOwner(artworks, script);
 
         let sortedArtworks = filteredArtworks.sort((a, b) => (a.artist < b.artist) ? -1 : 1);
 
         return sortedArtworks;
     }
 
-    filterArtworksForLogin(artworks: Artwork[]): Artwork[] {
-        let userID = this.currentuser.getUserID();
-        let user = this.currentuser.getUser();
+    filterArtworksForScriptOwner(artworks: Artwork[], script: Script): Artwork[] {
 
-        if (userID == 0) {
+        if (script.owner == undefined) {
             return [];
         }
 
-        let filteredArtworks = artworks.filter(x => x.owner == user._id);
+        let filteredArtworks = artworks.filter(x => x.owner == script.owner);
         return filteredArtworks;
     }
 
