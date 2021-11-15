@@ -187,7 +187,7 @@
                             <label class="form-check-label"> {{artwork.name}}, {{artwork.artist}}, {{artwork.year}} </label>
                             <br/>
                         </span>
-                        <span *ngIf="!getArtworks(script).length" class="text-warning">From the artwork tab you need to add at least one artwork to your collection<br/></span>
+                        <span *ngIf="!getArtworks(script).length" class="text-warning">From the artwork tab the script author needs to add at least one artwork to the collection<br/></span>
                         <span *ngIf="!getArtworksFromIds(script.artworkids).length" class="text-warning">At least one artwork must be selected</span>
                     </td></tr>
 
