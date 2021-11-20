@@ -37,7 +37,7 @@ export class ArtworkTableComponent {
     selectedURL() {
         return this.selectItem["filelocation"];
     }
-    keyword = 'name';
+    keyword = 'searchstring';
     data = this.model.getCollection();
 
     // data for testing

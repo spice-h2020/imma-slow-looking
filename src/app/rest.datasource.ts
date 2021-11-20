@@ -119,7 +119,7 @@ import { ConfigSettings } from "./config";
             this.http.get<any>(this.collectionURL, this.configSettings.config).subscribe(data => {
                 let resarray:  Array<CollectionArtwork> = [];
                 for(var item of data["results"]["bindings"]) {
-                    observer.next(new CollectionArtwork(item["title"]["value"], item["creatorname"]["value"], item["year"]["value"], item["artworkurl"]["value"]));
+                    observer.next(new CollectionArtwork(item["title"]["value"], item["creatorname"]["value"], item["year"]["value"], item["artworkurl"]["value"], item["title"]["value"]+item["creatorname"]["value"]));
                 }
                 observer.complete();
             });
