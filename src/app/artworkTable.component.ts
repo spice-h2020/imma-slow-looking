@@ -17,7 +17,7 @@ export class ArtworkTableComponent {
         this.deleteConfirmation_Id = _id;
     }
 
-    placeholderText = "Artwork name";
+    placeholderText = "Artwork, artist or year";
     selected: boolean = false;
     selectItem: Array<any> = [];
 
