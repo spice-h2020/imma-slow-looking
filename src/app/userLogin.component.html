@@ -23,6 +23,7 @@
     <span *ngIf="deleteConfirmation_Id==activity._id">
         <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this activity?</strong> <div><button class="btn btn-danger ml-2" (click)="deleteActivity(activity._id)">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteConfirmation_Id=''">Cancel</button></div></div>
     </span>
+    <span class="text-sm-left font-weight-bold">{{activity.script.name}}</span>
     <div class="card text-white mb-3" style="background-color: #1f959b; border-radius: 15px;">
         <div class="card-body p-5">
             <div *ngFor="let action of activity.actions;">
@@ -49,7 +50,9 @@
         </div>
     </div>
     </td>
-    <td><span><button (click)="confirmDelete(activity._id)" class="btn btn-danger">Delete</button></span></td>
+    <td><span class="text-sm-left font-weight-bold">&nbsp;</span><br/>
+        <span><button (click)="confirmDelete(activity._id)" class="btn btn-danger">Delete</button></span>
+    </td>
 </tr>
 </table>
 </span>
