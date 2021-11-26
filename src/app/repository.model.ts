@@ -7,6 +7,7 @@ import { RestDataSource } from "./rest.datasource";
 import { Injectable } from "@angular/core";
 import { CollectionArtwork } from "./collectionArtwork.model";
 import { User } from "./user.model";
+import { ExtraArtworks } from "./extraArtworks";
 
 @Injectable()
 export class Model {
@@ -29,7 +30,11 @@ export class Model {
     private dbThemes: Theme[] = new Array<Theme>();
     private dbActivities: Activity[] = new Array<Activity>();
     private dbUsers: User[] = new Array<User>();
-    private dbCollectionArtworks: CollectionArtwork[] = new Array<CollectionArtwork>();
+
+    //add artworks not in LDH//
+    private extraArtworks = new ExtraArtworks;
+    private dbCollectionArtworks: CollectionArtwork[] = this.extraArtworks.artworks;
+    // new Array<CollectionArtwork>();
 
 
     constructor(private dbDataSource: RestDataSource) {
