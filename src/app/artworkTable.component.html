@@ -30,9 +30,9 @@
             </td>
             <td>
                 <div *ngIf="selected">
-                    <strong>{{selectedName()}}</strong><br/>
-                    {{selectedArtist()}}<br/>
-                    {{selectedYear()}}
+                    <strong><span style="white-space: pre-wrap;" [innerHTML]="selectedName()"></span></strong><br/>
+                    <span style="white-space: pre-wrap;" [innerHTML]="selectedArtist()"></span><br/>
+                    <span style="white-space: pre-wrap;" [innerHTML]="selectedYear()"></span>
                 </div>
             </td>
             <td>
