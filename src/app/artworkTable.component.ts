@@ -32,7 +32,7 @@ export class ArtworkTableComponent {
         return this.selectItem["artist"];
     }
     selectedYear() {
-        return this.selectItem["year"]
+        return this.selectItem["year"];
     }
     selectedURL() {
         return this.selectItem["filelocation"];
@@ -78,7 +78,7 @@ export class ArtworkTableComponent {
         let filteredArtworks = this.filterArtworksForLogin(artworks);
 
         let sortedArtworks = filteredArtworks.sort((a, b) => (a.artist < b.artist) ? -1 : 1);
-
+        console.log(sortedArtworks);
         return sortedArtworks;
     }
 

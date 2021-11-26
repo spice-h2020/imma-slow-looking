@@ -50,14 +50,14 @@
                     </span>
                     <table>
                     <tr *ngFor="let artwork of getArtworksFromIds(script.artworkids); let first = first">
-                            <td><span *ngIf="first" class="font-weight-bold">Artworks:</span></td><td>{{artwork.name}}, {{artwork.artist}}, {{artwork.year}}</td>
+                            <td><span *ngIf="first" class="font-weight-bold">Artworks:</span></td><td><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span>, <span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span>, {{artwork.year}}</td>
                     </tr>
                     </table>
                     <span class="font-weight-bold">
                         Homepage artwork: 
                     </span>
                     <span *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
-                        {{artwork.name}}, {{artwork.artist}}, {{artwork.year}}
+                        <span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span>, <span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span>, {{artwork.year}}
                     </span><br/>
 
                     <!-- <span *ngFor="let artwork of getArtworkFromId(script.artworkid);">
@@ -184,7 +184,7 @@
                             name="artwork.name"
                             [(ngModel)] = "script.artworkid"
                             /> -->
-                            <label class="form-check-label"> {{artwork.name}}, {{artwork.artist}}, {{artwork.year}} </label>
+                            <label class="form-check-label"> <span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span>, <span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span>, {{artwork.year}} </label>
                             <br/>
                         </span>
                         <span *ngIf="!getArtworks(script).length" class="text-warning">From the artwork tab the script author needs to add at least one artwork to the collection<br/></span>
@@ -201,7 +201,7 @@
                             name="artwork.name"
                             [(ngModel)] = "script.homepageartworkid"
                             />
-                            <label class="form-check-label"> {{artwork.name}}, {{artwork.artist}}, {{artwork.year}} </label>
+                            <label class="form-check-label"> <span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span>, <span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span>, {{artwork.year}} </label>
                             <br/>
                         </span>
                         <span *ngIf="script.homepageartworkid==undefined" class="text-warning">An artwork for the homepage must be selected</span>
@@ -306,7 +306,7 @@
                             </span>
                             <table>
                             <tr *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
-                                    <td><span *ngIf="first" class="font-weight-bold">Show artworks:</span></td><td>{{artwork.name}}, {{artwork.artist}}, {{artwork.year}}</td>
+                                    <td><span *ngIf="first" class="font-weight-bold">Show artworks:</span></td><td><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span>, <span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span>, {{artwork.year}}</td>
                             </tr>
                             </table>
 
@@ -372,7 +372,7 @@
                                         [ngModel] = "stage.includeartworks.includes(artwork._id)"
                                         (change) = "includeArtworksChange(script, stage, artwork._id, $event)"
                                         />
-                                        <label class="form-check-label ml-1"> {{artwork.name}}, {{artwork.artist}}, {{artwork.year}} </label>
+                                        <label class="form-check-label ml-1"> <span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span>, <span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span>, {{artwork.year}} </label>
                                         <br/>
                                     </span>
                                 </td>

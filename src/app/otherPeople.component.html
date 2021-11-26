@@ -45,8 +45,8 @@
                                 <img class="col-sm-12" src="{{artwork.fileLocation}}" >
                             </span>
 
-                            <div class="col-sm-12"><strong>{{artwork.name}}</strong></div>
-                            <div class="col-sm-12">{{artwork.artist}}</div>
+                            <div class="col-sm-12"><strong><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></strong></div>
+                            <div class="col-sm-12"><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></div>
                             <div class="col-sm-12">{{artwork.year}}</div>
                         </span>
                         <div class="accordion mt-3" id="{{'theme'+theme._id+'script'+script._id}}">
