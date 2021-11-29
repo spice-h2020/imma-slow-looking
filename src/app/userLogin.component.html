@@ -1,6 +1,6 @@
 <paNavBar></paNavBar>
 <p class="lead">Login to Deep Viewpoints and see your contributions.</p>
-<span *ngIf="getCurrentUserID()==0">
+<span *ngIf="getCurrentUserID()==undefined">
     <span>Username</span>
     <input type="text" class="form-control" [(ngModel)]="username"/>
     <br/>
@@ -9,7 +9,7 @@
     <span *ngIf="loginFailed" class="text-warning">Username and/or password incorrect</span><br/>
     <button class="btn btn-secondary" (click)="loginAttempt()" [disabled]="!username || !password">Login</button>
 </span>
-<span *ngIf="getCurrentUserID()!=0">
+<span *ngIf="getCurrentUserID()!=undefined">
     <span>Username</span>
     <p><strong>{{getCurrentUsername()}}</strong></p>
     <button class="btn btn-secondary" (click)="logout(); clearNewUser();">Logout</button>

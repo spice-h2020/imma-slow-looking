@@ -83,8 +83,8 @@ export class ArtworkTableComponent {
     }
 
     filterArtworksForLogin(artworks: Artwork[]): Artwork[] {
-        let userID = this.currentuser.getUserID();
         let user = this.currentuser.getUser();
+        let userID = user.id;
 
         if (userID == 0) {
             return [];
@@ -115,7 +115,7 @@ export class ArtworkTableComponent {
     }
 
     isLoggedIn() {
-        return this.currentuser.getUserID() != 0;
+        return this.currentuser.getUserID() != undefined;
     }
 
 }

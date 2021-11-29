@@ -30,9 +30,9 @@
                 <li *ngIf="isLoggedOut()" class="nav-item">
                   <a class="nav-link" routerLink="/login" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Login</a>
                   </li>
-                  <li *ngIf="!isLoggedOut()" class="nav-item">
+                <li *ngIf="!isLoggedOut()" class="nav-item">
                   <a class="nav-link" routerLink="/login" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">{{getCurrentUsername()}}</a>
-                  </li>
+                </li>
             </ul>
         </div>
     </div>

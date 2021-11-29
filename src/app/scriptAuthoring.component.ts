@@ -77,9 +77,9 @@ export class ScriptAuthoringComponent {
         newscript.artworkids = [];
         newscript.stages = [];
 
-        let userID = this.currentuser.getUserID();
         let user = this.currentuser.getUser();
-        if (userID != 0) {
+        let userID = user.id;
+        if (userID != undefined) {
             newscript.owner = user._id;
             newscript.author = this.currentuser.getUser().username;
         }
@@ -346,10 +346,10 @@ export class ScriptAuthoringComponent {
     }
 
     filterScriptsForLogin(scripts: Script[]): Script[] {
-        let userID = this.currentuser.getUserID();
         let user = this.currentuser.getUser();
+        let userID = user.id;
 
-        if (userID == 0) {
+        if (userID == undefined) {
             return [];
         }
 
@@ -375,7 +375,7 @@ export class ScriptAuthoringComponent {
     }
 
     isLoggedIn() {
-        return this.currentuser.getUserID() != 0;
+        return this.currentuser.getUserID() != undefined;
     }
     
 }

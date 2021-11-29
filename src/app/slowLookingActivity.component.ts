@@ -203,8 +203,8 @@ export class SlowLookingActivityComponent implements OnInit {
         }
         
         // add author to activity
-        let userID = this.currentuser.getUserID();
         let user = this.currentuser.getUser();
+        let userID = user.id;
         if(userID == 0) {
             this.newActivity.author = "";
             this.newActivity.authorname = "anonymous";

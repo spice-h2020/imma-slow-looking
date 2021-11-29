@@ -53,10 +53,10 @@ export class ContributionManagementComponent {
     }
 
     filterActivitiesForLogin(activities: Activity[]): Activity[] {
-        let userID = this.currentuser.getUserID();
         let user = this.currentuser.getUser();
+        let userID = user.id;
 
-        if (userID == 0) {
+        if (userID == undefined) {
             return [];
         }
 
@@ -70,7 +70,7 @@ export class ContributionManagementComponent {
     }
 
     isLoggedIn() {
-        return this.currentuser.getUserID() != 0;
+        return this.currentuser.getUserID() != undefined;
     }
 }
 

@@ -68,7 +68,7 @@ export class UserLoginComponent {
     }
 
     getActivitiesOfCurrentUser(): Activity[] {
-        if(this.currentuser.getUserID() == 0) {
+        if(this.currentuser.getUserID() == undefined) {
             return [];
         }
         else {

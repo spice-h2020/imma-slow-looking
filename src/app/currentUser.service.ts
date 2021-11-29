@@ -3,25 +3,37 @@ import { User } from "./user.model";
 
 @Injectable()
 export class CurrentUser{
-    private userID = 0;
+    
+    constructor(){}
+
     private user: User = new User;
 
     public getUserID(): number {
-        return this.userID;
+        return this.getUser().id;
     }
 
     public getUser(): User {
-        return this.user;
+        let userstring = localStorage.getItem("user");
+        let user = JSON.parse(userstring);
+        console.log("get user");
+        console.log(user);
+        console.log(this.user);
+        return user;
     }
 
     public setUser(user: User) {
-        this.userID = user.id;
+        let userstring = JSON.stringify(user);
+        localStorage.setItem("user", userstring);
+        console.log("set user");
+        console.log(userstring);
         this.user = user;
     }
 
     public logout() {
-        this.userID = 0;
+        // localStorage.clear();
         this.user = new User;
+        localStorage.setItem("user", JSON.stringify(this.user));
+        console.log("clear");
     }
 
 }

@@ -13,10 +13,6 @@ export class ThemeTableComponent {
 
     constructor(public currentuser: CurrentUser, private model: Model){}
 
-    getCurrentUserID() {
-        return this.currentuser.getUserID();
-    }
-
     getUsers(): User[] {
         return this.model.getUsers();
     }
@@ -36,7 +32,7 @@ export class ThemeTableComponent {
     }
 
     isLoggedIn() {
-        return this.currentuser.getUserID() != 0;
+        return this.currentuser.getUserID() != undefined;
     }
 
     writeAccess(theme: Theme): boolean {

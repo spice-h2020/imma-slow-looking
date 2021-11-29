@@ -18,7 +18,7 @@ export class NavBarComponent {
     }
 
     isLoggedOut() {
-        return this.currentuser.getUserID() == 0;
+        return this.currentuser.getUserID() == undefined;
     }
 
     getUsers(): User[] {
