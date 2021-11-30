@@ -15,18 +15,20 @@ export class CurrentUser{
     public getUser(): User {
         let userstring = localStorage.getItem("user");
         let user = JSON.parse(userstring);
-        return user;
+        if (user == null) {
+            return this.user;
+        }
+        else {
+            return user;
+        }
     }
 
     public setUser(user: User) {
         let userstring = JSON.stringify(user);
         localStorage.setItem("user", userstring);
-
-        // this.user = user;
     }
 
     public logout() {
-        this.user = new User;
         localStorage.setItem("user", JSON.stringify(this.user));
     }
 
