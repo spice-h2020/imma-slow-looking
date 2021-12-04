@@ -167,6 +167,48 @@
                 </span>
             </div>
         </div>   
+
+        <div *ngIf="stage.stagetype == 'story'"> 
+            <div class="form-group">
+
+                <!-- show title  -->
+                <h5 class="col-sm-12">{{stage.title}}</h5>
+
+                <!-- show included artworks -->
+                <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
+                    <span *ngIf="artwork.url">
+                        <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
+                    </span>
+                    <span *ngIf="!artwork.url && artwork.fileLocation">
+                        <img class="col-sm-12" src="{{artwork.fileLocation}}" >
+                    </span>
+                    <div class="col-sm-12"><strong><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></strong></div>
+                    <div class="col-sm-12"><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></div>
+                    <div class="col-sm-12">{{artwork.year}}</div><br/>
+                </div>
+
+                <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.help"></p>
+
+                <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
+
+                <!-- get the answer -->
+                <textarea class="col-sm-12" rows="3" class="form-control" [(ngModel)]="newStoryAction.answer"></textarea>
+
+                <!-- return to list if last stage -->
+                <span *ngIf="slowLookingMaximumScriptStageIndex == i">
+                    <div class="text-center">
+                        <button class="m-3 btn btn-warning" (click)="newStoryAction.storyStage = stage; newStoryAction.question = stage.body; addActionToActivity(newStoryAction); resetNewStoryAction(); addActivity(); slowLookingScript='0';" routerLink="/home">Save your Deep Viewpoints activity</button>
+                    </div>
+                </span>
+                <!-- continue if not last stage -->
+                <span *ngIf="slowLookingMaximumScriptStageIndex != i">
+                    <div class="text-right">
+                        <button class="m-3 btn btn-warning" (click)="slowLookingCurrentScriptStageIndex=i+1; newStoryAction.storyStage = stage; newStoryAction.question = stage.body; addActionToActivity(newStoryAction); resetNewStoryAction();">Continue</button>
+                    </div>
+                </span>
+            </div>
+        </div>
+
         <div *ngIf="stage.stagetype == 'shareWithMuseum'">  
             <div class="form-group">
                 <!-- {{intialiseShareWithMuseumAction(stage)}} -->

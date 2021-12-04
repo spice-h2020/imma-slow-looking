@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Action, followAction, questionAction, shareWithFriendAction, shareWithMusemAction, multiquestionAction, questionanswer } from "./action.model";
+import { Action, followAction, questionAction, shareWithFriendAction, shareWithMusemAction, multiquestionAction, questionanswer, storyAction } from "./action.model";
 import { Activity } from "./activity.model";
 import { Model } from "./repository.model";
 import { Script } from "./script.model";
@@ -179,6 +179,8 @@ export class SlowLookingActivityComponent implements OnInit {
     
     newQuestionAction: questionAction = new questionAction();
 
+    newStoryAction: storyAction = new storyAction();
+
     newMultiquestionAction: multiquestionAction = new multiquestionAction();
 
     newShareWithMusemAction: shareWithMusemAction = new shareWithMusemAction();
@@ -235,6 +237,10 @@ export class SlowLookingActivityComponent implements OnInit {
 
     resetNewQuestionAction() {
         this.newQuestionAction = new questionAction();
+    }
+
+    resetNewStoryAction() {
+        this.newStoryAction = new storyAction();
     }
 
     resetNewMultiQuestionAction() {

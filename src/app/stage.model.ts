@@ -55,6 +55,22 @@ export class questionStage extends Stage {
     }
 }
 
+export class storyStage extends Stage {
+
+    constructor (
+        public type: string = "stage",
+        public id?: number,
+        public position?: number,
+        public title: string = "Story",
+        public body: string = "The story stem should provide enough detail to get people started but open up many ways in which the story could develop.",
+        public help: string = "The instructions could just ask people to complete the story or give more specific prompts such as write about what happens next or what happened before.",
+        public stagetype: string = "story",
+        public includeartworks: Array<string> = [],
+    ) {
+        super(type, id, position, stagetype, includeartworks);
+    }
+}
+
 export class multiquestionStage extends Stage {
 
     constructor (

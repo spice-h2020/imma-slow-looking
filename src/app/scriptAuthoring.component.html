@@ -105,7 +105,7 @@
                             </span>
                         </span>
                         <span *ngIf="editScriptStage==0">
-                            <br/>Add new stage: <button class="btn btn-success mr-1" (click)="addWelcomeStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">welcome</button> <button class="btn btn-success mr-1" (click)="addContextStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">context</button> <button class="btn btn-success mr-1" (click)="addQuestionStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">question</button> <button class="btn btn-success mr-1" (click)="addMultiQuestionStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">multiquestion</button> 
+                            <br/>Add new stage: <button class="btn btn-success mr-1" (click)="addWelcomeStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">welcome</button> <button class="btn btn-success mr-1" (click)="addContextStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">context</button> <button class="btn btn-success mr-1" (click)="addQuestionStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">question</button> <button class="btn btn-success mr-1" (click)="addMultiQuestionStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">multiquestion</button> <button class="btn btn-success mr-1" (click)="addStoryStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">story</button>
                             <!-- <button class="btn btn-success mr-1" (click)="addShareWithMuseumStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">shareWithMuseum</button> <button class="btn btn-success mr-1" (click)="addFollowStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">follow</button> <button class="btn btn-success mr-1" (click)="addShareWithSomeoneStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">shareWithSomeone</button>  -->
                             <button class="btn btn-success mr-1" (click)="addThankyouStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">thankyou</button>
                             <img class="ml-3" width="20" style="background-color:white;" src="assets/img/question-help.png" (click)="toggleStageHelp()">
@@ -117,6 +117,7 @@
                             <span class="font-weight-bold">context: </span><span>Provide information or a perspective</span><br/>
                             <span class="font-weight-bold">question: </span><span>Ask a question and optionally provide a help prompt</span><br/>
                             <span class="font-weight-bold">multiquestion: </span><span>Add a number of questions to one stage which can be reloaded at random or shown in sequence</span><br/>
+                            <span class="font-weight-bold">story: </span><span>Prompt the telling of story inspired by the artworks</span><br/>
                             <!-- <span class="font-weight-bold">shareWithMuseum: </span><span>Give the option to share responses with the museum</span><br/>
                             <span class="font-weight-bold">follow: </span><span>Give the option to get a message when their response is published</span><br/>
                             <span class="font-weight-bold">shareWithSomeone: </span><span>Give the option to send the response to a friend or relation</span><br/> -->
@@ -396,6 +397,13 @@
                                     <label class="form-check-label ml-1">Random question that can be reloaded</label><br/>
                                 </td>
                             </tr>
+
+                            <tr *ngIf='stage.stagetype=="story"'><td class="align-top">
+                                <span class="font-weight-bold">Instructions:</span>
+                            </td><td>
+                                <textarea rows="3" class="form-control" [(ngModel)]="stage.help"></textarea>
+                            </td></tr>
+
                             <tr><td class="align-top">
                                 <span class="font-weight-bold">Text:</span>
                             </td><td>
@@ -409,12 +417,12 @@
                                     </span>
                                 </span>
                             </td></tr>
-                            <tr *ngIf='stage.stagetype=="question"'><td>
+                            <tr *ngIf='stage.stagetype=="question"'><td class="align-top">
                                 <span class="font-weight-bold">Help text:</span>
                             </td><td>
                                 <textarea rows="3" class="form-control" [(ngModel)]="stage.help"></textarea>
                             </td></tr>
-                           
+
                             <tr *ngIf='stage.stagetype=="multiquestion"'><td></td><td><button class="btn btn-success mr-3" (click)='stage.body = stage.body.concat("Question goes here")'>Add new question</button>    <button class="float-right btn btn-danger" (click)="stage.body.splice(stage.body.length -1)" [disabled]="stage.body.length <= 2">Delete last question</button></td></tr>
                             
                             </table>

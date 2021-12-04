@@ -3,7 +3,7 @@ import { Artwork } from "./artwork.model";
 import { CurrentUser } from "./currentUser.service";
 import { Model } from "./repository.model";
 import { Script } from "./script.model";
-import { contextStage, followStage, multiquestionStage, questionStage, shareWithMuseumStage, shareWithSomeoneStage, Stage, thankyouStage, welcomeStage } from "./stage.model";
+import { contextStage, followStage, multiquestionStage, questionStage, shareWithMuseumStage, shareWithSomeoneStage, Stage, storyStage, thankyouStage, welcomeStage } from "./stage.model";
 import { Theme } from "./theme.model";
 
 @Component({
@@ -120,6 +120,15 @@ export class ScriptAuthoringComponent {
     
     addQuestionStage(script: Script, id?: number) {
         let stage = new questionStage();
+        if(id != null && id != 0) {
+            stage.id = id;
+        }
+        stage.id = this.model.saveStage(stage, script);
+        return stage;
+    }
+
+    addStoryStage(script: Script, id?: number) {
+        let stage = new storyStage();
         if(id != null && id != 0) {
             stage.id = id;
         }
@@ -265,6 +274,14 @@ export class ScriptAuthoringComponent {
 
     addQuestionStageToScript(script: Script) {
         let stage = this.addQuestionStage(script);
+        this.model.addStageToScript(script, stage);
+        //set vars
+        this.viewScript = script._id;
+        this.editScriptStage = stage.id;
+    }
+
+    addStoryStageToScript(script: Script) {
+        let stage = this.addStoryStage(script);
         this.model.addStageToScript(script, stage);
         //set vars
         this.viewScript = script._id;
