@@ -7,7 +7,7 @@
     Select a theme to begin. Recent responses are shown below the artwork.
 </p> 
 <div *ngFor="let theme of getThemes(); let i = index">
-    <div class="accordion" id="accordionFlushExample">
+    <div *ngIf="getScriptsOfTheme(theme._id).length > 0" class="accordion" id="accordionFlushExample">
         <div class="accordion-item">
             <h2 class="accordion-header" id="{{'heading_' + theme._id}}">
                 <button 

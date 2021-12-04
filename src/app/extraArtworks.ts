@@ -13,7 +13,8 @@ export class ExtraArtworks {
         new CollectionArtwork("Talking Ball", "Vukašin Nedeljkovic", "2011", "https://www.asylumarchive.com/uploads/1/3/7/3/13738784/2027483_1_orig.jpg", "Talking Ball, Vukašin Nedeljkovic, 2011"),
         new CollectionArtwork("Clock, found object in Gardiner House", "Vukašin Nedeljkovic", "2012", "https://www.asylumarchive.com/uploads/1/3/7/3/13738784/4955281_1_orig.jpg", "Clock, found object in Gardiner House, Vukašin Nedeljkovic, 2012"),
         new CollectionArtwork("Doll", "Vukašin Nedeljkovic", "2011", "https://www.asylumarchive.com/uploads/1/3/7/3/13738784/dsc-4150_2.jpg", "Doll, Vukašin Nedeljkovic, 2011"),
-        new CollectionArtwork("Rocking Horse", "Vukašin Nedeljkovic", "2011", "https://www.asylumarchive.com/uploads/1/3/7/3/13738784/published/watergate-house-direct-provision-centre-dublin-1_2.jpg", "Rocking Horse, Vukašin Nedeljkovic, 2011")
+        new CollectionArtwork("Rocking Horse", "Vukašin Nedeljkovic", "2011", "https://www.asylumarchive.com/uploads/1/3/7/3/13738784/published/watergate-house-direct-provision-centre-dublin-1_2.jpg", "Rocking Horse, Vukašin Nedeljkovic, 2011"),
+        new CollectionArtwork("The Past is a Foreign Country", "Anita Groener", "2018", "https://www.gibbonsnicholas.com/custom_images/2400x2400/usr/images/news/main_image/23/the-past-is-a-foreign-country-cropped-twenty-birch-trees-paper-twine-300-x-400-x-300-cm-with-nest-video-in-background-2-anita-groener-lcga-installation-shot-2018.jpg", "The Past is a Foreign Country, Anita Groener, 2018")
     ]
 
 }

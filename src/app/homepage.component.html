@@ -11,7 +11,7 @@
 <p>Deep Viewpoints activities are organised into themes. Each activity is based on selected artworks in the IMMA collection. Select a theme to begin. Tap on the artwork to start the activity. </p>
 
 <div *ngFor="let theme of getThemes(); let i = index">
-    <div class="accordion " id="accordionFlushExample">
+    <div *ngIf="getScriptsOfTheme(theme._id).length > 0" class="accordion " id="accordionFlushExample">
         <div class="accordion-item">
         <h2 class="accordion-header" id="{{'heading_' + theme._id}}">
             <button 
