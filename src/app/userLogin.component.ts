@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Activity } from "./activity.model";
 import { CurrentUser } from "./currentUser.service";
 import { Model } from "./repository.model";
+import { Script } from "./script.model";
 import { User } from "./user.model";
 
 @Component({
@@ -83,6 +84,15 @@ export class UserLoginComponent {
     }
 
     saveActivity(activity: Activity) {
+        let script = this.getScript(activity.script._id);
+        if(!script.autoapproved) {
+            activity.approved = false;
+        }
         this.model.saveActivity(activity);
     }
+
+    getScript(_id: string): Script {
+        return this.model.getScript(_id);
+    }
+
 }
