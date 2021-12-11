@@ -74,6 +74,9 @@ export class UserLoginComponent {
         if(this.currentuser.getUserID() == undefined) {
             return [];
         }
+        if(this.currentuser.getUserID() == 1) {
+            return this.model.getActivities();
+        }
         else {
             return this.model.getActivities().filter(x => x.author == this.currentuser.getUser()._id);
         }
