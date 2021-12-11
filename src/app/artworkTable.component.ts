@@ -102,7 +102,10 @@ export class ArtworkTableComponent {
         let user_ID = this.currentuser.getUser()._id;
         artwork.owner = user_ID;
 
-        this.model.saveArtwork(artwork);
+        let currentArtworksOfLogin = this.getArtworks();
+        if(!(currentArtworksOfLogin.find(x => x.owner == artwork.owner && x.url == artwork.url))) {
+            this.model.saveArtwork(artwork);
+        }
     }
 
     deleteArtwork(_id: string) {
