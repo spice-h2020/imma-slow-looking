@@ -48,7 +48,7 @@
                     <td></td>
                     <td>
                         <span *ngIf="!tableEditing">
-                            <textarea rows="1" class="form-control" [(ngModel)]="newUser.username"></textarea>
+                            <textarea rows="1" class="form-control" [(ngModel)]="newUser.username" (change)="duplicateUser=false"></textarea>
                             <span *ngIf="duplicateUser" class="text-warning">Username already taken</span>
                         </span>
                     </td>
