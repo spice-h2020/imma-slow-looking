@@ -21,6 +21,8 @@ export class UserLoginComponent {
 
     newUser: User = new User();
 
+    editContribution: string = "";
+
     username: string = "";
 
     password: string = "";
@@ -78,5 +80,9 @@ export class UserLoginComponent {
 
     deleteActivity(_id: string) {
         this.model.deleteActivity(_id);
+    }
+
+    saveActivity(activity: Activity) {
+        this.model.saveActivity(activity);
     }
 }

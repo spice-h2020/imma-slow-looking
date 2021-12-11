@@ -12,7 +12,7 @@
 <span *ngIf="getCurrentUserID()!=undefined">
     <span>Username</span>
     <p><strong>{{getCurrentUsername()}}</strong></p>
-    <button class="btn btn-secondary" (click)="logout(); clearNewUser();">Logout</button>
+    <button class="btn btn-secondary" (click)="logout(); clearNewUser(); editContribution=''">Logout</button>
 <br/>
 <br/>
 <br/>
@@ -31,12 +31,18 @@
                     <span *ngIf="action.questionStage.stagetype">
                         <span *ngIf="action.questionStage.stagetype != 'multiquestion'">
                             <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question"></span>
-                            <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
+                            <span *ngIf="activity._id==editContribution">
+                                <textarea class="col-sm-12" rows="3" class="form-control" [(ngModel)]="action.answer"></textarea>
+                            </span>
+                            <p *ngIf="activity._id!=editContribution" class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
                         </span>
                         <span *ngIf="action.questionStage.stagetype == 'multiquestion' && action.answers">
                             <span *ngFor="let answer of action.answers">
                                 <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.questionStage.body[answer.question]"></span>
-                                <p class="font-weight-normal" style="white-space: pre-wrap;">{{answer.answer}}</p>
+                                <span *ngIf="activity._id==editContribution">
+                                    <textarea class="col-sm-12" rows="3" class="form-control" [(ngModel)]="answer.answer"></textarea>
+                                </span>
+                                <p *ngIf="activity._id!=editContribution" class="font-weight-normal" style="white-space: pre-wrap;">{{answer.answer}}</p>
                             </span>
                         </span>
                     </span>
@@ -45,7 +51,10 @@
                     <span *ngIf="action.storyStage.stagetype">
                         <span *ngIf="action.storyStage.stagetype == 'story'">
                             <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question"></span>
-                            <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
+                            <span *ngIf="activity._id==editContribution">
+                                <textarea class="col-sm-12" rows="3" class="form-control" [(ngModel)]="action.answer"></textarea>
+                            </span>
+                            <p *ngIf="activity._id!=editContribution" class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
                         </span>
                     </span>
                 </span>
@@ -59,7 +68,9 @@
     </div>
     </td>
     <td><span class="text-sm-left font-weight-bold">&nbsp;</span><br/>
-        <span><button (click)="confirmDelete(activity._id)" class="btn btn-danger">Delete</button></span>
+        <span *ngIf="activity._id!=editContribution"><button (click)="editContribution=activity._id" class="mb-3 mr-3 btn btn-warning">Edit</button></span>
+        <span *ngIf="activity._id!=editContribution"><button (click)="confirmDelete(activity._id); editContribution=''" class="btn btn-danger">Delete</button></span>
+        <span *ngIf="activity._id==editContribution"><button (click)="editContribution=''; saveActivity(activity)" class="btn btn-secondary">Done</button></span>
     </td>
 </tr>
 </table>
