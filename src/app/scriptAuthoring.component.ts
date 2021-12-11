@@ -206,6 +206,11 @@ export class ScriptAuthoringComponent {
         }
         else {
             this.model.removeArtworkFromScript(script, artworkid);
+            
+            //remove artwork from script stages
+            for(var stage of script.stages) {
+                this.model.removeArtworkFromIncludedArtworks(script, stage, artworkid);
+            }
         }
         this.model.saveScript(script);
     }
