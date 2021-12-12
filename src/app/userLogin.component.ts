@@ -85,8 +85,10 @@ export class UserLoginComponent {
 
     saveActivity(activity: Activity) {
         let script = this.getScript(activity.script._id);
-        if(!script.autoapproved) {
-            activity.approved = false;
+        if(this.currentuser.getUser()._id != activity.script.owner) {
+            if(!script.autoapproved) {
+                activity.approved = false;
+            }
         }
         this.model.saveActivity(activity);
     }
