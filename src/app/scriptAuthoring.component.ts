@@ -376,9 +376,9 @@ export class ScriptAuthoringComponent {
         }
 
         // admin sees all scripts
-        if(userID == 1) {
-            return scripts;
-        }
+        // if(userID == 1) {
+        //     return scripts;
+        // }
 
         let filteredScripts = scripts.filter(x => x.owner == user._id);
         return filteredScripts;

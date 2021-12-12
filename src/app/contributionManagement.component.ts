@@ -14,6 +14,8 @@ export class ContributionManagementComponent {
 
     deleteConfirmation_Id = "";
 
+    editContribution: string = "";
+
     confirmDelete(_id: string) {
         this.deleteConfirmation_Id = _id;
     }
@@ -61,9 +63,9 @@ export class ContributionManagementComponent {
         }
 
         // admin sees all activites
-        if(userID == 1) {
-            return activities;
-        }
+        // if(userID == 1) {
+        //     return activities;
+        // }
 
         let filteredActivities = activities.filter(x => x.editor == user._id);
         return filteredActivities;
@@ -72,6 +74,8 @@ export class ContributionManagementComponent {
     isLoggedIn() {
         return this.currentuser.getUserID() != undefined;
     }
+
+
 }
 
 
