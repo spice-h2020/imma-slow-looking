@@ -70,7 +70,7 @@
     <td><span class="text-sm-left font-weight-bold">&nbsp;</span><br/>
         <span *ngIf="activity._id!=editContribution"><button (click)="editContribution=activity._id" class="mb-3 mr-3 btn btn-warning">Edit</button><br/></span>
         <span *ngIf="activity._id!=editContribution"><button (click)="confirmDelete(activity._id); editContribution=''" class="btn btn-danger">Delete</button></span>
-        <span *ngIf="activity._id==editContribution"><button (click)="editContribution=''; saveActivity(activity)" class="btn btn-secondary">Done</button></span>
+        <span *ngIf="activity._id==editContribution"><button (click)="editContribution=''; saveActivity(activity)" class="btn btn-warning">Done</button></span>
     </td>
 </tr>
 </table>
