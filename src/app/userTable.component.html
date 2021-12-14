@@ -2,8 +2,8 @@
 <p class="lead">Manage user accounts.</p>
 <div class="form-group">
     <span *ngIf="getCurrentUserID()==1">
-        <table class="table table-sm table-striped"> 
-            <tr><th>ID</th><th>Username</th><th>Password</th><th></th><th></th></tr> 
+        <table class="table table-sm"> 
+            <thead class="thead-dark"><tr><th>ID</th><th>Username</th><th>Password</th><th></th><th></th></tr></thead>
             <tbody class="text-black"> 
                 <tr *ngFor="let item of getUsers(); let i = index"> 
                     <td>

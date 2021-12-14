@@ -2,7 +2,7 @@
 <p class="lead">Manage the collection of artworks that can be used in your scripts.</p>
 <div *ngIf="isLoggedIn()" class="form-group">
     <table class="table table-sm table-striped"> 
-        <tr><th width="20%">Artwork</th><th></th><th></th></tr>
+        <thead class="thead-dark"><tr><th width="20%">Artwork</th><th></th><th></th></tr></thead>
         <tr *ngFor="let item of getArtworks(); let i = index">
             <td>
                 <a href="{{item.url}}" target='_blank'><img src="{{item.url}}" alt="{{item.name}}" class="img-thumbnail" height="auto" width="150px" ></a>
