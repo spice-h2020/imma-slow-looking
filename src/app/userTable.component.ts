@@ -61,7 +61,8 @@ export class UserTableComponent {
 
     usernameTaken(user: User) {
         let users = this.getUsers();
-        let index = users.findIndex(x => x.username.toUpperCase == user.username.toUpperCase);
+        let x = user.username;
+        let index = users.findIndex(x => x.username.toUpperCase() == user.username.toUpperCase());
         if(index > -1) {
             return true;
         }

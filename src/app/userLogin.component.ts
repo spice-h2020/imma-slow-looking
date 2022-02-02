@@ -60,7 +60,7 @@ export class UserLoginComponent {
     
     loginAttempt() {
         let users = this.getUsers();
-        let index = users.findIndex(x => x.username.toUpperCase == this.username.toUpperCase && x.password == this.password);
+        let index = users.findIndex(x => x.username.toUpperCase() == this.username.toUpperCase() && x.password == this.password);
         if(index > -1) {
             this.setCurrentUser(users[index]);
             this.loginFailed = false;
