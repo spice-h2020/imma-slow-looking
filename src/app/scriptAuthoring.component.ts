@@ -243,12 +243,18 @@ export class ScriptAuthoringComponent {
             if(myartwork != undefined) {
                 myartworks.push(myartwork);
             }
+            else {
+                //stray link to deleted artwork so remove it from the script
+                let scripts = this.model.getScriptsOfAnArtwork(artworkid);
+                this.model.removeArtworkFromScripts(scripts, artworkid);
+            }
         }
         return myartworks;
     }
 
     getArtwork(_id: string) {
-        return this.model.getArtwork(_id);
+        let artwork = this.model.getArtwork(_id);
+        return artwork;
     }
 
     getThemes(): Theme[] {
@@ -353,7 +359,11 @@ export class ScriptAuthoringComponent {
             return [];
         }
         else {
-            return [this.getArtwork(artworkId)];
+            let artwork = this.getArtwork(artworkId);
+            if(artwork == undefined) {
+                return []
+            }
+            return [artwork];
         }
     }
 

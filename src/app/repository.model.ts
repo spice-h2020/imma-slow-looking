@@ -259,15 +259,17 @@ export class Model {
             let index = script.artworkids.findIndex(p => p == _id);
             if (index > -1) {
                 script.artworkids.splice(index, 1);
-            }
-            //remove artwork from homepageartworkid
-            if(script.homepageartworkid == _id) {
-                script.homepageartworkid = undefined;
-                //replace homepageartworkid if artworkids is not empty
-                if(script.artworkids.length > 0) {
-                    script.homepageartworkid = script.artworkids[0];
+
+                //remove artwork from homepageartworkid
+                if(script.homepageartworkid == _id) {
+                    script.homepageartworkid = undefined;
+                    //replace homepageartworkid if artworkids is not empty
+                    if(script.artworkids.length > 0) {
+                        script.homepageartworkid = script.artworkids[0];
+                    }
                 }
             }
+
             this.saveScript(script);
         }
     } 

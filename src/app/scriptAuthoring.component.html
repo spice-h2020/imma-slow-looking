@@ -12,6 +12,7 @@
         <button class="float-right btn btn-success mb-3" (click)="addScript(); deleteConfirmation_Id=''">Add new script</button><br/><br/>
     </div>
     <div class="col-xs-12" *ngFor="let script of getScripts(); let i = index">
+
         <div *ngIf="((script.open && showOpenScripts) || (!(script.open) && showClosedScripts)) && (viewScript == '0' || viewScript==script._id)" class="card border p-3 mt-3" style="border-radius: 15px;">
             <table class="container-fluid"><tr><td width="90%">
             <div *ngIf="editScriptDescription!=script._id" class="col-xs-12">
@@ -20,6 +21,7 @@
                 </div>
             </div>
             <div class="col-xs-12">
+
                 <!-- show script description --> 
                 <span *ngIf="editScriptDescription!=script._id">
                     <span class="font-weight-bold" >
@@ -48,11 +50,14 @@
                     <span *ngIf="!getArtworksFromIds(script.artworkids).length" class="font-weight-bold">
                         Artworks: 
                     </span>
+
                     <table>
                     <tr *ngFor="let artwork of getArtworksFromIds(script.artworkids); let first = first">
                             <td><span *ngIf="first" class="font-weight-bold">Artworks:</span></td><td><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span>, <span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span>, {{artwork.year}}</td>
                     </tr>
                     </table>
+                    
+
                     <span class="font-weight-bold">
                         Homepage artwork: 
                     </span>
@@ -60,18 +65,6 @@
                         <span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span>, <span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span>, {{artwork.year}}
                     </span><br/>
 
-                    <!-- <span *ngFor="let artwork of getArtworkFromId(script.artworkid);">
-                        <span class="font-weight-bold">
-                            Artwork: 
-                        </span>
-                        <span>
-                            <span *ngIf="artwork">
-                                <span *ngIf="artwork.name && artwork.artist && artwork.year">
-                                    {{artwork.name}}, {{artwork.artist}}, {{artwork.year}}
-                                </span>
-                            </span>
-                        </span><br/>     
-                    </span> -->
                     <span class="font-weight-bold">
                         Status: 
                     </span>
@@ -123,8 +116,6 @@
                             <span class="font-weight-bold">shareWithSomeone: </span><span>Give the option to send the response to a friend or relation</span><br/> -->
                             <span class="font-weight-bold">thankyou: </span><span>Give a thankyou message for completing the activity</span><br/>
                         </span>
-                       
-                        
                     </div>
                 </span>
 

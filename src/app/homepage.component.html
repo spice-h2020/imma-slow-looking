@@ -40,16 +40,21 @@
                         <figcaption *ngIf="script.author != ''" class="blockquote-footer text-white">{{script.author}}</figcaption>
                     </div>
 
+                    
                     <span *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
                         <span *ngIf="artwork.url">
-                        <a routerLink="/slowLooking/{{script._id}}"><img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}"></a>
+                            <a routerLink="/slowLooking/{{script._id}}"><img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}"></a>
+                            <div class="col-sm-12"><strong><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></strong></div>
+                            <div class="col-sm-12"><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></div>
+                            <div class="col-sm-12">{{artwork.year}}</div>
                         </span>
                         <span *ngIf="!artwork.url && artwork.fileLocation">
-                        <img routerLink="/slowLooking/{{script._id}}" class="col-sm-12" src="{{artwork.fileLocation}}" >
-                        </span>
-                        <div class="col-sm-12"><strong><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></strong></div>
-                        <div class="col-sm-12"><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></div>
-                        <div class="col-sm-12">{{artwork.year}}</div>
+                            <p>rr</p>
+                            <img routerLink="/slowLooking/{{script._id}}" class="col-sm-12" src="{{artwork.fileLocation}}" >
+                            <div class="col-sm-12"><strong><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></strong></div>
+                            <div class="col-sm-12"><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></div>
+                            <div class="col-sm-12">{{artwork.year}}</div>
+                        </span> 
                     </span><br/>
                     <div *ngIf="!last" class="col-sm-12">
                         <hr>

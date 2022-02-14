@@ -19,15 +19,23 @@ export class HomepageComponent {
     }
 
     getScriptsOfTheme(_id: string): Script[] {
-        return this.model.getScriptsOfTheme(_id);
+        let scripts = this.model.getScriptsOfTheme(_id);
+        return scripts;
     }
 
     getArtworkFromId(artworkId: string) {
-        return [this.getArtwork(artworkId)];
+        let artwork = this.getArtwork(artworkId);
+        if(artwork == undefined) {
+            return [];
+        }
+        else {
+            return [artwork]
+        }
     }
 
     getArtwork(_id: string) {
-        return this.model.getArtwork(_id);
+        let artwork = this.model.getArtwork(_id);
+        return artwork;
     }
     
     mode: number = 1;

@@ -33,7 +33,13 @@ export class OtherPeopleComponent {
     }
 
     getArtworkFromId(artworkId: string) {
-        return [this.getArtwork(artworkId)];
+        let artwork = this.getArtwork(artworkId);
+        if(artwork == undefined) {
+            return [];
+        }
+        else {
+            return [artwork]
+        }
     }
 
     getArtwork(_id: string) {
