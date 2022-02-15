@@ -245,8 +245,10 @@ export class ScriptAuthoringComponent {
             }
             else {
                 //stray link to deleted artwork so remove it from the script
-                let scripts = this.model.getScriptsOfAnArtwork(artworkid);
-                this.model.removeArtworkFromScripts(scripts, artworkid);
+                // let scripts = this.model.getScriptsOfAnArtwork(artworkid);
+
+                //change this to just removing the case found
+                // this.model.removeArtworkFromScripts(scripts, artworkid);
             }
         }
         return myartworks;

@@ -268,8 +268,19 @@ export class Model {
                         script.homepageartworkid = script.artworkids[0];
                     }
                 }
-            }
 
+
+            }
+            //remove artwork from stages*****
+            // for(var stage of script.stages) {
+            //     console.log("www");
+            //     let index = stage.includeartworks.findIndex(p => p == _id);
+            //     console.log(index);
+            //     if (index > -1) {
+            //         console.log("qqq");
+            //         this.removeArtworkFromIncludedArtworks(script, stage, _id);
+            //     }
+            // }
             this.saveScript(script);
         }
     } 
