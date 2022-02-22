@@ -2,6 +2,19 @@ import { CollectionArtwork } from "./collectionArtwork.model";
 
 export class ExtraArtworks {
     artworks: CollectionArtwork[] = [
+        new CollectionArtwork('Pray for More" campaign, Stuttgart, Germany', "Les Levine", "1988", "https://likeyou.com/wp-content/uploads/2018/03/Les_Levine_Pray_for_More_Portrait_with_Les_Levine_1989-90_mai36_18_likeyou.jpg", 'Pray for More" campaign, Stuttgart, Germany, Les Levine, 1988'),
+        new CollectionArtwork("Grosse Fatigue", "Camille Henrot", "2013", "https://www.moma.org/media/W1siZiIsIjI5NDk3OCJdLFsicCIsImNvbnZlcnQiLCItcXVhbGl0eSA5MCAtcmVzaXplIDIwMDB4MTQ0MFx1MDAzZSJdXQ.jpg?sha=cc97ad8174c4730a", "Grosse Fatigue, Camille Henrot, 2013"),
+        new CollectionArtwork("Time Smoking a Picture", "William Hogarth", "1761", "https://images.metmuseum.org/CRDImages/dp/original/DP825167.jpg", "Time Smoking a Picture, William Hogarth, 1761"),
+        new CollectionArtwork("The Deep Sleep Sea", "Alice Maher", "", "https://imma.ie/wp-content/uploads/2019/03/6089.jpg", "The Deep Sleep Sea, Alice Maher"),
+        new CollectionArtwork("Aquellos Polbos", "Francisco de Goya", "1797-98", "https://imma.ie/wp-content/uploads/2018/11/Francisco-de-Goya.-Aquellos-Polbos-That-Dust-1797-98.-Etching-and-aquatint.-21.7-x-14.8-cm.-Collection-Irish-Museum-of-Modern-Art.-Donation-Madden-Arnholz-Collection-1989..jpg", "Aquellos Polbos, Francisco de Goya, 1797-98"),
+        new CollectionArtwork("Abstract", "Mary Swanzy", "", "https://imma.ie/wp-content/uploads/2018/11/124.jpg", "Abstract, Mary Swanzy"),
+        new CollectionArtwork("Anthology", "Michael Craig-Martin", "2006", "http://www.artnet.com/WebServices/images/ll00341lldy7uGFgeQp42CfDrCWvaHBOc1GPD/michael-craig-martin-anthology.jpg", "Anthology, Michael Craig-Martin, 2006"),
+        new CollectionArtwork("Night Time Go", "Karrabing Collective", "2017", "https://images.squarespace-cdn.com/content/v1/6030176a2990db0e610355f6/1614859503802-7Y17SUGPTQ5591V7OQWO/Screenshot+2021-02-25+at+16.13.32.png?format=1000w", "Night Time Go, Karrabing Collective, 2017"),
+        new CollectionArtwork("INFINITY Minus Infinity", "The Otolith Group", "2019", "https://imma.ie/wp-content/uploads/2021/09/9489-1024x576.jpg", "INFINITY Minus Infinity, The Otolith Group, 2019"),
+        new CollectionArtwork("Once Upon a time 1", "Patricia Hurl", "1986", "http://www.hurlrudin.com/images/Living_Room_Myths/Once_upon_a_time.jpg", "Once Upon a time 1, Patricia Hurl, 1986"),
+        new CollectionArtwork("Blue Dyke", "Breda Lynch", "2021", "https://cdn.shopify.com/s/files/1/0167/9794/products/bluedyke22_large.jpg?v=1634559332", "Blue Dyke, Breda Lynch, 2021"),
+        new CollectionArtwork("SWIRL", "Whorlasmz", "", "https://static.wixstatic.com/media/acf2c0_d27873edd4a7418e8c712144c446a221~mv2.jpeg/v1/fill/w_1196,h_1196,al_c,q_85,usm_0.66_1.00_0.01/acf2c0_d27873edd4a7418e8c712144c446a221~mv2.jpeg", "SWIRL, Whorlasmz"),
+
         new CollectionArtwork("Collar", "Alice Maher", "2003", "https://alicemaher.com/images/uploads/_medium/Collar.jpg", "Collar, Alice Maher, 2003"),
         new CollectionArtwork("Flock", "Alice Maher", "2003", "https://alicemaher.com/images/uploads/_medium/Flock.jpg", "Flock, Alice Maher, 2003"),
         new CollectionArtwork("Helmet", "Alice Maher", "2003", "https://alicemaher.com/images/uploads/_medium/Helmet.jpg", "Helmet, Alice Maher, 2003"),
