@@ -31,4 +31,9 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+‘ng build --configuration=production --base-href=/demos/imma-slow-looking/  --crossOrigin=anonymous’ – this is the build command, for distribution. Note we have to tell it where the app will reside on the webserver (/demos/imma-slow-looking/). The command compiles everything into a bunch of minified JS/TS files that can be dropped onto a webserver.
+ 
+Now if you navigate into the ‘dist’ folder, you will see a built distribution folder. This is likely to be called ‘slowlooking1’ (taken from the app’s config somewhere). Rename this to ‘imma-slow-looking’:
+ 
+Tar/gz this file and copy it to the webserver, unpack in the correct location
+
