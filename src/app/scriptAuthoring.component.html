@@ -47,12 +47,12 @@
                     </span>
                     <br/>
 
-                    <span *ngIf="!getArtworksFromIds(script.artworkids).length" class="font-weight-bold">
+                    <span *ngIf="!getArtworksFromIds(script.name, script.artworkids, script).length" class="font-weight-bold">
                         Artworks: 
                     </span>
 
                     <table>
-                    <tr *ngFor="let artwork of getArtworksFromIds(script.artworkids); let first = first">
+                    <tr *ngFor="let artwork of getArtworksFromIds(script.name, script.artworkids, script); let first = first">
                             <td><span *ngIf="first" class="font-weight-bold">Artworks:</span></td><td><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span>, <span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span>, {{artwork.year}}</td>
                     </tr>
                     </table>
@@ -180,13 +180,13 @@
                             <br/>
                         </span>
                         <span *ngIf="!getArtworks(script).length" class="text-warning">From the artwork tab the script author needs to add at least one artwork to the collection<br/></span>
-                        <span *ngIf="!getArtworksFromIds(script.artworkids).length" class="text-warning">At least one artwork must be selected</span>
+                        <span *ngIf="!getArtworksFromIds(script.name, script.artworkids, script).length" class="text-warning">At least one artwork must be selected</span>
                     </td></tr>
 
                     <tr><td  class="align-top">
                         <span class="font-weight-bold">Homepage artwork: </span>
                     </td><td>
-                        <span *ngFor="let artwork of getArtworksFromIds(script.artworkids)" class="mr-3">
+                        <span *ngFor="let artwork of getArtworksFromIds(script.name, script.artworkids, script)" class="mr-3">
                             <input
                             type="radio"
                             [value]="artwork._id"
@@ -277,7 +277,7 @@
                             <label class="form-check-label"> Approved </label>
                         </span>
                     </td></tr><tr><td colspan="2">
-                        <button class="btn btn-warning" (click)="editScriptDescription='0'; saveScript(script)" [disabled]="!getThemesFromIds(script.themeids).length || !getArtworksFromIds(script.artworkids).length || script.homepageartworkid==undefined">Done</button> 
+                        <button class="btn btn-warning" (click)="editScriptDescription='0'; saveScript(script)" [disabled]="!getThemesFromIds(script.themeids).length || !getArtworksFromIds(script.name, script.artworkids, script).length || script.homepageartworkid==undefined">Done</button> 
                     </td></tr>
                 </table>
                 <div class="mt-3" *ngIf="editScriptDescription==script._id">
@@ -293,11 +293,11 @@
                             <span class="font-weight-bold">Position: </span><span>{{i+1}}</span><br/>
                             <span class="font-weight-bold">Title: </span><span>{{stage.title}}</span><br/>
 
-                            <span *ngIf="!getArtworksFromIds(stage.includeartworks).length" class="font-weight-bold">
+                            <span *ngIf="!getArtworksFromIds(stage.title, stage.includeartworks, script, stage).length" class="font-weight-bold">
                                 Show artworks: 
                             </span>
                             <table>
-                            <tr *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
+                            <tr *ngFor="let artwork of getArtworksFromIds(stage.title, stage.includeartworks, script, stage); let first = first">
                                     <td><span *ngIf="first" class="font-weight-bold">Show artworks:</span></td><td><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span>, <span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span>, {{artwork.year}}</td>
                             </tr>
                             </table>
@@ -357,7 +357,7 @@
                                     <span class="font-weight-bold">Show artworks: </span>
                                 </td>
                                 <td>
-                                    <span *ngFor="let artwork of getArtworksFromIds(script.artworkids)" class="mr-3">
+                                    <span *ngFor="let artwork of getArtworksFromIds(script.name, script.artworkids, script)" class="mr-3">
                                         <input
                                         type="checkbox"
                                         [value]=artwork._id

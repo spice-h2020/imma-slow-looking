@@ -2,6 +2,7 @@ import { CollectionArtwork } from "./collectionArtwork.model";
 
 export class ExtraArtworks {
     artworks: CollectionArtwork[] = [
+
         new CollectionArtwork('Pray for More" campaign, Stuttgart, Germany', "Les Levine", "1988", "https://likeyou.com/wp-content/uploads/2018/03/Les_Levine_Pray_for_More_Portrait_with_Les_Levine_1989-90_mai36_18_likeyou.jpg", 'Pray for More" campaign, Stuttgart, Germany, Les Levine, 1988'),
         new CollectionArtwork("Grosse Fatigue", "Camille Henrot", "2013", "https://www.moma.org/media/W1siZiIsIjI5NDk3OCJdLFsicCIsImNvbnZlcnQiLCItcXVhbGl0eSA5MCAtcmVzaXplIDIwMDB4MTQ0MFx1MDAzZSJdXQ.jpg?sha=cc97ad8174c4730a", "Grosse Fatigue, Camille Henrot, 2013"),
         new CollectionArtwork("Time Smoking a Picture", "William Hogarth", "1761", "https://images.metmuseum.org/CRDImages/dp/original/DP825167.jpg", "Time Smoking a Picture, William Hogarth, 1761"),
@@ -27,7 +28,9 @@ export class ExtraArtworks {
         new CollectionArtwork("Clock, found object in Gardiner House", "Vukašin Nedeljkovic", "2012", "https://www.asylumarchive.com/uploads/1/3/7/3/13738784/4955281_1_orig.jpg", "Clock, found object in Gardiner House, Vukašin Nedeljkovic, 2012"),
         new CollectionArtwork("Doll", "Vukašin Nedeljkovic", "2011", "https://www.asylumarchive.com/uploads/1/3/7/3/13738784/dsc-4150_2.jpg", "Doll, Vukašin Nedeljkovic, 2011"),
         new CollectionArtwork("Rocking Horse", "Vukašin Nedeljkovic", "2011", "https://www.asylumarchive.com/uploads/1/3/7/3/13738784/published/watergate-house-direct-provision-centre-dublin-1_2.jpg", "Rocking Horse, Vukašin Nedeljkovic, 2011"),
-        new CollectionArtwork("The Past is a Foreign Country", "Anita Groener", "2018", "https://www.gibbonsnicholas.com/custom_images/2400x2400/usr/images/news/main_image/23/the-past-is-a-foreign-country-cropped-twenty-birch-trees-paper-twine-300-x-400-x-300-cm-with-nest-video-in-background-2-anita-groener-lcga-installation-shot-2018.jpg", "The Past is a Foreign Country, Anita Groener, 2018")
+        new CollectionArtwork("The Past is a Foreign Country", "Anita Groener", "2018", "https://www.gibbonsnicholas.com/custom_images/2400x2400/usr/images/news/main_image/23/the-past-is-a-foreign-country-cropped-twenty-birch-trees-paper-twine-300-x-400-x-300-cm-with-nest-video-in-background-2-anita-groener-lcga-installation-shot-2018.jpg", "The Past is a Foreign Country, Anita Groener, 2018"),
+
+        new CollectionArtwork("Two Heads", "Chinedum Muotto", "", "https://spiceimageworkaround.files.wordpress.com/2022/03/two-heads.jpg", "Two Heads, Chinedum Muotto")
     ]
 
 }

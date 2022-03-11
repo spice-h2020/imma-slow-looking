@@ -236,7 +236,7 @@ export class ScriptAuthoringComponent {
         return filteredArtworks;
     }
 
-    getArtworksFromIds(artworkIds: Array<string>): Array<Artwork> {
+    getArtworksFromIds(name: string, artworkIds: Array<string>, script: Script, stage?: Stage): Array<Artwork> {
         let myartworks: Array<Artwork> = [];
         for(var artworkid of artworkIds) {
             let myartwork = this.getArtwork(artworkid);
@@ -245,10 +245,19 @@ export class ScriptAuthoringComponent {
             }
             else {
                 //stray link to deleted artwork so remove it from the script
-                // let scripts = this.model.getScriptsOfAnArtwork(artworkid);
-
-                //change this to just removing the case found
-                // this.model.removeArtworkFromScripts(scripts, artworkid);
+                if(typeof stage == 'undefined') {
+                    this.model.removeArtworkFromScript(script, artworkid);
+            
+                    //remove artwork from script stages
+                    for(var stage of script.stages) {
+                        this.model.removeArtworkFromIncludedArtworks(script, stage, artworkid);
+                    }
+                }
+                else {
+                    this.model.removeArtworkFromIncludedArtworks(script, stage, artworkid);
+                }
+                this.model.saveScript(script);
+                
             }
         }
         return myartworks;

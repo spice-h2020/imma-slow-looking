@@ -236,10 +236,9 @@ export class Model {
     removeArtworkFromIncludedArtworks(script: Script, stage: Stage, artworkid: string) {
         //find stage in script
         let index = script.stages.findIndex(x => x.id == stage.id);
-
         //remove artworkid from stage
         let scriptindex = script.stages[index].includeartworks.findIndex(p => p == artworkid);
-        if (index > -1) {
+        if (scriptindex > -1) {
             script.stages[index].includeartworks.splice(scriptindex, 1);
         }
     }
@@ -269,19 +268,14 @@ export class Model {
                     }
                 }
 
+                //remove artwork from stages
+                for(var stage of script.stages) {
+                    this.removeArtworkFromIncludedArtworks(script, stage, _id);
+                }
 
-            }
-            //remove artwork from stages*****
-            // for(var stage of script.stages) {
-            //     console.log("www");
-            //     let index = stage.includeartworks.findIndex(p => p == _id);
-            //     console.log(index);
-            //     if (index > -1) {
-            //         console.log("qqq");
-            //         this.removeArtworkFromIncludedArtworks(script, stage, _id);
-            //     }
-            // }
-            this.saveScript(script);
+                this.saveScript(script);
+            }   
+            
         }
     } 
 
