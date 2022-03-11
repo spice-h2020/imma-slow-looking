@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { Activity } from "./activity.model";
+import { Artwork } from "./artwork.model";
 import { Model } from "./repository.model";
 import { Script } from "./script.model";
 import { Theme } from "./theme.model";
@@ -44,6 +45,21 @@ export class OtherPeopleComponent {
 
     getArtwork(_id: string) {
         return this.model.getArtwork(_id);
+    }
+
+    getNonHomepageArtworksOfScript(script: Script) {
+        let otherartworks: Array<Artwork> = [];
+        let artworkids = script.artworkids;
+        let homepageartworkid = script.homepageartworkid;
+        for(var artworkid of artworkids) {
+            if(artworkid != homepageartworkid) {
+                let artwork = this.getArtwork(artworkid);
+                if(artwork != undefined) {
+                    otherartworks.push(artwork);
+                }
+            }
+        }
+        return otherartworks;
     }
 
     addLikeToActivity(activity: Activity) {
