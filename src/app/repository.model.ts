@@ -48,6 +48,10 @@ export class Model {
 
     }
 
+    refreshArtworks() {
+        this.dbDataSource.getArtworkData().subscribe(data => this.dbArtworks = data);
+    }
+
     // Collection
     getCollection() {
         return this.dbCollectionArtworks;

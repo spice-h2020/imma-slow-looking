@@ -53,9 +53,10 @@ export class ArtworkTableComponent {
   
   
     selectEvent(item) {
-      // do something with selected item
-      this.selected = true;
-      this.selectItem = item;
+        this.reloadArtworks()
+        // do something with selected item
+        this.selected = true;
+        this.selectItem = item;
 
     }
   
@@ -119,6 +120,10 @@ export class ArtworkTableComponent {
 
     isLoggedIn() {
         return this.currentuser.getUserID() != undefined;
+    }
+
+    reloadArtworks() {
+        this.model.refreshArtworks();
     }
 
 }
