@@ -243,22 +243,22 @@ export class ScriptAuthoringComponent {
             if(myartwork != undefined) {
                 myartworks.push(myartwork);
             }
-            else {
-                //stray link to deleted artwork so remove it from the script
-                if(typeof stage == 'undefined') {
-                    this.model.removeArtworkFromScript(script, artworkid);
+            // else {
+            //     //stray link to deleted artwork so remove it from the script
+            //     if(typeof stage == 'undefined') {
+            //         this.model.removeArtworkFromScript(script, artworkid);
             
-                    //remove artwork from script stages
-                    for(var stage of script.stages) {
-                        this.model.removeArtworkFromIncludedArtworks(script, stage, artworkid);
-                    }
-                }
-                else {
-                    this.model.removeArtworkFromIncludedArtworks(script, stage, artworkid);
-                }
-                this.model.saveScript(script);
+            //         //remove artwork from script stages
+            //         for(var stage of script.stages) {
+            //             this.model.removeArtworkFromIncludedArtworks(script, stage, artworkid);
+            //         }
+            //     }
+            //     else {
+            //         this.model.removeArtworkFromIncludedArtworks(script, stage, artworkid);
+            //     }
+            //     this.model.saveScript(script);
                 
-            }
+            // }
         }
         return myartworks;
     }
