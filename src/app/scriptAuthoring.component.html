@@ -26,12 +26,10 @@
                 <table *ngIf="editScriptDescription!=script._id"><th></th><th></th>
                     <tr><td class="align-top">
                         <span class="font-weight-bold" >
-                            Description: 
+                            Description:
                         </span>
                     </td><td class="align-top">
-                        <span style="white-space: pre-wrap;">
-                            {{script.description}}
-                        </span>
+                        <span style="white-space: pre-wrap;">{{script.description}}</span>
                         <br/>
                     </td></tr>
                     <tr><td class="align-top">
@@ -162,7 +160,7 @@
                     </td></tr>
                     <tr>
                         <td class="align-top">
-                            <span class="font-weight-bold">Description: </span>
+                            <span class="font-weight-bold">Description:</span>
                         </td>
                         <td>
                             <textarea rows="3" class="form-control" [(ngModel)]="script.description"></textarea>
