@@ -30,7 +30,24 @@ export class ExtraArtworks {
         new CollectionArtwork("Rocking Horse", "Vukašin Nedeljkovic", "2011", "https://www.asylumarchive.com/uploads/1/3/7/3/13738784/published/watergate-house-direct-provision-centre-dublin-1_2.jpg", "Rocking Horse, Vukašin Nedeljkovic, 2011"),
         new CollectionArtwork("The Past is a Foreign Country", "Anita Groener", "2018", "https://www.gibbonsnicholas.com/custom_images/2400x2400/usr/images/news/main_image/23/the-past-is-a-foreign-country-cropped-twenty-birch-trees-paper-twine-300-x-400-x-300-cm-with-nest-video-in-background-2-anita-groener-lcga-installation-shot-2018.jpg", "The Past is a Foreign Country, Anita Groener, 2018"),
 
-        new CollectionArtwork("Two Heads", "Chinedum Muotto", "", "https://spiceimageworkaround.files.wordpress.com/2022/03/two-heads.jpg", "Two Heads, Chinedum Muotto")
+        new CollectionArtwork("Two Heads", "Chinedum Muotto", "2021", "https://spiceimageworkaround.files.wordpress.com/2022/03/two-heads.jpg", "Two Heads, Chinedum Muotto, 2021"),
+
+        new CollectionArtwork("Painting 1", "Oberstown", "2022", "https://spiceimageworkaround.files.wordpress.com/2022/03/painting-1.jpg", "Painting 1, Oberstown, 2022"),
+        new CollectionArtwork("Painting 2", "Oberstown", "2022", "https://spiceimageworkaround.files.wordpress.com/2022/03/painting-2.jpg", "Painting 2, Oberstown, 2022"),
+        new CollectionArtwork("Painting 3", "Oberstown", "2022", "https://spiceimageworkaround.files.wordpress.com/2022/03/painting-3.jpg", "Painting 3, Oberstown, 2022"),
+        new CollectionArtwork("Painting 4", "Oberstown", "2022", "https://spiceimageworkaround.files.wordpress.com/2022/03/painting-4.jpg", "Painting 4, Oberstown, 2022"),
+        new CollectionArtwork("Painting 5", "Oberstown", "2022", "https://spiceimageworkaround.files.wordpress.com/2022/03/painting-5.jpg", "Painting 5, Oberstown, 2022"),
+        new CollectionArtwork("Painting 6", "Oberstown", "2022", "https://spiceimageworkaround.files.wordpress.com/2022/03/painting-6.jpg", "Painting 6, Oberstown, 2022"),
+        new CollectionArtwork("Painting 7", "Oberstown", "2022", "https://spiceimageworkaround.files.wordpress.com/2022/03/painting-7.jpg", "Painting 7, Oberstown, 2022"),
+        new CollectionArtwork("Painting 8", "Oberstown", "2022", "https://spiceimageworkaround.files.wordpress.com/2022/03/painting-8.jpg", "Painting 8, Oberstown, 2022"),
+        new CollectionArtwork("Painting 9", "Oberstown", "2022", "https://spiceimageworkaround.files.wordpress.com/2022/03/painting-9.jpg", "Painting 9, Oberstown, 2022"),
+        new CollectionArtwork("Painting 10", "Oberstown", "2022", "https://spiceimageworkaround.files.wordpress.com/2022/03/painting-10.jpg", "Painting 10, Oberstown, 2022"),
+        new CollectionArtwork("Painting 11", "Oberstown", "2022", "https://spiceimageworkaround.files.wordpress.com/2022/03/painting-11.jpg", "Painting 11, Oberstown, 2022"),
+        new CollectionArtwork("Painting 12", "Oberstown", "2022", "https://spiceimageworkaround.files.wordpress.com/2022/03/painting-12.jpg", "Painting 12, Oberstown, 2022"),
+        new CollectionArtwork("Shitting Bricks (1)", "Chinedum Muotto", "2021", "https://spiceimageworkaround.files.wordpress.com/2022/03/shitting-bricks.jpg", "Shitting Bricks (1), Chinedum Muotto, 2021"),
+        new CollectionArtwork("Shitting Bricks (2)", "Chinedum Muotto", "2021", "https://spiceimageworkaround.files.wordpress.com/2022/03/240890012_223932422999776_6093921735585490178_n.jpg", "Shitting Bricks (2), Chinedum Muotto, 2021"),
+        new CollectionArtwork("Shitting Bricks (3)", "Chinedum Muotto", "2021", "https://spiceimageworkaround.files.wordpress.com/2022/03/240997446_1268724926906821_3154896149459901426_n.jpg", "Shitting Bricks (3), Chinedum Muotto, 2021")
+        
     ]
 
 }
