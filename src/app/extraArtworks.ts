@@ -44,6 +44,7 @@ export class ExtraArtworks {
         new CollectionArtwork("Painting 10", "Oberstown", "2022", "https://spiceimageworkaround.files.wordpress.com/2022/03/painting-10.jpg", "Painting 10, Oberstown, 2022"),
         new CollectionArtwork("Painting 11", "Oberstown", "2022", "https://spiceimageworkaround.files.wordpress.com/2022/03/painting-11.jpg", "Painting 11, Oberstown, 2022"),
         new CollectionArtwork("Painting 12", "Oberstown", "2022", "https://spiceimageworkaround.files.wordpress.com/2022/03/painting-12.jpg", "Painting 12, Oberstown, 2022"),
+        new CollectionArtwork("Painting 13", "Oberstown", "2022", "https://spiceimageworkaround.files.wordpress.com/2022/03/painting-13.jpg", "Painting 13, Oberstown, 2022"),
         new CollectionArtwork("Shitting Bricks (1)", "Chinedum Muotto", "2021", "https://spiceimageworkaround.files.wordpress.com/2022/03/shitting-bricks.jpg", "Shitting Bricks (1), Chinedum Muotto, 2021"),
         new CollectionArtwork("Shitting Bricks (2)", "Chinedum Muotto", "2021", "https://spiceimageworkaround.files.wordpress.com/2022/03/240890012_223932422999776_6093921735585490178_n.jpg", "Shitting Bricks (2), Chinedum Muotto, 2021"),
         new CollectionArtwork("Shitting Bricks (3)", "Chinedum Muotto", "2021", "https://spiceimageworkaround.files.wordpress.com/2022/03/240997446_1268724926906821_3154896149459901426_n.jpg", "Shitting Bricks (3), Chinedum Muotto, 2021")
