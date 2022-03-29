@@ -126,4 +126,7 @@ export class ArtworkTableComponent {
         this.model.refreshArtworks();
     }
 
+    getScriptsOfAnArtwork(_id: string) {
+        return this.model.getScriptsOfAnArtwork(_id);
+    }
 }

@@ -15,11 +15,11 @@ import { ConfigSettings } from "./config";
     private configSettings = new ConfigSettings;
     
     // Citizen data URLs 
-    private userUrl = 'https://api2.mksmart.org/object/' + this.configSettings.citizenDatasetUUID + '?query=%7B%22type%22:%22user%22%7D'
-    private themeUrl = 'https://api2.mksmart.org/object/' + this.configSettings.citizenDatasetUUID + '?query=%7B%22type%22:%22theme%22%7D';
-    private artworkUrl =  'https://api2.mksmart.org/object/' + this.configSettings.citizenDatasetUUID + '?query=%7B%22type%22:%22artwork%22%7D';
-    private scriptUrl = 'https://api2.mksmart.org/object/' + this.configSettings.citizenDatasetUUID + '?query=%7B%22type%22:%22script%22%7D';
-    private activityUrl = 'https://api2.mksmart.org/object/' + this.configSettings.citizenDatasetUUID + '?query=%7B%22type%22:%22activity%22%7D';
+    private userUrl = 'https://api2.mksmart.org/object/' + this.configSettings.citizenDatasetUUID + '?query=%7B%22type%22:%22user%22%7D&limit=9999'
+    private themeUrl = 'https://api2.mksmart.org/object/' + this.configSettings.citizenDatasetUUID + '?query=%7B%22type%22:%22theme%22%7D&limit=9999';
+    private artworkUrl =  'https://api2.mksmart.org/object/' + this.configSettings.citizenDatasetUUID + '?query=%7B%22type%22:%22artwork%22%7D&limit=9999';
+    private scriptUrl = 'https://api2.mksmart.org/object/' + this.configSettings.citizenDatasetUUID + '?query=%7B%22type%22:%22script%22%7D&limit=9999';
+    private activityUrl = 'https://api2.mksmart.org/object/' + this.configSettings.citizenDatasetUUID + '?query=%7B%22type%22:%22activity%22%7D&limit=9999';
     private saveUrl = 'https://api2.mksmart.org/object/' + this.configSettings.citizenDatasetUUID;
 
     constructor(private http: HttpClient) { }
