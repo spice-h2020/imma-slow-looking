@@ -8,6 +8,7 @@
             <td>
                 <span *ngIf="!tableEditing || editrow!=item._id || !isAdmin()">
                     {{item.id}}
+                    <span *ngIf="item.id != i+1  && deleteConfirmation_Id==''">out{{resetThemeId(item,i+1)}}</span>
                 </span>
                 <span *ngIf="tableEditing && editrow==item._id && isAdmin()">
                     <select (change)="updateThemePosition(item, $event); tableEditing=false">
@@ -22,7 +23,7 @@
                     {{item.name}}
                 </span>
                 <span *ngIf="tableEditing && editrow==item._id">
-                    <textarea rows="3" class="form-control" [(ngModel)]="item.name"></textarea>
+                    <textarea rows="3" class="form-control" [(ngModel)]="item.name" (change)="reloadThemes()"></textarea>
                 </span>
             </td>
             <td>
@@ -35,20 +36,20 @@
                     </span>
                 </span>
                 <span *ngIf="tableEditing && editrow==item._id">
-                    <textarea rows="3" class="form-control" [(ngModel)]="item.description"></textarea>
+                    <textarea rows="3" class="form-control" [(ngModel)]="item.description" (change)="reloadThemes()"></textarea>
                 </span>
             </td> 
             <td>
                 <span *ngIf="!tableEditing && writeAccess(item)">
-                    <button class="btn btn-danger" (click)="confirmDelete(item._id)">Delete</button>
+                    <button class="btn btn-danger" (click)="confirmDelete(item._id); reloadThemes()">Delete</button>
                 </span>
             </td>
             <td>
                 <span *ngIf="!tableEditing && writeAccess(item)">
-                    <button class="btn btn-warning" (click)="editrow=item._id" (click)="tableEditing=true; deleteConfirmation_Id='';">Edit</button>
+                    <button class="btn btn-warning" (click)="editrow=item._id; tableEditing=true; deleteConfirmation_Id=''; reloadThemes()">Edit</button>
                 </span>
                 <span *ngIf="tableEditing && editrow==item._id">
-                    <button class="btn btn-warning" (click)="tableEditing=false; addTheme(item)" [disabled]="!item.name || !item.description">Done</button>
+                    <button class="btn btn-warning" (click)="tableEditing=false; addTheme(item); reloadThemes()" [disabled]="!item.name || !item.description">Done</button>
                 </span>
             </td>
         </tr>
@@ -56,12 +57,12 @@
             <td></td>
             <td>
                 <span *ngIf="!tableEditing">
-                    <textarea rows="3" class="form-control" [(ngModel)]="newTheme.name"></textarea>
+                    <textarea rows="3" class="form-control" [(ngModel)]="newTheme.name" (change)="reloadThemes()"></textarea>
                 </span>
             </td>
             <td>
                 <span *ngIf="!tableEditing">
-                    <textarea rows="3" class="form-control" [(ngModel)]="newTheme.description"></textarea>
+                    <textarea rows="3" class="form-control" [(ngModel)]="newTheme.description" (change)="reloadThemes()"></textarea>
                 </span>
             </td>
             <td>

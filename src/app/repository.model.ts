@@ -48,10 +48,6 @@ export class Model {
 
     }
 
-    refreshArtworks() {
-        this.dbDataSource.getArtworkData().subscribe(data => this.dbArtworks = data);
-    }
-
     // Collection
     getCollection() {
         return this.dbCollectionArtworks;
@@ -91,6 +87,11 @@ export class Model {
     }
 
     // Theme
+
+    refreshThemes() {
+        this.dbDataSource.getThemeData().subscribe(data => this.dbThemes = data);
+    }
+
     getThemes(): Theme[] {
         return this.dbThemes;
     }
@@ -182,6 +183,11 @@ export class Model {
 
 
     // Artwork
+
+    refreshArtworks() {
+        this.dbDataSource.getArtworkData().subscribe(data => this.dbArtworks = data);
+    }
+
     getArtworks(): Artwork[] {
         return this.dbArtworks;
     }

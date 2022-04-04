@@ -3,6 +3,7 @@ import { Theme } from "./theme.model";
 import { Model } from "./repository.model";
 import { CurrentUser } from "./currentUser.service";
 import { User } from "./user.model";
+import { ThrowStmt } from "@angular/compiler";
 
 @Component({
     selector: "paThemeTable",
@@ -60,10 +61,15 @@ export class ThemeTableComponent {
         this.deleteConfirmation_Id = _id;
     }
 
+    resetThemeId(theme: Theme, newId: number) {
+        theme.id = newId;
+        this.model.saveTheme(theme);
+    }
+
     addTheme(theme: Theme) {
         //add current user as owner
         let currentUser_ID = this.getCurrentUser_ID();
-        if (currentUser_ID != "") {
+        if (currentUser_ID && !theme.owner) {
             theme.owner = currentUser_ID;
         }
 
@@ -104,6 +110,10 @@ export class ThemeTableComponent {
         let theme = this.getTheme(_id);
         theme.id = id;
         this.model.saveTheme(theme);
+    }
+
+    reloadThemes() {
+        this.model.refreshThemes();
     }
 
 }
