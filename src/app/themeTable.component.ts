@@ -4,6 +4,7 @@ import { Model } from "./repository.model";
 import { CurrentUser } from "./currentUser.service";
 import { User } from "./user.model";
 import { ThrowStmt } from "@angular/compiler";
+import { CdkDragDrop } from "@angular/cdk/drag-drop";
 
 @Component({
     selector: "paThemeTable",
@@ -100,8 +101,15 @@ export class ThemeTableComponent {
     }
 
     updateThemePosition(theme: Theme, event) {
+        console.log(theme, event);
         let newPosition = event.target.value;
         this.model.updateThemePosition(theme, newPosition);
+    }
+
+    getThemeOfPosition (position: number) {
+        let themes =  this.model.getThemes();
+        let theme = themes.find(x => position == x.id);
+        return theme;
     }
 
     set_theme_id() {
@@ -116,4 +124,11 @@ export class ThemeTableComponent {
         this.model.refreshThemes();
     }
 
+    drop(event: CdkDragDrop<string[]>) {
+        console.log(event);
+        let theme = this.getThemeOfPosition(event.previousIndex+1);
+        if(theme != undefined) {
+            this.model.updateThemePosition(theme, event.currentIndex+1);
+        }
+    }
 }

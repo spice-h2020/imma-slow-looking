@@ -153,6 +153,7 @@ export class Model {
     }
 
     updateThemePosition(theme: Theme, newPosition: number) {
+        console.log(theme, newPosition);
         //if old position < new
         if(theme.id < newPosition) {
             for(var newTheme of this.dbThemes) {

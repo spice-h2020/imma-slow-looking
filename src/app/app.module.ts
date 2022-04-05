@@ -19,6 +19,8 @@ import { CurrentUser } from './currentUser.service';
 import { UserLoginComponent } from './userLogin.component';
 import { AllResponsesComponent } from './allResponses.component';
 import { NavBarComponent } from './navBar.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { NavBarComponent } from './navBar.component';
     ModelModule,
     AutocompleteLibModule,
     ReactiveFormsModule,
-    MessageModule
+    MessageModule,
+    DragDropModule,
+    BrowserAnimationsModule
   ],
   providers: [CurrentUser],
   bootstrap: [SlowLookingComponent]

@@ -3,30 +3,34 @@
 <div *ngIf="isLoggedIn()" class="form-group">
 <table class="table table-sm"> 
     <thead class="thead-dark"><tr><th>Position</th><th>Theme</th><th>Description</th><th></th><th></th></tr></thead>
-    <tbody> 
-        <tr *ngFor="let item of getThemes(); let i = index"> 
-            <td>
-                <span *ngIf="!tableEditing || editrow!=item._id || !isAdmin()">
+    <tbody cdkDropList (cdkDropListDropped)="drop($event)"> 
+        <tr *ngFor="let item of getThemes(); let i = index" cdkDrag cdkDragLockAxis="y"> 
+            <td class="col-xs">
+                <span *ngIf="!tableEditing && isAdmin() && deleteConfirmation_Id==''" class="drag-handle" style="cursor: move;" cdkDragHandle>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
                     {{item.id}}
                     <span *ngIf="item.id != i+1  && deleteConfirmation_Id==''">out{{resetThemeId(item,i+1)}}</span>
                 </span>
-                <span *ngIf="tableEditing && editrow==item._id && isAdmin()">
-                    <select (change)="updateThemePosition(item, $event); tableEditing=false">
+                <span *ngIf="tableEditing || !isAdmin() || deleteConfirmation_Id!=''">
+                    {{item.id}}
+                    <!-- <select (change)="updateThemePosition(item, $event); tableEditing=false">
                         <option *ngFor="let pos of getThemes(); let ind = index" [selected]="item.id==pos.id" value="{{pos.id}}">   
                             {{pos.id}}           
                          </option> 
-                    </select>
+                    </select> -->
                 </span>
             </td>
-            <td>
+            <td class="col-xs">
                 <span *ngIf="!tableEditing || editrow!=item._id">
                     {{item.name}}
                 </span>
                 <span *ngIf="tableEditing && editrow==item._id">
-                    <textarea rows="3" class="form-control" [(ngModel)]="item.name" (change)="reloadThemes()"></textarea>
+                    <textarea rows="3" class="form-control" [(ngModel)]="item.name"></textarea>
                 </span>
             </td>
-            <td>
+            <td class="col-md">
                 <span *ngIf="!tableEditing || editrow!=item._id">
                     {{item.description}}
                     <span *ngIf="deleteConfirmation_Id==item._id">
@@ -36,39 +40,39 @@
                     </span>
                 </span>
                 <span *ngIf="tableEditing && editrow==item._id">
-                    <textarea rows="3" class="form-control" [(ngModel)]="item.description" (change)="reloadThemes()"></textarea>
+                    <textarea rows="3" class="form-control" [(ngModel)]="item.description"></textarea>
                 </span>
             </td> 
-            <td>
+            <td class="col-xs">
                 <span *ngIf="!tableEditing && writeAccess(item)">
                     <button class="btn btn-danger" (click)="confirmDelete(item._id); reloadThemes()">Delete</button>
                 </span>
             </td>
-            <td>
+            <td class="col-xs">
                 <span *ngIf="!tableEditing && writeAccess(item)">
                     <button class="btn btn-warning" (click)="editrow=item._id; tableEditing=true; deleteConfirmation_Id=''; reloadThemes()">Edit</button>
                 </span>
                 <span *ngIf="tableEditing && editrow==item._id">
-                    <button class="btn btn-warning" (click)="tableEditing=false; addTheme(item); reloadThemes()" [disabled]="!item.name || !item.description">Done</button>
+                    <button class="btn btn-warning" (click)="tableEditing=false; addTheme(item); reloadThemes()" [disabled]="!item.name || !item.description">Save</button>
                 </span>
             </td>
         </tr>
         <tr *ngIf="isLoggedIn()">
             <td></td>
             <td>
-                <span *ngIf="!tableEditing">
+                <span *ngIf="!tableEditing && deleteConfirmation_Id==''">
                     <textarea rows="3" class="form-control" [(ngModel)]="newTheme.name" (change)="reloadThemes()"></textarea>
                 </span>
             </td>
             <td>
-                <span *ngIf="!tableEditing">
+                <span *ngIf="!tableEditing && deleteConfirmation_Id==''">
                     <textarea rows="3" class="form-control" [(ngModel)]="newTheme.description" (change)="reloadThemes()"></textarea>
                 </span>
             </td>
             <td>
             </td>
             <td>
-                <span *ngIf="!tableEditing">
+                <span *ngIf="!tableEditing && deleteConfirmation_Id==''">
                     <button class="btn btn-success" (click)="addTheme(newTheme)" [disabled]="!newTheme.name || !newTheme.description">Add</button>
                 </span>
             </td>
