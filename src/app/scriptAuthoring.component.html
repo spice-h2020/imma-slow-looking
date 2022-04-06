@@ -14,10 +14,19 @@
     <div class="col-xs-12" *ngFor="let script of getScripts(); let i = index">
 
         <div *ngIf="((script.open && showOpenScripts) || (!(script.open) && showClosedScripts)) && (viewScript == '0' || viewScript==script._id)" class="card border p-3 mt-3" style="border-radius: 15px;">
-            <table class="container-fluid"><tr><td width="90%">
+            <!-- <table class="container-fluid"><tr><td width="90%"> -->
             <div *ngIf="editScriptDescription!=script._id" class="col-xs-12">
-                <div  class="col-xs-8  mr-5 left">
-                    <h4>{{script.name}}</h4>
+                <div  class="col-xs-8 left">
+                    <h4>
+                        <span class="float">{{script.name}}</span>
+                        <span *ngIf="viewScript=='0'" class="float-right">
+                            <button class="ml-5 btn btn-danger" (click)="confirmDelete(script._id)">Delete script</button>
+                            <button class="ml-5 btn btn-secondary" (click)="viewScript=script._id; deleteConfirmation_Id=''">View script</button>  
+                        </span>
+                        <span *ngIf="viewScript==script._id && editScriptDescription=='0' && editScriptStage==0" class="float-right">
+                            <button class="ml-5 btn btn-secondary float-right" (click)="viewScript='0'; deleteStageConfirmationId=0; showStageHelp=false;">Close script</button>
+                        </span>
+                    </h4>
                 </div>
             </div>
             <div class="col-xs-12">
@@ -112,7 +121,10 @@
                     </td></tr> 
                 </table>
                     <span *ngIf="viewScript==script._id && editScriptDescription=='0' && editScriptStage==0">
-                        <button class="btn btn-warning" (click)="editScriptDescription=script._id; editScriptStage=0; deleteStageConfirmationId=0; showStageHelp=false;">Edit description</button><br/>
+                        <span class="float">&nbsp;</span>
+                        <span class="float-right">
+                            <button class="btn btn-warning" (click)="editScriptDescription=script._id; editScriptStage=0; deleteStageConfirmationId=0; showStageHelp=false;">Edit description</button><br/>
+                        </span>
                     </span>
                     <span *ngIf="viewScript=='0'">
                         <span *ngIf="deleteConfirmation_Id==script._id">
@@ -324,7 +336,10 @@
                             <label class="form-check-label">&nbsp;Approved </label>
                         </span>
                     </td></tr><tr><td colspan="2">
-                        <button class="btn btn-warning" (click)="editScriptDescription='0'; saveScript(script)" [disabled]="!getThemesFromIds(script.themeids).length || !getArtworksFromIds(script.name, script.artworkids, script).length || script.homepageartworkid==undefined">Done</button> 
+                        <span class="float">&nbsp;</span>
+                        <span class="float-right">
+                            <button class="btn btn-warning" (click)="editScriptDescription='0'; saveScript(script)" [disabled]="!getThemesFromIds(script.themeids).length || !getArtworksFromIds(script.name, script.artworkids, script).length || script.homepageartworkid==undefined">Save description</button> 
+                        </span>
                     </td></tr>
                 </table>
                 <div class="mt-3" *ngIf="editScriptDescription==script._id">
@@ -333,10 +348,13 @@
                 </div>
                 <span *ngIf="viewScript==script._id">
                    <!-- stages of selected scriptid -->
-                    <div *ngFor="let stage of script.stages; let i = index" class="border mt-3 p-3">
+                    <table width=100%>
+                    <tbody cdkDropList (cdkDropListDropped)="stageDrop(script, $event)">
+                    <tr *ngFor="let stage of script.stages; let i = index" class="border mt-3 p-3 mb-3" cdkDrag cdkDragLockAxis="y">
+                    <td>
                         <!-- show script stage -->
                         <span *ngIf="stage.id!=editScriptStage"> 
-                            <span style="cursor: move;">
+                            <span class="drag-handle" style="cursor: move;" cdkDragHandle>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                                 </svg>
@@ -373,8 +391,11 @@
                                 <span class="font-weight-bold">Help text: </span><span style="white-space: pre-wrap;">{{stage.help}}</span><br/>
                             </span>
                             <span *ngIf="editScriptStage==0 && editScriptDescription=='0'"> 
-                                <button class="mr-5 btn btn-warning" (click)="editScriptStage=stage.id; deleteStageConfirmationId=0; showStageHelp=false;">Edit stage</button>
-                                <button class="btn btn-danger" (click)="confirmStageDelete(stage.id); showStageHelp=false;">Delete stage</button><br/>
+                                <span class="float">&nbsp;</span>
+                                <span class="float-right">
+                                    <button class="ml-5 btn btn-danger" (click)="confirmStageDelete(stage.id); showStageHelp=false;">Delete stage</button>
+                                    <button class="ml-5 btn btn-warning" (click)="editScriptStage=stage.id; deleteStageConfirmationId=0; showStageHelp=false;">Edit stage</button>
+                                </span> 
                             </span>
                             <span *ngIf="deleteStageConfirmationId==stage.id">
                                 <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this stage?</strong> <div><button class="btn btn-danger ml-2" (click)="deleteStage(script, stage); deleteStageConfirmationId=0; showStageHelp=false;">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteStageConfirmationId=0; showStageHelp=false;">Cancel</button></div></div>
@@ -390,13 +411,16 @@
                                 <span>{{stage.stagetype}}</span>
                             </td></tr>
                             <tr><td>
+                                <span class="drag-handle" style="cursor: move;" cdkDragHandle>
+                                </span>
                                 <span class="font-weight-bold">Position:</span>
                             </td><td>
-                                <select (change)="shiftStagePosition(script, $event, i); editScriptStage=0">
+                                {{i+1}}
+                                <!-- <select (change)="shiftStagePosition(script, $event, i); editScriptStage=0">
                                     <option *ngFor="let pos of script.stages; let ind = index" [selected]="ind==i" value="{{ind}}">   
                                         {{ind+1}}           
                                     </option> 
-                                </select>
+                                </select> -->
                                 <!-- <textarea rows="1" class="form-control" [(ngModel)]="stage.title"></textarea> -->
                             </td></tr>
                             <tr><td>
@@ -480,7 +504,7 @@
                                                         </svg>
                                                     </span>
                                                     <span class="font-weight-bold">&nbsp;Question {{index+1}}: </span><br/><textarea rows="3" class="form-control" [(ngModel)]="stage.body[index]"></textarea>
-                                                    <button class="btn btn-danger float-right" (click)="deleteMultistageQuestion(script, i, index)" [disabled]="stage.body.length < 3">Delete</button>
+                                                    <button class="btn btn-danger float-right" (click)="deleteMultistageQuestion(script, i, index)" [disabled]="stage.body.length < 3">Delete question</button>
                                                 </td>
                                             </tr> 
                                         </tbody>
@@ -497,23 +521,24 @@
                             
                             </table>
                             <span>
-                                <button class="btn btn-warning" (click)="editScriptStage=0; saveScript(script)">Save</button><br/>
+                                <button class="btn btn-warning float-right" (click)="editScriptStage=0; saveScript(script)">Save stage</button><br/>
                             </span>
                         </span>
-                    </div>
+                    </td>
+                    </tr>
+                    </tbody>
+                    </table>
                 </span>
             </div>
-            <td class="align-top" width="10%">
+            <!-- <td class="align-top" width="10%">
                 <span *ngIf="viewScript=='0'">
                     <button class="mr-5 mb-3 btn btn-secondary" (click)="viewScript=script._id; deleteConfirmation_Id=''">View</button>
-                </span>
-                <span *ngIf="viewScript=='0'">
                     <button class="btn btn-danger" (click)="confirmDelete(script._id)">Delete</button>
                 </span>
-                <span *ngIf="viewScript==script._id && editScriptDescription=='0' && editScriptStage==0">
-                    <button class="btn btn-secondary" (click)="viewScript='0'; deleteStageConfirmationId=0; showStageHelp=false;">Scripts</button>
-                </span>
-            </td></tr></table>
+                <!-- <span *ngIf="viewScript==script._id && editScriptDescription=='0' && editScriptStage==0">
+                    <button class="btn btn-secondary" (click)="viewScript='0'; deleteStageConfirmationId=0; showStageHelp=false;">Close</button>
+                </span> -->
+            <!-- </td></tr></table> -->
         </div>
     </div><br/>
 </div>

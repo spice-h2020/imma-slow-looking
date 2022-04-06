@@ -436,4 +436,8 @@ export class ScriptAuthoringComponent {
         }
     }
 
+    stageDrop(script: Script, event: CdkDragDrop<string[]>) {
+        this.model.moveScriptStage(script, event.previousIndex, event.currentIndex);
+    }
+
 }
