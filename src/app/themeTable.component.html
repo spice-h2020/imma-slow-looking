@@ -1,26 +1,28 @@
 <paNavBar></paNavBar>
 <p class="lead">Below are the themes which you can link to your scripts. Using existing themes allows your scripts to be displayed with other scripts of that theme. If none of the themes match your script, you can add further themes. Other script authors will be able to link their scripts to your theme.</p>
 <div *ngIf="isLoggedIn()" class="form-group">
+
 <table class="table table-sm"> 
     <thead class="thead-dark"><tr><th>Position</th><th>Theme</th><th>Description</th><th></th><th></th></tr></thead>
     <tbody cdkDropList (cdkDropListDropped)="drop($event)"> 
         <tr *ngFor="let item of getThemes(); let i = index" cdkDrag cdkDragLockAxis="y"> 
             <td class="col-xs">
-                <span *ngIf="!tableEditing && isAdmin() && deleteConfirmation_Id==''" class="drag-handle" style="cursor: move;" cdkDragHandle>
+                <span class="drag-handle" style="cursor: move;" cdkDragHandle>
+                <span *ngIf="!tableEditing && deleteConfirmation_Id=='' && isAdmin()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                     </svg>
-                    {{item.id}}
-                    <span *ngIf="item.id != i+1  && deleteConfirmation_Id==''">out{{resetThemeId(item,i+1)}}</span>
                 </span>
-                <span *ngIf="tableEditing || !isAdmin() || deleteConfirmation_Id!=''">
-                    {{item.id}}
+                    <!-- <span *ngIf="item.id != i+1  && deleteConfirmation_Id==''">out{{resetThemeId(item,i+1)}}</span> -->
+                </span>{{item.id}}
+                <!-- <span *ngIf="tableEditing || deleteConfirmation_Id!=''">
+                    {{item.id}} -->
                     <!-- <select (change)="updateThemePosition(item, $event); tableEditing=false">
                         <option *ngFor="let pos of getThemes(); let ind = index" [selected]="item.id==pos.id" value="{{pos.id}}">   
                             {{pos.id}}           
-                         </option> 
+                        </option> 
                     </select> -->
-                </span>
+                <!-- </span> -->
             </td>
             <td class="col-xs">
                 <span *ngIf="!tableEditing || editrow!=item._id">
@@ -35,7 +37,7 @@
                     {{item.description}}
                     <span *ngIf="deleteConfirmation_Id==item._id">
                         <br/>
-                        <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this theme?</strong> <div><button class="btn btn-danger ml-2" (click)="deleteTheme(item._id)">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteConfirmation_Id=''">Cancel</button></div></div>
+                        <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this theme?</strong> <div><button class="btn btn-danger ml-2" (click)="deleteTheme(item._id); deleteConfirmation_Id=''">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteConfirmation_Id=''">Cancel</button></div></div>
                         <br/>
                     </span>
                 </span>

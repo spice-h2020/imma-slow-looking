@@ -336,9 +336,14 @@
                     <div *ngFor="let stage of script.stages; let i = index" class="border mt-3 p-3">
                         <!-- show script stage -->
                         <span *ngIf="stage.id!=editScriptStage"> 
-                            <span class="font-weight-bold">Type: </span><span>{{stage.stagetype}}</span><br/>
-                            <span class="font-weight-bold">Position: </span><span>{{i+1}}</span><br/>
+                            <span style="cursor: move;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                                </svg>
+                            </span>
+                            <span class="font-weight-bold">&nbsp;Position: </span><span>{{i+1}}</span><br/>
                             <span class="font-weight-bold">Title: </span><span>{{stage.title}}</span><br/>
+                            <span class="font-weight-bold">Type: </span><span>{{stage.stagetype}}</span><br/>
 
                             <span *ngIf="!getArtworksFromIds(stage.title, stage.includeartworks, script, stage).length" class="font-weight-bold">
                                 Show artworks: 
@@ -465,10 +470,21 @@
                                     <textarea rows="3" class="form-control" [(ngModel)]="stage.body"></textarea>
                                 </span>
                                 <span *ngIf='stage.stagetype=="multiquestion"'>
-
-                                    <span *ngFor="let q of stage.body; let index=index; trackBy:trackByIdx" class="mr-3">
-                                        <span class="font-weight-bold">Question {{index+1}}: </span><br/><textarea rows="3" class="form-control" [(ngModel)]="stage.body[index]"></textarea>
-                                    </span>
+                                    <table style="width: 100%;">
+                                        <tbody cdkDropList (cdkDropListDropped)="drop($event, script, i)">
+                                            <tr *ngFor="let q of stage.body; let index=index; trackBy:trackByIdx" cdkDrag cdkDragLockAxis="y">
+                                                <td>
+                                                    <span class="drag-handle" style="cursor: move;" cdkDragHandle>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                                                            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                                                        </svg>
+                                                    </span>
+                                                    <span class="font-weight-bold">&nbsp;Question {{index+1}}: </span><br/><textarea rows="3" class="form-control" [(ngModel)]="stage.body[index]"></textarea>
+                                                    <button class="btn btn-danger float-right" (click)="deleteMultistageQuestion(script, i, index)" [disabled]="stage.body.length < 3">Delete</button>
+                                                </td>
+                                            </tr> 
+                                        </tbody>
+                                    </table>
                                 </span>
                             </td></tr>
                             <tr *ngIf='stage.stagetype=="question"'><td class="align-top">
@@ -477,11 +493,11 @@
                                 <textarea rows="3" class="form-control" [(ngModel)]="stage.help"></textarea>
                             </td></tr>
 
-                            <tr *ngIf='stage.stagetype=="multiquestion"'><td></td><td><button class="btn btn-success mr-3" (click)='stage.body = stage.body.concat("Question goes here")'>Add new question</button>    <button class="float-right btn btn-danger" (click)="stage.body.splice(stage.body.length -1)" [disabled]="stage.body.length <= 2">Delete last question</button></td></tr>
+                            <tr *ngIf='stage.stagetype=="multiquestion"'><td></td><td><button class="btn btn-success mr-3" (click)='stage.body = stage.body.concat("Question goes here")'>Add new question</button></td></tr>
                             
                             </table>
                             <span>
-                                <button class="btn btn-warning" (click)="editScriptStage=0; saveScript(script)">Done</button><br/>
+                                <button class="btn btn-warning" (click)="editScriptStage=0; saveScript(script)">Save</button><br/>
                             </span>
                         </span>
                     </div>

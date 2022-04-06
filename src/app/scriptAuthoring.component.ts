@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
 import { Component } from "@angular/core";
 import { Artwork } from "./artwork.model";
 import { CurrentUser } from "./currentUser.service";
@@ -421,4 +422,18 @@ export class ScriptAuthoringComponent {
         return this.currentuser.getUserID() != undefined;
     }
     
+    drop(event: CdkDragDrop<string[]>, script: Script, i: number) {
+        if(script.stages[i] as multiquestionStage && script.stages[i].hasOwnProperty, 'body') {
+            moveItemInArray(script.stages[i].body, event.previousIndex, event.currentIndex);
+            this.saveScript(script);
+        }
+    }
+
+    deleteMultistageQuestion(script: Script, stageNumber: number, questionNumber: number) {
+        if(script.stages[stageNumber] as multiquestionStage && script.stages[stageNumber].hasOwnProperty, 'body') {
+            script.stages[stageNumber].body.splice(questionNumber, 1);
+            this.saveScript(script);
+        }
+    }
+
 }
