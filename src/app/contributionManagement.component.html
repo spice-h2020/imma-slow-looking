@@ -1,7 +1,7 @@
 <paNavBar></paNavBar>
 <p class="lead">Manage responses to the scripts.</p>
 <p *ngIf="isAdmin()">
-    Show responses to scripts authored by:
+    Show responses to scripts authored by:&nbsp;
     <select [(ngModel)]="currentUser">
         <option *ngFor="let user of getUsers();" value="{{user.id}}">   
             {{user.id}}: {{user.username}}           

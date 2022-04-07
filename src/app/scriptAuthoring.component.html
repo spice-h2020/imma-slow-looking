@@ -363,11 +363,13 @@
                         <!-- show script stage -->
                         <span *ngIf="stage.id!=editScriptStage"> 
                             <span class="drag-handle" style="cursor: move;" cdkDragHandle>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                                <span *ngIf="editScriptStage==0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                                 </svg>
-                            </span>
-                            <span class="font-weight-bold">&nbsp;Position: </span><span>{{i+1}}</span><br/>
+                                </span>
+                            </span>{{i+1}}<br/>
+                            <!-- <span class="font-weight-bold">&nbsp;Position: </span><span>{{i+1}}</span><br/> -->
                             <span class="font-weight-bold">Title: </span><span>{{stage.title}}</span><br/>
                             <span class="font-weight-bold">Type: </span><span>{{stage.stagetype}}</span><br/>
 
@@ -411,25 +413,23 @@
                         </span>
                         <!-- edit script stage -->
                         <span *ngIf="stage.id==editScriptStage">
-
                             <table width=100%><th></th><th></th>
-                            <tr><td>
-                                <span class="font-weight-bold">Type:</span>
-                            </td><td>
-                                <span>{{stage.stagetype}}</span>
-                            </td></tr>
                             <tr><td>
                                 <span class="drag-handle" style="cursor: move;" cdkDragHandle>
                                 </span>
-                                <span class="font-weight-bold">Position:</span>
-                            </td><td>
                                 {{i+1}}
+                            </td><td>
                                 <!-- <select (change)="shiftStagePosition(script, $event, i); editScriptStage=0">
                                     <option *ngFor="let pos of script.stages; let ind = index" [selected]="ind==i" value="{{ind}}">   
                                         {{ind+1}}           
                                     </option> 
                                 </select> -->
                                 <!-- <textarea rows="1" class="form-control" [(ngModel)]="stage.title"></textarea> -->
+                            </td></tr>
+                            <tr><td>
+                                <span class="font-weight-bold">Type:</span>
+                            </td><td>
+                                <span>{{stage.stagetype}}</span>
                             </td></tr>
                             <tr><td>
                                 <span class="font-weight-bold">Title:</span>
@@ -507,11 +507,11 @@
                                             <tr *ngFor="let q of stage.body; let index=index; trackBy:trackByIdx" cdkDrag cdkDragLockAxis="y">
                                                 <td>
                                                     <span class="drag-handle" style="cursor: move;" cdkDragHandle>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
                                                             <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                                                         </svg>
                                                     </span>
-                                                    <span class="font-weight-bold">&nbsp;Question {{index+1}}: </span><br/><textarea rows="3" class="form-control" [(ngModel)]="stage.body[index]"></textarea>
+                                                    <span class="font-weight-bold">Question {{index+1}}: </span><br/><textarea rows="3" class="form-control" [(ngModel)]="stage.body[index]"></textarea>
                                                     <button class="btn btn-danger float-right" (click)="deleteMultistageQuestion(script, i, index)" [disabled]="stage.body.length < 3">Delete question</button>
                                                 </td>
                                             </tr> 
