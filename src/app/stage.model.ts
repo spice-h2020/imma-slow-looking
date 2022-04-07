@@ -5,6 +5,7 @@ export class Stage {
         public position?: number,
         public stagetype?: string,
         public includeartworks: Array<string> = [],
+        public body?: any
     ) {
     }
 }
@@ -20,7 +21,7 @@ export class welcomeStage extends Stage {
         public stagetype: string = "welcome",
         public includeartworks: Array<string> = [],
     ) {
-        super(type, id, position, stagetype, includeartworks);
+        super(type, id, position, stagetype, includeartworks, body);
     }
 }
 
@@ -35,7 +36,7 @@ export class contextStage extends Stage {
         public stagetype: string = "context",
         public includeartworks: Array<string> = [],
     ) {
-        super(type, id, position, stagetype, includeartworks);
+        super(type, id, position, stagetype, includeartworks, body);
     }
 }
 
@@ -51,7 +52,7 @@ export class questionStage extends Stage {
         public stagetype: string = "question",
         public includeartworks: Array<string> = [],
     ) {
-        super(type, id, position, stagetype, includeartworks);
+        super(type, id, position, stagetype, includeartworks, body);
     }
 }
 
@@ -67,7 +68,7 @@ export class storyStage extends Stage {
         public stagetype: string = "story",
         public includeartworks: Array<string> = [],
     ) {
-        super(type, id, position, stagetype, includeartworks);
+        super(type, id, position, stagetype, includeartworks, body);
     }
 }
 
@@ -84,7 +85,7 @@ export class multiquestionStage extends Stage {
         public stagetype: string = "multiquestion",
         public includeartworks: Array<string> = [],
     ) {
-        super(type, id, position, stagetype, includeartworks);
+        super(type, id, position, stagetype, includeartworks, body);
     }
 }
 
@@ -100,7 +101,7 @@ export class shareWithMuseumStage extends Stage {
         public stagetype: string = "shareWithMuseum",
         public includeartworks: Array<string> = [],
     ) {
-        super(type, id, position, stagetype, includeartworks);
+        super(type, id, position, stagetype, includeartworks, body);
     }
 }
 
@@ -115,7 +116,7 @@ export class followStage extends Stage {
         public stagetype: string = "follow",
         public includeartworks: Array<string> = [],
     ) {
-        super(type, id, position, stagetype, includeartworks);
+        super(type, id, position, stagetype, includeartworks, body);
     }
 }
 
@@ -132,7 +133,7 @@ export class shareWithSomeoneStage extends Stage {
         public stagetype: string = "shareWithSomeone",
         public includeartworks: Array<string> = [],
     ) {
-        super(type, id, position, stagetype, includeartworks);
+        super(type, id, position, stagetype, includeartworks, body);
     }
 }
 
@@ -148,6 +149,6 @@ export class thankyouStage extends Stage {
         public stagetype: string = "thankyou",
         public includeartworks: Array<string> = [],
     ) {
-        super(type, id, position, stagetype, includeartworks);
+        super(type, id, position, stagetype, includeartworks, body);
     }
 }

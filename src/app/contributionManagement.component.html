@@ -1,7 +1,15 @@
 <paNavBar></paNavBar>
-<p class="lead">Manage responses to your scripts.</p>
+<p class="lead">Manage responses to the scripts.</p>
+<p *ngIf="isAdmin()">
+    Show responses to scripts authored by:
+    <select [(ngModel)]="currentUser">
+        <option *ngFor="let user of getUsers();" value="{{user.id}}">   
+            {{user.id}}: {{user.username}}           
+        </option> 
+    </select> 
+</p>
 <div *ngIf="isLoggedIn()">
-    Show:
+    Show responses with status:
 </div>
 <div *ngIf="isLoggedIn()" class="mb-4">
     <button (click)="managementMode=1" class="btn btn-secondary col-sm-4 text-center">All</button>
