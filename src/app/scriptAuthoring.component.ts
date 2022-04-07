@@ -4,7 +4,7 @@ import { Artwork } from "./artwork.model";
 import { CurrentUser } from "./currentUser.service";
 import { Model } from "./repository.model";
 import { Script } from "./script.model";
-import { contextStage, followStage, multiquestionStage, questionStage, shareWithMuseumStage, shareWithSomeoneStage, Stage, storyStage, thankyouStage, welcomeStage } from "./stage.model";
+import { contextStage, followStage, multiquestionStage, questionStage, shareWithMuseumStage, shareWithSomeoneStage, Stage, statementStage, storyStage, thankyouStage, welcomeStage } from "./stage.model";
 import { Theme } from "./theme.model";
 
 @Component({
@@ -119,6 +119,15 @@ export class ScriptAuthoringComponent {
         return stage;
     }
     
+    addStatementStage(script: Script, id?: number) {
+        let stage = new statementStage();
+        if(id != null && id != 0) {
+            stage.id = id;
+        }
+        stage.id = this.model.saveStage(stage, script);
+        return stage;
+    }
+
     addQuestionStage(script: Script, id?: number) {
         let stage = new questionStage();
         if(id != null && id != 0) {
@@ -289,6 +298,14 @@ export class ScriptAuthoringComponent {
 
     addContextStageToScript(script: Script) {
         let stage = this.addContextStage(script);
+        this.model.addStageToScript(script, stage);
+        //set vars
+        this.viewScript = script._id;
+        this.editScriptStage = stage.id;
+    }
+
+    addStatementStageToScript(script: Script) {
+        let stage = this.addStatementStage(script);
         this.model.addStageToScript(script, stage);
         //set vars
         this.viewScript = script._id;

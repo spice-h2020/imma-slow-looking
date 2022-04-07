@@ -40,7 +40,7 @@
                             <button class="btn btn-warning" (click)="editrow=item._id" (click)="tableEditing=true; deleteConfirmation_Id='';">Edit</button>
                         </span>
                         <span *ngIf="tableEditing && editrow==item._id">
-                            <button class="btn btn-warning" (click)="tableEditing=false; addUser(item)" [disabled]="!item.username || !item.password">Done</button>
+                            <button class="btn btn-warning" (click)="tableEditing=false; addUser(item)" [disabled]="!item.username || !item.password">Save</button>
                         </span>
                     </td>
                 </tr>

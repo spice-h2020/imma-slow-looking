@@ -67,7 +67,7 @@ export class ContributionManagementComponent {
 
         // admin sees all activites
         if(userID == 1) {
-            let editorID = this.getEditorIDOfUserID(this.currentUser);
+            let editorID = this.get_IDOfUserID(this.currentUser);
             if(editorID != undefined) {
                 let filteredActivities = activities.filter(x => x.editor == editorID);
                 return filteredActivities;
@@ -82,7 +82,7 @@ export class ContributionManagementComponent {
         return filteredActivities;
     }
 
-    getEditorIDOfUserID(currentUser: number) {
+    get_IDOfUserID(currentUser: number) {
         let myuser = this.getUsers().find(user => user.id == currentUser);
         if(myuser != undefined) {
             return myuser._id;

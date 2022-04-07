@@ -141,23 +141,31 @@
                             </span>
                         </span>
                         <span *ngIf="editScriptStage==0">
-                            <br/>Add new stage: <button class="btn btn-success mr-1" (click)="addWelcomeStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">welcome</button> <button class="btn btn-success mr-1" (click)="addContextStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">context</button> <button class="btn btn-success mr-1" (click)="addQuestionStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">question</button> <button class="btn btn-success mr-1" (click)="addMultiQuestionStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">multiquestion</button> <button class="btn btn-success mr-1" (click)="addStoryStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">story</button>
-                            <!-- <button class="btn btn-success mr-1" (click)="addShareWithMuseumStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">shareWithMuseum</button> <button class="btn btn-success mr-1" (click)="addFollowStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">follow</button> <button class="btn btn-success mr-1" (click)="addShareWithSomeoneStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">shareWithSomeone</button>  -->
-                            <button class="btn btn-success mr-1" (click)="addThankyouStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">thankyou</button>
+                            <br/>Add new stage: 
+                            <!-- <button class="btn btn-success mr-1" (click)="addWelcomeStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">welcome</button>  -->
+                            <button class="btn btn-success mr-1" (click)="addStatementStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">statement</button> 
+                            <!-- <button class="btn btn-success mr-1" (click)="addContextStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">context</button>  -->
+                            <button class="btn btn-success mr-1" (click)="addQuestionStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">question</button> 
+                            <button class="btn btn-success mr-1" (click)="addMultiQuestionStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">multiquestion</button> 
+                            <button class="btn btn-success mr-1" (click)="addStoryStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">story</button>
+                            <!-- <button class="btn btn-success mr-1" (click)="addShareWithMuseumStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">shareWithMuseum</button> 
+                                <button class="btn btn-success mr-1" (click)="addFollowStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">follow</button> <button class="btn btn-success mr-1" (click)="addShareWithSomeoneStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">shareWithSomeone</button>  -->
+                            <!-- <button class="btn btn-success mr-1" (click)="addThankyouStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">thankyou</button> -->
                             <img class="ml-3" width="20" style="background-color:white;" src="assets/img/question-help.png" (click)="toggleStageHelp()">
                         </span>
                    
                         <br/>
                         <span *ngIf="showStageHelp">
-                            <span class="font-weight-bold">welcome: </span><span>Add a welcome message introducing the activity</span><br/>
-                            <span class="font-weight-bold">context: </span><span>Provide information or a perspective</span><br/>
+                            <!-- <span class="font-weight-bold">welcome: </span><span>Add a welcome message introducing the activity</span><br/> -->
+                            <!-- <span class="font-weight-bold">context: </span><span>Provide information or a perspective</span><br/> -->
+                            <span class="font-weight-bold">statement: </span><span>Provide a statement giving information or a perspective</span><br/>
                             <span class="font-weight-bold">question: </span><span>Ask a question and optionally provide a help prompt</span><br/>
                             <span class="font-weight-bold">multiquestion: </span><span>Add a number of questions to one stage which can be reloaded at random or shown in sequence</span><br/>
                             <span class="font-weight-bold">story: </span><span>Prompt the telling of story inspired by the artworks</span><br/>
                             <!-- <span class="font-weight-bold">shareWithMuseum: </span><span>Give the option to share responses with the museum</span><br/>
                             <span class="font-weight-bold">follow: </span><span>Give the option to get a message when their response is published</span><br/>
                             <span class="font-weight-bold">shareWithSomeone: </span><span>Give the option to send the response to a friend or relation</span><br/> -->
-                            <span class="font-weight-bold">thankyou: </span><span>Give a thankyou message for completing the activity</span><br/>
+                            <!-- <span class="font-weight-bold">thankyou: </span><span>Give a thankyou message for completing the activity</span><br/> -->
                         </span>
                     </div>
                
@@ -395,10 +403,10 @@
                                 <span class="float-right">
                                     <button class="ml-5 btn btn-danger" (click)="confirmStageDelete(stage.id); showStageHelp=false;">Delete stage</button>
                                     <button class="ml-5 btn btn-warning" (click)="editScriptStage=stage.id; deleteStageConfirmationId=0; showStageHelp=false;">Edit stage</button>
-                                </span> 
-                            </span>
+                                </span>
+                            </span><br/>
                             <span *ngIf="deleteStageConfirmationId==stage.id">
-                                <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this stage?</strong> <div><button class="btn btn-danger ml-2" (click)="deleteStage(script, stage); deleteStageConfirmationId=0; showStageHelp=false;">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteStageConfirmationId=0; showStageHelp=false;">Cancel</button></div></div>
+                                <div class="alert alert-danger mt-3" role="alert"><strong>Are you sure you want to delete this stage?</strong> <div><button class="btn btn-danger ml-2" (click)="deleteStage(script, stage); deleteStageConfirmationId=0; showStageHelp=false;">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteStageConfirmationId=0; showStageHelp=false;">Cancel</button></div></div>
                             </span>
                         </span>
                         <!-- edit script stage -->

@@ -40,6 +40,21 @@ export class contextStage extends Stage {
     }
 }
 
+export class statementStage extends Stage {
+
+    constructor (
+        public type: string = "stage",
+        public id?: number,
+        public position?: number,
+        public title: string = "Title goes here",
+        public body: string = "Statement goes here",
+        public stagetype: string = "statement",
+        public includeartworks: Array<string> = [],
+    ) {
+        super(type, id, position, stagetype, includeartworks, body);
+    }
+}
+
 export class questionStage extends Stage {
 
     constructor (
