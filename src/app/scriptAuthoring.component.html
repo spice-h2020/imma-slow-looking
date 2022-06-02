@@ -1,8 +1,13 @@
 <paNavBar></paNavBar>
 <p class="lead">Manage your scripts.</p>
-<p *ngIf="isAdmin()">
-    Show scripts authored by:&nbsp;
-    <select [(ngModel)]="currentUser" (change)="viewScript='0'; deleteStageConfirmationId=0; showStageHelp=false; newStageMessage=false;">
+<div class="form-check form-check-inline">
+    <label class="form-check-label">Show all scripts:&nbsp;&nbsp;</label>
+    <input [(ngModel)]="showallscripts" class="form-check-input" (change)="viewScript='0'; deleteStageConfirmationId=0; showStageHelp=false; newStageMessage=false;"
+    type="checkbox"/>
+</div>
+<p *ngIf="isAdmin() && !showallscripts">
+    <label class="form-check-label">Show scripts authored by:&nbsp;&nbsp;</label>
+    <select class="form-select form-select-sm" [(ngModel)]="currentUser" (change)="viewScript='0'; deleteStageConfirmationId=0; showStageHelp=false; newStageMessage=false;">
         <option *ngFor="let user of getUsers();" value="{{user.id}}">   
             {{user.id}}: {{user.username}}           
         </option> 
@@ -16,7 +21,7 @@
             <span class="mr-3"><input type="checkbox" [checked]="showClosedScripts" (change)="showClosedScripts = !showClosedScripts"/><label class="ml-2"> Closed </label></span>
         </span>
     </div> -->
-    <div *ngIf="viewScript=='0' && isLoggedIn() && (!isAdmin() || (isAdmin() && currentUser==1))" class="col-xs-12 mb-3 mt-2">
+    <div *ngIf="viewScript=='0' && isLoggedIn() && (!isAdmin() || (isAdmin() && currentUser==1 && !showallscripts))" class="col-xs-12 mb-3 mt-2">
         <button class="float-right btn btn-success mb-3" (click)="addScript(); deleteConfirmation_Id=''">Add new script</button><br/><br/>
     </div>
     <div class="col-xs-12" *ngFor="let script of getScripts(); let i = index">

@@ -2,7 +2,7 @@
 <p class="lead">Manage responses to your scripts.</p>
 <p *ngIf="isAdmin()">
     Show responses to scripts authored by:&nbsp;
-    <select [(ngModel)]="currentUser">
+    <select [(ngModel)]="currentUser" class="form-select form-select-sm" >
         <option *ngFor="let user of getUsers();" value="{{user.id}}">   
             {{user.id}}: {{user.username}}           
         </option> 

@@ -19,6 +19,8 @@ export class ScriptAuthoringComponent {
 
     currentUser: number = 1;
 
+    showallscripts: boolean = false;
+
     showStageHelp = false;
 
     newStageMessage: boolean = false;
@@ -260,22 +262,6 @@ export class ScriptAuthoringComponent {
             if(myartwork != undefined) {
                 myartworks.push(myartwork);
             }
-            // else {
-            //     //stray link to deleted artwork so remove it from the script
-            //     if(typeof stage == 'undefined') {
-            //         this.model.removeArtworkFromScript(script, artworkid);
-            
-            //         //remove artwork from script stages
-            //         for(var stage of script.stages) {
-            //             this.model.removeArtworkFromIncludedArtworks(script, stage, artworkid);
-            //         }
-            //     }
-            //     else {
-            //         this.model.removeArtworkFromIncludedArtworks(script, stage, artworkid);
-            //     }
-            //     this.model.saveScript(script);
-                
-            // }
         }
         return myartworks;
     }
@@ -437,14 +423,19 @@ export class ScriptAuthoringComponent {
 
         //admin sees all scripts
         if(userID == 1) {
-            let editorID = this.get_IDOfUserID(this.currentUser);
-            if(editorID != undefined) {
-                let filteredScripts = scripts.filter(x => x.owner == editorID);
-                return filteredScripts;
+            if(this.showallscripts) {
+                return scripts;
             }
             else {
-                let filteredScripts: Array<Script> = [];
-                return filteredScripts;
+                let editorID = this.get_IDOfUserID(this.currentUser);
+                if(editorID != undefined) {
+                    let filteredScripts = scripts.filter(x => x.owner == editorID);
+                    return filteredScripts;
+                }
+                else {
+                    let filteredScripts: Array<Script> = [];
+                    return filteredScripts;
+                }
             }
         }
 
