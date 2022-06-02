@@ -6,6 +6,7 @@ import { Model } from "./repository.model";
 import { Script } from "./script.model";
 import { contextStage, followStage, multiquestionStage, questionStage, shareWithMuseumStage, shareWithSomeoneStage, Stage, statementStage, storyStage, thankyouStage, welcomeStage } from "./stage.model";
 import { Theme } from "./theme.model";
+import { User } from "./user.model";
 
 @Component({
     selector: "paScriptAuthoring",
@@ -15,6 +16,8 @@ import { Theme } from "./theme.model";
 export class ScriptAuthoringComponent {
 
     constructor(public currentuser: CurrentUser, private model: Model){}
+
+    currentUser: number = 1;
 
     showStageHelp = false;
 
@@ -432,13 +435,35 @@ export class ScriptAuthoringComponent {
             return [];
         }
 
-        // admin sees all scripts
-        // if(userID == 1) {
-        //     return scripts;
-        // }
+        //admin sees all scripts
+        if(userID == 1) {
+            let editorID = this.get_IDOfUserID(this.currentUser);
+            if(editorID != undefined) {
+                let filteredScripts = scripts.filter(x => x.owner == editorID);
+                return filteredScripts;
+            }
+            else {
+                let filteredScripts: Array<Script> = [];
+                return filteredScripts;
+            }
+        }
 
         let filteredScripts = scripts.filter(x => x.owner == user._id);
         return filteredScripts;
+    }
+
+    get_IDOfUserID(currentUser: number) {
+        let myuser = this.getUsers().find(user => user.id == currentUser);
+        if(myuser != undefined) {
+            return myuser._id;
+        }
+        else {
+            return undefined;
+        }
+    }
+
+    getUsers(): User[] {
+        return this.model.getUsers().sort((a, b) => (a.id < b.id) ? -1 : 1);;
     }
 
     includeArtworksChange(script: Script, stage: Stage, artworkid: string, selected: any) {
@@ -475,4 +500,7 @@ export class ScriptAuthoringComponent {
         this.model.moveScriptStage(script, event.previousIndex, event.currentIndex);
     }
 
+    isAdmin() {
+        return this.currentuser.getUserID() == 1;
+    }
 }
