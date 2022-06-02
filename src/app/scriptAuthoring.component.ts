@@ -18,6 +18,10 @@ export class ScriptAuthoringComponent {
 
     showStageHelp = false;
 
+    newStageMessage: boolean = false;
+
+    newStageMessageText: string = "New stage added to the end of your script";
+
     toggleStageHelp() {
         if(this.showStageHelp) {
             this.showStageHelp = false;
@@ -293,7 +297,8 @@ export class ScriptAuthoringComponent {
         this.model.addStageToScript(script, stage);
         //set vars
         this.viewScript = script._id;
-        this.editScriptStage = stage.id;
+        this.newStageMessage = true;
+        // this.editScriptStage = stage.id;
     }
 
     addContextStageToScript(script: Script) {
@@ -301,7 +306,8 @@ export class ScriptAuthoringComponent {
         this.model.addStageToScript(script, stage);
         //set vars
         this.viewScript = script._id;
-        this.editScriptStage = stage.id;
+        this.newStageMessage = true;
+        // this.editScriptStage = stage.id;
     }
 
     addStatementStageToScript(script: Script) {
@@ -309,7 +315,9 @@ export class ScriptAuthoringComponent {
         this.model.addStageToScript(script, stage);
         //set vars
         this.viewScript = script._id;
-        this.editScriptStage = stage.id;
+        this.newStageMessageText = "New statement stage added to the end of your script";
+        this.newStageMessage = true;
+        // this.editScriptStage = stage.id;
     }
 
     addQuestionStageToScript(script: Script) {
@@ -317,7 +325,9 @@ export class ScriptAuthoringComponent {
         this.model.addStageToScript(script, stage);
         //set vars
         this.viewScript = script._id;
-        this.editScriptStage = stage.id;
+        this.newStageMessageText = "New question stage added to the end of your script";
+        this.newStageMessage = true;
+        // this.editScriptStage = stage.id;
     }
 
     addStoryStageToScript(script: Script) {
@@ -325,7 +335,9 @@ export class ScriptAuthoringComponent {
         this.model.addStageToScript(script, stage);
         //set vars
         this.viewScript = script._id;
-        this.editScriptStage = stage.id;
+        this.newStageMessageText = "New story stage added to the end of your script";
+        this.newStageMessage = true;
+        // this.editScriptStage = stage.id;
     }
 
     addMultiQuestionStageToScript(script: Script) {
@@ -333,7 +345,9 @@ export class ScriptAuthoringComponent {
         this.model.addStageToScript(script, stage);
         //set vars
         this.viewScript = script._id;
-        this.editScriptStage = stage.id;
+        this.newStageMessageText = "New multiquestion stage added to the end of your script";
+        this.newStageMessage = true;
+        //this.editScriptStage = stage.id;
     }
 
     addShareWithMuseumStageToScript(script: Script) {
@@ -341,7 +355,8 @@ export class ScriptAuthoringComponent {
         this.model.addStageToScript(script, stage);
         //set vars
         this.viewScript = script._id;
-        this.editScriptStage = stage.id;
+        this.newStageMessage = true;
+        //this.editScriptStage = stage.id;
     }
 
     addFollowStageToScript(script: Script) {
@@ -349,7 +364,8 @@ export class ScriptAuthoringComponent {
         this.model.addStageToScript(script, stage);
         //set vars
         this.viewScript = script._id;
-        this.editScriptStage = stage.id;
+        this.newStageMessage = true;
+        //this.editScriptStage = stage.id;
     }
 
     addShareWithSomeoneStageToScript(script: Script) {
@@ -357,7 +373,8 @@ export class ScriptAuthoringComponent {
         this.model.addStageToScript(script, stage);
         //set vars
         this.viewScript = script._id;
-        this.editScriptStage = stage.id;
+        this.newStageMessage = true;
+        //this.editScriptStage = stage.id;
     }
 
     addThankyouStageToScript(script: Script) {
@@ -365,7 +382,8 @@ export class ScriptAuthoringComponent {
         this.model.addStageToScript(script, stage);
         //set vars
         this.viewScript = script._id;
-        this.editScriptStage = stage.id;
+        this.newStageMessage = true;
+        //this.editScriptStage = stage.id;
     }
 
     deleteScript(_id: string) {

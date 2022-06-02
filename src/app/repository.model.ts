@@ -407,7 +407,7 @@ export class Model {
     }
     
     addStageToScript(script: Script, stage: Stage) {
-        script.stages.unshift(stage);
+        script.stages.push(stage);
         this.saveScript(script);
     }
 

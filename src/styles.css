@@ -24,3 +24,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     0 3px 14px 2px rgba(0, 0, 0, 0.12);
   padding: 4px;
 }
+
+.col-wide {
+  width: 100%;
+}
