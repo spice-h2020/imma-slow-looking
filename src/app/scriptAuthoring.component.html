@@ -208,72 +208,63 @@
                     <tr><td class="align-top">
                         <span class="font-weight-bold">Themes: </span>
                     </td><td>
-                        <span *ngFor="let theme of getThemes()" class="mr-3">
-                            <span style="float: left;" class="mr-2">
+                        <div *ngFor="let theme of getThemes()" class="form-check form-check-inline">
+                            <!-- <span style="float: left;" class="mr-2 form-check form-check-inline"> -->
                             <input
+                            class="form-check-input"
                             type="checkbox"
                             [value]=theme._id
                             [ngModel] = "script.themeids.includes(theme._id)"
                             (change) = "themesChange(script, theme._id, $event)"
                             />
-                            <label class="form-check-label">&nbsp;{{theme.name}}&nbsp;&nbsp;</label>
-                            </span>
-                        </span><br/>
+                            <label class="form-check-label">{{theme.name}}&nbsp;&nbsp;</label>
+                            <!-- </span> -->
+                        </div><br/>
                         <span *ngIf="!getThemesFromIds(script.themeids).length" class="text-warning">At least one theme must be selected</span>
                     </td></tr>
 
                     <tr><td  class="align-top">
                         <span class="font-weight-bold">Artworks: </span>
                     </td><td>
-                        <table>
-                        <tr *ngFor="let artwork of getArtworks(script)" class="mr-3">
-                            <td class="align-middle">
-                            <input 
-                            type="checkbox"
-                            [value]=artwork._id
-                            [ngModel] = "script.artworkids.includes(artwork._id)"
-                            (change) = "artworksChange(script, artwork._id, $event)"
-                            />&nbsp;
-                            <!-- <input
-                            type="radio"
-                            [value]="artwork._id"
-                            name="artwork.name"
-                            [(ngModel)] = "script.artworkid"
-                            /> -->
-                            </td>
-                            <td class="align-top">
+                        <div *ngFor="let artwork of getArtworks(script)">
+                            <div class="form-check form-check-inline">
+                                <input 
+                                class="form-check-input"
+                                type="checkbox"
+                                [value]=artwork._id
+                                [ngModel] = "script.artworkids.includes(artwork._id)"
+                                (change) = "artworksChange(script, artwork._id, $event)"
+                                />
                                 <span *ngIf="artwork.url">
                                     <img src="{{artwork.url}}" alt="{{artwork.name}}" class="img-thumbnail" height="auto" width="150px" >
                                 </span>
-                            </td>
-                            <td class="align-top">
-                            <label class="form-check-label"> 
-                                <div class="col-sm-12"><strong><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></strong></div>
-                                <div class="col-sm-12"><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></div>
-                                <div class="col-sm-12">{{artwork.year}}</div>
-                                <!-- <span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span>, <span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span>, {{artwork.year}}  -->
-                            </label>
-                            <br/>
-                            </td>
-                        </tr>
-                        </table>
+                                <label class="form-check-label"> 
+                                    <div class="col-sm-12"><strong><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></strong></div>
+                                    <div class="col-sm-12"><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></div>
+                                    <div class="col-sm-12">{{artwork.year}}</div>
+                                    <!-- <span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span>, <span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span>, {{artwork.year}}  -->
+                                </label>
+                            </div>
+                        </div>
                         <span *ngIf="!getArtworks(script).length" class="text-warning">From the artwork tab the script author needs to add at least one artwork to the collection<br/></span>
                         <span *ngIf="!getArtworksFromIds(script.name, script.artworkids, script).length" class="text-warning">At least one artwork must be selected</span>
                     </td></tr>
 
                     <tr><td  class="align-top">
                         <span class="font-weight-bold">Homepage artwork: </span>
-                    </td><td class="align-top"> 
-                        <span *ngFor="let artwork of getArtworksFromIds(script.name, script.artworkids, script)" class="mr-3">
-                            <input
-                            type="radio"
-                            [value]="artwork._id"
-                            name="artwork.name"
-                            [(ngModel)] = "script.homepageartworkid"
-                            />
-                            <label class="form-check-label">&nbsp;<span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span>, <span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span>, {{artwork.year}} </label>
-                            <br/>
-                        </span>
+                    </td><td> 
+                        <div *ngFor="let artwork of getArtworksFromIds(script.name, script.artworkids, script)">
+                            <div class="form-check form-check-inline">
+                                <input
+                                class="form-check-input"
+                                type="radio"
+                                [value]="artwork._id"
+                                name="artwork.name"
+                                [(ngModel)] = "script.homepageartworkid"
+                                />
+                                <label class="form-check-label">&nbsp;<span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span>, <span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span>, {{artwork.year}} </label>
+                            </div>
+                        </div>
                         <span *ngIf="script.homepageartworkid==undefined" class="text-warning">An artwork for the homepage must be selected</span>
                     </td></tr>
 
@@ -284,25 +275,26 @@
                             Status: 
                         </span>
                     </td><td>
-                        <span class="mr-3">
+                        <div class="form-check form-check-inline">
                             <input
+                            class="form-check-input"
                             type="radio"
                             [value]=true
                             name="open"
                             [(ngModel)] = "script.open"
                             checked
                             />
-                            <label class="form-check-label">&nbsp;Open </label>
-                        </span>
-                        <span class="mr-3">
+                            <label class="form-check-label">Open&nbsp;&nbsp;</label>
                             <input
+                                class="form-check-input"
                                 type="radio"
                                 [value]=false
                                 name="open"
                                 [(ngModel)] = "script.open"
                             />
-                            <label class="form-check-label">&nbsp;Closed </label>
-                        </span> 
+                            <label class="form-check-label">Closed&nbsp;&nbsp;</label>
+                        </div>
+                        <div class = "help-block">Open scripts are shown on the Home page if they are also Public</div>
                     </td></tr>
                     <tr><td class="align-top">
                         <!-- script visibility -->
@@ -310,33 +302,54 @@
                             Visibility: 
                         </span>
                     </td><td>
-                        <span class="mr-3">
+                        <div class="form-check form-check-inline">
                             <input
-                                type="radio"
-                                [value]=true
-                                name="visible"
-                                [(ngModel)] = "script.visible"
-                                checked
+                            class="form-check-input"
+                            type="radio"
+                            [value]=true
+                            name="visible"
+                            [(ngModel)] = "script.visible"
+                            checked
                             />
-                            <label class="form-check-label">&nbsp;Public </label>
-                        </span>
-                        <span class="mr-3">
+                            <label class="form-check-label">Public&nbsp;&nbsp;</label>
                             <input
-                                type="radio"
-                                [value]=false
-                                name="visible"
-                                [(ngModel)] = "script.visible"
+                            class="form-check-input"
+                            type="radio"
+                            [value]=false
+                            name="visible"
+                            [(ngModel)] = "script.visible"
                             />
-                            <label class="form-check-label">&nbsp;Private </label>
-                        </span>
+                            <label class="form-check-label">Private&nbsp;&nbsp;</label>
+                        </div>
+                        <div class = "help-block">Public scripts are shown on the Other People page and if Open are also shown on the Home page</div>
                     </td></tr><tr><td class="align-top">
                         <!-- script visibility -->
                         <span class="mr-3 font-weight-bold">
                             New contributions: 
                         </span>
-                    </td><td class="align-top">
-                        <span class="mr-3">
+                    </td><td>
+                        <div class="form-check form-check-inline">
                             <input
+                                class="form-check-input"
+                                type="radio"
+                                [value]=false
+                                name="autoapproved"
+                                [(ngModel)] = "script.autoapproved"
+                                checked
+                            />
+                            <label class="form-check-label">&nbsp;Awaiting approval&nbsp;&nbsp;</label>
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                [value]=true
+                                name="autoapproved"
+                                [(ngModel)] = "script.autoapproved"
+                            />
+                            <label class="form-check-label">&nbsp;Approved&nbsp;&nbsp;</label>
+                        </div>
+                        <!-- <span class="mr-3">
+                            <input
+                                class="form-check-input"
                                 type="radio"
                                 [value]=false
                                 name="autoapproved"
@@ -347,13 +360,14 @@
                         </span>
                         <span class="mr-3">
                             <input
+                                class="form-check-input"
                                 type="radio"
                                 [value]=true
                                 name="autoapproved"
                                 [(ngModel)] = "script.autoapproved"
                             />
                             <label class="form-check-label">&nbsp;Approved </label>
-                        </span>
+                        </span> -->
                     </td></tr><tr><td colspan="2">
                         <span class="float">&nbsp;</span>
                         <span class="float-right">
