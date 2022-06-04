@@ -37,6 +37,8 @@ export class SlowLookingActivityComponent implements OnInit {
 
     currentScript: Script;
 
+    scriptfound: boolean;
+
     // index of final stage of current script
     slowLookingMaximumScriptStageIndex = 0;
 
@@ -61,22 +63,28 @@ export class SlowLookingActivityComponent implements OnInit {
 
         // get the script
         let SLscript = scripts.find(x => x._id == _id);
-        this.currentScript = SLscript;
+        if(SLscript == undefined) {
+            this.scriptfound = false;
+        }
+        else {
+            this.scriptfound = true;
 
-        // set script id
-        this.slowLookingScript = _id;
+            this.currentScript = SLscript;
 
-        // set current stage index to zero
-        this.slowLookingCurrentScriptStageIndex = 0;  
+            // set script id
+            this.slowLookingScript = _id;
 
-        // set maximum stage index to length -1
-        this.slowLookingMaximumScriptStageIndex = SLscript.stages.length-1;
+            // set current stage index to zero
+            this.slowLookingCurrentScriptStageIndex = 0;  
 
-        // initialize activity of the script
-        this.newActivity = new Activity();
-        this.newActivity.script = SLscript;
-        this.newActivity.approved = SLscript.autoapproved;
+            // set maximum stage index to length -1
+            this.slowLookingMaximumScriptStageIndex = SLscript.stages.length-1;
 
+            // initialize activity of the script
+            this.newActivity = new Activity();
+            this.newActivity.script = SLscript;
+            this.newActivity.approved = SLscript.autoapproved;
+        }
         // this.setSlowLookingScript(this.slowLookingScript);
     }
 

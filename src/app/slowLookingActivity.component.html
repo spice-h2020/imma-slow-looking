@@ -1,5 +1,9 @@
 <paNavBar></paNavBar>
-<div class="border pl-5 pr-5 pt-3">
+<div *ngIf="!scriptfound">
+    <p>Script not found.</p>
+    <button class="btn btn-secondary" routerLink="/home">Try Deep Viewpoints activities for yourself</button><br/><br/>
+</div>
+<div *ngIf="scriptfound" class="border pl-5 pr-5 pt-3">
 <div *ngFor="let stage of currentScript.stages; let i = index">
     <div *ngIf="slowLookingCurrentScriptStageIndex == i">
         <div *ngIf="stage.stagetype == 'welcome'">  
