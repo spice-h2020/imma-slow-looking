@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core"; 
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router"; 
-import { Observable } from "rxjs"; 
+import { Observable, of } from "rxjs"; 
 import { Message } from "./messages/message.model";
 import { MessageService } from "./messages/message.service";
 import { Model } from "./repository.model" 
@@ -20,6 +20,9 @@ export class ModelResolver1  {
         if(this.model1.getScripts().length == 0) {
             this.messages.reportMessage(new Message("Loading scripts..."));
             return this.dataSource.getScriptData();
+        }
+        else {
+            return of(this.model1.getScripts());
         }
     } 
 

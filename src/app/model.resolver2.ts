@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core"; 
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router"; 
-import { Observable } from "rxjs"; 
+import { Observable, of } from "rxjs"; 
 import { Artwork } from "./artwork.model";
 import { Message } from "./messages/message.model";
 import { MessageService } from "./messages/message.service";
@@ -20,6 +20,9 @@ export class ModelResolver2  {
         if(this.model2.getArtworks().length == 0) {
             this.messages.reportMessage(new Message("Loading artworks..."));
             return this.dataSource.getArtworkData();
+        }
+        else {
+            return of(this.model2.getArtworks());
         }
     } 
 

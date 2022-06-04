@@ -8,6 +8,8 @@ import { followStage, questionStage, shareWithMuseumStage, shareWithSomeoneStage
 import { ActivatedRoute } from "@angular/router";
 import { FormControl } from "@angular/forms";
 import { CurrentUser } from "./currentUser.service";
+import { RestDataSource } from "./rest.datasource"; 
+import { delay } from "rxjs/operators";
 
 @Component({
     selector: "paSlowLookingActivity",
@@ -33,6 +35,8 @@ export class SlowLookingActivityComponent implements OnInit {
     //current script _id retrieved from route
     slowLookingScript = "0";
 
+    currentScript: Script;
+
     // index of final stage of current script
     slowLookingMaximumScriptStageIndex = 0;
 
@@ -46,13 +50,18 @@ export class SlowLookingActivityComponent implements OnInit {
         public currentuser: CurrentUser, 
         private activatedRoute: ActivatedRoute,
         private model: Model
-      ) { } 
+    ) { } 
 
     ngOnInit() {
         let _id = this.activatedRoute.snapshot.params.id;
 
+        let data = this.activatedRoute.snapshot;
+
+        let scripts = this.activatedRoute.snapshot.data.model1;
+
         // get the script
-        let SLscript = this.getScript(_id);
+        let SLscript = scripts.find(x => x._id == _id);
+        this.currentScript = SLscript;
 
         // set script id
         this.slowLookingScript = _id;
@@ -74,24 +83,6 @@ export class SlowLookingActivityComponent implements OnInit {
     answerChanged(event) {
         this.submittedAnswer = false;
     }
-    // setSlowLookingScript(_id: string) {
-    //     // get the script
-    //     let SLscript = this.getScript(_id);
-    //     // set script id
-    //     this.slowLookingScript = _id;
-
-    //     // set current stage index to zero
-    //     this.slowLookingCurrentScriptStageIndex = 0;
-
-    //     // set maximum stage index to length -1
-    //     this.slowLookingMaximumScriptStageIndex = SLscript.stages.length-1;
-
-    //     // initialize activity of the script
-    //     this.newActivity = new Activity();
-    //     this.newActivity.script = SLscript;
-    //     this.newActivity.approved = false;
-
-    // }
 
     randomInt = (min: number, max: number): number => {
         return Math.floor(Math.random() * (max - min + 1) + min);
@@ -149,10 +140,6 @@ export class SlowLookingActivityComponent implements OnInit {
 
     myanswers: Array<questionanswer> = [];
 
-    getScript(_id: string): Script {
-        return this.model.getScript(_id);
-    }
-
     showQuestionHelp = false;
 
     intialiseShareWithSomeoneAction(stage: shareWithSomeoneStage) {
@@ -199,10 +186,7 @@ export class SlowLookingActivityComponent implements OnInit {
     }
 
     addActivity() {
-        // add editor to activity
-        if(this.slowLookingScript != "0") {
-            this.newActivity.editor = this.getScript(this.slowLookingScript).owner;
-        }
+        this.newActivity.editor = this.currentScript.owner;
         
         // add author to activity
         let user = this.currentuser.getUser();
