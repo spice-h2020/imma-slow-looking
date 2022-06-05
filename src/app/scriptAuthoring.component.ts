@@ -27,6 +27,11 @@ export class ScriptAuthoringComponent {
 
     newStageMessageText: string = "New stage added to the end of your script";
 
+    //URL for accessing the script directly
+    scriptURL(script: Script): string {
+        return location.origin.concat("/slowLooking/", script._id);
+    }
+
     toggleStageHelp() {
         if(this.showStageHelp) {
             this.showStageHelp = false;

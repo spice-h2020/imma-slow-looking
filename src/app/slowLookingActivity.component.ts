@@ -57,12 +57,14 @@ export class SlowLookingActivityComponent implements OnInit {
     ngOnInit() {
         let _id = this.activatedRoute.snapshot.params.id;
 
-        let data = this.activatedRoute.snapshot;
-
         let scripts = this.activatedRoute.snapshot.data.model1;
 
-        // get the script
-        let SLscript = scripts.find(x => x._id == _id);
+        // get the script whether or not it is open
+        // let SLscript = scripts.find(x => x._id == _id);
+
+        // get the script only if it is open
+        let SLscript = scripts.find(x => x._id == _id && x.open);
+
         if(SLscript == undefined) {
             this.scriptfound = false;
         }
