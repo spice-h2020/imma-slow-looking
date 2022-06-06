@@ -1,6 +1,6 @@
 <paNavBar></paNavBar>
 <p class="lead">Manage your scripts.</p>
-<div class="form-check form-check-inline">
+<div *ngIf="isAdmin()" class="form-check form-check-inline">
     <label class="form-check-label">Show all scripts:&nbsp;&nbsp;</label>
     <input [(ngModel)]="showallscripts" class="form-check-input" (change)="viewScript='0'; deleteStageConfirmationId=0; showStageHelp=false; newStageMessage=false;"
     type="checkbox"/>
