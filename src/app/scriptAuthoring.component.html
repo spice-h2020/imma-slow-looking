@@ -137,7 +137,7 @@
                     <span *ngIf="!script.autoapproved">Awaiting approval</span>
                     <span *ngIf="script.autoapproved">Approved</span><br/>
                     </td></tr> 
-                    <tr><td class="align-top">
+                    <tr *ngIf="script.open"><td class="align-top">
                         <!-- script visibility -->
                         <span class="mr-3 font-weight-bold">
                             Script URL: 
@@ -385,7 +385,7 @@
                             <label class="form-check-label">&nbsp;Approved </label>
                         </span> -->
                     </td></tr>
-                    <tr><td class="align-top">
+                    <tr *ngIf="script.open"><td class="align-top">
                         <!-- script visibility -->
                         <span class="mr-3 font-weight-bold">
                             Script URL: 
