@@ -57,6 +57,14 @@
                                         </span>
                                     </span>
                                 </span>
+                                <span *ngIf="action.storyStage">
+                                    <span *ngIf="action.storyStage.stagetype">
+                                        <span *ngIf="action.storyStage.stagetype == 'story'">
+                                            <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question"></span>
+                                            <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
+                                        </span>
+                                    </span>
+                                </span>
                             </div>
                             <hr>
                             <div class="d-flex justify-content-between">

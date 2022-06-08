@@ -22,9 +22,6 @@ export class AllResponsesComponent implements OnInit {
     ngOnInit() {
         let _id = this.activatedRoute.snapshot.params.id;
 
-        // get the script
-        let SLscript = this.getScript(_id);
-
         // set script id
         this.slowLookingScript = _id;
     }

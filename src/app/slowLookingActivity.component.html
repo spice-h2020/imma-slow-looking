@@ -115,7 +115,7 @@
                 <span *ngIf="stage.sequential">
                     <div class="col-sm-12">{{stage.body[multiquestionIndex]}}</div><br/>
                     <textarea [formControl]="answervalue" type="text" rows="3" #answer class="form-control" (keyup)="answerChanged($event)"></textarea>
-                    <span *ngIf="submittedAnswer" class="text-warning">Your answer has been saved</span><br/>
+                    <span *ngIf="submittedAnswer" class="text-warning col-sm-12">Your answer has been saved</span><br/>
                     <span *ngIf="multiquestionIndex <= 0">
                         <button class="m-3 btn btn-warning" (click)="updateAnswers(multiquestionIndex, answer.value); submittedAnswer=true;">Save</button> 
                     </span>
@@ -134,7 +134,7 @@
                     <span class="col-sm-12">{{stage.body[multiquestionIndex]}}</span><br/><br/>
                     <button class="m-3 btn btn-warning" (click)="randomiseQuestion(stage.body.length-1); submittedAnswer=false;">Reload question</button>
                     <textarea [formControl]="answervalue" type="text" rows="3" #answer class="form-control" (keyup)="answerChanged($event)"></textarea>
-                    <span *ngIf="submittedAnswer" class="text-warning">Your answer has been saved</span><br/>
+                    <span *ngIf="submittedAnswer" class="text-warning col-sm-12">Your answer has been saved</span><br/>
                     <button class="m-3 btn btn-warning" (click)="updateAnswers(multiquestionIndex, answer.value); submittedAnswer=true;">Save</button>
                 </span>
 

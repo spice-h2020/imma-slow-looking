@@ -21,8 +21,6 @@ export class Model {
     private stringLocator = (x: any, id: any) => x._id == id;
     private openAndVisible = (x: any) => (x.open && x.visible);
     private visible = (x: any) => (x.visible);
-    private approved = (x: any) => (x.approved);
-    private unapproved = (x: any) => (!x.approved);
     private hasTheme = (x: any, _id: string) => x.themeids.find(e => e == _id);
     private scriptHasArtworkAndStage = (x: Script) => (x.homepageartworkid != undefined && x.artworkids.length > 0 && x.stages.length > 0);
     private dbArtworks: Artwork[] = new Array<Artwork>();
@@ -371,7 +369,7 @@ export class Model {
     }
 
     getApprovedActivities(): Activity[] {
-        return this.dbActivities.filter(x => this.approved(x));
+        return this.dbActivities.filter(x => x.approved);
     }
 
     getApprovedVisibleActivities(): Activity[] {
@@ -379,7 +377,7 @@ export class Model {
     }
 
     getUnapprovedActivities(): Activity[] {
-        return this.dbActivities.filter(x => this.unapproved(x));
+        return this.dbActivities.filter(x => !x.approved);
     }
 
     saveActivity(activity: Activity) {
