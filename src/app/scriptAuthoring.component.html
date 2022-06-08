@@ -147,6 +147,16 @@
                             <a routerLink='/slowLooking/{{script._id}}' target='_blank' style='color: rgb(108, 117, 125)'>{{scriptURL(script)}}</a>
                         </span>
                     </td></tr>
+                    <tr ><td class="align-top">
+                        <!-- script visibility -->
+                        <span class="mr-3 font-weight-bold">
+                            Responses URL: 
+                        </span>
+                    </td><td>
+                        <span class="mr-3">
+                            <a routerLink='/allResponses/{{script._id}}' target='_blank' style='color: rgb(108, 117, 125)'>{{responsesURL(script)}}</a>
+                        </span>
+                    </td></tr>
                 </table>
                     <span *ngIf="viewScript==script._id && editScriptDescription=='0' && editScriptStage==0">
                         <span class="float">&nbsp;</span>
@@ -393,6 +403,16 @@
                     </td><td>
                         <span class="mr-3">
                             <a routerLink='/slowLooking/{{script._id}}' target='_blank' style='color: rgb(108, 117, 125)'>{{scriptURL(script)}}</a>
+                        </span>
+                    </td></tr>
+                    <tr ><td class="align-top">
+                        <!-- script visibility -->
+                        <span class="mr-3 font-weight-bold">
+                            Responses URL: 
+                        </span>
+                    </td><td>
+                        <span class="mr-3">
+                            <a routerLink='/allResponses/{{script._id}}' target='_blank' style='color: rgb(108, 117, 125)'>{{responsesURL(script)}}</a>
                         </span>
                     </td></tr>
                     <tr><td colspan="2">

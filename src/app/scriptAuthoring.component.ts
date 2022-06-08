@@ -32,6 +32,10 @@ export class ScriptAuthoringComponent {
         return location.origin.concat("/slowLooking/", script._id);
     }
 
+    responsesURL(script: Script): string {
+        return location.origin.concat("/allResponses/", script._id);
+    }
+
     toggleStageHelp() {
         if(this.showStageHelp) {
             this.showStageHelp = false;
