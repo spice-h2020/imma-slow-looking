@@ -20,7 +20,8 @@ import { ConfigSettings } from "./config";
     private artworkUrl =  'https://api2.mksmart.org/object/' + this.configSettings.citizenDatasetUUID + '?query=%7B%22type%22:%22artwork%22%7D&limit=9999';
     private scriptUrl = 'https://api2.mksmart.org/object/' + this.configSettings.citizenDatasetUUID + '?query=%7B%22type%22:%22script%22%7D&limit=9999';
     private activityUrl = 'https://api2.mksmart.org/object/' + this.configSettings.citizenDatasetUUID + '?query=%7B%22type%22:%22activity%22%7D&limit=9999';
-    private saveUrl = 'https://api2.mksmart.org/object/' + this.configSettings.citizenDatasetUUID;
+    // private saveUrl = 'https://api2.mksmart.org/object/' + this.configSettings.citizenDatasetUUID;
+    private saveUrl = 'https://spice.kmi.open.ac.uk/demos/deep-listening-api/object/' + this.configSettings.citizenDatasetUUID;
 
     constructor(private http: HttpClient) { }
 
@@ -48,10 +49,12 @@ import { ConfigSettings } from "./config";
 
     saveTheme(theme: Theme): Observable<Theme> { 
         return this.http.post<Theme>(this.saveUrl, theme, this.configSettings.config); 
+        // return this.http.post<Theme>(this.saveUrl, theme); 
     }
 
     updateTheme(theme: Theme): Observable<Theme> {
-        return this.http.put<Theme>(`${this.saveUrl}/${theme._id}`, theme, this.configSettings.config); 
+        // return this.http.put<Theme>(`${this.saveUrl}/${theme._id}`, theme, this.configSettings.config); 
+        return this.http.put<Theme>(`${this.saveUrl}/${theme._id}`, theme); 
     }
 
     deleteTheme(_id: string): Observable<Theme> { 
