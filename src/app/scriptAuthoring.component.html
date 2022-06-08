@@ -31,7 +31,7 @@
             <div *ngIf="editScriptDescription!=script._id" class="col-xs-12">
                 <div  class="col-xs-8 left">
                     <h4>
-                        <span class="float"><strong>{{script.name}}</strong></span>
+                        {{script.name}}
                         <span *ngIf="viewScript=='0'" class="float-right">
                             <button class="ml-5 btn btn-danger" (click)="confirmDelete(script._id)">Delete script</button>
                             <button class="ml-5 btn btn-secondary" (click)="viewScript=script._id; deleteConfirmation_Id=''">View script</button>  
