@@ -58,7 +58,8 @@ import { ConfigSettings } from "./config";
     }
 
     deleteTheme(_id: string): Observable<Theme> { 
-        return this.http.delete<Theme>(`${this.saveUrl}/${_id}`, this.configSettings.config); 
+        // return this.http.delete<Theme>(`${this.saveUrl}/${_id}`, this.configSettings.config); 
+        return this.http.delete<Theme>(`${this.saveUrl}/${_id}`); 
     }
 
     // Artwork
