@@ -28,3 +28,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .col-wide {
   width: 100%;
 }
+
+p {
+  font-size: 17px;
+}
+
+span {
+  font-size: 17px;
+}
+
+div {
+  font-size: 17px;
+}
