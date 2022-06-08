@@ -31,7 +31,7 @@
             <div *ngIf="editScriptDescription!=script._id" class="col-xs-12">
                 <div  class="col-xs-8 left">
                     <h4>
-                        <span class="float">{{script.name}}</span>
+                        <span class="float"><strong>{{script.name}}</strong></span>
                         <span *ngIf="viewScript=='0'" class="float-right">
                             <button class="ml-5 btn btn-danger" (click)="confirmDelete(script._id)">Delete script</button>
                             <button class="ml-5 btn btn-secondary" (click)="viewScript=script._id; deleteConfirmation_Id=''">View script</button>  
@@ -319,7 +319,7 @@
                             />
                             <label class="form-check-label">Closed&nbsp;&nbsp;</label>
                         </div>
-                        <div class = "help-block">Open scripts can be undertaken. If also Public they are shown on the Home page and Other People page. Open scripts can be accessed directly from the URL even if they are Private.</div>
+                        <div class = "help-block">Select Open to allow users to respond to this script, or Closed to prevent any responses. Open scripts can be accessed directly online even if they are Private.</div>
                     </td></tr>
                     <tr><td class="align-top">
                         <!-- script visibility -->
@@ -346,7 +346,7 @@
                             />
                             <label class="form-check-label">Private&nbsp;&nbsp;</label>
                         </div>
-                        <div class = "help-block">Public scripts are shown on the Other People page. If also Open they can be undertaken and are shown on the Home page.</div>
+                        <div class = "help-block">Public scripts are shown on the Other People page. Selecting Public and Open means users can respond to the script and it will also be visible on the Home page.</div>
                     </td></tr><tr><td class="align-top">
                         <!-- script visibility -->
                         <span class="mr-3 font-weight-bold">
@@ -372,7 +372,7 @@
                             />
                             <label class="form-check-label">&nbsp;Approved&nbsp;&nbsp;</label>
                         </div>
-                        <div class = "help-block">Contributions Awaiting approval have to be moderated from the Management page. Approved contributions appear directly on the Other People page.</div>
+                        <div class = "help-block">Awaiting approval means responses have to be moderated from the Management page. Approved means they will appear directly on Other People.</div>
                         <!-- <span class="mr-3">
                             <input
                                 class="form-check-input"

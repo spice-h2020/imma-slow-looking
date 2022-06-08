@@ -47,8 +47,17 @@ export class ExtraArtworks {
         new CollectionArtwork("Painting 13", "Oberstown", "2022", "https://spiceimageworkaround.files.wordpress.com/2022/03/painting-13.jpg", "Painting 13, Oberstown, 2022"),
         new CollectionArtwork("Shitting Bricks (1)", "Chinedum Muotto", "2021", "https://spiceimageworkaround.files.wordpress.com/2022/03/shitting-bricks.jpg", "Shitting Bricks (1), Chinedum Muotto, 2021"),
         new CollectionArtwork("Shitting Bricks (2)", "Chinedum Muotto", "2021", "https://spiceimageworkaround.files.wordpress.com/2022/03/240890012_223932422999776_6093921735585490178_n.jpg", "Shitting Bricks (2), Chinedum Muotto, 2021"),
-        new CollectionArtwork("Shitting Bricks (3)", "Chinedum Muotto", "2021", "https://spiceimageworkaround.files.wordpress.com/2022/03/240997446_1268724926906821_3154896149459901426_n.jpg", "Shitting Bricks (3), Chinedum Muotto, 2021")
-        
+        new CollectionArtwork("Shitting Bricks (3)", "Chinedum Muotto", "2021", "https://spiceimageworkaround.files.wordpress.com/2022/03/240997446_1268724926906821_3154896149459901426_n.jpg", "Shitting Bricks (3), Chinedum Muotto, 2021"),
+
+        new CollectionArtwork("Yellow", "Amanda Coogan", "2008", "https://spiceimageworkaround.files.wordpress.com/2022/06/imm0821ng224-2500x1875-1.jpg", "Yellow, Amanda Coogan, 2008"),
+        new CollectionArtwork("Open Season", "Women from the Family Resource Centre; Joe Lee", "1997", "https://spiceimageworkaround.files.wordpress.com/2022/06/open-season.png", "Open Season, Women from the Family Resource Centre; Joe Lee, 1997"),
+        new CollectionArtwork("Railway Hostel Direct Provision Centre, Kiltimagh", "Vukašin Nedeljković", "2011-2012", "https://spiceimageworkaround.files.wordpress.com/2022/06/winner.png", "Railway Hostel Direct Provision Centre, Kiltimagh, Vukašin Nedeljković, 2011-2012"),
+        new CollectionArtwork('Pray for More" campaign, Stuttgart, Germany', "Les Levine", "1988", "https://spiceimageworkaround.files.wordpress.com/2022/06/pray-for-more.png", 'Pray for More" campaign, Stuttgart, Germany, Les Levine, 1988'),
+        new CollectionArtwork("Two Heads", "Chinedum Muotto", "2021", "https://spiceimageworkaround.files.wordpress.com/2022/06/img_3577.jpg", "Two Heads, Chinedum Muotto, 2021"),
+        new CollectionArtwork("Two Heads", "Chinedum Muotto", "2021", "https://spiceimageworkaround.files.wordpress.com/2022/06/img_3574.jpg", "Two Heads, Chinedum Muotto, 2021"),
+        new CollectionArtwork("Two Heads", "Chinedum Muotto", "2021", "https://spiceimageworkaround.files.wordpress.com/2022/06/img_3570.jpg", "Two Heads, Chinedum Muotto, 2021"),
+
+    
     ]
 
 }
