@@ -17,6 +17,24 @@
         <div class="col-sm-12"><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></div>
         <div class="col-sm-12">{{artwork.year}}</div>
     </span>
+
+    <span *ngIf="getNonHomepageArtworksOfScript(script).length > 0">
+        <table class="table table-sm table-borderless">
+            <tr *ngFor="let otherartwork of getNonHomepageArtworksOfScript(script);">
+                <td width="20%">
+                    <span *ngIf="otherartwork.url">
+                        <img src="{{otherartwork.url}}" alt="{{otherartwork.name}}" class="img-thumbnail" height="auto" width="150px" >
+                    </span>
+                </td>
+                <td>
+                    <strong><span style="white-space: pre-wrap;" [innerHTML]="otherartwork.name"></span></strong><br/>
+                    <span style="white-space: pre-wrap;" [innerHTML]="otherartwork.artist"></span><br/>
+                    <span>{{otherartwork.year}}</span>
+                </td>
+            </tr>
+        </table>
+    </span>
+
     <div class="accordion mt-3" id="{{'script'+script._id}}">
         <div class="accordion-item" style="background-color: rgb(41, 161, 184);">
             <h2 class="accordion-header" id="{{'heading_' + 'script'+script._id}}">

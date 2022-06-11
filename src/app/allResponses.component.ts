@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Activity } from "./activity.model";
+import { Artwork } from "./artwork.model";
 import { Model } from "./repository.model";
 import { Script } from "./script.model";
 
@@ -50,5 +51,20 @@ export class AllResponsesComponent implements OnInit {
     addLikeToActivity(activity: Activity) {
         activity.likes = activity.likes+1;
         this.model.saveActivity(activity);
+    }
+
+    getNonHomepageArtworksOfScript(script: Script) {
+        let otherartworks: Array<Artwork> = [];
+        let artworkids = script.artworkids;
+        let homepageartworkid = script.homepageartworkid;
+        for(var artworkid of artworkids) {
+            if(artworkid != homepageartworkid) {
+                let artwork = this.getArtwork(artworkid);
+                if(artwork != undefined) {
+                    otherartworks.push(artwork);
+                }
+            }
+        }
+        return otherartworks;
     }
 }

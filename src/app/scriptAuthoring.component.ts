@@ -7,6 +7,7 @@ import { Script } from "./script.model";
 import { contextStage, followStage, multiquestionStage, questionStage, shareWithMuseumStage, shareWithSomeoneStage, Stage, statementStage, storyStage, thankyouStage, welcomeStage } from "./stage.model";
 import { Theme } from "./theme.model";
 import { User } from "./user.model";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
     selector: "paScriptAuthoring",
@@ -15,7 +16,7 @@ import { User } from "./user.model";
 
 export class ScriptAuthoringComponent {
 
-    constructor(public currentuser: CurrentUser, private model: Model){}
+    constructor(public currentuser: CurrentUser, private model: Model, private http: HttpClient){}
 
     currentUser: number = 1;
 
@@ -29,11 +30,11 @@ export class ScriptAuthoringComponent {
 
     //URL for accessing the script directly
     scriptURL(script: Script): string {
-        return location.origin.concat("/slowLooking/", script._id);
+        return window.location.origin.concat("/slowLooking/", script._id);
     }
 
     responsesURL(script: Script): string {
-        return location.origin.concat("/allResponses/", script._id);
+        return window.location.origin.concat("/allResponses/", script._id);
     }
 
     toggleStageHelp() {
