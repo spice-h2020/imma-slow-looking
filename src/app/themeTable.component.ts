@@ -3,7 +3,6 @@ import { Theme } from "./theme.model";
 import { Model } from "./repository.model";
 import { CurrentUser } from "./currentUser.service";
 import { User } from "./user.model";
-import { ThrowStmt } from "@angular/compiler";
 import { CdkDragDrop } from "@angular/cdk/drag-drop";
 
 @Component({

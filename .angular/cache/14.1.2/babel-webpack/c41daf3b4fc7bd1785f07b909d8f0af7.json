@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class Theme {\n  constructor(_id, id, type = 'theme', name, description, owner) {\n    this._id = _id;\n    this.id = id;\n    this.type = type;\n    this.name = name;\n    this.description = description;\n    this.owner = owner;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

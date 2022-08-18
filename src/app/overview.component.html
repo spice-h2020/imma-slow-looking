@@ -1,0 +1,437 @@
+<paOverviewBar></paOverviewBar>
+<p class="lead">
+  Find out more about the IMMA collection and develop your own interpretations. Find out how others have responded to the IMMA collection.
+</p>
+
+<div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+        <h2 class="accordion-header" [id]="'heading1'">
+            <button  style="background-color: rgb(41, 161, 184);" class="accordion-button text-white" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse1'" aria-expanded="true" [attr.aria-controls]="'collapse1'">
+                <h5>Featured</h5>
+            </button>
+            <div style="background-color: black;" [id]="'collapse1'" class="accordion-collapse collapse show text-white" [attr.aria-labelledby]="'heading1'">
+                <div class="accordion-body">
+                    <ngb-carousel>
+                      <ng-template ngbSlide *ngFor="let script of firstScripts">
+                        <div class="picsum-img-wrapper">
+                          <img style="width: 100%;" src="assets/img/carousel-background.jpg">
+                        </div>
+                        <div class="carousel-caption">
+                          <div class="container">
+                              <div class="row align-items-start">
+                                  <div class="col">
+                                      <h3 class="text-left">{{script.name}}</h3>
+                                      <p class="text-left">{{script.description}}</p>
+                                      <figcaption class="text-left blockquote-footer text-white">{{script.author}}</figcaption>
+                                      <p class="text-left">Exhibitions: Narrow Gate of the Here-andNow: Queer Embodiment</p>
+                                      <p class="text-left">Themes:
+                                        <span *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
+                                          <span>{{theme.name}}</span>
+                                          <span *ngIf="!last">, </span>
+                                        </span>
+                                      </p>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                &nbsp;
+                              </div>
+                              <div class="row align-items-end" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
+                                  <div class="col-5">
+                                      <img style="width: 100%;" src="{{artwork.url}}" alt="{{artwork.name}}">
+                                  </div>
+                                  <div class="col">
+                                    <div class="row text-left">{{artwork.name}}</div>
+                                    <div class="row text-left">{{artwork.artist}}</div>
+                                    <div class="row text-left">{{artwork.year}}</div>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                &nbsp;
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <a *ngIf="script.open" routerLink="/slowLooking/{{script._id}}" target='_blank'>
+                                    <button type="button" class="btn btn-link" style="color: white;">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                          <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                                          <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                                      </svg>
+                                      Take part    
+                                    </button>
+                                  </a>
+                                </div>
+                                <div class="col">
+                                  <a routerLink="/allResponses/{{script._id}}" target='_blank'>
+                                    <button type="button" class="btn btn-link" style="color: white;">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                          <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                                          <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                                      </svg>
+                                      See responses    
+                                    </button>
+                                  </a>
+                                </div>
+                              </div>
+                              <div class="row">
+                                &nbsp;
+                              </div>
+                          </div>
+                        </div>
+                      </ng-template>
+                    </ngb-carousel>
+                </div>
+            </div>
+        </h2>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" [id]="'heading2'">
+            <button style="background-color: rgb(41, 161, 184);" class="accordion-button text-white" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse2'" aria-expanded="true" [attr.aria-controls]="'collapse2'">
+                <h5>Exhibitions</h5>
+            </button>
+            <div style="background-color: black;" [id]="'collapse2'" class="accordion-collapse collapse text-white" [attr.aria-labelledby]="'heading2'">
+                <div class="accordion-body">
+                    <p>adasds</p>
+                </div>
+            </div>
+        </h2>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" [id]="'heading3'">
+            <button style="background-color: rgb(41, 161, 184);" class="accordion-button text-white" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse3'" aria-expanded="true" [attr.aria-controls]="'collapse3'">
+                <h5>Artworks</h5>
+            </button>
+            <div style="background-color: black;" [id]="'collapse3'" class="accordion-collapse collapse text-white" [attr.aria-labelledby]="'heading3'">
+                <div class="accordion-body">
+                  <div class="ng-autocomplete">
+                    <span>Search artworks used in Deep Viewpoints:</span>
+                    <ng-autocomplete 
+                      [data]="artworkResults"
+                      [searchKeyword]="keywordArtworks"
+                      (selected)='selectEventArtworks($event)'
+                      (inputChanged)='onChangeSearchArtworks($event)'
+                      (inputFocused)='onFocusedArtworks($event)'
+                      [itemTemplate]="itemTemplateArtworks"
+                      [notFoundTemplate]="notFoundTemplateArtworks"
+                      [placeholder]="placeholderTextArtworks"
+                      [historyListMaxNumber]="15"
+                      [minQueryLength]="2">                                 
+                    </ng-autocomplete>
+                    <ng-template #itemTemplateArtworks let-item>
+                        <a href="javascript:void(0)">
+                          <span [innerHTML]="item.searchstring"></span>
+                        </a>
+                    </ng-template>
+                    <ng-template #notFoundTemplateArtworks let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                    </ng-template>
+                  </div>
+                  <span *ngIf="selectedArtwork">
+                    <div class="row">
+                      &nbsp;
+                    </div>
+                    <div class="row align-items-end">
+                      <div class="col-6">
+                          <img style="width: 100%;" src="{{selectedArtwork.artworkurl}}" alt="{{selectedArtwork.name}}">
+                      </div>
+                      <div class="col">
+                        <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="selectedArtwork.name"></span></div>
+                        <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="selectedArtwork.artist"></span></div>
+                        <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="selectedArtwork.year"></span></div>
+                      </div>
+                    </div>
+                    <ngb-carousel [showNavigationArrows]="selectedArtwork.scripts.length > 1" [showNavigationIndicators]="selectedArtwork.scripts.length > 1">
+                      <ng-template ngbSlide *ngFor="let script of selectedArtwork.scripts">
+                        <div class="picsum-img-wrapper">
+                          <img style="width: 100%;" src="assets/img/carousel-background.jpg">
+                        </div>
+                        <div class="carousel-caption">
+                          <div class="container">
+                              <div class="row align-items-start">
+                                  <div class="col">
+                                      <h3 class="text-left">{{script.name}}</h3>
+                                      <p class="text-left">{{script.description}}</p>
+                                      <figcaption class="text-left blockquote-footer text-white">{{script.author}}</figcaption>
+                                      <p class="text-left">Exhibitions: Narrow Gate of the Here-andNow: Queer Embodiment</p>
+                                      <p class="text-left">Themes:
+                                        <span *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
+                                          <span>{{theme.name}}</span>
+                                          <span *ngIf="!last">, </span>
+                                        </span>
+                                      </p>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                &nbsp;
+                              </div>
+                              <div class="row align-items-end" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
+                                  <div class="col-5">
+                                      <img style="width: 100%;" src="{{artwork.url}}" alt="{{artwork.name}}">
+                                  </div>
+                                  <div class="col">
+                                    <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></div>
+                                    <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></div>
+                                    <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="artwork.year"></span></div>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                &nbsp;
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <a *ngIf="script.open" routerLink="/slowLooking/{{script._id}}" target='_blank'>
+                                    <button type="button" class="btn btn-link" style="color: white;">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                          <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                                          <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                                      </svg>
+                                      Take part    
+                                    </button>
+                                  </a>
+                                </div>
+                                <div class="col">
+                                  <a routerLink="/allResponses/{{script._id}}" target='_blank'>
+                                    <button type="button" class="btn btn-link" style="color: white;">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                          <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                                          <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                                      </svg>
+                                      See responses    
+                                    </button>
+                                  </a>
+                                </div>
+                              </div>
+                              <div class="row">
+                                &nbsp;
+                              </div>
+                          </div>
+                        </div>
+                      </ng-template>
+                    </ngb-carousel>
+                  </span>
+                </div>
+            </div>
+        </h2>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" [id]="'heading4'">
+            <button style="background-color: rgb(41, 161, 184);" class="accordion-button text-white" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse4'" aria-expanded="true" [attr.aria-controls]="'collapse4'">
+                <h5>Themes</h5>
+            </button>
+            <div style="background-color: black;" [id]="'collapse4'" class="accordion-collapse collapse text-white" [attr.aria-labelledby]="'heading4'">
+                <div class="accordion-body">
+                  <div class="ng-autocomplete">
+                    <span>Search themes used in Deep Viewpoints:</span>
+                    <ng-autocomplete 
+                      [data]="themeResults"
+                      [searchKeyword]="keywordThemes"
+                      (selected)='selectEventThemes($event)'
+                      (inputChanged)='onChangeSearchThemes($event)'
+                      (inputFocused)='onFocusedThemes($event)'
+                      [itemTemplate]="itemTemplateThemes"
+                      [notFoundTemplate]="notFoundTemplateThemes"
+                      [placeholder]="placeholderTextThemes"
+                      [historyListMaxNumber]="15"
+                      [minQueryLength]="2">                                 
+                    </ng-autocomplete>
+                    <ng-template #itemTemplateThemes let-item>
+                        <a href="javascript:void(0)">
+                          <span [innerHTML]="item.searchstring"></span>
+                        </a>
+                    </ng-template>
+                    <ng-template #notFoundTemplateThemes let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                    </ng-template>
+                  </div>
+                  <span *ngIf="selectedTheme">
+                    <div class="row">
+                      &nbsp;
+                    </div>
+                    <div class="col">
+                      <div class="row text-left">{{selectedTheme.name}}</div>
+                      <div class="row text-left">{{selectedTheme.description}}</div>
+                    </div>
+                    <ngb-carousel [showNavigationArrows]="selectedTheme.scripts.length > 1" [showNavigationIndicators]="selectedTheme.scripts.length > 1">
+                      <ng-template ngbSlide *ngFor="let script of selectedTheme.scripts">
+                        <div class="picsum-img-wrapper">
+                          <img style="width: 100%;" src="assets/img/carousel-background.jpg">
+                        </div>
+                        <div class="carousel-caption">
+                          <div class="container">
+                              <div class="row align-items-start">
+                                  <div class="col">
+                                      <h3 class="text-left">{{script.name}}</h3>
+                                      <p class="text-left">{{script.description}}</p>
+                                      <figcaption class="text-left blockquote-footer text-white">{{script.author}}</figcaption>
+                                      <p class="text-left">Exhibitions: Narrow Gate of the Here-andNow: Queer Embodiment</p>
+                                      <p class="text-left">Themes:
+                                        <span *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
+                                          <span>{{theme.name}}</span>
+                                          <span *ngIf="!last">, </span>
+                                        </span>
+                                      </p>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                &nbsp;
+                              </div>
+                              <div class="row align-items-end" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
+                                  <div class="col-5">
+                                      <img style="width: 100%;" src="{{artwork.url}}" alt="{{artwork.name}}">
+                                  </div>
+                                  <div class="col">
+                                    <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></div>
+                                    <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></div>
+                                    <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="artwork.year"></span></div>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                &nbsp;
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <a *ngIf="script.open" routerLink="/slowLooking/{{script._id}}" target='_blank'>
+                                    <button type="button" class="btn btn-link" style="color: white;">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                          <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                                          <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                                      </svg>
+                                      Take part    
+                                    </button>
+                                  </a>
+                                </div>
+                                <div class="col">
+                                  <a routerLink="/allResponses/{{script._id}}" target='_blank'>
+                                    <button type="button" class="btn btn-link" style="color: white;">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                          <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                                          <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                                      </svg>
+                                      See responses    
+                                    </button>
+                                  </a>
+                                </div>
+                              </div>
+                              <div class="row">
+                                &nbsp;
+                              </div>
+                          </div>
+                        </div>
+                      </ng-template>
+                    </ngb-carousel>
+                  </span>
+                </div>
+            </div>
+        </h2>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" [id]="'heading5'">
+            <button style="background-color: rgb(41, 161, 184);" class="accordion-button text-white" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse5'" aria-expanded="true" [attr.aria-controls]="'collapse5'">
+                <h5>Explore</h5>
+            </button>
+            <div style="background-color: black;" [id]="'collapse5'" class="accordion-collapse collapse text-white" [attr.aria-labelledby]="'heading5'">
+                <div class="accordion-body">
+                  <div class="ng-autocomplete">
+                    <span>Search scripts used in Deep Viewpoints:</span>
+                    <ng-autocomplete 
+                      [data]="scriptResults"
+                      [searchKeyword]="keywordScripts"
+                      (selected)='selectEventScripts($event)'
+                      (inputChanged)='onChangeSearchScripts($event)'
+                      (inputFocused)='onFocusedScripts($event)'
+                      [itemTemplate]="itemTemplateScripts"
+                      [notFoundTemplate]="notFoundTemplateScripts"
+                      [placeholder]="placeholderTextScripts"
+                      [historyListMaxNumber]="15"
+                      [minQueryLength]="2">                                 
+                    </ng-autocomplete>
+                    <ng-template #itemTemplateScripts let-item>
+                        <a href="javascript:void(0)">
+                            <span [innerHTML]="item.searchstring"></span>  
+                        </a>
+                    </ng-template>
+                    <ng-template #notFoundTemplateScripts let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                    </ng-template>
+                  </div>
+                  <span *ngIf="selectedScript">
+                    <ngb-carousel [showNavigationArrows]="false" [showNavigationIndicators]="false">
+                      <ng-template ngbSlide>
+                        <div class="picsum-img-wrapper">
+                          <img style="width: 100%;" src="assets/img/carousel-background.jpg">
+                        </div>
+                        <div class="carousel-caption">
+                          <div class="container">
+                              <div class="row align-items-start">
+                                  <div class="col">
+                                      <h3 class="text-left">{{selectedScript.script.name}}</h3>
+                                      <p class="text-left">{{selectedScript.script.description}}</p>
+                                      <figcaption class="text-left blockquote-footer text-white">{{selectedScript.script.author}}</figcaption>
+                                      <p class="text-left">Exhibitions: Narrow Gate of the Here-andNow: Queer Embodiment</p>
+                                      <p class="text-left">Themes:
+                                        <span *ngFor="let theme of getThemesFromIds(selectedScript.script.themeids); let last = last">
+                                          <span>{{theme.name}}</span>
+                                          <span *ngIf="!last">, </span>
+                                        </span>
+                                      </p>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                &nbsp;
+                              </div>
+                              <div class="row align-items-end" *ngFor="let artwork of getArtworkFromId(selectedScript.script.homepageartworkid);">
+                                  <div class="col-5">
+                                      <img style="width: 100%;" src="{{artwork.url}}" alt="{{artwork.name}}">
+                                  </div>
+                                  <div class="col">
+                                    <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></div>
+                                    <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></div>
+                                    <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="artwork.year"></span></div>
+                                    <!-- <div class="row text-left">{{artwork.name}}</div>
+                                    <div class="row text-left">{{artwork.artist}}</div>
+                                    <div class="row text-left">{{artwork.year}}</div> -->
+                                  </div>
+                              </div>
+                              <div class="row">
+                                &nbsp;
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <a *ngIf="selectedScript.script.open" routerLink="/slowLooking/{{selectedScript.script._id}}" target='_blank'>
+                                    <button type="button" class="btn btn-link" style="color: white;">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                          <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                                          <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                                      </svg>
+                                      Take part    
+                                    </button>
+                                  </a>
+                                </div>
+                                <div class="col">
+                                  <a routerLink="/allResponses/{{selectedScript.script._id}}" target='_blank'>
+                                    <button type="button" class="btn btn-link" style="color: white;">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                          <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                                          <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                                      </svg>
+                                      See responses    
+                                    </button>
+                                  </a>
+                                </div>
+                              </div>
+                              <div class="row">
+                                &nbsp;
+                              </div>
+                          </div>
+                        </div>
+                      </ng-template>
+                    </ngb-carousel>
+                  </span>
+                </div>
+            </div>
+        </h2>
+    </div>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>

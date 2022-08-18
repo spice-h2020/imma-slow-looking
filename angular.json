@@ -150,5 +150,8 @@
       }
     }
   },
-  "defaultProject": "slowlooking1"
+  "defaultProject": "slowlooking1",
+  "cli": {
+    "analytics": false
+  }
 }

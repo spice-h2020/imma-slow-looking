@@ -13,55 +13,55 @@
 <div *ngFor="let theme of getThemes(); let i = index">
     <div *ngIf="getScriptsOfTheme(theme._id).length > 0" class="accordion " id="accordionFlushExample">
         <div class="accordion-item">
-        <h2 class="accordion-header" id="{{'heading_' + theme._id}}">
-            <button 
-                style="background-color: rgb(41, 161, 184);"
-                class="accordion-button collapsed text-white" 
-                type="button" 
-                data-bs-toggle="collapse" 
-                [attr.data-bs-target]="'#collapse_' + theme._id"
-                aria-expanded="false" 
-                [attr.aria-controls]="'collapse_'+ theme._id">
-                <span><h5>{{theme.name}}</h5>
-                {{theme.description}}</span>
-            </button>
-        </h2>
-        <div 
-            style="background-color: black;"
-            id="{{'collapse_' + theme._id}}" 
-            class="accordion-collapse collapse text-white" 
-            [attr.aria-labelledby]="'heading_' + theme._id"
-            data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">
-                <div *ngFor="let script of getScriptsOfTheme(theme._id); let i = index; let last = last" class="col-sm-12">
-                    <h5 class="col-sm-12">{{script.name}}</h5> 
-                    <div class="col-sm-12">
-                        <p style="white-space: pre-wrap;">{{script.description}}</p>
-                        <figcaption *ngIf="script.author != ''" class="blockquote-footer text-white">{{script.author}}</figcaption>
-                    </div>
+            <h2 class="accordion-header" id="{{'heading_' + theme._id}}">
+                <button 
+                    style="background-color: rgb(41, 161, 184);"
+                    class="accordion-button collapsed text-white" 
+                    type="button" 
+                    data-bs-toggle="collapse" 
+                    [attr.data-bs-target]="'#collapse_' + theme._id"
+                    aria-expanded="false" 
+                    [attr.aria-controls]="'collapse_'+ theme._id">
+                    <span><h5>{{theme.name}}</h5>
+                    {{theme.description}}</span>
+                </button>
+                <div 
+                style="background-color: black;"
+                id="{{'collapse_' + theme._id}}" 
+                class="accordion-collapse collapse text-white" 
+                [attr.aria-labelledby]="'heading_' + theme._id"
+                >
+                    <div class="accordion-body">
+                        <div *ngFor="let script of getScriptsOfTheme(theme._id); let i = index; let last = last" class="col-sm-12">
+                            <h5 class="col-sm-12">{{script.name}}</h5> 
+                            <div class="col-sm-12">
+                                <p style="white-space: pre-wrap;">{{script.description}}</p>
+                                <figcaption *ngIf="script.author != ''" class="blockquote-footer text-white">{{script.author}}</figcaption>
+                            </div>
 
-                    
-                    <span *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
-                        <span *ngIf="artwork.url">
-                            <a routerLink="/slowLooking/{{script._id}}"><img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}"></a>
-                            <div class="col-sm-12"><strong><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></strong></div>
-                            <div class="col-sm-12"><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></div>
-                            <div class="col-sm-12">{{artwork.year}}</div>
-                        </span>
-                        <span *ngIf="!artwork.url && artwork.fileLocation">
-                            <p>rr</p>
-                            <img routerLink="/slowLooking/{{script._id}}" class="col-sm-12" src="{{artwork.fileLocation}}" >
-                            <div class="col-sm-12"><strong><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></strong></div>
-                            <div class="col-sm-12"><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></div>
-                            <div class="col-sm-12">{{artwork.year}}</div>
-                        </span> 
-                    </span><br/>
-                    <div *ngIf="!last" class="col-sm-12">
-                        <hr>
+                            
+                            <span *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
+                                <span *ngIf="artwork.url">
+                                    <a routerLink="/slowLooking/{{script._id}}"><img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}"></a>
+                                    <div class="col-sm-12"><strong><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></strong></div>
+                                    <div class="col-sm-12"><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></div>
+                                    <div class="col-sm-12">{{artwork.year}}</div>
+                                </span>
+                                <span *ngIf="!artwork.url && artwork.fileLocation">
+                                    <p>rr</p>
+                                    <img routerLink="/slowLooking/{{script._id}}" class="col-sm-12" src="{{artwork.fileLocation}}" >
+                                    <div class="col-sm-12"><strong><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></strong></div>
+                                    <div class="col-sm-12"><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></div>
+                                    <div class="col-sm-12">{{artwork.year}}</div>
+                                </span> 
+                            </span><br/>
+                            <div *ngIf="!last" class="col-sm-12">
+                                <hr>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </h2>
         </div>
     </div>
 </div>

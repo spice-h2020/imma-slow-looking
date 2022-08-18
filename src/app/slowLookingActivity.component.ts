@@ -6,7 +6,7 @@ import { Script } from "./script.model";
 import { Artwork } from "./artwork.model";
 import { followStage, questionStage, shareWithMuseumStage, shareWithSomeoneStage, multiquestionStage } from "./stage.model";
 import { ActivatedRoute } from "@angular/router";
-import { FormControl } from "@angular/forms";
+import { UntypedFormControl } from "@angular/forms";
 import { CurrentUser } from "./currentUser.service";
 import { RestDataSource } from "./rest.datasource"; 
 import { delay } from "rxjs/operators";
@@ -109,9 +109,9 @@ export class SlowLookingActivityComponent implements OnInit {
     }
     submittedAnswer = false;
     resetAnswerValue() {
-        this.answervalue = new FormControl();
+        this.answervalue = new UntypedFormControl();
     }
-    answervalue = new FormControl();
+    answervalue = new UntypedFormControl();
     setAnswerValue(index: number) {
         if(this.newMultiquestionAction.answers == undefined) {
             this.newMultiquestionAction.answers = [];

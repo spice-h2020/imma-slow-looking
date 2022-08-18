@@ -15,6 +15,7 @@ import { UserTableComponent } from './userTable.component';
 import { ModelResolver5 } from './model.resolver5';
 import { UserLoginComponent } from './userLogin.component';
 import { AllResponsesComponent } from './allResponses.component';
+import { OverviewComponent } from './overview.component';
 
 const routes: Routes = [
   { path: 'home', component: HomepageComponent, resolve: { model1: ModelResolver1, model2: ModelResolver2, model3: ModelResolver3 } },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'users', component: UserTableComponent, resolve: { model5: ModelResolver5 } },
   { path: 'login', component: UserLoginComponent, resolve: { model5: ModelResolver5 } },
   { path: 'allResponses/:id', component: AllResponsesComponent, resolve: { model1: ModelResolver1, model2: ModelResolver2, model4: ModelResolver4 } },
+  { path: 'overview', component: OverviewComponent, resolve: {model1: ModelResolver1, model2: ModelResolver2, model3: ModelResolver3}},
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 

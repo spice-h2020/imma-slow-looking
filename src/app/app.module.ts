@@ -21,6 +21,11 @@ import { AllResponsesComponent } from './allResponses.component';
 import { NavBarComponent } from './navBar.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OverviewComponent } from './overview.component';
+import { OverviewBarComponent } from './overviewBar.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+
 
 @NgModule({
   declarations: [
@@ -35,7 +40,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     UserTableComponent,
     UserLoginComponent,
     AllResponsesComponent,
-    NavBarComponent
+    NavBarComponent,
+    OverviewComponent,
+    OverviewBarComponent
     ],
   imports: [
     BrowserModule,
@@ -47,7 +54,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     MessageModule,
     DragDropModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule,
+    
   ],
   providers: [CurrentUser],
   bootstrap: [SlowLookingComponent]

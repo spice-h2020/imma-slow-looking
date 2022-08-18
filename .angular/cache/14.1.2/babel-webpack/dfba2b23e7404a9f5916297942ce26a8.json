@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class Message {\n  constructor(text, error = false) {\n    this.text = text;\n    this.error = error;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

@@ -147,3 +147,70 @@
 </div><br/>         
 <h2>Take Part</h2>
     <button class="btn btn-secondary" routerLink="/home">Try Deep Viewpoints activities for yourself</button><br/><br/>
+    <table class="border" style="width: 100%">
+        <tr>
+            <th>n</th>
+            <th>name</th>
+            <th>description</th>
+            <th>author</th>
+            <th>notes</th>
+        </tr>
+        <tr *ngFor="let themeuser of getThemeData();">
+            <td>{{themeuser.theme.id}}</td>
+            <td>{{themeuser.theme.name}}</td>
+            <td>{{themeuser.theme.description}}</td>
+            <td>{{themeuser.user}}</td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+
+    <span *ngFor="let item of getScriptData(); let i = index; ">
+        <table class="border" style="width: 100%">
+            <tr>
+                <th class="align-top">n</th>
+                <th class="align-top">name</th>
+                <th class="align-top">description</th>
+                <th class="align-top">author</th>
+                <th class="align-top">homepage artwork</th>
+                <th class="align-top">notes</th>   
+            </tr>
+            <tr>
+                <td class="align-top">{{i}}</td>
+                <td class="align-top">{{item.script.name}}</td>
+                <td class="align-top">{{item.script.description}}</td>
+                <td class="align-top">{{item.script.author}}</td>
+                <td class="align-top">{{item.hpartwork}}</td>
+                <td class="align-top">&nbsp;</td>   
+            </tr>
+        </table>
+
+        <table class="border" style="width: 100%">
+            <tr>
+                <th>type</th>
+                <th>title</th>
+                <th>artworks</th>
+                <th>text(s)</th>
+                <th>notes</th>
+            </tr>
+            <tr *ngFor="let stage of item.script.stages; let ind = index; ">
+                <td class="align-top">{{stage.stagetype}}</td>
+                <td class="align-top">{{stage.title}}</td>
+                <td class="align-top">
+                    <p *ngFor="let artwork of item.stagesartworks[ind]; ">
+                        {{artwork}}
+                    </p>
+                </td>
+                <td class="align-top" *ngIf="stage.stagetype == 'multiquestion'">
+                    <p *ngFor="let question of stage.body;">
+                        {{question}}
+                    </p>
+                </td>
+                <td class="align-top" *ngIf="stage.stagetype == 'question' || stage.stagetype == 'story'">{{stage.body}}<br/>Help:{{stage.help}}</td>
+                <td class="align-top" *ngIf="stage.stagetype != 'multiquestion' && stage.stagetype != 'story' && stage.stagetype != 'question'">{{stage.body}}</td>
+                <td class="align-top">&nbsp;</td> 
+            </tr>
+        </table>
+
+    </span>
+
+
