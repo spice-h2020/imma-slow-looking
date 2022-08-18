@@ -1,1 +1,0 @@
-{"ast":null,"code":"export class CollectionArtwork {\n  constructor(name, artist, year, filelocation, searchstring) {\n    this.name = name;\n    this.artist = artist;\n    this.year = year;\n    this.filelocation = filelocation;\n    this.searchstring = searchstring;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}
