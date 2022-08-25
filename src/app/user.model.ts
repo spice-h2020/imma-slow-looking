@@ -4,6 +4,7 @@ export class User {
         public id?: number,
         public type: string = 'user',
         public username?: string,
+        public displayname?: string,
         public password?: string
     ) {}
 }

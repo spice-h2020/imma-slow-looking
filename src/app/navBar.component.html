@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+<nav class="navbar  navbar-dark bg-dark sticky-top">
     <div class="container-fluid">
         <a class="navbar-brand" routerLink="/home">IMMA Deep Viewpoints</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,6 +26,9 @@
                   </li>
                 <li *ngIf="isAdmin()" class="nav-item">
                   <a class="nav-link" routerLink="/users" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Users</a>
+                </li>
+                <li *ngIf="isAdmin()" class="nav-item">
+                  <a class="nav-link" routerLink="/exhibitions" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Exhibitions</a>
                 </li>
                 <li *ngIf="isLoggedOut()" class="nav-item">
                   <a class="nav-link" routerLink="/login" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Login</a>

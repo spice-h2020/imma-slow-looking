@@ -8,6 +8,7 @@ import { Injectable } from "@angular/core";
 import { CollectionArtwork } from "./collectionArtwork.model";
 import { User } from "./user.model";
 import { ExtraArtworks } from "./extraArtworks";
+import { Exhibition } from "./exhibition.model";
 
 @Injectable()
 export class Model {
@@ -28,6 +29,7 @@ export class Model {
     private dbThemes: Theme[] = new Array<Theme>();
     private dbActivities: Activity[] = new Array<Activity>();
     private dbUsers: User[] = new Array<User>();
+    private dbExhibitions: Exhibition[] = new Array<Exhibition>();
 
     //add artworks not in LDH//
     private extraArtworks = new ExtraArtworks;
@@ -37,6 +39,7 @@ export class Model {
 
     constructor(private dbDataSource: RestDataSource) {
 
+        this.dbDataSource.getExhibitionData().subscribe(data => this.dbExhibitions = data);
         this.dbDataSource.getUserData().subscribe(data => this.dbUsers = data);
         this.dbDataSource.getThemeData().subscribe(data => this.dbThemes = data);
         this.dbDataSource.getArtworkData().subscribe(data => this.dbArtworks = data);
@@ -49,6 +52,40 @@ export class Model {
     // Collection
     getCollection() {
         return this.dbCollectionArtworks;
+    }
+
+    // Exhibition
+    getExhibitions(): Exhibition[] {
+        return this.dbExhibitions;
+    }
+
+    getExhibition(_id: string) {
+        return this.dbExhibitions.find(x => x._id == _id);
+    }
+
+    saveExhibition(exhibition: Exhibition) {
+        if (exhibition._id == undefined) {
+            this.dbDataSource.saveExhibition(exhibition).subscribe(p => this.dbExhibitions.push(p));
+        }
+        else {
+            this.dbDataSource.updateExhibition(exhibition).subscribe(() => {
+                let index = this.dbExhibitions.findIndex(item => item._id == exhibition._id);
+                this.dbExhibitions.splice(index, 1, exhibition);
+            });
+        } 
+    }
+
+    deleteExhibition(_id: string) {
+        this.dbDataSource.deleteExhibition(_id).subscribe(() => {
+            let index = this.dbExhibitions.findIndex(p => p._id == _id);
+            if (index > -1) {
+                this.dbExhibitions.splice(index, 1);
+            }
+        })
+    }
+
+    getScriptsOfAnExhibition(_id: string): Script[] {
+        return this.getScripts().filter(x => x.exhibitionids.some(y => y == _id));
     }
 
     // User
@@ -261,6 +298,16 @@ export class Model {
         return this.getScripts().filter(x => x.artworkids.some(y => y == _id));
     }
 
+    removeExhibitionFromScripts(scripts: Script[], _id: string) {
+        for(var script of scripts) {
+            let index = script.exhibitionids.findIndex(p => p == _id);
+            if(index > -1) {
+                script.exhibitionids.splice(index, 1);
+                this.saveScript(script);
+            }
+        }
+    }
+
     removeArtworkFromScripts(scripts: Script[], _id: string) {
         for(var script of scripts) {
             //remove artwork from artworkids
@@ -336,6 +383,19 @@ export class Model {
                 this.dbScripts.splice(index, 1);
             }
         })
+    }
+
+
+    addExhibitionToScript(script: Script, exhibitionid: string) {
+        //add theme
+        script.exhibitionids.push(exhibitionid);
+    }
+
+    removeExhibitionFromScript(script: Script, exhibitionid: string) {
+        let index = script.exhibitionids.findIndex(x => x == exhibitionid);
+        if(index > -1) {
+            script.exhibitionids.splice(index, 1);
+        }
     }
 
     addThemeToScript(script: Script, themeid: string) {

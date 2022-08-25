@@ -79,7 +79,18 @@
                         </span>
                         <br/>
                     </td></tr>
-
+                    <tr><td class="align-top">
+                        <span class="font-weight-bold">
+                            Exhibitions: 
+                        </span>
+                    </td><td class="align-top">
+                        <span *ngIf="script.exhibitionids">
+                            <span *ngFor="let exhibition of getExhibitionsFromIds(script.exhibitionids); let last = last">
+                                    {{exhibition.name}}<span *ngIf="!last">, </span>
+                            </span>
+                            <br/>
+                        </span>
+                    </td></tr>
                     <tr *ngIf="!getArtworksFromIds(script.name, script.artworkids, script).length"><td class="align-top">
                         <span class="font-weight-bold">
                             Artworks: 
@@ -137,25 +148,61 @@
                     <span *ngIf="!script.autoapproved">Awaiting approval</span>
                     <span *ngIf="script.autoapproved">Approved</span><br/>
                     </td></tr> 
-                    <tr *ngIf="script.open"><td class="align-top">
+                    <tr *ngIf="script.open"><td class="align-items-end">
                         <!-- script visibility -->
                         <span class="mr-3 font-weight-bold">
-                            Script URL: 
+                            Script: 
                         </span>
                     </td><td>
-                        <span class="mr-3">
+                        <a routerLink='/slowLooking/{{script._id}}' target='_blank'>
+                            <button type="button" class="btn btn-link" style="color: black;">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                  <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                                  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                              </svg>
+                              Open script in new window
+                            </button>
+                        </a>
+                        <button type="button" class="btn btn-link" style="color: black;" placement="top" ngbPopover="{{scriptURL(script)}}" popoverTitle="Script URL copied:" ngxClipboard [cbContent]='scriptURL(script)'>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-clipboard" viewBox="0 0 16 16">
+                            <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                            <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                            </svg>
+                            Copy script URL to clipboard
+                        </button>
+                        <!-- <span class="mr-3">
                             <a routerLink='/slowLooking/{{script._id}}' target='_blank' style='color: rgb(108, 117, 125)'>{{scriptURL(script)}}</a>
-                        </span>
+                        </span> -->
                     </td></tr>
-                    <tr ><td class="align-top">
+                    <tr *ngIf="script.homepageartworkid != undefined && script.artworkids.length > 0 && script.stages.length > 0"><td class="align-items-end">
                         <!-- script visibility -->
                         <span class="mr-3 font-weight-bold">
-                            Responses URL: 
+                            Responses: 
                         </span>
-                    </td><td>
-                        <span class="mr-3">
+                    </td><td style="vertical-align: top;">
+
+
+                        <a routerLink='/allResponses/{{script._id}}' target='_blank'>
+                            <button type="button" class="btn btn-link" style="color: black;">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                  <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                                  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                              </svg>
+                              Open responses in new window
+                            </button>
+                        </a>
+                        <button type="button" class="btn btn-link" style="color: black;" placement="top" ngbPopover="{{responsesURL(script)}}" popoverTitle="Responses URL copied:" ngxClipboard [cbContent]='responsesURL(script)'>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-clipboard" viewBox="0 0 16 16">
+                            <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                            <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                            </svg>
+                            Copy responses URL to clipboard
+                        </button>
+
+
+                        <!-- <span class="mr-3">
                             <a routerLink='/allResponses/{{script._id}}' target='_blank' style='color: rgb(108, 117, 125)'>{{responsesURL(script)}}</a>
-                        </span>
+                        </span> -->
                     </td></tr>
                 </table>
                     <span *ngIf="viewScript==script._id && editScriptDescription=='0' && editScriptStage==0">
@@ -227,7 +274,10 @@
                             <span class="font-weight-bold">Author: </span>
                         </td>
                         <td>
-                            <textarea rows="1" class="form-control" [(ngModel)]="script.author"></textarea>
+                            <span>
+                                {{script.author}}
+                            </span>
+                            <!-- <textarea rows="1" class="form-control" [(ngModel)]="script.author"></textarea> -->
                         </td> 
                     </tr>
                     <tr><td class="align-top">
@@ -247,29 +297,55 @@
                         </div><br/>
                         <span *ngIf="!getThemesFromIds(script.themeids).length" class="text-warning">At least one theme must be selected</span>
                     </td></tr>
-
+                    <tr><td class="align-top">
+                        <span class="font-weight-bold">Exhibitions: </span>
+                    </td><td>
+                        <div *ngFor="let exhibition of getExhibitions()" class="form-check form-check-inline">
+                            <input
+                            class="form-check-input"
+                            type="checkbox"
+                            [value]=exhibition._id
+                            [ngModel] = "script.exhibitionids.includes(exhibition._id)"
+                            (change) = "exhibitionsChange(script, exhibition._id, $event)"
+                            />
+                            <label class="form-check-label">{{exhibition.name}}&nbsp;&nbsp;</label>
+                        </div><br/>       
+                    </td></tr>
                     <tr><td  class="align-top">
                         <span class="font-weight-bold">Artworks: </span>
                     </td><td>
-                        <div *ngFor="let artwork of getArtworks(script)">
-                            <div class="form-check form-check-inline">
-                                <input 
-                                class="form-check-input"
-                                type="checkbox"
-                                [value]=artwork._id
-                                [ngModel] = "script.artworkids.includes(artwork._id)"
-                                (change) = "artworksChange(script, artwork._id, $event)"
-                                />
-                                <span *ngIf="artwork.url">
-                                    <img src="{{artwork.url}}" alt="{{artwork.name}}" class="img-thumbnail" height="auto" width="150px" >
-                                </span>
-                                <label class="form-check-label"> 
-                                    <div class="col-sm-12"><strong><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></strong></div>
-                                    <div class="col-sm-12"><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></div>
-                                    <div class="col-sm-12">{{artwork.year}}</div>
-                                    <!-- <span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span>, <span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span>, {{artwork.year}}  -->
-                                </label>
-                            </div>
+                        <div *ngFor="let artwork of getArtworks(script)" class="form-check form-check-inline">
+                            <!-- <div class="form-check form-check-inline"> -->
+                                <!-- <div class="w-30"> -->
+                                    <div class="row">
+                                        <div class="col col-sm-1 align-self-center">
+                                            <input 
+                                            class="form-check-input"
+                                            type="checkbox"
+                                            [value]=artwork._id
+                                            [ngModel] = "script.artworkids.includes(artwork._id)"
+                                            (change) = "artworksChange(script, artwork._id, $event)"
+                                            />
+                                        </div>
+                                        <div class="col col-sm-10">
+                                            <div class="row">
+                                                <span *ngIf="artwork.url">
+                                                    <img src="{{artwork.url}}" alt="{{artwork.name}}" class="img-thumbnail" height="auto" width="150px" >
+                                                </span>
+                                            </div>
+                                            <div class="row">
+                                                <label class="form-check-label"> 
+                                                    <div><strong><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></strong></div>
+                                                    <div><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></div>
+                                                    <div>{{artwork.year}}</div>
+                                                    <!-- <span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span>, <span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span>, {{artwork.year}}  -->
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <!-- </div> -->
+                            <!-- </div> -->
                         </div>
                         <span *ngIf="!getArtworks(script).length" class="text-warning">From the artwork tab the script author needs to add at least one artwork to the collection<br/></span>
                         <span *ngIf="!getArtworksFromIds(script.name, script.artworkids, script).length" class="text-warning">At least one artwork must be selected</span>
@@ -395,8 +471,7 @@
                             <label class="form-check-label">&nbsp;Approved </label>
                         </span> -->
                     </td></tr>
-                    <tr *ngIf="script.open"><td class="align-top">
-                        <!-- script visibility -->
+                    <!-- <tr *ngIf="script.open"><td class="align-top">
                         <span class="mr-3 font-weight-bold">
                             Script URL: 
                         </span>
@@ -406,7 +481,6 @@
                         </span>
                     </td></tr>
                     <tr ><td class="align-top">
-                        <!-- script visibility -->
                         <span class="mr-3 font-weight-bold">
                             Responses URL: 
                         </span>
@@ -414,7 +488,7 @@
                         <span class="mr-3">
                             <a routerLink='/allResponses/{{script._id}}' target='_blank' style='color: rgb(108, 117, 125)'>{{responsesURL(script)}}</a>
                         </span>
-                    </td></tr>
+                    </td></tr> -->
                     <tr><td colspan="2">
                         <span class="float">&nbsp;</span>
                         <span class="float-right">

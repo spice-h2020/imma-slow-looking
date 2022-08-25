@@ -27,6 +27,7 @@
     "angular-ng-autocomplete": "^2.0.5",
     "bootstrap": "^4.4.1",
     "cors": "^2.8.5",
+    "ngx-clipboard": "^15.1.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.11.8"

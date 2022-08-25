@@ -3,7 +3,7 @@
 <div class="form-group">
     <span *ngIf="getCurrentUserID()==1">
         <table class="table table-sm"> 
-            <thead class="thead-dark"><tr><th>ID</th><th>Username</th><th>Password</th><th></th><th></th></tr></thead>
+            <thead class="thead-dark"><tr><th>ID</th><th>Username</th><th>Display name</th><th>Password</th><th></th><th></th></tr></thead>
             <tbody class="text-black"> 
                 <tr *ngFor="let item of getUsers(); let i = index"> 
                     <td>
@@ -15,6 +15,14 @@
                         </span>
                         <span *ngIf="tableEditing && editrow==item._id">
                             <textarea rows="1" class="form-control" [(ngModel)]="item.username"></textarea>
+                        </span>
+                    </td>
+                    <td>
+                        <span *ngIf="!tableEditing || editrow!=item._id">
+                            {{item.displayname}}
+                        </span>
+                        <span *ngIf="tableEditing && editrow==item._id">
+                            <textarea rows="1" class="form-control" [(ngModel)]="item.displayname"></textarea>
                         </span>
                     </td>
                     <td>
@@ -40,7 +48,7 @@
                             <button class="btn btn-warning" (click)="editrow=item._id" (click)="tableEditing=true; deleteConfirmation_Id='';">Edit</button>
                         </span>
                         <span *ngIf="tableEditing && editrow==item._id">
-                            <button class="btn btn-warning" (click)="tableEditing=false; addUser(item)" [disabled]="!item.username || !item.password">Save</button>
+                            <button class="btn btn-warning" (click)="tableEditing=false; addUser(item, true)" [disabled]="!item.username || !item.password">Save</button>
                         </span>
                     </td>
                 </tr>
@@ -54,6 +62,11 @@
                     </td>
                     <td>
                         <span *ngIf="!tableEditing">
+                            <textarea rows="1" class="form-control" [(ngModel)]="newUser.displayname"></textarea>
+                        </span>
+                    </td>
+                    <td>
+                        <span *ngIf="!tableEditing">
                             <textarea rows="1" class="form-control" [(ngModel)]="newUser.password"></textarea>
                         </span>
                     </td>
@@ -61,7 +74,7 @@
                     </td>
                     <td>
                         <span *ngIf="!tableEditing">
-                            <button class="btn btn-success" (click)="addUser(newUser)" [disabled]="!newUser.username || !newUser.password">Add</button>
+                            <button class="btn btn-success" (click)="addUser(newUser, false)" [disabled]="!newUser.username || !newUser.displayname || !newUser.password">Add</button>
                         </span>
                     </td>
                 </tr> 

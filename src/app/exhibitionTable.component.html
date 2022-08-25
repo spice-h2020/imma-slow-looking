@@ -1,0 +1,257 @@
+<paNavBar></paNavBar>
+<p class="lead">Manage the exhibitions that can be associated with scripts.</p>
+<div *ngIf="isAdmin()" class="form-group">
+    <table class="table table-sm border"> 
+        <thead class="thead-dark"><tr><th>Exhibition</th><th></th><th></th></tr></thead>
+        <tr *ngFor="let item of getExhibitions(); let i = index">
+            <td class="col-md" *ngIf="!tableEditing || editrow!=item._id;">
+                <div class="row" *ngIf="deleteConfirmation_Id==item._id">
+                    <br/>
+                    <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this exhibition?</strong> 
+                        <span *ngIf="getScriptsOfAnExhibition(item._id).length > 0">
+                            <p><strong>It will be removed from the following scripts:</strong></p>
+                        </span>
+                        <ul *ngFor="let exhibitionscript of getScriptsOfAnExhibition(item._id);">
+                            <li>{{exhibitionscript.name}}</li>
+                        </ul>
+                        <div><button class="btn btn-danger ml-2" (click)="deleteExhibition(item._id); deleteConfirmation_Id=''">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteConfirmation_Id=''">Cancel</button></div>
+                    </div>
+                    <br/>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <span *ngIf="item.artwork">
+                            <span *ngIf="item.artwork.url">
+                                <img style="width: 100%;" src="{{item.artwork.url}}" alt="{{item.artwork.name}}">
+                            </span>
+                        </span>
+                    </div>
+                    <div class="col-6">
+                      <div class="row text-left"><h4 style="white-space: pre-wrap;" [innerHTML]="item.name"></h4></div>
+                      <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="item.description"></span></div>
+                      <!-- <div class="row text-left"><a href="{{item.url}}" target='_blank'>{{item.url}}</a></div> -->
+                      <div class="row text-right">
+                        <a href="{{item.url}}" target='_blank'>
+                            <button type="button" class="btn btn-link" style="color: black;">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                  <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                                  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                              </svg>
+                              Exhibition
+                            </button>
+                          </a>
+                      </div>
+                    </div>
+                  </div>
+
+
+                <!-- <span><strong>{{item.name}}</strong></span><br/>
+                <span>{{item.description}}</span><br/>
+                <a href="{{item.url}}" target='_blank'>{{item.url}}</a><br/>
+                <span>{{item.artwork.name}}</span><br/>
+                <span>{{item.artwork.artist}}</span><br/>
+                <span>{{item.artwork.year}}</span><br/>
+                <span>{{item.artwork.url}}</span><br/> -->
+            </td>
+            <td class="col-md" *ngIf="tableEditing && editrow==item._id;">
+                <div class="row">
+                    <div class="col-3">
+                        Name:
+                    </div>
+                    <div class="col-9">
+                        <textarea rows="1" class="form-control" [(ngModel)]="item.name"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        Description:
+                    </div>
+                    <div class="col-9">
+                        <textarea rows="3" class="form-control" [(ngModel)]="item.description"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        URL:
+                    </div>
+                    <div class="col-9">
+                        <textarea rows="2" class="form-control" [(ngModel)]="item.url"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        Artwork:
+                    </div>
+                    <div class="col-9">
+                        <span *ngIf="item.artwork">{{item.artwork.name}}, {{item.artwork.artist}}, {{item.artwork.year}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        Change artwork:
+                    </div>
+                    <div class="col-9 ng-autocomplete ">
+                        <ng-autocomplete 
+                            [data]="data"
+                            [searchKeyword]="keyword"
+                            (selected)='selectEvent($event)'
+                            (inputChanged)='onChangeSearch($event)'
+                            (inputFocused)='onFocused($event)'
+                            [itemTemplate]="itemTemplate"
+                            [notFoundTemplate]="notFoundTemplate"
+                            [placeholder]="placeholderText"
+                            [historyListMaxNumber]="15"
+                            [minQueryLength]="2">                                 
+                        </ng-autocomplete>
+                    
+                        <ng-template #itemTemplate let-item>
+                            <a href="javascript:void(0)">
+                                <span [innerHTML]="item.name"></span>, 
+                                <span [innerHTML]="item.artist"></span>, 
+                                <span [innerHTML]="item.year"></span>
+                            </a>
+                        </ng-template>
+                        
+                        <ng-template #notFoundTemplate let-notFound>
+                        <div [innerHTML]="notFound"></div>
+                        </ng-template>
+                        <div *ngIf="selected">
+                            <br/><img style="width: 100%;" src="{{selectedFilelocation()}}" alt="{{selectedName()}}">
+                            <!-- {{selectedName()}}x{{selectedArtist()}}x{{selectedYear()}}x{{selectedFilelocation()}} -->
+                        </div>
+                    </div>
+                </div>
+                <!-- <textarea rows="3" class="form-control" [(ngModel)]="item.name"></textarea>
+                <textarea rows="3" class="form-control" [(ngModel)]="item.description"></textarea>
+                <textarea rows="3" class="form-control" [(ngModel)]="item.url"></textarea> -->
+            </td>
+            <td class="col-xs">
+                <span *ngIf="!tableEditing">
+                    <button class="btn btn-danger" (click)="confirmDelete(item._id)">Delete</button>
+                </span>
+            </td>
+            <td class="col-xs">
+                <span *ngIf="!tableEditing">
+                    <button class="btn btn-warning" (click)="editrow=item._id; tableEditing=true; updateSelectItem(item); resetSelected();">Edit</button>
+                </span>
+                <span *ngIf="tableEditing && editrow==item._id">
+                    <button class="btn btn-warning" (click)="tableEditing=false; updateExhibition(item); resetSelected();" [disabled]="!item.name || !item.description">Save</button>
+                </span>
+            </td>
+        </tr>
+        <tr *ngIf="!tableEditing && !deleteConfirmation_Id">
+            <td class="col-md">
+                <div class="row">
+                    <div class="col-3">
+                        Name:
+                    </div>
+                    <div class="col-9">
+                        <textarea rows="1" class="form-control" [(ngModel)]="newExhibition.name"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        Description:
+                    </div>
+                    <div class="col-9">
+                        <textarea rows="3" class="form-control" [(ngModel)]="newExhibition.description"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        URL:
+                    </div>
+                    <div class="col-9">
+                        <textarea rows="2" class="form-control" [(ngModel)]="newExhibition.url"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        Artwork:
+                    </div>
+                    <div class="col-9 ng-autocomplete ">
+                        <ng-autocomplete 
+                            [data]="data"
+                            [searchKeyword]="keyword"
+                            (selected)='selectEvent($event)'
+                            (inputChanged)='onChangeSearch($event)'
+                            (inputFocused)='onFocused($event)'
+                            [itemTemplate]="itemTemplate"
+                            [notFoundTemplate]="notFoundTemplate"
+                            [placeholder]="placeholderText"
+                            [historyListMaxNumber]="15"
+                            [minQueryLength]="2">                               
+                        </ng-autocomplete>
+                    
+                    
+                        <ng-template #itemTemplate let-item>
+                            <a href="javascript:void(0)">
+                                <span [innerHTML]="item.name"></span>, 
+                                <span [innerHTML]="item.artist"></span>, 
+                                <span [innerHTML]="item.year"></span>
+                            </a>
+                        </ng-template>
+                        
+                        <ng-template #notFoundTemplate let-notFound>
+                        <div [innerHTML]="notFound"></div>
+                        </ng-template>
+                        <div *ngIf="selected">
+                            <br/><img style="width: 100%;" src="{{selectedFilelocation()}}" alt="{{selectedName()}}">
+                            <!-- {{selectedName()}}x{{selectedArtist()}}x{{selectedYear()}}x{{selectedFilelocation()}} -->
+                        </div>
+                    </div>
+                </div>
+<!--             
+                <span>Name:</span>
+                <textarea rows="1" class="form-control" [(ngModel)]="newExhibition.name"></textarea>
+                <span>Description:</span>
+                <textarea rows="3" class="form-control" [(ngModel)]="newExhibition.description"></textarea>
+                <span>URL:</span>
+                <textarea rows="1" class="form-control" [(ngModel)]="newExhibition.url"></textarea>
+                
+                <div class="ng-autocomplete mb-5">
+                    <span>Search IMMA collection:</span>
+                    <ng-autocomplete 
+                        [data]="data"
+                        [searchKeyword]="keyword"
+                        (selected)='selectEvent($event)'
+                        (inputChanged)='onChangeSearch($event)'
+                        (inputFocused)='onFocused($event)'
+                        [itemTemplate]="itemTemplate"
+                        [notFoundTemplate]="notFoundTemplate"
+                        [placeholder]="placeholderText"
+                        [historyListMaxNumber]="15"
+                        [minQueryLength]="2">                                 
+                    </ng-autocomplete>
+                
+                    <ng-template #itemTemplate let-item>
+                        <a href="javascript:void(0)">
+                            <span [innerHTML]="item.name"></span>, 
+                            <span [innerHTML]="item.artist"></span>, 
+                            <span [innerHTML]="item.year"></span>
+                        </a>
+                    </ng-template>
+                    
+                    <ng-template #notFoundTemplate let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                    </ng-template>
+                    
+                </div> -->
+            </td>
+            <td class="col-xs">
+            </td>
+            <td class="col-xs">
+                <span>
+                    <button class="btn btn-success" (click)="saveExhibition()" [disabled]="!newExhibition.name || !newExhibition.description">Add</button>
+                </span>
+            </td>
+        </tr>
+    </table>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>

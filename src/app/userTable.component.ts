@@ -47,7 +47,8 @@ export class UserTableComponent {
         return sortedUsers;
     }
 
-    addUser(user: User) {
+    addUser(user: User, existingUser: boolean) {
+        console.log(existingUser);
         //check if username already taken
         if(user.id == undefined && this.usernameTaken(user)) {
             this.duplicateUser = true;
@@ -56,6 +57,25 @@ export class UserTableComponent {
             this.duplicateUser = false;
             this.model.saveUser(user);
             this.newUser = new User();
+        }
+        //update display name on existing scripts and responses
+        if(existingUser && user.displayname) {
+            //update scripts
+            const scripts = this.model.getScripts();
+            for(var script of scripts) {
+                if(script.owner == user._id && script.author != user.displayname) {
+                    script.author = user.displayname;
+                    this.model.saveScript(script);
+                }
+            }
+            //update responses
+            const activities = this.model.getActivities();
+            for(var activity of activities) {
+                if(activity.author == user._id && activity.authorname != user.displayname) {
+                    activity.authorname = user.displayname;
+                    this.model.saveActivity(activity);
+                }
+            }
         }
     }
 

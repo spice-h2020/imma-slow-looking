@@ -8,14 +8,16 @@ import { Activity } from "./activity.model";
 import { CollectionArtwork } from "./collectionArtwork.model";
 import { User } from "./user.model";
 import { ConfigSettings } from "./config";
+import { Exhibition } from "./exhibition.model";
 
 @Injectable() export class RestDataSource { 
 
     // configuration settings
     private configSettings = new ConfigSettings;
-    
+
     // Citizen data URLs 
-    private userUrl = 'https://api2.mksmart.org/object/' + this.configSettings.citizenDatasetUUID + '?query=%7B%22type%22:%22user%22%7D&limit=9999'
+    private exhibitionUrl = 'https://api2.mksmart.org/object/' + this.configSettings.citizenDatasetUUID + '?query=%7B%22type%22:%22exhibition%22%7D&limit=9999';
+    private userUrl = 'https://api2.mksmart.org/object/' + this.configSettings.citizenDatasetUUID + '?query=%7B%22type%22:%22user%22%7D&limit=9999';
     private themeUrl = 'https://api2.mksmart.org/object/' + this.configSettings.citizenDatasetUUID + '?query=%7B%22type%22:%22theme%22%7D&limit=9999';
     private artworkUrl =  'https://api2.mksmart.org/object/' + this.configSettings.citizenDatasetUUID + '?query=%7B%22type%22:%22artwork%22%7D&limit=9999';
     private scriptUrl = 'https://api2.mksmart.org/object/' + this.configSettings.citizenDatasetUUID + '?query=%7B%22type%22:%22script%22%7D&limit=9999';
@@ -23,6 +25,23 @@ import { ConfigSettings } from "./config";
     private saveUrl = 'https://api2.mksmart.org/object/' + this.configSettings.citizenDatasetUUID;
 
     constructor(private http: HttpClient) { }
+
+    //Exhibition
+    getExhibitionData(): Observable<Exhibition[]> {
+        return this.http.get<Exhibition[]>(this.exhibitionUrl, this.configSettings.config);
+    }
+
+    saveExhibition(exhibition: Exhibition): Observable<User> {
+        return this.http.post<Exhibition>(this.saveUrl, exhibition, this.configSettings.config);
+    }
+
+    updateExhibition(exhibition: Exhibition) {
+        return this.http.put<Exhibition>(`${this.saveUrl}/${exhibition._id}`, exhibition, this.configSettings.config);
+    }
+
+    deleteExhibition(_id: string) {
+        return this.http.delete<Exhibition>(`${this.saveUrl}/${_id}`, this.configSettings.config);
+    }
 
     // User
     getUserData(): Observable<User[]> {

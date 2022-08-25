@@ -6,10 +6,9 @@
 <div *ngIf="scriptfound" class="border pl-5 pr-5 pt-3">
 <div *ngFor="let stage of currentScript.stages; let i = index">
     <div *ngIf="slowLookingCurrentScriptStageIndex == i">
-        <div *ngIf="stage.stagetype == 'welcome'">  
+        <!-- <div *ngIf="stage.stagetype == 'welcome'">  
             <h5 class="col-sm-12">{{stage.title}}</h5>
 
-            <!-- show included artworks -->
             <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
                 <span *ngIf="artwork.url">
                     <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
@@ -28,12 +27,13 @@
                     <button class="m-3 btn btn-warning" (click)="addActivity(); slowLookingScript='0'; " routerLink="/home">Save your Deep Viewpoints activity</button>
                 </div>
             </span>
+            
             <span *ngIf="slowLookingMaximumScriptStageIndex != i">
                 <div class="text-right">
                     <button  class="m-3 btn btn-warning" (click)="slowLookingCurrentScriptStageIndex=i+1; ">Continue</button>
                 </div>
             </span>
-        </div>
+        </div> -->
         <div *ngIf="stage.stagetype == 'statement'">  
             <h5 class="col-sm-12">{{stage.title}}</h5>
 
@@ -51,21 +51,22 @@
             </div>
 
             <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
+
             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
-                <div class="text-center">
-                    <button class="m-3 btn btn-warning" (click)="addActivity(); slowLookingScript='0';" routerLink="/home">Save your Deep Viewpoints activity</button>
+                <div class="text-right">
+                    <button class="m-3 btn btn-warning" (click)="addActivity(); slowLookingScript='0';" routerLink="/home">Save</button>
                 </div>
             </span>
+
             <span *ngIf="slowLookingMaximumScriptStageIndex != i">
                 <div class="text-right">
                     <button class="m-3 btn btn-warning" (click)="slowLookingCurrentScriptStageIndex=i+1; ">Continue</button>
                 </div>
             </span>
         </div>
-        <div *ngIf="stage.stagetype == 'context'">  
+        <!-- <div *ngIf="stage.stagetype == 'context'">  
             <h5 class="col-sm-12">{{stage.title}}</h5>
 
-            <!-- show included artworks -->
             <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
                 <span *ngIf="artwork.url">
                     <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
@@ -89,7 +90,7 @@
                     <button class="m-3 btn btn-warning" (click)="slowLookingCurrentScriptStageIndex=i+1; ">Continue</button>
                 </div>
             </span>
-        </div>
+        </div> -->
         <div *ngIf="stage.stagetype == 'multiquestion'"> 
             <div class="form-group">
 
@@ -140,10 +141,11 @@
 
                 <!-- return to list if last stage -->
                 <span *ngIf="slowLookingMaximumScriptStageIndex == i">
-                    <div class="text-center">
-                        <button class="m-3 btn btn-warning" (click)="newMultiquestionAction.questionStage = stage; newMultiquestionAction.questions = stage.body; addActionToActivity(newMultiquestionAction); resetNewMultiQuestionAction(); resetAnswerValue(); addActivity(); slowLookingScript='0'; multiquestionIndex=0" routerLink="/home">Save your Deep Viewpoints activity</button>
+                    <div class="text-right">
+                        <button class="m-3 btn btn-warning" (click)="newMultiquestionAction.questionStage = stage; newMultiquestionAction.questions = stage.body; addActionToActivity(newMultiquestionAction); resetNewMultiQuestionAction(); resetAnswerValue(); addActivity(); slowLookingScript='0'; multiquestionIndex=0" routerLink="/home">Save</button>
                     </div>
                 </span>
+
                 <!-- continue if not last stage -->
                 <span *ngIf="slowLookingMaximumScriptStageIndex != i">
                     <div class="text-right">
@@ -187,8 +189,8 @@
 
                 <!-- return to list if last stage -->
                 <span *ngIf="slowLookingMaximumScriptStageIndex == i">
-                    <div class="text-center">
-                        <button class="m-3 btn btn-warning" (click)="newQuestionAction.questionStage = stage; newQuestionAction.question = stage.body; addActionToActivity(newQuestionAction); resetNewQuestionAction(); addActivity(); slowLookingScript='0';" routerLink="/home">Save your Deep Viewpoints activity</button>
+                    <div class="text-right">
+                        <button class="m-3 btn btn-warning" (click)="newQuestionAction.questionStage = stage; newQuestionAction.question = stage.body; addActionToActivity(newQuestionAction); resetNewQuestionAction(); addActivity(); slowLookingScript='0';" routerLink="/home">Save</button>
                     </div>
                 </span>
                 <!-- continue if not last stage -->
@@ -228,10 +230,11 @@
 
                 <!-- return to list if last stage -->
                 <span *ngIf="slowLookingMaximumScriptStageIndex == i">
-                    <div class="text-center">
-                        <button class="m-3 btn btn-warning" (click)="newStoryAction.storyStage = stage; newStoryAction.question = stage.body; addActionToActivity(newStoryAction); resetNewStoryAction(); addActivity(); slowLookingScript='0';" routerLink="/home">Save your Deep Viewpoints activity</button>
+                    <div class="text-right">
+                        <button class="m-3 btn btn-warning" (click)="newStoryAction.storyStage = stage; newStoryAction.question = stage.body; addActionToActivity(newStoryAction); resetNewStoryAction(); addActivity(); slowLookingScript='0';" routerLink="/home">Save</button>
                     </div>
                 </span>
+
                 <!-- continue if not last stage -->
                 <span *ngIf="slowLookingMaximumScriptStageIndex != i">
                     <div class="text-right">
@@ -241,12 +244,10 @@
             </div>
         </div>
 
-        <div *ngIf="stage.stagetype == 'shareWithMuseum'">  
+        <!-- <div *ngIf="stage.stagetype == 'shareWithMuseum'">  
             <div class="form-group">
-                <!-- {{intialiseShareWithMuseumAction(stage)}} -->
                 <h5 class="col-sm-12">{{stage.title}}</h5>
 
-                 <!-- show included artworks -->
                 <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
                     <span *ngIf="artwork.url">
                         <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
@@ -291,13 +292,11 @@
                     <button class="m-3 btn btn-warning" (click)="newShareWithMusemAction.shareWithMuseumStage = stage; slowLookingCurrentScriptStageIndex=i+1; addActionToActivity(newShareWithMusemAction); resetNewShareWithMusemAction();">Continue</button>
                 </div>
             </span>
-        </div>
-        <div *ngIf="stage.stagetype == 'follow'">  
+        </div>  -->
+        <!-- <div *ngIf="stage.stagetype == 'follow'">  
             <div class="form-group">
-                <!-- {{intialiseFollowAction(stage)}} -->
                 <h5 class="col-sm-12">{{stage.title}}</h5>
 
-                <!-- show included artworks -->
                 <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
                     <span *ngIf="artwork.url">
                         <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
@@ -326,13 +325,11 @@
                     <button class="m-3 btn btn-warning" (click)="newFollowAction.followStage = stage; slowLookingCurrentScriptStageIndex=i+1; addActionToActivity(newFollowAction); resetFollowAction();">Continue</button>
                 </div>
             </span>
-        </div>
-        <div *ngIf="stage.stagetype == 'shareWithSomeone'">  
+        </div> -->
+        <!-- <div *ngIf="stage.stagetype == 'shareWithSomeone'">  
             <div class="form-group">
-                <!-- {{intialiseShareWithSomeoneAction(stage)}} -->
                 <h5 class="col-sm-12">{{stage.title}}</h5>
 
-                <!-- show included artworks -->
                 <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
                     <span *ngIf="artwork.url">
                         <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
@@ -365,11 +362,10 @@
                     <button class="m-3 btn btn-warning" (click)="newShareWithFriendAction.shareWithOtherStage = stage; slowLookingCurrentScriptStageIndex=i+1;  addActionToActivity(newShareWithFriendAction); resetShareWithSomeoneAction();">Continue</button>
                 </div>
             </span>
-        </div>
-        <div *ngIf="stage.stagetype == 'thankyou'">  
+        </div> -->
+        <!-- <div *ngIf="stage.stagetype == 'thankyou'">  
             <h5 class="col-sm-12">{{stage.title}}</h5>
 
-            <!-- show included artworks -->
             <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
                 <span *ngIf="artwork.url">
                     <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
@@ -383,11 +379,7 @@
             </div>
 
             <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
-            <!-- <div>
-                <div class="btn btn-primary text-center" style="background-color: #55acee;" href="#!" role="button">
-                    <i class="fab fa-twitter"></i>
-                </div>                       
-            </div> -->
+
             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                 <div class="text-center">
                     <button class="m-3 btn btn-warning" (click)="addActivity(); slowLookingScript='0'; " routerLink="/home">Save your Deep Viewpoints activity</button>
@@ -398,7 +390,7 @@
                     <button class="m-3 btn btn-warning" (click)="slowLookingCurrentScriptStageIndex=i+1; ">Continue</button>
                 </div>
             </span>
-        </div>
+        </div> -->
     </div>
 </div> 
 </div>

@@ -207,7 +207,12 @@ export class SlowLookingActivityComponent implements OnInit {
         }
         else {
             this.newActivity.author = user._id;
-            this.newActivity.authorname = user.username;
+            if(user.displayname) {
+                this.newActivity.authorname = user.displayname;
+            }
+            else {
+                this.newActivity.authorname = user.username;
+            }
         }
         this.model.saveActivity(this.newActivity);
     }

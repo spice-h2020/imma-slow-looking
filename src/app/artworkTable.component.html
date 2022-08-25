@@ -67,9 +67,7 @@
     
         <ng-template #itemTemplate let-item>
             <a href="javascript:void(0)">
-                <span [innerHTML]="item.name"></span>, 
-                <span [innerHTML]="item.artist"></span>, 
-                <span [innerHTML]="item.year"></span>
+                <span [innerHTML]="item.searchstring"></span>
             </a>
         </ng-template>
         

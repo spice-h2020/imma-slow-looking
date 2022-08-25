@@ -24,6 +24,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OverviewComponent } from './overview.component';
 import { OverviewBarComponent } from './overviewBar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ExhibitionTableComponent } from './exhibitionTable.component';
+import { ClipboardModule } from 'ngx-clipboard';
 
 
 
@@ -42,7 +44,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AllResponsesComponent,
     NavBarComponent,
     OverviewComponent,
-    OverviewBarComponent
+    OverviewBarComponent,
+    ExhibitionTableComponent
     ],
   imports: [
     BrowserModule,
@@ -56,7 +59,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DragDropModule,
     BrowserAnimationsModule,
     NgbModule,
-    
+    ClipboardModule
   ],
   providers: [CurrentUser],
   bootstrap: [SlowLookingComponent]

@@ -8,6 +8,8 @@ import { contextStage, followStage, multiquestionStage, questionStage, shareWith
 import { Theme } from "./theme.model";
 import { User } from "./user.model";
 import { HttpClient } from "@angular/common/http";
+import { Exhibition } from "./exhibition.model";
+import { ConfigSettings } from "./config";
 
 @Component({
     selector: "paScriptAuthoring",
@@ -17,6 +19,8 @@ import { HttpClient } from "@angular/common/http";
 export class ScriptAuthoringComponent {
 
     constructor(public currentuser: CurrentUser, private model: Model, private http: HttpClient){}
+
+    private configSettings = new ConfigSettings;
 
     currentUser: number = 1;
 
@@ -30,11 +34,13 @@ export class ScriptAuthoringComponent {
 
     //URL for accessing the script directly
     scriptURL(script: Script): string {
-        return window.location.origin.concat("/slowLooking/", script._id);
+        return this.configSettings.baseURL + "slowLooking/" + script._id;
+        // return window.location.origin.concat("/slowLooking/", script._id);
     }
 
     responsesURL(script: Script): string {
-        return window.location.origin.concat("/allResponses/", script._id);
+        return this.configSettings.baseURL + "allResponses/" + script._id;
+        // return window.location.origin.concat("/allResponses/", script._id);
     }
 
     toggleStageHelp() {
@@ -89,7 +95,7 @@ export class ScriptAuthoringComponent {
         let newscript = new Script();
         newscript.name = "Untitled script";
         newscript.open = false;
-        newscript.visible = true;
+        newscript.visible = false;
         newscript.archived = false;
         // newscript.artworkid = this.model.getDefaultArtworkId();
         // newscript.themeids = [this.model.getDefaultThemeId()];
@@ -101,7 +107,12 @@ export class ScriptAuthoringComponent {
         let userID = user.id;
         if (userID != undefined) {
             newscript.owner = user._id;
-            newscript.author = this.currentuser.getUser().username;
+            if(this.currentuser.getUser().displayname) {
+                newscript.author = this.currentuser.getUser().displayname;
+            }
+            else {
+                newscript.author = this.currentuser.getUser().username;
+            }
         }
 
         this.model.saveScript(newscript);
@@ -213,6 +224,16 @@ export class ScriptAuthoringComponent {
     shiftStagePosition(script: Script, event, old) {
         //reorder script stages
         this.model.moveScriptStage(script, old, event.target.value);
+    }
+
+    exhibitionsChange(script: Script, exhibitionid: string, selected: any) {
+        if(selected.target.checked) {
+            this.model.addExhibitionToScript(script, exhibitionid);
+        }
+        else {
+            this.model.removeExhibitionFromScript(script, exhibitionid);
+        }
+        this.model.saveScript(script);
     }
 
     themesChange(script: Script, themeid: string, selected: any) {
@@ -398,6 +419,25 @@ export class ScriptAuthoringComponent {
             }
         }
         return mythemes;
+    }
+
+    getExhibitionsFromIds(exhibitionIds: Array<string>) {
+        let myexhibitions: Array<Exhibition> = [];
+        for(var exhibitionid of exhibitionIds) {
+            let myexhibition = this.getExhibition(exhibitionid);
+            if(myexhibition != undefined) {
+                myexhibitions.push(myexhibition);
+            }
+        }
+        return myexhibitions;
+    }
+
+    getExhibition(_id: string) {
+        return this.model.getExhibition(_id);
+    }
+
+    getExhibitions() {
+        return this.model.getExhibitions();
     }
 
     getArtworkFromId(artworkId: string) {
