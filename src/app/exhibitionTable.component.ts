@@ -116,7 +116,6 @@ export class ExhibitionTableComponent {
         // do something with selected item
         this.selected = true;
         this.selectItem = item;
-        console.log(item);
     }
   
     onChangeSearch(val: string) {
@@ -144,8 +143,6 @@ export class ExhibitionTableComponent {
     }
 
     getScriptsOfAnExhibition(_id: string) {
-        let foo = this.model.getScriptsOfAnExhibition(_id);
-        console.log("foo",foo);
-        return foo;
+        return this.model.getScriptsOfAnExhibition(_id);
     }
 }

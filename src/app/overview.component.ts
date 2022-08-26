@@ -38,7 +38,6 @@ export class OverviewComponent implements OnInit {
     keywordArtworks = 'searchstring';
     selectEventArtworks(item) {
         // do something with selected item
-        console.log(item);
         this.selectedArtwork = item;
     }
   
@@ -56,7 +55,6 @@ export class OverviewComponent implements OnInit {
     keywordThemes = 'searchstring';
     selectEventThemes(item) {
         // do something with selected item
-        console.log(item);
         this.selectedTheme = item;
     }
   
@@ -74,7 +72,6 @@ export class OverviewComponent implements OnInit {
     keywordExhibitions = 'searchstring';
     selectEventExhibitions(item) {
         // do something with selected item
-        console.log(item);
         this.selectedExhibition = item;
     }
   
@@ -92,7 +89,6 @@ export class OverviewComponent implements OnInit {
     keywordScripts = 'searchstring';
     selectEventScripts(item) {
         // do something with selected item
-        console.log(item);
         this.selectedScript = item;
     }
     
@@ -171,9 +167,6 @@ export class OverviewComponent implements OnInit {
                     this.scriptResults.push({searchstring: script.name+": "+script.description+" - "+script.author, script: script});
                 }
             }
-            else {
-                console.log(script);
-            }
         }
 
         //get random scripts for feature
@@ -185,14 +178,6 @@ export class OverviewComponent implements OnInit {
         for(var scr of shuffled.slice(0,5)) {
             this.firstScripts.push(scr.script);
         }
-    }
-
-    foo() {
-        console.log(this.artworks);
-        console.log(this.artworkResults);
-        console.log(this.themeResults);
-        console.log(this.scriptResults);
-        console.log(this.firstScripts);
     }
 
     getArtworkFromId(_id: string) {
@@ -228,7 +213,6 @@ export class OverviewComponent implements OnInit {
     }
 
     getScriptOverviewData() {
-        console.log("hello");
         const scripts = this.model.getScripts();
         const artworks = this.model.getArtworks();
         const themes = this.model.getThemes();
@@ -268,9 +252,6 @@ export class OverviewComponent implements OnInit {
                 this.scriptResults.push({searchstring: script.name+": "+script.description+" - "+script.author, script: script});
             }
         }
-        console.log(this.artworkResults);
-        console.log(this.themeResults);
-        console.log(this.scriptResults);
     }
 
 

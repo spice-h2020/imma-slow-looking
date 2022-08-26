@@ -13,7 +13,7 @@ export class CurrentUser{
     }
 
     public getUser(): User {
-        let userstring = localStorage.getItem("user");
+        let userstring = localStorage.getItem("dvuser");
         let user = JSON.parse(userstring);
         if (user == null) {
             return this.user;
@@ -25,11 +25,11 @@ export class CurrentUser{
 
     public setUser(user: User) {
         let userstring = JSON.stringify(user);
-        localStorage.setItem("user", userstring);
+        localStorage.setItem("dvuser", userstring);
     }
 
     public logout() {
-        localStorage.setItem("user", JSON.stringify(this.user));
+        localStorage.setItem("dvuser", JSON.stringify(this.user));
     }
 
 }
