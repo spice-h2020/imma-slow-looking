@@ -29,13 +29,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 p {
-  font-size: 17px;
+  font-size: large;
 }
 
 span {
-  font-size: 17px;
+  font-size: large;
 }
 
 div {
-  font-size: 17px;
+  font-size: large;
 }

@@ -1,14 +1,14 @@
 <paNavBar></paNavBar>
 <div><img style="width: 100%;" src="assets/img/IMMA-DV1.png"></div>
-<p class="lead">Welcome to Deep Viewpoints. Dive deeper into IMMA artworks. Share your viewpoint and explore the views of others.</p>
 
-<h2>Find Out More</h2>
-<p>Look closely at IMMA artworks and develop your own interpretations. How do you view these artworks? How do other people view them?</p> 
-<p>Below are some Deep Viewpoints activities. Each one focusses on particular IMMA artworks. Each activity helps you to look deeper, find out more about the artwork and develop your own interpretations.</p>
-<p>You can explore how others have responded in the <a routerLink="/otherPeople" style="color: rgb(108, 117, 125);">Other People</a> section. But first, try some activities for yourself.</p>
+<p class="lead"></p>
+<p class="lead">
+  Deep Viewpoints contains short <strong>scripts</strong> that guide you through looking at and responding to artworks. Many of the scripts have been developed by citizen groups, providing a new perspective on the IMMA collection.
+</p>
+<p class="lead">As well as taking part in the scripts you can also <a routerLink="/otherPeople" style="color: rgb(108, 117, 125);">view the responses of others.</a> </p>
+<p class="lead">Scripts are organised into themes. Select a theme to begin. Tap on the artwork to start the script.</p>
 
-<h2>Take Part</h2>
-<p>Deep Viewpoints activities are organised into themes. Each activity is based on selected artworks in the IMMA collection. Select a theme to begin. Tap on the artwork to start the activity. </p>
+<h2>Themes</h2>
 
 <div *ngFor="let theme of getThemes(); let i = index">
     <div *ngIf="getScriptsOfTheme(theme._id).length > 0" class="accordion " id="accordionFlushExample">
@@ -22,7 +22,7 @@
                     [attr.data-bs-target]="'#collapse_' + theme._id"
                     aria-expanded="false" 
                     [attr.aria-controls]="'collapse_'+ theme._id">
-                    <span><h5>{{theme.name}}</h5>
+                    <span><h4>{{theme.name}}</h4>
                     {{theme.description}}</span>
                 </button>
                 <div 
@@ -33,7 +33,7 @@
                 >
                     <div class="accordion-body">
                         <div *ngFor="let script of getScriptsOfTheme(theme._id); let i = index; let last = last" class="col-sm-12">
-                            <h5 class="col-sm-12">{{script.name}}</h5> 
+                            <h4 class="col-sm-12">{{script.name}}</h4> 
                             <div class="col-sm-12">
                                 <p style="white-space: pre-wrap;">{{script.description}}</p>
                                 <figcaption *ngIf="script.author != ''" class="blockquote-footer text-white">{{script.author}}</figcaption>
@@ -67,4 +67,4 @@
 </div>
 <br/>
 <h2>Other People</h2>
-<button class="btn btn-secondary" routerLink="/otherPeople">Find out how others have responded to these artworks</button><br/><br/>
+<button class="btn btn-secondary" routerLink="/otherPeople">Find out how others have responded to the scripts</button><br/><br/>

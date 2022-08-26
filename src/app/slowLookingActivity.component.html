@@ -35,7 +35,7 @@
             </span>
         </div> -->
         <div *ngIf="stage.stagetype == 'statement'">  
-            <h5 class="col-sm-12">{{stage.title}}</h5>
+            <h2 class="col-sm-12">{{stage.title}}</h2>
 
             <!-- show included artworks -->
             <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
@@ -98,7 +98,7 @@
                 <!-- {{intialiseMultiquestionAction(stage, stage.body)}} -->
 
                 <!-- show title and question  -->
-                <h5 class="col-sm-12">{{stage.title}}</h5>
+                <h2 class="col-sm-12">{{stage.title}}</h2>
 
                 <!-- show included artworks -->
                 <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
@@ -164,7 +164,7 @@
                 <!-- {{intialiseQuestionAction(stage, stage.body)}} -->
 
                 <!-- show title and question  -->
-                <h5 class="col-sm-12">{{stage.title}}</h5>
+                <h2 class="col-sm-12">{{stage.title}}</h2>
 
                 <!-- show included artworks -->
                 <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">
@@ -206,7 +206,7 @@
             <div class="form-group">
 
                 <!-- show title  -->
-                <h5 class="col-sm-12">{{stage.title}}</h5>
+                <h2 class="col-sm-12">{{stage.title}}</h2>
 
                 <!-- show included artworks -->
                 <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first">

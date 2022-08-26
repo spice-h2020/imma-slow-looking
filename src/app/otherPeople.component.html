@@ -1,13 +1,14 @@
 <paNavBar></paNavBar>
+<p class="lead"></p>
 <p class="lead">
-    Find out how others have responded to IMMA artworks.
+    Find out how others have responded to Deep Viewpoints scripts. You can also <a routerLink="/home" style="color: rgb(108, 117, 125);">take part in the scripts</a> for yourself.
 </p>
-<h2>Other People</h2>
-<p>
-    Select a theme to begin. Recent responses are shown below the artwork.
-</p> 
+<p class="lead">
+    Scripts are organised into themes. Select a theme to begin. Recent responses are shown below each script.
+</p>
+<h2>Themes</h2>
 <div *ngFor="let theme of getThemes(); let i = index">
-    <div *ngIf="getScriptsOfTheme(theme._id).length > 0" class="accordion" id="accordionFlushExample">
+    <div *ngIf="getScriptsOfTheme(theme._id).length > 0" class="accordion " id="accordionFlushExample">
         <div class="accordion-item">
             <h2 class="accordion-header" id="{{'heading_' + theme._id}}">
                 <button 
@@ -18,135 +19,141 @@
                     [attr.data-bs-target]="'#collapse_' + theme._id"
                     aria-expanded="false" 
                     [attr.aria-controls]="'collapse_'+ theme._id">
-                    <span><h5>{{theme.name}}</h5>
-                        {{theme.description}}
-                    </span>
+                    <span><h4>{{theme.name}}</h4>
+                    {{theme.description}}</span>
                 </button>
-            </h2>
-            <div 
+                <div 
                 style="background-color: white;"
                 id="{{'collapse_' + theme._id}}" 
-                class="accordion-collapse collapse" 
+                class="accordion-collapse collapse text-black" 
                 [attr.aria-labelledby]="'heading_' + theme._id"
-                data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">
-                    <div *ngFor="let script of getScriptsOfTheme(theme._id); let i = index; let last = last" class="col-sm-12">
-                        <h5 class="col-sm-12">{{script.name}}</h5> 
-                        <div class="col-sm-12">
-                            <p style="white-space: pre-wrap;">{{script.description}}</p>
-                            <figcaption *ngIf="script.author != ''" class="blockquote-footer" style="color: black;">{{script.author}}</figcaption>
-                        </div>
-                        <span *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
+                >
+                    <div class="accordion-body">
+                        <div *ngFor="let script of getScriptsOfTheme(theme._id); let i = index; let last = last" class="col-sm-12">
+                            <h4 class="col-sm-12">{{script.name}}</h4> 
+                            <div class="col-sm-12">
+                                <p style="white-space: pre-wrap;">{{script.description}}</p>
+                                <figcaption *ngIf="script.author != ''" class="blockquote-footer text-white">{{script.author}}</figcaption>
+                            </div>
+
                             
-                            <span *ngIf="artwork.url">
-                                <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
-                            </span>
-                            <span *ngIf="!artwork.url && artwork.fileLocation">
-                                <img class="col-sm-12" src="{{artwork.fileLocation}}" >
+                            <span *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
+                                <span *ngIf="artwork.url">
+                                    <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
+                                    <div class="col-sm-12"><strong><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></strong></div>
+                                    <div class="col-sm-12"><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></div>
+                                    <div class="col-sm-12">{{artwork.year}}</div>
+                                </span>
+                                <span *ngIf="!artwork.url && artwork.fileLocation">
+                                    <p>rr</p>
+                                    <img routerLink="/slowLooking/{{script._id}}" class="col-sm-12" src="{{artwork.fileLocation}}" >
+                                    <div class="col-sm-12"><strong><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></strong></div>
+                                    <div class="col-sm-12"><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></div>
+                                    <div class="col-sm-12">{{artwork.year}}</div>
+                                </span> 
                             </span>
 
-                            <div class="col-sm-12"><strong><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></strong></div>
-                            <div class="col-sm-12"><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></div>
-                            <div class="col-sm-12">{{artwork.year}}</div>
-                        </span>
-                        <span *ngIf="getNonHomepageArtworksOfScript(script).length > 0">
-                            <table class="table table-sm table-borderless">
-                                <tr *ngFor="let otherartwork of getNonHomepageArtworksOfScript(script);">
-                                    <td width="20%">
-                                        <span *ngIf="otherartwork.url">
-                                            <img src="{{otherartwork.url}}" alt="{{otherartwork.name}}" class="img-thumbnail" height="auto" width="150px" >
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <strong><span style="white-space: pre-wrap;" [innerHTML]="otherartwork.name"></span></strong><br/>
-                                        <span style="white-space: pre-wrap;" [innerHTML]="otherartwork.artist"></span><br/>
-                                        <span>{{otherartwork.year}}</span>
-                                    </td>
-                                </tr>
-                            </table>
+                            <span *ngIf="getNonHomepageArtworksOfScript(script).length > 0">
+                                <table class="table table-sm table-borderless">
+                                    <tr *ngFor="let otherartwork of getNonHomepageArtworksOfScript(script);">
+                                        <td width="20%">
+                                            <span *ngIf="otherartwork.url">
+                                                <img src="{{otherartwork.url}}" alt="{{otherartwork.name}}" class="img-thumbnail" height="auto" width="150px" >
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <strong><span style="white-space: pre-wrap;" [innerHTML]="otherartwork.name"></span></strong><br/>
+                                            <span style="white-space: pre-wrap;" [innerHTML]="otherartwork.artist"></span><br/>
+                                            <span>{{otherartwork.year}}</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </span>
 
-                        </span>
-                        <div class="accordion mt-3" id="{{'theme'+theme._id+'script'+script._id}}">
-                            <div class="accordion-item" style="background-color: rgb(41, 161, 184);">
-                                <h2 class="accordion-header" id="{{'heading_' + 'theme'+theme._id+'script'+script._id}}">
-                                    <button 
-                                        style="background-color: rgb(41, 161, 184);"
-                                        class="accordion-button collapsed text-white" 
-                                        type="button" 
-                                        data-bs-toggle="collapse" 
-                                        [attr.data-bs-target]="'#collapse_' + 'theme'+theme._id+'script'+script._id"
-                                        aria-expanded="false" 
-                                        [attr.aria-controls]="'collapse_'+ 'theme'+theme._id+'script'+script._id">
-                                        Recent responses
-                                    </button>
-                                </h2>
-                                <div 
-                                    style="background-color: black;"
-                                    id="{{'collapse_' + 'theme'+theme._id+'script'+script._id}}" 
-                                    class="accordion-collapse collapse" 
-                                    [attr.aria-labelledby]="'heading_' + 'theme'+theme._id+'script'+script._id"
-                                    [attr.data-bs-parent]="'#theme'+theme._id+'script'+script._id">
-                                    <div class="accordion-body">
-                                        <div *ngFor="let activity of getApprovedActivitiesOfAScript(script._id).slice(0, maximumResponses); let i = index; let even=even">
-                                            <!-- <div style="background-color: #f2f2f2;" class="rounded-3"> -->
-                                            <div class="card text-white mb-3" style="background-color: rgb(41, 161, 184); border-radius: 15px;">
-                                            <div class="card-body p-5">
-                                                <div *ngFor="let action of activity.actions;">
-                                                    <span *ngIf="action.questionStage">
-                                                        <span *ngIf="action.questionStage.stagetype">
-                                                            <span *ngIf="action.questionStage.stagetype != 'multiquestion'">
-                                                                <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question"></span>
-                                                                <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
-                                                            </span>
-                                                            <span *ngIf="action.questionStage.stagetype == 'multiquestion' && action.answers">
-                                                                <span *ngFor="let answer of action.answers">
-                                                                    <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.questionStage.body[answer.question]"></span>
-                                                                    <p class="font-weight-normal" style="white-space: pre-wrap;">{{answer.answer}}</p>
+                            <div class="accordion mt-3" id="{{'theme'+theme._id+'script'+script._id}}">
+                                <div class="accordion-item" style="background-color: rgb(41, 161, 184);">
+                                    <h2 class="accordion-header" id="{{'heading_' + 'theme'+theme._id+'script'+script._id}}">
+                                        <button 
+                                            style="background-color: rgb(41, 161, 184);"
+                                            class="accordion-button collapsed text-white" 
+                                            type="button" 
+                                            data-bs-toggle="collapse" 
+                                            [attr.data-bs-target]="'#collapse_' + 'theme'+theme._id+'script'+script._id"
+                                            aria-expanded="false" 
+                                            [attr.aria-controls]="'collapse_'+ 'theme'+theme._id+'script'+script._id">
+                                            <h5>Recent responses</h5>
+                                        </button>
+                                    </h2>
+                                    <div 
+                                        style="background-color: black;"
+                                        id="{{'collapse_' + 'theme'+theme._id+'script'+script._id}}" 
+                                        class="accordion-collapse collapse" 
+                                        [attr.aria-labelledby]="'heading_' + 'theme'+theme._id+'script'+script._id"
+                                        [attr.data-bs-parent]="'#theme'+theme._id+'script'+script._id">
+                                        <div class="accordion-body">
+                                            <div *ngFor="let activity of getApprovedActivitiesOfAScript(script._id).slice(0, maximumResponses); let i = index; let even=even">
+                                                <!-- <div style="background-color: #f2f2f2;" class="rounded-3"> -->
+                                                <div class="card text-white mb-3" style="background-color: rgb(41, 161, 184); border-radius: 15px;">
+                                                <div class="card-body p-5">
+                                                    <div *ngFor="let action of activity.actions;">
+                                                        <span *ngIf="action.questionStage">
+                                                            <span *ngIf="action.questionStage.stagetype">
+                                                                <span *ngIf="action.questionStage.stagetype != 'multiquestion'">
+                                                                    <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question"></span>
+                                                                    <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
+                                                                </span>
+                                                                <span *ngIf="action.questionStage.stagetype == 'multiquestion' && action.answers">
+                                                                    <span *ngFor="let answer of action.answers">
+                                                                        <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.questionStage.body[answer.question]"></span>
+                                                                        <p class="font-weight-normal" style="white-space: pre-wrap;">{{answer.answer}}</p>
+                                                                    </span>
                                                                 </span>
                                                             </span>
                                                         </span>
-                                                    </span>
-                                                    <span *ngIf="action.storyStage">
-                                                        <span *ngIf="action.storyStage.stagetype">
-                                                            <span *ngIf="action.storyStage.stagetype == 'story'">
-                                                                <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question"></span>
-                                                                <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
+                                                        <span *ngIf="action.storyStage">
+                                                            <span *ngIf="action.storyStage.stagetype">
+                                                                <span *ngIf="action.storyStage.stagetype == 'story'">
+                                                                    <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question"></span>
+                                                                    <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
+                                                                </span>
                                                             </span>
                                                         </span>
-                                                    </span>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="d-flex justify-content-between">
+                                                        <p class="mb-0">{{activity.authorname}}</p>
+                                                        <h6 class="mb-0"><span class="badge rounded-pill" style="background-color: rgba(0,0,0, 0.2);">{{activity.likes}}</span> <i (click)="addLikeToActivity(activity);" class="fas fa-heart ms-2"></i></h6>
+                                                    </div>
                                                 </div>
-                                                <hr>
-                                                <div class="d-flex justify-content-between">
-                                                    <p class="mb-0">{{activity.authorname}}</p>
-                                                    <h6 class="mb-0"><span class="badge rounded-pill" style="background-color: rgba(0,0,0, 0.2);">{{activity.likes}}</span> <i (click)="addLikeToActivity(activity);" class="fas fa-heart ms-2"></i></h6>
                                                 </div>
                                             </div>
+                                            <div *ngIf="getApprovedActivitiesOfAScript(script._id).length > maximumResponses">
+                                                <a routerLink="/allResponses/{{script._id}}" target='_blank'><button type="button" class="btn btn-secondary">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                                                        <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                                                    </svg>
+                                                    Show all          
+                                                </button></a>
                                             </div>
-                                        </div>
-                                        <div *ngIf="getApprovedActivitiesOfAScript(script._id).length > maximumResponses">
-                                            <a routerLink="/allResponses/{{script._id}}" target='_blank'><button type="button" class="btn btn-secondary">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
-                                                    <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
-                                                    <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
-                                                </svg>
-                                                Show all          
-                                            </button></a>
                                         </div>
                                     </div>
                                 </div>
+                            </div><br/>
+
+                            <div *ngIf="!last" class="col-sm-12">
+                                <hr>
                             </div>
-                        </div><br/>
-                        <div *ngIf="!last" class="col-sm-12">
-                            <hr>
                         </div>
-                    </div>                            
+                    </div>
                 </div>
-            </div>
+            </h2>
         </div>
     </div>
-</div><br/>         
+</div>
+<br/>         
 <h2>Take Part</h2>
-    <button class="btn btn-secondary" routerLink="/home">Try Deep Viewpoints activities for yourself</button><br/><br/>
+    <button class="btn btn-secondary" routerLink="/home">Try Deep Viewpoints scripts for yourself</button><br/><br/>
 
 
 
