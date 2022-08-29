@@ -591,12 +591,15 @@
                                     <table>
                                         <tr *ngFor="let artwork of getArtworksFromIds(script.name, script.artworkids, script)" class="mr-3">
                                             <td class="align-middle">
-                                                <input
-                                                type="checkbox"
-                                                [value]=artwork._id
-                                                [ngModel] = "stage.includeartworks.includes(artwork._id)"
-                                                (change) = "includeArtworksChange(script, stage, artwork._id, $event)"
-                                                />
+                                                <div class="form-check form-check-inline">
+                                                    <input
+                                                    class="form-check-input"
+                                                    type="checkbox"
+                                                    [value]=artwork._id
+                                                    [ngModel] = "stage.includeartworks.includes(artwork._id)"
+                                                    (change) = "includeArtworksChange(script, stage, artwork._id, $event)"
+                                                    />
+                                                </div>
                                             </td>
                                             <!-- <td class="align-top">
                                                 <span *ngIf="artwork.url">
@@ -609,7 +612,7 @@
                                                     <div class="col-sm-12"><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></div>
                                                     <div class="col-sm-12">{{artwork.year}}</div>
                                                 </label> -->
-                                                <label class="form-check-label ml-1"> <span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span>, <span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span>, {{artwork.year}} </label>
+                                                <label class="form-check-label"><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span>, <span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span>, {{artwork.year}} </label>
                                             </td>
                                             <br/>
                                         </tr>

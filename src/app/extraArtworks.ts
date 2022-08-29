@@ -57,7 +57,12 @@ export class ExtraArtworks {
         new CollectionArtwork("Two Heads", "Chinedum Muotto", "2021", "https://spiceimageworkaround.files.wordpress.com/2022/06/img_3574.jpg", "Two Heads, Chinedum Muotto, 2021"),
         new CollectionArtwork("Two Heads", "Chinedum Muotto", "2021", "https://spiceimageworkaround.files.wordpress.com/2022/06/img_3570.jpg", "Two Heads, Chinedum Muotto, 2021"),
 
-    
+        new CollectionArtwork("Tarantella", "Athanasius Kircher", "1641", "https://upload.wikimedia.org/wikipedia/commons/f/f3/Tarantella_%28Athanasius_Kircher%29.jpg", "Tarantella, Athanasius Kircher, 1641"),
+        new CollectionArtwork("Broadway boogie-woogie", "Piet Mondrian", "1942", "https://media.timeout.com/images/102089467/image.jpg", "Broadway boogie-woogie, Piet Mondrian, 1942"),
+        new CollectionArtwork("Music Note", "", "", "https://i.etsystatic.com/13386525/r/il/304c20/2417951462/il_fullxfull.2417951462_r3p8.jpg", "Music Note"),
+        new CollectionArtwork("View of Vetheuil", "Claude Monet", "1880", "https://www.artofmasters.com/wp-content/uploads/2021/02/View-of-Vetheuil-1880-by-Claude-Monet-ORIGINAL-corrections24feb2021_1500px-776x1024.jpg", "View of Vetheuil, 1880, Claude Monet"),
+        new CollectionArtwork("The Sound of Silence", "Max Ernst", "1943-44", "https://www.theartpostblog.com/wp-content/uploads/2017/06/the-sound-of-silence-max-ernst.jpg", "The Sound of Silence, Max Ernst, 1943-44"),
+
     ]
 
 }
