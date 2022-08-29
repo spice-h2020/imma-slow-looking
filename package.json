@@ -25,6 +25,7 @@
     "@ng-bootstrap/ng-bootstrap": "^13.0.0",
     "@popperjs/core": "^2.11.6",
     "angular-ng-autocomplete": "^2.0.5",
+    "autolinker": "^3.16.0",
     "bootstrap": "^4.4.1",
     "cors": "^2.8.5",
     "ngx-clipboard": "^15.1.0",

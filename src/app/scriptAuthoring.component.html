@@ -538,14 +538,14 @@
                             </span>
                             <span *ngIf='stage.stagetype=="multiquestion"'>
                                 <span *ngFor="let question of stage.body; let i=index" class="mr-3">
-                                    <span class="font-weight-bold">Text {{i+1}} : </span><span style="white-space: pre-wrap;" [innerHTML]="question"></span><br/>
+                                    <span class="font-weight-bold">Text {{i+1}} : </span><span style="white-space: pre-wrap;" [innerHTML]="question | linkify"></span><br/>
                                 </span>
                             </span>
                             <span *ngIf='stage.stagetype!=="multiquestion"'>
-                                <span class="font-weight-bold">Text: </span><span style="white-space: pre-wrap;" [innerHTML]="stage.body"></span><br/>
+                                <span class="font-weight-bold">Text: </span><span style="white-space: pre-wrap;" [innerHTML]="stage.body | linkify"></span><br/>
                             </span>
                             <span *ngIf='stage.stagetype=="question"'>
-                                <span class="font-weight-bold">Help text: </span><span style="white-space: pre-wrap;">{{stage.help}}</span><br/>
+                                <span class="font-weight-bold">Help text: </span><span style="white-space: pre-wrap;" [innerHTML]="stage.help | linkify"></span><br/>
                             </span>
                             <span *ngIf="editScriptStage==0 && editScriptDescription=='0'"> 
                                 <span class="float">&nbsp;</span>

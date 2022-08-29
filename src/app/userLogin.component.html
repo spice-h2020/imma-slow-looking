@@ -30,7 +30,7 @@
                 <span *ngIf="action.questionStage">
                     <span *ngIf="action.questionStage.stagetype">
                         <span *ngIf="action.questionStage.stagetype != 'multiquestion'">
-                            <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question"></span>
+                            <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question | linkify"></span>
                             <span *ngIf="activity._id==editContribution">
                                 <textarea class="col-sm-12" rows="3" class="form-control" [(ngModel)]="action.answer"></textarea>
                             </span>
@@ -38,7 +38,7 @@
                         </span>
                         <span *ngIf="action.questionStage.stagetype == 'multiquestion' && action.answers">
                             <span *ngFor="let answer of action.answers">
-                                <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.questionStage.body[answer.question]"></span>
+                                <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.questionStage.body[answer.question] | linkify"></span>
                                 <span *ngIf="activity._id==editContribution">
                                     <textarea class="col-sm-12" rows="3" class="form-control" [(ngModel)]="answer.answer"></textarea>
                                 </span>
@@ -50,7 +50,7 @@
                 <span *ngIf="action.storyStage">
                     <span *ngIf="action.storyStage.stagetype">
                         <span *ngIf="action.storyStage.stagetype == 'story'">
-                            <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question"></span>
+                            <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question | linkify"></span>
                             <span *ngIf="activity._id==editContribution">
                                 <textarea class="col-sm-12" rows="3" class="form-control" [(ngModel)]="action.answer"></textarea>
                             </span>

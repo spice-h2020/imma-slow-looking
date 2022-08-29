@@ -26,6 +26,7 @@ import { OverviewBarComponent } from './overviewBar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ExhibitionTableComponent } from './exhibitionTable.component';
 import { ClipboardModule } from 'ngx-clipboard';
+import { LinkifyPipeModule } from './linkify.pipe';
 
 
 
@@ -59,7 +60,8 @@ import { ClipboardModule } from 'ngx-clipboard';
     DragDropModule,
     BrowserAnimationsModule,
     NgbModule,
-    ClipboardModule
+    ClipboardModule,
+    LinkifyPipeModule
   ],
   providers: [CurrentUser],
   bootstrap: [SlowLookingComponent]

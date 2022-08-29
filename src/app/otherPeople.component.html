@@ -1,7 +1,7 @@
 <paNavBar></paNavBar>
 <p class="lead"></p>
 <p class="lead">
-    Find out how others have responded to Deep Viewpoints scripts. You can also <a routerLink="/home" style="color: rgb(108, 117, 125);">take part in the scripts</a> for yourself.
+    Find out how others have responded to Deep Viewpoints scripts. You can also <a routerLink="/home">take part in the scripts</a> for yourself.
 </p>
 <p class="lead">
     Scripts are organised into themes. Select a theme to begin. Recent responses are shown below each script.
@@ -99,12 +99,12 @@
                                                         <span *ngIf="action.questionStage">
                                                             <span *ngIf="action.questionStage.stagetype">
                                                                 <span *ngIf="action.questionStage.stagetype != 'multiquestion'">
-                                                                    <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question"></span>
+                                                                    <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question | linkify"></span>
                                                                     <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
                                                                 </span>
                                                                 <span *ngIf="action.questionStage.stagetype == 'multiquestion' && action.answers">
                                                                     <span *ngFor="let answer of action.answers">
-                                                                        <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.questionStage.body[answer.question]"></span>
+                                                                        <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.questionStage.body[answer.question] | linkify"></span>
                                                                         <p class="font-weight-normal" style="white-space: pre-wrap;">{{answer.answer}}</p>
                                                                     </span>
                                                                 </span>
@@ -113,7 +113,7 @@
                                                         <span *ngIf="action.storyStage">
                                                             <span *ngIf="action.storyStage.stagetype">
                                                                 <span *ngIf="action.storyStage.stagetype == 'story'">
-                                                                    <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question"></span>
+                                                                    <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question | linkify"></span>
                                                                     <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
                                                                 </span>
                                                             </span>

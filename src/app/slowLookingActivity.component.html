@@ -50,7 +50,7 @@
                 <div class="col-sm-12">{{artwork.year}}</div><br/>
             </div>
 
-            <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
+            <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.body | linkify"></p>
 
             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                 <div class="text-right">
@@ -114,7 +114,8 @@
                 </div>
 
                 <span *ngIf="stage.sequential">
-                    <div class="col-sm-12">{{stage.body[multiquestionIndex]}}</div><br/>
+                    <!-- <div class="col-sm-12">{{stage.body[multiquestionIndex]}}</div><br/> -->
+                    <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.body[multiquestionIndex] | linkify"></p>
                     <textarea [formControl]="answervalue" type="text" rows="3" #answer class="form-control" (keyup)="answerChanged($event)"></textarea>
                     <span *ngIf="submittedAnswer" class="text-warning col-sm-12">Your answer has been saved</span><br/>
                     <span *ngIf="multiquestionIndex <= 0">
@@ -132,7 +133,8 @@
                 </span>
                 
                 <span *ngIf="!stage.sequential">
-                    <span class="col-sm-12">{{stage.body[multiquestionIndex]}}</span><br/><br/>
+                    <!-- <span class="col-sm-12">{{stage.body[multiquestionIndex]}}</span><br/><br/> -->
+                    <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.body[multiquestionIndex] | linkify"></p>
                     <button class="m-3 btn btn-warning" (click)="randomiseQuestion(stage.body.length-1); submittedAnswer=false;">Reload question</button>
                     <textarea [formControl]="answervalue" type="text" rows="3" #answer class="form-control" (keyup)="answerChanged($event)"></textarea>
                     <span *ngIf="submittedAnswer" class="text-warning col-sm-12">Your answer has been saved</span><br/>
@@ -179,10 +181,10 @@
                     <div class="col-sm-12">{{artwork.year}}</div><br/>
                 </div>
 
-                <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
+                <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.body | linkify"></p>
                 <div *ngIf="stage.help">
                     <span style="float:right"><img width="20" style="background-color:white;" src="assets/img/question-help.png" (click)="toggleQuestionHelp()"></span>
-                    <span class="col-sm-12" style="float:left; white-space: pre-wrap;" *ngIf="showQuestionHelp">{{stage.help}}</span>
+                    <span class="col-sm-12" style="float:left; white-space: pre-wrap;" *ngIf="showQuestionHelp" [innerHTML]="stage.help | linkify"></span>
                 </div>
                 <!-- get the answer -->
                 <textarea class="col-sm-12" rows="3" class="form-control" [(ngModel)]="newQuestionAction.answer"></textarea>
@@ -221,9 +223,9 @@
                     <div class="col-sm-12">{{artwork.year}}</div><br/>
                 </div>
 
-                <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.help"></p>
+                <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.help | linkify"></p>
 
-                <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.body"></p>
+                <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.body | linkify"></p>
 
                 <!-- get the answer -->
                 <textarea class="col-sm-12" rows="3" class="form-control" [(ngModel)]="newStoryAction.answer"></textarea>
