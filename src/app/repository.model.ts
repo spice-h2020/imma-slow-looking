@@ -550,5 +550,7 @@ export class Model {
         }
         return candidate;
     }
-
+    foo123() {
+        return "asdadasdsa";
+    }
 }

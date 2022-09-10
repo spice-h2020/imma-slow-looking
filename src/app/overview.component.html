@@ -1,9 +1,5 @@
 <paOverviewBar></paOverviewBar>
-<p class="lead"></p>
-<p class="lead">
-  Deep Viewpoints contains short <strong>scripts</strong> that guide you through looking at and responding to artworks. Many of the scripts have been developed by citizen groups, providing a new perspective on the IMMA collection.
-</p>
-<p class="lead">As well as taking part in the scripts you can also view the responses of others. </p>
+
 <div class="accordion" id="accordionExample">
     <div class="accordion-item">
         <h2 class="accordion-header" [id]="'heading1'">
@@ -23,10 +19,10 @@
                               <div class="row align-items-start">
                                   <div class="col">
                                       <h3 class="text-left">{{script.name}}</h3>
-                                      <p class="text-left">{{script.description}}</p>
-                                      <figcaption class="text-left blockquote-footer text-white">{{script.author}}</figcaption>
+                                      <!-- <p class="text-left">{{script.description}}</p> -->
+                                      <p></p><figcaption class="text-left blockquote-footer text-white">{{script.author}}</figcaption>
                                       <!-- <p class="text-left">Exhibitions:</p> -->
-                                      <p class="text-left" *ngIf="script.exhibitionids.length > 0">Exhibitions:
+                                      <!-- <p class="text-left" *ngIf="script.exhibitionids.length > 0">Exhibitions:
                                         <span *ngFor="let exhibition of getExhibitionsFromIds(script.exhibitionids); let last = last">
                                           <span>{{exhibition.name}}</span>
                                           <span *ngIf="!last">, </span>
@@ -37,20 +33,37 @@
                                           <span>{{theme.name}}</span>
                                           <span *ngIf="!last">, </span>
                                         </span>
-                                      </p>
+                                      </p> -->
                                   </div>
                               </div>
                               <div class="row">
                                 &nbsp;
                               </div>
                               <div class="row align-items-end" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
-                                  <div class="col-5">
+                                  <div class="col-7">
                                       <img style="width: 100%;" src="{{artwork.url}}" alt="{{artwork.name}}">
                                   </div>
                                   <div class="col">
-                                    <div class="row text-left">{{artwork.name}}</div>
-                                    <div class="row text-left">{{artwork.artist}}</div>
-                                    <div class="row text-left">{{artwork.year}}</div>
+                                    <div class="row text-left" *ngIf="script.description != ''">
+                                      {{script.description}}
+                                      <br/><br/>
+                                    </div>
+                                    <div class="row text-left" *ngIf="script.exhibitionids.length > 0">Exhibitions:
+                                      <ng-container *ngFor="let exhibition of getExhibitionsFromIds(script.exhibitionids); let last = last">
+                                        {{exhibition.name}}
+                                        <ng-container *ngIf="!last">, </ng-container>
+                                      </ng-container>
+                                      <br/><br/>
+                                    </div>
+                                    <div class="row text-left">Themes:
+                                      <ng-container *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
+                                        {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
+                                      </ng-container>
+                                      <!-- <br/><br/> -->
+                                    </div>
+                                    <!-- <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
+                                    <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"> </div>
+                                    <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div> -->
                                   </div>
                               </div>
                               <div class="row">
@@ -100,7 +113,7 @@
             <div style="background-color: black;" [id]="'collapse2'" class="accordion-collapse collapse text-white" [attr.aria-labelledby]="'heading2'">
                 <div class="accordion-body">
                   <div class="ng-autocomplete">
-                    <span>Search exhibitions used in Deep Viewpoints:</span>
+                    <span>Search exhibitions:</span>
                     <ng-autocomplete 
                       [data]="exhibitionResults"
                       [searchKeyword]="keywordExhibitions"
@@ -160,10 +173,10 @@
                               <div class="row align-items-start">
                                   <div class="col">
                                       <h3 class="text-left">{{script.name}}</h3>
-                                      <p class="text-left">{{script.description}}</p>
-                                      <figcaption class="text-left blockquote-footer text-white">{{script.author}}</figcaption>
+                                      <!-- <p class="text-left">{{script.description}}</p> -->
+                                      <p></p><figcaption class="text-left blockquote-footer text-white">{{script.author}}</figcaption>
                                       <!-- <p class="text-left">Exhibitions: Narrow Gate of the Here-andNow: Queer Embodiment</p> -->
-                                      <p class="text-left" *ngIf="script.exhibitionids.length > 0">Exhibitions:
+                                      <!-- <p class="text-left" *ngIf="script.exhibitionids.length > 0">Exhibitions:
                                         <span *ngFor="let exhibition of getExhibitionsFromIds(script.exhibitionids); let last = last">
                                           <span>{{exhibition.name}}</span>
                                           <span *ngIf="!last">, </span>
@@ -174,20 +187,37 @@
                                           <span>{{theme.name}}</span>
                                           <span *ngIf="!last">, </span>
                                         </span>
-                                      </p>
+                                      </p> -->
                                   </div>
                               </div>
                               <div class="row">
                                 &nbsp;
                               </div>
                               <div class="row align-items-end" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
-                                  <div class="col-5">
+                                  <div class="col-7">
                                       <img style="width: 100%;" src="{{artwork.url}}" alt="{{artwork.name}}">
                                   </div>
                                   <div class="col">
-                                    <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></div>
-                                    <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></div>
-                                    <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="artwork.year"></span></div>
+                                    <div class="row text-left" *ngIf="script.description != ''">
+                                      {{script.description}}
+                                      <br/><br/>
+                                    </div>
+                                    <div class="row text-left" *ngIf="script.exhibitionids.length > 0">Exhibitions:
+                                      <ng-container *ngFor="let exhibition of getExhibitionsFromIds(script.exhibitionids); let last = last">
+                                        {{exhibition.name}}
+                                        <ng-container *ngIf="!last">, </ng-container>
+                                      </ng-container>
+                                      <br/><br/>
+                                    </div>
+                                    <div class="row text-left">Themes:
+                                      <ng-container *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
+                                        {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
+                                      </ng-container>
+                                      <!-- <br/><br/> -->
+                                    </div>
+                                    <!-- <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
+                                    <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"> </div>
+                                    <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div> -->
                                   </div>
                               </div>
                               <div class="row">
@@ -238,7 +268,7 @@
             <div style="background-color: black;" [id]="'collapse3'" class="accordion-collapse collapse text-white" [attr.aria-labelledby]="'heading3'">
                 <div class="accordion-body">
                   <div class="ng-autocomplete">
-                    <span>Search artworks used in Deep Viewpoints:</span>
+                    <span>Search artworks:</span>
                     <ng-autocomplete 
                       [data]="artworkResults"
                       [searchKeyword]="keywordArtworks"
@@ -269,9 +299,9 @@
                           <img style="width: 100%;" src="{{selectedArtwork.artworkurl}}" alt="{{selectedArtwork.name}}">
                       </div>
                       <div class="col">
-                        <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="selectedArtwork.name"></span></div>
-                        <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="selectedArtwork.artist"></span></div>
-                        <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="selectedArtwork.year"></span></div>
+                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="selectedArtwork.name"></div>
+                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="selectedArtwork.artist"></div>
+                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="selectedArtwork.year"></div>
                       </div>
                     </div>
                     <ngb-carousel [showNavigationArrows]="selectedArtwork.scripts.length > 1" [showNavigationIndicators]="selectedArtwork.scripts.length > 1">
@@ -284,10 +314,10 @@
                               <div class="row align-items-start">
                                   <div class="col">
                                       <h3 class="text-left">{{script.name}}</h3>
-                                      <p class="text-left">{{script.description}}</p>
-                                      <figcaption class="text-left blockquote-footer text-white">{{script.author}}</figcaption>
+                                      <!-- <p class="text-left">{{script.description}}</p> -->
+                                      <p></p><figcaption class="text-left blockquote-footer text-white">{{script.author}}</figcaption>
                                       <!-- <p class="text-left">Exhibitions: Narrow Gate of the Here-andNow: Queer Embodiment</p> -->
-                                      <p class="text-left" *ngIf="script.exhibitionids.length > 0">Exhibitions:
+                                      <!-- <p class="text-left" *ngIf="script.exhibitionids.length > 0">Exhibitions:
                                         <span *ngFor="let exhibition of getExhibitionsFromIds(script.exhibitionids); let last = last">
                                           <span>{{exhibition.name}}</span>
                                           <span *ngIf="!last">, </span>
@@ -298,20 +328,37 @@
                                           <span>{{theme.name}}</span>
                                           <span *ngIf="!last">, </span>
                                         </span>
-                                      </p>
+                                      </p> -->
                                   </div>
                               </div>
                               <div class="row">
                                 &nbsp;
                               </div>
                               <div class="row align-items-end" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
-                                  <div class="col-5">
+                                  <div class="col-7">
                                       <img style="width: 100%;" src="{{artwork.url}}" alt="{{artwork.name}}">
                                   </div>
                                   <div class="col">
-                                    <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></div>
-                                    <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></div>
-                                    <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="artwork.year"></span></div>
+                                    <div class="row text-left" *ngIf="script.description != ''">
+                                      {{script.description}}
+                                      <br/><br/>
+                                    </div>
+                                    <div class="row text-left" *ngIf="script.exhibitionids.length > 0">Exhibitions:
+                                      <ng-container *ngFor="let exhibition of getExhibitionsFromIds(script.exhibitionids); let last = last">
+                                        {{exhibition.name}}
+                                        <ng-container *ngIf="!last">, </ng-container>
+                                      </ng-container>
+                                      <br/><br/>
+                                    </div>
+                                    <div class="row text-left">Themes:
+                                      <ng-container *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
+                                        {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
+                                      </ng-container>
+                                      <!-- <br/><br/> -->
+                                    </div>
+                                    <!-- <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
+                                    <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"> </div>
+                                    <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div> -->
                                   </div>
                               </div>
                               <div class="row">
@@ -362,7 +409,7 @@
             <div style="background-color: black;" [id]="'collapse4'" class="accordion-collapse collapse text-white" [attr.aria-labelledby]="'heading4'">
                 <div class="accordion-body">
                   <div class="ng-autocomplete">
-                    <span>Search themes used in Deep Viewpoints:</span>
+                    <span>Search themes:</span>
                     <ng-autocomplete 
                       [data]="themeResults"
                       [searchKeyword]="keywordThemes"
@@ -402,10 +449,10 @@
                               <div class="row align-items-start">
                                   <div class="col">
                                       <h3 class="text-left">{{script.name}}</h3>
-                                      <p class="text-left">{{script.description}}</p>
-                                      <figcaption class="text-left blockquote-footer text-white">{{script.author}}</figcaption>
+                                      <!-- <p class="text-left">{{script.description}}</p> -->
+                                      <p></p><figcaption class="text-left blockquote-footer text-white">{{script.author}}</figcaption>
                                       <!-- <p class="text-left">Exhibitions: Narrow Gate of the Here-andNow: Queer Embodiment</p> -->
-                                      <p class="text-left" *ngIf="script.exhibitionids.length > 0">Exhibitions:
+                                      <!-- <p class="text-left" *ngIf="script.exhibitionids.length > 0">Exhibitions:
                                         <span *ngFor="let exhibition of getExhibitionsFromIds(script.exhibitionids); let last = last">
                                           <span>{{exhibition.name}}</span>
                                           <span *ngIf="!last">, </span>
@@ -416,20 +463,37 @@
                                           <span>{{theme.name}}</span>
                                           <span *ngIf="!last">, </span>
                                         </span>
-                                      </p>
+                                      </p> -->
                                   </div>
                               </div>
                               <div class="row">
                                 &nbsp;
                               </div>
                               <div class="row align-items-end" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
-                                  <div class="col-5">
+                                  <div class="col-7">
                                       <img style="width: 100%;" src="{{artwork.url}}" alt="{{artwork.name}}">
                                   </div>
                                   <div class="col">
-                                    <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></div>
-                                    <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></div>
-                                    <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="artwork.year"></span></div>
+                                    <div class="row text-left" *ngIf="script.description != ''">
+                                      {{script.description}}
+                                      <br/><br/>
+                                    </div>
+                                    <div class="row text-left" *ngIf="script.exhibitionids.length > 0">Exhibitions:
+                                      <ng-container *ngFor="let exhibition of getExhibitionsFromIds(script.exhibitionids); let last = last">
+                                        {{exhibition.name}}
+                                        <ng-container *ngIf="!last">, </ng-container>
+                                      </ng-container>
+                                      <br/><br/>
+                                    </div>
+                                    <div class="row text-left">Themes:
+                                      <ng-container *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
+                                        {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
+                                      </ng-container>
+                                      <!-- <br/><br/> -->
+                                    </div>
+                                    <!-- <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
+                                    <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"> </div>
+                                    <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div> -->
                                   </div>
                               </div>
                               <div class="row">
@@ -480,7 +544,7 @@
             <div style="background-color: black;" [id]="'collapse5'" class="accordion-collapse collapse text-white" [attr.aria-labelledby]="'heading5'">
                 <div class="accordion-body">
                   <div class="ng-autocomplete">
-                    <span>Search scripts used in Deep Viewpoints:</span>
+                    <span>Search scripts:</span>
                     <ng-autocomplete 
                       [data]="scriptResults"
                       [searchKeyword]="keywordScripts"
@@ -513,10 +577,10 @@
                               <div class="row align-items-start">
                                   <div class="col">
                                       <h3 class="text-left">{{selectedScript.script.name}}</h3>
-                                      <p class="text-left">{{selectedScript.script.description}}</p>
-                                      <figcaption class="text-left blockquote-footer text-white">{{selectedScript.script.author}}</figcaption>
+                                      <!-- <p class="text-left">{{selectedScript.script.description}}</p> -->
+                                      <p></p><figcaption class="text-left blockquote-footer text-white">{{selectedScript.script.author}}</figcaption>
                                       <!-- <p class="text-left">Exhibitions: Narrow Gate of the Here-andNow: Queer Embodiment</p> -->
-                                      <p class="text-left" *ngIf="selectedScript.script.exhibitionids.length > 0">Exhibitions:
+                                      <!-- <p class="text-left" *ngIf="selectedScript.script.exhibitionids.length > 0">Exhibitions:
                                         <span *ngFor="let exhibition of getExhibitionsFromIds(selectedScript.script.exhibitionids); let last = last">
                                           <span>{{exhibition.name}}</span>
                                           <span *ngIf="!last">, </span>
@@ -527,23 +591,37 @@
                                           <span>{{theme.name}}</span>
                                           <span *ngIf="!last">, </span>
                                         </span>
-                                      </p>
+                                      </p> -->
                                   </div>
                               </div>
                               <div class="row">
                                 &nbsp;
                               </div>
                               <div class="row align-items-end" *ngFor="let artwork of getArtworkFromId(selectedScript.script.homepageartworkid);">
-                                  <div class="col-5">
+                                  <div class="col-7">
                                       <img style="width: 100%;" src="{{artwork.url}}" alt="{{artwork.name}}">
                                   </div>
                                   <div class="col">
-                                    <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></div>
-                                    <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></div>
-                                    <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="artwork.year"></span></div>
-                                    <!-- <div class="row text-left">{{artwork.name}}</div>
-                                    <div class="row text-left">{{artwork.artist}}</div>
-                                    <div class="row text-left">{{artwork.year}}</div> -->
+                                    <div class="row text-left" *ngIf="selectedScript.script.description != ''">
+                                      {{selectedScript.script.description}}
+                                      <br/><br/>
+                                    </div>
+                                    <div class="row text-left" *ngIf="selectedScript.script.exhibitionids.length > 0">Exhibitions:
+                                      <ng-container *ngFor="let exhibition of getExhibitionsFromIds(selectedScript.script.exhibitionids); let last = last">
+                                        {{exhibition.name}}
+                                        <ng-container *ngIf="!last">, </ng-container>
+                                      </ng-container>
+                                      <br/><br/>
+                                    </div>
+                                    <div class="row text-left">Themes:
+                                      <ng-container *ngFor="let theme of getThemesFromIds(selectedScript.script.themeids); let last = last">
+                                        {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
+                                      </ng-container>
+                                      <!-- <br/><br/> -->
+                                    </div>
+                                    <!-- <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
+                                    <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"> </div>
+                                    <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div> -->
                                   </div>
                               </div>
                               <div class="row">
@@ -586,6 +664,11 @@
         </h2>
     </div>
 </div>
+<p class="lead"></p>
+<p class="lead">
+  Deep Viewpoints contains short <strong>scripts</strong> that guide you through looking at and responding to artworks. Many of the scripts have been developed by citizen groups, providing a new perspective on the IMMA collection.
+</p>
+<p class="lead">As well as taking part in the scripts you can also view the responses of others. All responses are pre-moderated before appearing on the site.</p>
 <br/>
 <br/>
 <br/>

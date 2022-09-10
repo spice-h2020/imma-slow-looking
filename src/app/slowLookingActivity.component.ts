@@ -10,6 +10,9 @@ import { UntypedFormControl } from "@angular/forms";
 import { CurrentUser } from "./currentUser.service";
 import { RestDataSource } from "./rest.datasource"; 
 import { delay } from "rxjs/operators";
+import { Gallery, GalleryItem, GalleryRef, ImageItem } from "ng-gallery";
+import { Lightbox } from "ng-gallery/lightbox";
+
 
 @Component({
     selector: "paSlowLookingActivity",
@@ -37,7 +40,11 @@ export class SlowLookingActivityComponent implements OnInit {
 
     currentScript: Script;
 
+    currentScriptImages: GalleryItem[] = [];
+
     scriptfound: boolean;
+
+    lightboxGalleryRef: GalleryRef;
 
     // index of final stage of current script
     slowLookingMaximumScriptStageIndex = 0;
@@ -51,13 +58,19 @@ export class SlowLookingActivityComponent implements OnInit {
     constructor(
         public currentuser: CurrentUser, 
         private activatedRoute: ActivatedRoute,
-        private model: Model
+        private model: Model,
+        public gallery: Gallery,
+        public lightbox: Lightbox
     ) { } 
 
     ngOnInit() {
         let _id = this.activatedRoute.snapshot.params.id;
 
-        let scripts = this.activatedRoute.snapshot.data.model1;
+        let scripts: Script[] = this.activatedRoute.snapshot.data.model1;
+
+        let artworks: Artwork[]  = this.activatedRoute.snapshot.data.model2;
+
+        console.log("artworks", artworks);
 
         // get the script whether or not it is open
         // let SLscript = scripts.find(x => x._id == _id);
@@ -86,8 +99,52 @@ export class SlowLookingActivityComponent implements OnInit {
             this.newActivity = new Activity();
             this.newActivity.script = SLscript;
             this.newActivity.approved = SLscript.autoapproved;
+
+            //set lightbox images
+            if(SLscript.artworkids.length > 0) {
+                for(var artworkid of this.getUsedArtworkIds(SLscript)) {
+                    let artworkindex = artworks.findIndex(x => x._id == artworkid);
+                    if(artworkindex > -1) {
+                        this.currentScriptImages.push(new ImageItem({src: artworks[artworkindex].url, thumb: artworks[artworkindex].url}));
+                    }
+                }
+                this.lightboxGalleryRef = this.gallery.ref(this.currentScript._id);
+
+                this.lightboxGalleryRef.load(this.currentScriptImages);
+            }
         }
-        // this.setSlowLookingScript(this.slowLookingScript);
+    }
+
+    getUsedArtworkIds(script: Script) {
+        let usedArtworkIds: string[] = [];
+        if(script.homepageartworkid) {
+            usedArtworkIds = [script.homepageartworkid];
+        }
+        else {
+            usedArtworkIds = [];
+        }
+        if(script.stages) {
+            for(var stage of script.stages) {
+                for(var stageArtworkId of stage.includeartworks) {
+                    if(!usedArtworkIds.includes(stageArtworkId)) {
+                        usedArtworkIds.push(stageArtworkId);
+                    }
+                }
+            }
+        }
+        return usedArtworkIds;
+    }
+
+    startLightbox(url: string) {
+        //find url position in gallery
+        let ind = this.currentScriptImages.findIndex(x => x.data.src == url);
+        if(ind > -1) {
+            this.openLightbox(ind);
+        }
+    }
+    
+    openLightbox(index: number) {
+        this.lightbox.open(index, this.currentScript._id);
     }
 
     answerChanged(event) {

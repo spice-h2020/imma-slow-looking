@@ -28,6 +28,8 @@
     "autolinker": "^3.16.0",
     "bootstrap": "^4.4.1",
     "cors": "^2.8.5",
+    "hammerjs": "^2.0.8",
+    "ng-gallery": "^7.0.4",
     "ngx-clipboard": "^15.1.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",

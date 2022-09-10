@@ -1,11 +1,12 @@
 import { Component } from "@angular/core";
-import { retry } from "rxjs/operators";
 import { Activity } from "./activity.model";
 import { Artwork } from "./artwork.model";
 import { Model } from "./repository.model";
 import { Script } from "./script.model";
 import { Theme } from "./theme.model";
-import { User } from "./user.model";
+import { LinkText } from "./linktext.service";
+import { CollectionArtwork } from "./collectionArtwork.model";
+
 
 @Component({
     selector: "paOtherPeople",
@@ -14,7 +15,7 @@ import { User } from "./user.model";
 
 export class OtherPeopleComponent {
 
-    constructor(private model: Model){}
+    constructor(private model: Model, private linktext: LinkText){}
 
     mode: number = 1;
     
@@ -49,24 +50,43 @@ export class OtherPeopleComponent {
         return this.model.getArtwork(_id);
     }
 
-    getNonHomepageArtworksOfScript(script: Script) {
-        let otherartworks: Array<Artwork> = [];
-        let artworkids = script.artworkids;
-        let homepageartworkid = script.homepageartworkid;
-        for(var artworkid of artworkids) {
-            if(artworkid != homepageartworkid) {
-                let artwork = this.getArtwork(artworkid);
-                if(artwork != undefined) {
-                    otherartworks.push(artwork);
-                }
-            }
-        }
-        return otherartworks;
-    }
+    // getNonHomepageArtworksOfScript(script: Script) {
+    //     let otherartworks: Array<Artwork> = [];
+    //     let artworkids = script.artworkids;
+    //     let homepageartworkid = script.homepageartworkid;
+    //     for(var artworkid of artworkids) {
+    //         if(artworkid != homepageartworkid) {
+    //             let artwork = this.getArtwork(artworkid);
+    //             if(artwork != undefined) {
+    //                 otherartworks.push(artwork);
+    //             }
+    //         }
+    //     }
+    //     return otherartworks;
+    // }
 
     addLikeToActivity(activity: Activity) {
         activity.likes = activity.likes+1;
         this.model.saveActivity(activity);
     }
+    
+    getNonHomepageArtworksOfScript(script: Script) {
+        let usedArtworks: Artwork[] = [];
+        if(script.stages) {
+            for(var stage of script.stages) {
+                for(var stageArtworkId of stage.includeartworks) {
+                    if(!usedArtworks.find(x => x._id == stageArtworkId) && stageArtworkId != script.homepageartworkid) {
+                        let artwork = this.getArtwork(stageArtworkId);
+                        if(artwork != undefined) {
+                            usedArtworks.push(artwork);
+                        }
+                    }
+                }
+            }
+        }
+        return usedArtworks;
+    }
+
+
 
 }

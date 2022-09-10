@@ -10,6 +10,7 @@ import { User } from "./user.model";
 import { HttpClient } from "@angular/common/http";
 import { Exhibition } from "./exhibition.model";
 import { ConfigSettings } from "./config";
+import { LinkText } from "./linktext.service";
 
 @Component({
     selector: "paScriptAuthoring",
@@ -18,7 +19,7 @@ import { ConfigSettings } from "./config";
 
 export class ScriptAuthoringComponent {
 
-    constructor(public currentuser: CurrentUser, private model: Model, private http: HttpClient){}
+    constructor(public currentuser: CurrentUser, private model: Model, private http: HttpClient, private linktext: LinkText){}
 
     private configSettings = new ConfigSettings;
 

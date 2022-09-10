@@ -27,7 +27,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ExhibitionTableComponent } from './exhibitionTable.component';
 import { ClipboardModule } from 'ngx-clipboard';
 import { LinkifyPipeModule } from './linkify.pipe';
-
+import { LinkText } from './linktext.service';
+import { LinkiftHtmlPipeModule } from './linkifyHtml.pipe';
+import { GalleryModule } from 'ng-gallery';
+import { LightboxModule } from  'ng-gallery/lightbox';
+import { LIGHTBOX_CONFIG } from 'ng-gallery/lightbox';
+import { GALLERY_CONFIG } from 'ng-gallery';
+import { bottom } from '@popperjs/core';
 
 
 @NgModule({
@@ -46,7 +52,7 @@ import { LinkifyPipeModule } from './linkify.pipe';
     NavBarComponent,
     OverviewComponent,
     OverviewBarComponent,
-    ExhibitionTableComponent
+    ExhibitionTableComponent,
     ],
   imports: [
     BrowserModule,
@@ -61,9 +67,30 @@ import { LinkifyPipeModule } from './linkify.pipe';
     BrowserAnimationsModule,
     NgbModule,
     ClipboardModule,
-    LinkifyPipeModule
+    LinkifyPipeModule,
+    LinkiftHtmlPipeModule,
+    GalleryModule,
+    LightboxModule
   ],
-  providers: [CurrentUser],
+  providers: [CurrentUser, LinkText,     
+    {
+      provide: LIGHTBOX_CONFIG,
+      useValue: {
+        keyboardShortcuts: true,
+        hasBackdrop: true
+      }
+    },
+    {
+      provide: GALLERY_CONFIG,
+      useValue: {
+        dots: true,
+        dotsSize: 20,
+        imageSize: 'contain',
+        counter: false,
+        gestures: true,
+      }
+    }
+  ],
   bootstrap: [SlowLookingComponent]
 })
 export class AppModule { }

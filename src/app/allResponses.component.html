@@ -5,7 +5,27 @@
 </div>
 <div *ngFor="let script of getScriptsOfScriptID(slowLookingScript); let i = index" class="col-sm-12 pb-4">
     <h2 class="col-sm-12">{{script.name}}</h2>
-    <span *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
+
+    <div *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);" class="row align-items-end mb-3">
+        <div class="col-8" *ngIf="artwork.url">
+            <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;">
+        </div>
+        <div class="col" *ngIf="artwork.url">
+            <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div></strong>
+            <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"> </div>
+            <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
+        </div>
+        <div class="col-8" *ngIf="!artwork.url && artwork.fileLocation">
+            <img routerLink="/slowLooking/{{script._id}}" class="col-sm-12" src="{{artwork.fileLocation}}" >
+        </div>
+        <div class="col" *ngIf="!artwork.url && artwork.fileLocation">
+            <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div></strong>
+            <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"> </div>
+            <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
+        </div> 
+    </div>
+    
+    <!-- <span *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
         <span *ngIf="artwork.url">
             <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
         </span>
@@ -16,9 +36,9 @@
         <div class="col-sm-12"><strong><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></strong></div>
         <div class="col-sm-12"><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></div>
         <div class="col-sm-12">{{artwork.year}}</div>
-    </span>
+    </span> -->
 
-    <span *ngIf="getNonHomepageArtworksOfScript(script).length > 0">
+    <!-- <span *ngIf="getNonHomepageArtworksOfScript(script).length > 0">
         <table class="table table-sm table-borderless">
             <tr *ngFor="let otherartwork of getNonHomepageArtworksOfScript(script);">
                 <td width="20%">
@@ -33,7 +53,19 @@
                 </td>
             </tr>
         </table>
-    </span>
+    </span> -->
+    <ng-container *ngIf="getNonHomepageArtworksOfScript(script).length > 0">
+        <div *ngFor="let otherartwork of getNonHomepageArtworksOfScript(script);" class="row align-items-end mb-3">
+            <div class="col-4" *ngIf="otherartwork.url">
+                <img class="col-sm-12" src="{{otherartwork.url}}" alt="{{otherartwork.name}}" (click)="startLightbox(otherartwork.url)" style="cursor: pointer;">
+            </div>
+            <div class="col">
+                <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="otherartwork.name"></div></strong>
+                <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="otherartwork.artist"> </div>
+                <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="otherartwork.year"></div>
+            </div>
+        </div>
+    </ng-container>
 
     <div class="accordion mt-3" id="{{'script'+script._id}}">
         <div class="accordion-item" style="background-color: rgb(41, 161, 184);">
@@ -78,7 +110,7 @@
                                 <span *ngIf="action.storyStage">
                                     <span *ngIf="action.storyStage.stagetype">
                                         <span *ngIf="action.storyStage.stagetype == 'story'">
-                                            <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question | linkify"></span>
+                                            <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question  | linkify"></span>
                                             <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
                                         </span>
                                     </span>
