@@ -322,4 +322,109 @@ export class SlowLookingActivityComponent implements OnInit {
         return this.model.getArtwork(_id);
     }
 
+    //navigation actions
+
+    statementContinue(i) {
+        // (click)="statementContinue(i);"
+        // (click)="slowLookingCurrentScriptStageIndex=i+1;"
+        this.slowLookingCurrentScriptStageIndex=i+1;
+    }
+
+    statementEnd() {
+        // (click)="statementEnd();"
+        // (click)="addActivity(); slowLookingScript='0';"
+        this.addActivity(); 
+        this.slowLookingScript='0';
+    }
+
+    statementBack(i) {
+        // (click)="statementBack(i);"
+        this.slowLookingCurrentScriptStageIndex=i-1;
+    }
+
+    multiquestionContinue(multiquestionIndex, answervalue, stage, stagebody, i, newMultiquestionAction) {
+        // (click)="multiquestionContinue(multiquestionIndex, answer.value, stage, stage.body, i, newMultiquestionAction)"
+        // (click)="updateAnswers(multiquestionIndex, answer.value); submittedAnswer=true; newMultiquestionAction.questionStage = stage; newMultiquestionAction.questions = stage.body; slowLookingCurrentScriptStageIndex=i+1; addActionToActivity(newMultiquestionAction); resetNewMultiQuestionAction(); resetAnswerValue(); showQuestionHelp=false; submittedAnswer=false; multiquestionIndex=0"
+        this.updateAnswers(multiquestionIndex, answervalue);
+        this.submittedAnswer=true; 
+        this.newMultiquestionAction.questionStage = stage; 
+        this.newMultiquestionAction.questions = stagebody; 
+        this.slowLookingCurrentScriptStageIndex=i+1; 
+        this.addActionToActivity(newMultiquestionAction); 
+        this.resetNewMultiQuestionAction(); 
+        this.resetAnswerValue(); 
+        this.showQuestionHelp=false; 
+        this.submittedAnswer=false; 
+        this.multiquestionIndex=0
+    }
+
+    multiquestionEnd(multiquestionIndex, answervalue, stage, stagebody, newMultiquestionAction) {
+        // (click)="multiquestionEnd(multiquestionIndex, answer.value, stage, stage.body, newMultiquestionAction)"
+        // (click)="updateAnswers(multiquestionIndex, answer.value); submittedAnswer=true; newMultiquestionAction.questionStage = stage; newMultiquestionAction.questions = stage.body; addActionToActivity(newMultiquestionAction); resetNewMultiQuestionAction(); resetAnswerValue(); addActivity(); slowLookingScript='0'; multiquestionIndex=0"
+        this.updateAnswers(multiquestionIndex,answervalue); 
+        this.submittedAnswer=true; 
+        this.newMultiquestionAction.questionStage = stage; 
+        this.newMultiquestionAction.questions = stage.body; 
+        this.addActionToActivity(newMultiquestionAction); 
+        this.resetNewMultiQuestionAction(); 
+        this.resetAnswerValue(); 
+        this.addActivity(); 
+        this.slowLookingScript='0';
+        this.multiquestionIndex=0;
+    }
+
+    multiquestionBack() {
+        
+    }
+
+    questionContinue(i, stage, stagebody, newQuestionAction) {
+        // (click)="questionContinue(i, stage, stage.body, newQuestionAction)"
+        // (click)="slowLookingCurrentScriptStageIndex=i+1; newQuestionAction.questionStage = stage; newQuestionAction.question = stage.body; addActionToActivity(newQuestionAction); resetNewQuestionAction(); showQuestionHelp=false;"
+        this.slowLookingCurrentScriptStageIndex=i+1; 
+        this.newQuestionAction.questionStage = stage; 
+        this.newQuestionAction.question = stagebody; 
+        this.addActionToActivity(newQuestionAction); 
+        this.resetNewQuestionAction(); 
+        this.showQuestionHelp=false;
+    }
+
+    questionEnd(stage, stagebody, newQuestionAction) {
+        // (click)="questionEnd(stage, stage.body, newQuestionAction);"
+        // (click)="newQuestionAction.questionStage = stage; newQuestionAction.question = stage.body; addActionToActivity(newQuestionAction); resetNewQuestionAction(); addActivity(); slowLookingScript='0';" routerLink="/home"
+        this.newQuestionAction.questionStage = stage; 
+        this.newQuestionAction.question = stagebody; 
+        this.addActionToActivity(newQuestionAction); 
+        this.resetNewQuestionAction(); 
+        this.addActivity(); 
+        this.slowLookingScript='0';
+    }
+
+    questionBack() {
+        
+    }
+
+    storyContinue(i, stage, stagebody, newStoryAction) {
+        // (click)="storyContinue(i, stage, stage.body, newStoryAction);"
+        // (click)="slowLookingCurrentScriptStageIndex=i+1; newStoryAction.storyStage = stage; newStoryAction.question = stage.body; addActionToActivity(newStoryAction); resetNewStoryAction();"
+        this.slowLookingCurrentScriptStageIndex=i+1; 
+        this.newStoryAction.storyStage = stage; 
+        this.newStoryAction.question = stagebody; 
+        this.addActionToActivity(newStoryAction); 
+        this.resetNewStoryAction();
+    }
+
+    storyEnd(stage, stagebody, newStoryAction) {
+        // (click)="storyEnd(stage, stage.body, newStoryAction);"
+        // (click)="newStoryAction.storyStage = stage; newStoryAction.question = stage.body; addActionToActivity(newStoryAction); resetNewStoryAction(); addActivity(); slowLookingScript='0';" routerLink="/home"
+        this.newStoryAction.storyStage = stage; 
+        this.newStoryAction.question = stagebody; 
+        this.addActionToActivity(newStoryAction); 
+        this.resetNewStoryAction(); 
+        this.addActivity(); 
+        this.slowLookingScript='0';
+    }
+
+    storyBack() {
+        
+    }
 }

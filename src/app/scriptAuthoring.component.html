@@ -639,7 +639,7 @@
                                 </td>
                             </tr>
 
-                            <tr *ngIf='stage.stagetype=="story"'><td class="align-top">
+                            <tr *ngIf='stage.stagetype=="story" || stage.stagetype=="multiquestion"'><td class="align-top">
                                 <span class="font-weight-bold">Instructions:</span>
                             </td><td>
                                 <textarea rows="3" class="form-control" [(ngModel)]="stage.help"></textarea>
