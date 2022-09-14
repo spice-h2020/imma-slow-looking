@@ -49,7 +49,7 @@ export class LinkText{
                         const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
                         const mymatch = match.getAnchorHref().match(regExp);
                         if(mymatch && mymatch[2].length === 11) {
-                            return '<p><iframe width="560" height="315" src="' + 'https://www.youtube.com/embed/' + mymatch[2] + '" frameborder="0" allowfullscreen></iframe></p>';
+                            return '<div class="container-iframe"><iframe class="responsive-iframe" src="' + 'https://www.youtube.com/embed/' + mymatch[2] + '" frameborder="0" allowfullscreen></iframe></div>';
                         }
                         else {
                             return "";
