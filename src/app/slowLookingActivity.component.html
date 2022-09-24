@@ -11,7 +11,7 @@
             <h2 class="col-sm-12">{{stage.title}}</h2>
 
             <!-- show included artworks -->
-            <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3">
+            <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3 mr-3">
                 <div class="col-8">
                     <span *ngIf="artwork.url">
                         <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;">
@@ -53,7 +53,7 @@
                 <h2 class="col-sm-12">{{stage.title}}</h2>
 
                 <!-- show included artworks -->
-                <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3">
+                <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3 mr-3">
                     <div class="col-8">
                         <span *ngIf="artwork.url">
                             <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;">
@@ -141,7 +141,7 @@
                 <h2 class="col-sm-12">{{stage.title}}</h2>
 
                 <!-- show included artworks -->
-                <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3">
+                <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3 ">
                     <div class="col-8">
                         <span *ngIf="artwork.url">
                             <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;">
@@ -159,8 +159,8 @@
 
                 <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.body | linkifyHtml"></p>
                 <div *ngIf="stage.help">
-                    <span style="float:right"><img width="20" style="background-color:white;" src="assets/img/question-help.png" (click)="toggleQuestionHelp()"></span>
-                    <span class="col-sm-12" style="float:left; white-space: pre-wrap;" *ngIf="showQuestionHelp" [innerHTML]="stage.help | linkifyHtml"></span>
+                    <div class="col-sm-12"><img align="right" width="20" style="background-color:white;" src="assets/img/question-help.png" (click)="toggleQuestionHelp()"></div>
+                    <div class="col-sm-12" style="float:left; white-space: pre-wrap;" *ngIf="showQuestionHelp" [innerHTML]="stage.help | linkifyHtml"></div>
                 </div>
                 <!-- get the answer -->
                 <textarea class="col-sm-12" rows="3" class="form-control" [(ngModel)]="newQuestionAction.answer"></textarea>
