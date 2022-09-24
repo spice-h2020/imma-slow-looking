@@ -537,6 +537,9 @@
                                 <br/>
                             </span>
                             <span *ngIf='stage.stagetype=="multiquestion"'>
+                                <span class="font-weight-bold">Help text: </span><span style="white-space: pre-wrap;" [innerHTML]="stage.help | linkify"></span><br/>
+                            </span>
+                            <span *ngIf='stage.stagetype=="multiquestion"'>
                                 <span *ngFor="let question of stage.body; let i=index" class="mr-3">
                                     <span class="font-weight-bold">Text {{i+1}} : </span><span style="white-space: pre-wrap;" [innerHTML]="question | linkify"></span><br/>
                                 </span>
@@ -640,7 +643,7 @@
                             </tr>
 
                             <tr *ngIf='stage.stagetype=="story" || stage.stagetype=="multiquestion"'><td class="align-top">
-                                <span class="font-weight-bold">Instructions:</span>
+                                <span class="font-weight-bold">Help text:</span>
                             </td><td>
                                 <textarea rows="3" class="form-control" [(ngModel)]="stage.help"></textarea>
                             </td></tr>

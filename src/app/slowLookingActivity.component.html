@@ -3,7 +3,7 @@
     <p>Script not found. The script might be currently closed to new contributions.</p>
     <button class="btn btn-secondary" routerLink="/home">Try Deep Viewpoints activities for yourself</button><br/><br/>
 </div>
-<div *ngIf="scriptfound" class="border pl-5 pr-5 pt-3">
+<div *ngIf="scriptfound" class="border pl-3 pr-3 pt-3" style="width:100%">
 <div *ngFor="let stage of currentScript.stages; let i = index">
     <div *ngIf="slowLookingCurrentScriptStageIndex == i">
 

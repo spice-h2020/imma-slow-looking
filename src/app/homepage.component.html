@@ -3,9 +3,9 @@
 
 <p class="lead"></p>
 <p class="lead">
-  Deep Viewpoints contains short <strong>scripts</strong> that guide you through looking at and responding to artworks. Many of the scripts have been developed by citizen groups, providing a new perspective on the IMMA collection.
+  Deep Viewpoints contains short <strong>scripts</strong> that guide you through looking at and responding to artworks. Many of the scripts have been developed by citizen curators, providing a new perspective on the IMMA collection.
 </p>
-<p class="lead">As well as taking part in the scripts you can also <a routerLink="/otherPeople">view the responses of others.</a> </p>
+<p class="lead">As well as taking part in the scripts you can also <a routerLink="/otherPeople">view the responses of others</a>.</p>
 <p class="lead">Scripts are organised into themes. Select a theme to begin. Tap on the artwork to start the script.</p>
 
 <h2>Themes</h2>
@@ -32,7 +32,7 @@
                 [attr.aria-labelledby]="'heading_' + theme._id"
                 >
                     <div class="accordion-body">
-                        <div *ngFor="let script of getScriptsOfTheme(theme._id); let i = index; let last = last" class="col-sm-12">
+                        <div *ngFor="let script of getScriptsOfTheme(theme._id); let i = index; let last = last" >
                             <h4 class="col-sm-12">{{script.name}}</h4> 
                             <div class="col-sm-12">
                                 <p style="white-space: pre-wrap;">{{script.description}}</p>

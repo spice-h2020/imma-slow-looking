@@ -15,7 +15,7 @@ import { Exhibition } from "./exhibition.model";
 
 export class OverviewComponent implements OnInit {
 
-    constructor(private model: Model, private activatedRoute: ActivatedRoute,){}
+    constructor(private model: Model, private activatedRoute: ActivatedRoute){}
 
     scripts: Script[];
     artworks: Artwork[] = [];

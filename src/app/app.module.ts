@@ -33,7 +33,6 @@ import { GalleryModule } from 'ng-gallery';
 import { LightboxModule } from  'ng-gallery/lightbox';
 import { LIGHTBOX_CONFIG } from 'ng-gallery/lightbox';
 import { GALLERY_CONFIG } from 'ng-gallery';
-import { bottom } from '@popperjs/core';
 
 
 @NgModule({

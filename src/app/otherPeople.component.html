@@ -29,11 +29,11 @@
                 [attr.aria-labelledby]="'heading_' + theme._id"
                 >
                     <div class="accordion-body">
-                        <div *ngFor="let script of getScriptsOfTheme(theme._id); let i = index; let last = last" class="col-sm-12">
+                        <div *ngFor="let script of getScriptsOfTheme(theme._id); let i = index; let last = last">
                             <h4 class="col-sm-12">{{script.name}}</h4> 
                             <div class="col-sm-12">
                                 <p style="white-space: pre-wrap;">{{script.description}}</p>
-                                <figcaption *ngIf="script.author != ''" class="blockquote-footer text-white">{{script.author}}</figcaption>
+                                <figcaption *ngIf="script.author != ''" class="blockquote-footer text-black">{{script.author}}</figcaption>
                             </div>
 
                             <!-- <div *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);" class="row align-items-end mb-3">
@@ -99,7 +99,7 @@
                                             [attr.data-bs-target]="'#collapse_' + 'theme'+theme._id+'script'+script._id"
                                             aria-expanded="false" 
                                             [attr.aria-controls]="'collapse_'+ 'theme'+theme._id+'script'+script._id">
-                                            <h5>Recent responses</h5>
+                                            <strong>Recent responses</strong>
                                         </button>
                                     </h2>
                                     <div 
@@ -112,7 +112,7 @@
                                             <div *ngFor="let activity of getApprovedActivitiesOfAScript(script._id).slice(0, maximumResponses); let i = index; let even=even">
                                                 <!-- <div style="background-color: #f2f2f2;" class="rounded-3"> -->
                                                 <div class="card text-white mb-3" style="background-color: rgb(41, 161, 184); border-radius: 15px;">
-                                                <div class="card-body p-5">
+                                                <div class="card-body">
                                                     <div *ngFor="let action of activity.actions;">
                                                         <span *ngIf="action.questionStage">
                                                             <span *ngIf="action.questionStage.stagetype">
