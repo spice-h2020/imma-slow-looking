@@ -141,7 +141,7 @@
                 <h2 class="col-sm-12">{{stage.title}}</h2>
 
                 <!-- show included artworks -->
-                <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3 ">
+                <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3 mr-3">
                     <div class="col-8">
                         <span *ngIf="artwork.url">
                             <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;">
@@ -189,7 +189,7 @@
                 <h2 class="col-sm-12">{{stage.title}}</h2>
 
                 <!-- show included artworks -->
-                <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3">
+                <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3 mr-3">
                     <div class="col-8">
                         <span *ngIf="artwork.url">
                             <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;">
