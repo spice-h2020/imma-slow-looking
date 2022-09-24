@@ -9,7 +9,7 @@
         <p style="white-space: pre-wrap;">{{script.description}}</p>
         <figcaption *ngIf="script.author != ''" class="blockquote-footer text-black">{{script.author}}</figcaption>
     </div>
-    <div *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);" class="row align-items-end mb-3">
+    <div *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);" class="row align-items-end mb-3 mr-3">
         <div class="col-8" *ngIf="artwork.url">
             <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;">
         </div>
