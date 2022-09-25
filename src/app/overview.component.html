@@ -2,537 +2,538 @@
 <paNavBar></paNavBar>
 <div class="accordion" id="accordionExample">
     <div class="accordion-item">
-        <h2 class="accordion-header" [id]="'heading1'">
-            <button  style="background-color: rgb(41, 161, 184);" class="accordion-button text-white" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse1'" aria-expanded="true" [attr.aria-controls]="'collapse1'">
-                <span><h4>Featured</h4>
-                  A selection of scripts from Deep Viewpoints</span>
-            </button>
-            <div style="background-color: black;" [id]="'collapse1'" class="accordion-collapse collapse show text-white" [attr.aria-labelledby]="'heading1'">
-                <div class="accordion-body">
-                    <ngb-carousel>
-                      <ng-template ngbSlide *ngFor="let script of firstScripts">
-                        <div class="picsum-img-wrapper" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
-                          <img style="width: 65%;" src="{{artwork.url}}">
-                        </div>
-                        <div class="carousel-caption">
-                          <div class="row align-items-end">
-                            <h3 class="text-left" style="text-shadow: 1.5px 1.5px #000000;">{{script.name}}</h3>
-                            <div class="text-left" *ngIf="script.description != ''" style="text-shadow: 1.5px 1.5px #000000;">
-                              {{script.description}}
-                            </div>
-                            <figcaption class="text-left blockquote-footer text-white" style="text-shadow: 1.5px 1.5px #000000;">{{script.author}}</figcaption>
-                            <div class="text-left" *ngIf="script.exhibitionids.length > 0" style="text-shadow: 1.5px 1.5px #000000;">Exhibitions:
-                              <ng-container *ngFor="let exhibition of getExhibitionsFromIds(script.exhibitionids); let last = last">
-                                {{exhibition.name}}
-                                <ng-container *ngIf="!last">, </ng-container>
-                              </ng-container>
-                              <br/><br/>
-                            </div>
-                            <div class="text-left" style="text-shadow: 1.5px 1.5px #000000;">Themes:
-                              <ng-container *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
-                                {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
-                              </ng-container>
-                            </div>
-                          </div>
-                          <div class="row">
-                            &nbsp;
-                          </div>
-                          <div class="row">
-                            <div class="col">
-                              <a *ngIf="script.open && script.visible" routerLink="/slowLooking/{{script._id}}" [queryParams]="{return:'overview'}">
-                                <button type="button" class="btn btn-link" style="color: white; text-shadow: 1.5px 1.5px #000000;">
-                                  <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
-                                    <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
-                                    <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
-                                  </svg>
-                                  <!-- <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
-                                      <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
-                                      <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
-                                  </svg> -->
-                                  <span> Take part</span>     
-                                </button>
-                              </a>
-                            </div>
-                            <div class="col">
-                              <a *ngIf="script.visible" routerLink="/allResponses/{{script._id}}" target='_blank'>
-                                <button type="button" class="btn btn-link" style="color: white; text-shadow: 1.5px 1.5px #000000;">
-                                  <!-- <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
-                                    <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
-                                    <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
-                                  </svg> -->
-                                  <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
-                                      <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
-                                      <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
-                                  </svg>
-                                  <span> View responses</span>    
-                                </button>
-                              </a>
-                            </div>
-                          </div>
-                          <div class="row">
-                            &nbsp;
-                          </div>
-                        </div>
-                      </ng-template>
-                    </ngb-carousel>
-                </div>
-            </div>
-        </h2>
-    </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header" [id]="'heading2'">
-            <button style="background-color: rgb(41, 161, 184);" class="accordion-button text-white" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse2'" aria-expanded="true" [attr.aria-controls]="'collapse2'">
-                <span><h4>Exhibitions</h4>
-                  Scripts inspired by IMMA exhibitions</span>
-            </button>
-            <div style="background-color: black;" [id]="'collapse2'" class="accordion-collapse collapse text-white" [attr.aria-labelledby]="'heading2'">
-                <div class="accordion-body">
-                  <div class="ng-autocomplete" style="width: 100%;">
-                    <span>Search exhibitions:</span>
-                    <ng-autocomplete 
-                      [data]="exhibitionResults"
-                      [searchKeyword]="keywordExhibitions"
-                      (selected)='selectEventExhibitions($event)'
-                      (inputChanged)='onChangeSearchExhibitions($event)'
-                      (inputFocused)='onFocusedExhibitions($event)'
-                      [itemTemplate]="itemTemplateExhibitions"
-                      [notFoundTemplate]="notFoundTemplateExhibitions"
-                      [placeholder]="placeholderTextExhibitions"
-                      [historyListMaxNumber]="15"
-                      [minQueryLength]="2">                                 
-                    </ng-autocomplete>
-                    <ng-template #itemTemplateExhibitions let-item>
-                        <a href="javascript:void(0)">
-                          <span [innerHTML]="item.searchstring"></span>
-                        </a>
-                    </ng-template>
-                    <ng-template #notFoundTemplateExhibitions let-notFound>
-                    <div [innerHTML]="notFound"></div>
-                    </ng-template>
+      <h2 class="accordion-header" id="heading1">
+        <button style="background-color: rgb(41, 161, 184);" class="accordion-button text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+            <span><h4>Featured</h4>
+              A selection of scripts from Deep Viewpoints
+            </span>
+        </button>
+      </h2>
+      <div style="background-color: black;" id="collapse1" class="accordion-collapse collapse show text-white" aria-labelledby="heading1">
+          <div class="accordion-body">
+              <ngb-carousel>
+                <ng-template ngbSlide *ngFor="let script of firstScripts">
+                  <div class="picsum-img-wrapper" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
+                    <img style="width: 65%;" src="{{artwork.url}}">
                   </div>
-                  <span *ngIf="selectedExhibition">
+                  <div class="carousel-caption">
+                    <div class="row align-items-end">
+                      <h3 class="text-left" style="text-shadow: 1.5px 1.5px #000000;">{{script.name}}</h3>
+                      <div class="text-left" *ngIf="script.description != ''" style="text-shadow: 1.5px 1.5px #000000;">
+                        {{script.description}}
+                      </div>
+                      <figcaption class="text-left blockquote-footer text-white" style="text-shadow: 1.5px 1.5px #000000;">{{script.author}}</figcaption>
+                      <div class="text-left" *ngIf="script.exhibitionids.length > 0" style="text-shadow: 1.5px 1.5px #000000;">Exhibitions:
+                        <ng-container *ngFor="let exhibition of getExhibitionsFromIds(script.exhibitionids); let last = last">
+                          {{exhibition.name}}
+                          <ng-container *ngIf="!last">, </ng-container>
+                        </ng-container>
+                        <br/><br/>
+                      </div>
+                      <div class="text-left" style="text-shadow: 1.5px 1.5px #000000;">Themes:
+                        <ng-container *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
+                          {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
+                        </ng-container>
+                      </div>
+                    </div>
                     <div class="row">
                       &nbsp;
                     </div>
-                    <div class="row align-items-start mb-5">
-                      <div class="col-6">
-                          <img style="width: 100%;" src="{{selectedExhibition.artwork.url}}" alt="{{selectedExhibition.artwork.name}}">
+                    <div class="row">
+                      <div class="col">
+                        <a *ngIf="script.open && script.visible" routerLink="/slowLooking/{{script._id}}" [queryParams]="{return:'overview'}">
+                          <button type="button" class="btn btn-link" style="color: white; text-shadow: 1.5px 1.5px #000000;">
+                            <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
+                              <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
+                              <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
+                            </svg>
+                            <!-- <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                                <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                            </svg> -->
+                            <span> Take part</span>     
+                          </button>
+                        </a>
                       </div>
                       <div class="col">
-                        <div class="row text-left"><h4 style="white-space: pre-wrap;" [innerHTML]="selectedExhibition.name"></h4></div>
-                        <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="selectedExhibition.description"></span></div>
-                        <div class="row text-right">
-                          <a href="{{selectedExhibition.url}}" target='_blank'>
-                              <button type="button" class="btn btn-link" style="color: white;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
-                                    <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
-                                </svg>
-                                Exhibition
-                              </button>
-                            </a>
-                        </div>
+                        <a *ngIf="script.visible" routerLink="/allResponses/{{script._id}}" target='_blank'>
+                          <button type="button" class="btn btn-link" style="color: white; text-shadow: 1.5px 1.5px #000000;">
+                            <!-- <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
+                              <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
+                              <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
+                            </svg> -->
+                            <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                                <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                            </svg>
+                            <span> View responses</span>    
+                          </button>
+                        </a>
                       </div>
                     </div>
-                    <ngb-carousel [showNavigationArrows]="selectedExhibition.scripts.length > 1" [showNavigationIndicators]="selectedExhibition.scripts.length > 1">
-                      <ng-template ngbSlide *ngFor="let script of selectedExhibition.scripts">
-                        <div class="picsum-img-wrapper" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
-                          <img style="width: 65%;" src="{{artwork.url}}">
-                        </div>
-                        <div class="carousel-caption">
-                          <div class="row align-items-end">
-                            <h3 class="text-left" style="text-shadow: 1.5px 1.5px #000000;">{{script.name}}</h3>
-                            <div class="text-left" *ngIf="script.description != ''" style="text-shadow: 1.5px 1.5px #000000;">
-                              {{script.description}}
-                            </div>
-                            <figcaption class="text-left blockquote-footer text-white" style="text-shadow: 1.5px 1.5px #000000;">{{script.author}}</figcaption>
-                            <div class="text-left" *ngIf="script.exhibitionids.length > 0" style="text-shadow: 1.5px 1.5px #000000;">Exhibitions:
-                              <ng-container *ngFor="let exhibition of getExhibitionsFromIds(script.exhibitionids); let last = last">
-                                {{exhibition.name}}
-                                <ng-container *ngIf="!last">, </ng-container>
-                              </ng-container>
-                              <br/><br/>
-                            </div>
-                            <div class="text-left" style="text-shadow: 1.5px 1.5px #000000;">Themes:
-                              <ng-container *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
-                                {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
-                              </ng-container>
-                            </div>
-                          </div>
-                          <div class="row">
-                            &nbsp;
-                          </div>
-                          <div class="row">
-                            <div class="col">
-                              <a *ngIf="script.open && script.visible" routerLink="/slowLooking/{{script._id}}" [queryParams]="{return:'overview'}">
-                                <button type="button" class="btn btn-link" style="color: white; text-shadow: 1.5px 1.5px #000000;">
-                                  <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
-                                    <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
-                                    <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
-                                  </svg>
-                                  <!-- <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
-                                      <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
-                                      <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
-                                  </svg> -->
-                                  <span> Take part</span>    
-                                </button>
-                              </a>
-                            </div>
-                            <div class="col">
-                              <a *ngIf="script.visible" routerLink="/allResponses/{{script._id}}" target='_blank'>
-                                <button type="button" class="btn btn-link" style="color: white; text-shadow: 1.5px 1.5px #000000;">
-                                  <!-- <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
-                                    <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
-                                    <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
-                                  </svg> -->
-                                  <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
-                                      <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
-                                      <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
-                                  </svg>
-                                  <span> View responses</span>     
-                                </button>
-                              </a>
-                            </div>
-                          </div>
-                          <div class="row">
-                            &nbsp;
-                          </div>
-                        </div>
-                      </ng-template>
-                    </ngb-carousel>
-                  </span>
-                </div>
-            </div>
-        </h2>
-    </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header" [id]="'heading3'">
-            <button style="background-color: rgb(41, 161, 184);" class="accordion-button text-white" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse3'" aria-expanded="true" [attr.aria-controls]="'collapse3'">
-                <span><h4>Artworks</h4>
-                  Script related to works from the IMMA collection</span>
-            </button>
-            <div style="background-color: black;" [id]="'collapse3'" class="accordion-collapse collapse text-white" [attr.aria-labelledby]="'heading3'">
-                <div class="accordion-body">
-                  <div class="ng-autocomplete" style="width: 100%;">
-                    <span>Search artworks:</span>
-                    <ng-autocomplete 
-                      [data]="artworkResults"
-                      [searchKeyword]="keywordArtworks"
-                      (selected)='selectEventArtworks($event)'
-                      (inputChanged)='onChangeSearchArtworks($event)'
-                      (inputFocused)='onFocusedArtworks($event)'
-                      [itemTemplate]="itemTemplateArtworks"
-                      [notFoundTemplate]="notFoundTemplateArtworks"
-                      [placeholder]="placeholderTextArtworks"
-                      [historyListMaxNumber]="15"
-                      [minQueryLength]="2">                                 
-                    </ng-autocomplete>
-                    <ng-template #itemTemplateArtworks let-item>
-                        <a href="javascript:void(0)">
-                          <span [innerHTML]="item.searchstring"></span>
-                        </a>
-                    </ng-template>
-                    <ng-template #notFoundTemplateArtworks let-notFound>
-                    <div [innerHTML]="notFound"></div>
-                    </ng-template>
-                  </div>
-                  <span *ngIf="selectedArtwork">
                     <div class="row">
                       &nbsp;
                     </div>
-                    <div class="row align-items-end mb-5">
-                      <div class="col-6">
-                          <img style="width: 100%;" src="{{selectedArtwork.artworkurl}}" alt="{{selectedArtwork.name}}">
-                      </div>
-                      <div class="col">
-                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="selectedArtwork.name"></div>
-                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="selectedArtwork.artist"></div>
-                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="selectedArtwork.year"></div>
-                      </div>
-                    </div>
-                    <ngb-carousel [showNavigationArrows]="selectedArtwork.scripts.length > 1" [showNavigationIndicators]="selectedArtwork.scripts.length > 1">
-                      <ng-template ngbSlide *ngFor="let script of selectedArtwork.scripts">
-                        <div class="picsum-img-wrapper" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
-                          <img style="width: 65%;" src="{{artwork.url}}">
-                        </div>
-                        <div class="carousel-caption">
-                          <div class="row align-items-end">
-                            <h3 class="text-left" style="text-shadow: 1.5px 1.5px #000000;">{{script.name}}</h3>
-                            <div class="text-left" *ngIf="script.description != ''" style="text-shadow: 1.5px 1.5px #000000;">
-                              {{script.description}}
-                            </div>
-                            <figcaption class="text-left blockquote-footer text-white" style="text-shadow: 1.5px 1.5px #000000;">{{script.author}}</figcaption>
-                            <div class="text-left" *ngIf="script.exhibitionids.length > 0" style="text-shadow: 1.5px 1.5px #000000;">Exhibitions:
-                              <ng-container *ngFor="let exhibition of getExhibitionsFromIds(script.exhibitionids); let last = last">
-                                {{exhibition.name}}
-                                <ng-container *ngIf="!last">, </ng-container>
-                              </ng-container>
-                              <br/><br/>
-                            </div>
-                            <div class="text-left" style="text-shadow: 1.5px 1.5px #000000;">Themes:
-                              <ng-container *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
-                                {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
-                              </ng-container>
-                            </div>
-                          </div>
-                          <div class="row">
-                            &nbsp;
-                          </div>
-                          <div class="row">
-                            <div class="col">
-                              <a *ngIf="script.open && script.visible" routerLink="/slowLooking/{{script._id}}" [queryParams]="{return:'overview'}">
-                                <button type="button" class="btn btn-link" style="color: white; text-shadow: 1.5px 1.5px #000000;">
-                                  <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
-                                    <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
-                                    <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
-                                  </svg>
-                                  <!-- <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
-                                      <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
-                                      <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
-                                  </svg> -->
-                                  <span> Take part</span>    
-                                </button>
-                              </a>
-                            </div>
-                            <div class="col">
-                              <a *ngIf="script.visible" routerLink="/allResponses/{{script._id}}" target='_blank'>
-                                <button type="button" class="btn btn-link" style="color: white; text-shadow: 1.5px 1.5px #000000;">
-                                  <!-- <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
-                                    <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
-                                    <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
-                                  </svg> -->
-                                  <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
-                                      <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
-                                      <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
-                                  </svg>
-                                  <span> View responses</span>     
-                                </button>
-                              </a>
-                            </div>
-                          </div>
-                          <div class="row">
-                            &nbsp;
-                          </div>
-                        </div>
-                      </ng-template>
-                    </ngb-carousel>
-                  </span>
-                </div>
-            </div>
-        </h2>
+                  </div>
+                </ng-template>
+              </ngb-carousel>
+          </div>
+      </div>
     </div>
     <div class="accordion-item">
-        <h2 class="accordion-header" [id]="'heading4'">
-            <button style="background-color: rgb(41, 161, 184);" class="accordion-button text-white" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse4'" aria-expanded="true" [attr.aria-controls]="'collapse4'">
+        <h2 class="accordion-header" id="heading2">
+          <button style="background-color: rgb(41, 161, 184);" class="accordion-button collapsed text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+              <span><h4>Exhibitions</h4>
+                Scripts inspired by IMMA exhibitions</span>
+          </button>
+        </h2>
+        <div style="background-color: black;" id="collapse2" class="accordion-collapse collapse text-white" aria-labelledby="heading2">
+            <div class="accordion-body">
+              <div class="ng-autocomplete" style="width: 100%;">
+                <span>Search exhibitions:</span>
+                <ng-autocomplete 
+                  [data]="exhibitionResults"
+                  [searchKeyword]="keywordExhibitions"
+                  (selected)='selectEventExhibitions($event)'
+                  (inputChanged)='onChangeSearchExhibitions($event)'
+                  (inputFocused)='onFocusedExhibitions($event)'
+                  [itemTemplate]="itemTemplateExhibitions"
+                  [notFoundTemplate]="notFoundTemplateExhibitions"
+                  [placeholder]="placeholderTextExhibitions"
+                  [historyListMaxNumber]="15"
+                  [minQueryLength]="2">                                 
+                </ng-autocomplete>
+                <ng-template #itemTemplateExhibitions let-item>
+                    <a href="javascript:void(0)">
+                      <span [innerHTML]="item.searchstring"></span>
+                    </a>
+                </ng-template>
+                <ng-template #notFoundTemplateExhibitions let-notFound>
+                <div [innerHTML]="notFound"></div>
+                </ng-template>
+              </div>
+              <span *ngIf="selectedExhibition">
+                <div class="row">
+                  &nbsp;
+                </div>
+                <div class="row align-items-start mb-5">
+                  <div class="col-6">
+                      <img style="width: 100%;" src="{{selectedExhibition.artwork.url}}" alt="{{selectedExhibition.artwork.name}}">
+                  </div>
+                  <div class="col">
+                    <div class="row text-left"><h4 style="white-space: pre-wrap;" [innerHTML]="selectedExhibition.name"></h4></div>
+                    <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="selectedExhibition.description"></span></div>
+                    <div class="row text-right">
+                      <a href="{{selectedExhibition.url}}" target='_blank'>
+                          <button type="button" class="btn btn-link" style="color: white;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                                <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                            </svg>
+                            Exhibition
+                          </button>
+                        </a>
+                    </div>
+                  </div>
+                </div>
+                <ngb-carousel [showNavigationArrows]="selectedExhibition.scripts.length > 1" [showNavigationIndicators]="selectedExhibition.scripts.length > 1">
+                  <ng-template ngbSlide *ngFor="let script of selectedExhibition.scripts">
+                    <div class="picsum-img-wrapper" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
+                      <img style="width: 65%;" src="{{artwork.url}}">
+                    </div>
+                    <div class="carousel-caption">
+                      <div class="row align-items-end">
+                        <h3 class="text-left" style="text-shadow: 1.5px 1.5px #000000;">{{script.name}}</h3>
+                        <div class="text-left" *ngIf="script.description != ''" style="text-shadow: 1.5px 1.5px #000000;">
+                          {{script.description}}
+                        </div>
+                        <figcaption class="text-left blockquote-footer text-white" style="text-shadow: 1.5px 1.5px #000000;">{{script.author}}</figcaption>
+                        <div class="text-left" *ngIf="script.exhibitionids.length > 0" style="text-shadow: 1.5px 1.5px #000000;">Exhibitions:
+                          <ng-container *ngFor="let exhibition of getExhibitionsFromIds(script.exhibitionids); let last = last">
+                            {{exhibition.name}}
+                            <ng-container *ngIf="!last">, </ng-container>
+                          </ng-container>
+                          <br/><br/>
+                        </div>
+                        <div class="text-left" style="text-shadow: 1.5px 1.5px #000000;">Themes:
+                          <ng-container *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
+                            {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
+                          </ng-container>
+                        </div>
+                      </div>
+                      <div class="row">
+                        &nbsp;
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <a *ngIf="script.open && script.visible" routerLink="/slowLooking/{{script._id}}" [queryParams]="{return:'overview'}">
+                            <button type="button" class="btn btn-link" style="color: white; text-shadow: 1.5px 1.5px #000000;">
+                              <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
+                                <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
+                                <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
+                              </svg>
+                              <!-- <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                  <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                                  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                              </svg> -->
+                              <span> Take part</span>    
+                            </button>
+                          </a>
+                        </div>
+                        <div class="col">
+                          <a *ngIf="script.visible" routerLink="/allResponses/{{script._id}}" target='_blank'>
+                            <button type="button" class="btn btn-link" style="color: white; text-shadow: 1.5px 1.5px #000000;">
+                              <!-- <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
+                                <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
+                                <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
+                              </svg> -->
+                              <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                  <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                                  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                              </svg>
+                              <span> View responses</span>     
+                            </button>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="row">
+                        &nbsp;
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngb-carousel>
+              </span>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="heading3">
+          <button style="background-color: rgb(41, 161, 184);" class="accordion-button collapsed text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+              <span><h4>Artworks</h4>
+                Script related to works from the IMMA collection</span>
+          </button>
+        </h2>
+        <div style="background-color: black;" id="collapse3" class="accordion-collapse collapse text-white" aria-labelledby="heading3">
+            <div class="accordion-body">
+              <div class="ng-autocomplete" style="width: 100%;">
+                <span>Search artworks:</span>
+                <ng-autocomplete 
+                  [data]="artworkResults"
+                  [searchKeyword]="keywordArtworks"
+                  (selected)='selectEventArtworks($event)'
+                  (inputChanged)='onChangeSearchArtworks($event)'
+                  (inputFocused)='onFocusedArtworks($event)'
+                  [itemTemplate]="itemTemplateArtworks"
+                  [notFoundTemplate]="notFoundTemplateArtworks"
+                  [placeholder]="placeholderTextArtworks"
+                  [historyListMaxNumber]="15"
+                  [minQueryLength]="2">                                 
+                </ng-autocomplete>
+                <ng-template #itemTemplateArtworks let-item>
+                    <a href="javascript:void(0)">
+                      <span [innerHTML]="item.searchstring"></span>
+                    </a>
+                </ng-template>
+                <ng-template #notFoundTemplateArtworks let-notFound>
+                <div [innerHTML]="notFound"></div>
+                </ng-template>
+              </div>
+              <span *ngIf="selectedArtwork">
+                <div class="row">
+                  &nbsp;
+                </div>
+                <div class="row align-items-end mb-5">
+                  <div class="col-6">
+                      <img style="width: 100%;" src="{{selectedArtwork.artworkurl}}" alt="{{selectedArtwork.name}}">
+                  </div>
+                  <div class="col">
+                    <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="selectedArtwork.name"></div>
+                    <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="selectedArtwork.artist"></div>
+                    <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="selectedArtwork.year"></div>
+                  </div>
+                </div>
+                <ngb-carousel [showNavigationArrows]="selectedArtwork.scripts.length > 1" [showNavigationIndicators]="selectedArtwork.scripts.length > 1">
+                  <ng-template ngbSlide *ngFor="let script of selectedArtwork.scripts">
+                    <div class="picsum-img-wrapper" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
+                      <img style="width: 65%;" src="{{artwork.url}}">
+                    </div>
+                    <div class="carousel-caption">
+                      <div class="row align-items-end">
+                        <h3 class="text-left" style="text-shadow: 1.5px 1.5px #000000;">{{script.name}}</h3>
+                        <div class="text-left" *ngIf="script.description != ''" style="text-shadow: 1.5px 1.5px #000000;">
+                          {{script.description}}
+                        </div>
+                        <figcaption class="text-left blockquote-footer text-white" style="text-shadow: 1.5px 1.5px #000000;">{{script.author}}</figcaption>
+                        <div class="text-left" *ngIf="script.exhibitionids.length > 0" style="text-shadow: 1.5px 1.5px #000000;">Exhibitions:
+                          <ng-container *ngFor="let exhibition of getExhibitionsFromIds(script.exhibitionids); let last = last">
+                            {{exhibition.name}}
+                            <ng-container *ngIf="!last">, </ng-container>
+                          </ng-container>
+                          <br/><br/>
+                        </div>
+                        <div class="text-left" style="text-shadow: 1.5px 1.5px #000000;">Themes:
+                          <ng-container *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
+                            {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
+                          </ng-container>
+                        </div>
+                      </div>
+                      <div class="row">
+                        &nbsp;
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <a *ngIf="script.open && script.visible" routerLink="/slowLooking/{{script._id}}" [queryParams]="{return:'overview'}">
+                            <button type="button" class="btn btn-link" style="color: white; text-shadow: 1.5px 1.5px #000000;">
+                              <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
+                                <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
+                                <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
+                              </svg>
+                              <!-- <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                  <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                                  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                              </svg> -->
+                              <span> Take part</span>    
+                            </button>
+                          </a>
+                        </div>
+                        <div class="col">
+                          <a *ngIf="script.visible" routerLink="/allResponses/{{script._id}}" target='_blank'>
+                            <button type="button" class="btn btn-link" style="color: white; text-shadow: 1.5px 1.5px #000000;">
+                              <!-- <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
+                                <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
+                                <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
+                              </svg> -->
+                              <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                  <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                                  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                              </svg>
+                              <span> View responses</span>     
+                            </button>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="row">
+                        &nbsp;
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngb-carousel>
+              </span>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="heading4">
+            <button style="background-color: rgb(41, 161, 184);" class="accordion-button collapsed text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
                 <span><h4>Themes</h4>
                 Scripts associated with different themes</span>
             </button>
-            <div style="background-color: black;" [id]="'collapse4'" class="accordion-collapse collapse text-white" [attr.aria-labelledby]="'heading4'">
-                <div class="accordion-body">
-                  <div class="ng-autocomplete" style="width: 100%;">
-                    <span>Search themes:</span>
-                    <ng-autocomplete 
-                      [data]="themeResults"
-                      [searchKeyword]="keywordThemes"
-                      (selected)='selectEventThemes($event)'
-                      (inputChanged)='onChangeSearchThemes($event)'
-                      (inputFocused)='onFocusedThemes($event)'
-                      [itemTemplate]="itemTemplateThemes"
-                      [notFoundTemplate]="notFoundTemplateThemes"
-                      [placeholder]="placeholderTextThemes"
-                      [historyListMaxNumber]="15"
-                      [minQueryLength]="2">                                 
-                    </ng-autocomplete>
-                    <ng-template #itemTemplateThemes let-item>
-                        <a href="javascript:void(0)">
-                          <span [innerHTML]="item.searchstring"></span>
-                        </a>
-                    </ng-template>
-                    <ng-template #notFoundTemplateThemes let-notFound>
-                    <div [innerHTML]="notFound"></div>
-                    </ng-template>
-                  </div>
-                  <span *ngIf="selectedTheme">
-                    <div class="row">
-                      &nbsp;
-                    </div>
-                    <div class="col mb-5">
-                      <h3 class="row text-left">{{selectedTheme.name}}</h3>
-                      <div class="row text-left">{{selectedTheme.description}}</div>
-                    </div>
-                    <ngb-carousel [showNavigationArrows]="selectedTheme.scripts.length > 1" [showNavigationIndicators]="selectedTheme.scripts.length > 1">
-                      <ng-template ngbSlide *ngFor="let script of selectedTheme.scripts">
-                        <div class="picsum-img-wrapper" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
-                          <img style="width: 65%;" src="{{artwork.url}}">
-                        </div>
-                        <div class="carousel-caption">
-                          <div class="row align-items-end">
-                            <h3 class="text-left" style="text-shadow: 1.5px 1.5px #000000;">{{script.name}}</h3>
-                            <div class="text-left" *ngIf="script.description != ''" style="text-shadow: 1.5px 1.5px #000000;">
-                              {{script.description}}
-                            </div>
-                            <figcaption class="text-left blockquote-footer text-white" style="text-shadow: 1.5px 1.5px #000000;">{{script.author}}</figcaption>
-                            <div class="text-left" *ngIf="script.exhibitionids.length > 0" style="text-shadow: 1.5px 1.5px #000000;">Exhibitions:
-                              <ng-container *ngFor="let exhibition of getExhibitionsFromIds(script.exhibitionids); let last = last">
-                                {{exhibition.name}}
-                                <ng-container *ngIf="!last">, </ng-container>
-                              </ng-container>
-                              <br/><br/>
-                            </div>
-                            <div class="text-left" style="text-shadow: 1.5px 1.5px #000000;">Themes:
-                              <ng-container *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
-                                {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
-                              </ng-container>
-                            </div>
-                          </div>
-                          <div class="row">
-                            &nbsp;
-                          </div>
-                          <div class="row">
-                            <div class="col">
-                              <a *ngIf="script.open && script.visible" routerLink="/slowLooking/{{script._id}}" [queryParams]="{return:'overview'}">
-                                <button type="button" class="btn btn-link" style="color: white; text-shadow: 1.5px 1.5px #000000;">
-                                  <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
-                                    <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
-                                    <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
-                                  </svg>
-                                  <!-- <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
-                                      <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
-                                      <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
-                                  </svg> -->
-                                  <span> Take part</span>   
-                                </button>
-                              </a>
-                            </div>
-                            <div class="col">
-                              <a *ngIf="script.visible" routerLink="/allResponses/{{script._id}}" target='_blank'>
-                                <button type="button" class="btn btn-link" style="color: white; text-shadow: 1.5px 1.5px #000000;">
-                                  <!-- <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
-                                    <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
-                                    <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
-                                  </svg> -->
-                                  <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
-                                      <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
-                                      <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
-                                  </svg>
-                                  <span> View responses</span>   
-                                </button>
-                              </a>
-                            </div>
-                          </div>
-                          <div class="row">
-                            &nbsp;
-                          </div>
-                        </div>
-                      </ng-template>
-                    </ngb-carousel>
-                  </span>
-                </div>
-            </div>
         </h2>
+        <div style="background-color: black;" id="collapse4" class="accordion-collapse collapse text-white" aria-labelledby="heading4">
+            <div class="accordion-body">
+              <div class="ng-autocomplete" style="width: 100%;">
+                <span>Search themes:</span>
+                <ng-autocomplete 
+                  [data]="themeResults"
+                  [searchKeyword]="keywordThemes"
+                  (selected)='selectEventThemes($event)'
+                  (inputChanged)='onChangeSearchThemes($event)'
+                  (inputFocused)='onFocusedThemes($event)'
+                  [itemTemplate]="itemTemplateThemes"
+                  [notFoundTemplate]="notFoundTemplateThemes"
+                  [placeholder]="placeholderTextThemes"
+                  [historyListMaxNumber]="15"
+                  [minQueryLength]="2">                                 
+                </ng-autocomplete>
+                <ng-template #itemTemplateThemes let-item>
+                    <a href="javascript:void(0)">
+                      <span [innerHTML]="item.searchstring"></span>
+                    </a>
+                </ng-template>
+                <ng-template #notFoundTemplateThemes let-notFound>
+                <div [innerHTML]="notFound"></div>
+                </ng-template>
+              </div>
+              <span *ngIf="selectedTheme">
+                <div class="row">
+                  &nbsp;
+                </div>
+                <div class="col mb-5">
+                  <h3 class="row text-left">{{selectedTheme.name}}</h3>
+                  <div class="row text-left">{{selectedTheme.description}}</div>
+                </div>
+                <ngb-carousel [showNavigationArrows]="selectedTheme.scripts.length > 1" [showNavigationIndicators]="selectedTheme.scripts.length > 1">
+                  <ng-template ngbSlide *ngFor="let script of selectedTheme.scripts">
+                    <div class="picsum-img-wrapper" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
+                      <img style="width: 65%;" src="{{artwork.url}}">
+                    </div>
+                    <div class="carousel-caption">
+                      <div class="row align-items-end">
+                        <h3 class="text-left" style="text-shadow: 1.5px 1.5px #000000;">{{script.name}}</h3>
+                        <div class="text-left" *ngIf="script.description != ''" style="text-shadow: 1.5px 1.5px #000000;">
+                          {{script.description}}
+                        </div>
+                        <figcaption class="text-left blockquote-footer text-white" style="text-shadow: 1.5px 1.5px #000000;">{{script.author}}</figcaption>
+                        <div class="text-left" *ngIf="script.exhibitionids.length > 0" style="text-shadow: 1.5px 1.5px #000000;">Exhibitions:
+                          <ng-container *ngFor="let exhibition of getExhibitionsFromIds(script.exhibitionids); let last = last">
+                            {{exhibition.name}}
+                            <ng-container *ngIf="!last">, </ng-container>
+                          </ng-container>
+                          <br/><br/>
+                        </div>
+                        <div class="text-left" style="text-shadow: 1.5px 1.5px #000000;">Themes:
+                          <ng-container *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
+                            {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
+                          </ng-container>
+                        </div>
+                      </div>
+                      <div class="row">
+                        &nbsp;
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <a *ngIf="script.open && script.visible" routerLink="/slowLooking/{{script._id}}" [queryParams]="{return:'overview'}">
+                            <button type="button" class="btn btn-link" style="color: white; text-shadow: 1.5px 1.5px #000000;">
+                              <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
+                                <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
+                                <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
+                              </svg>
+                              <!-- <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                  <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                                  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                              </svg> -->
+                              <span> Take part</span>   
+                            </button>
+                          </a>
+                        </div>
+                        <div class="col">
+                          <a *ngIf="script.visible" routerLink="/allResponses/{{script._id}}" target='_blank'>
+                            <button type="button" class="btn btn-link" style="color: white; text-shadow: 1.5px 1.5px #000000;">
+                              <!-- <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
+                                <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
+                                <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
+                              </svg> -->
+                              <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                  <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                                  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                              </svg>
+                              <span> View responses</span>   
+                            </button>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="row">
+                        &nbsp;
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngb-carousel>
+              </span>
+            </div>
+        </div>
     </div>
     <div class="accordion-item">
-        <h2 class="accordion-header" [id]="'heading5'">
-            <button style="background-color: rgb(41, 161, 184);" class="accordion-button text-white" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse5'" aria-expanded="true" [attr.aria-controls]="'collapse5'">
-                <span><h4>Explore</h4>
-                More Deep Viewpoints scripts</span>
-            </button>
-            <div style="background-color: black;" [id]="'collapse5'" class="accordion-collapse collapse text-white" [attr.aria-labelledby]="'heading5'">
-                <div class="accordion-body">
-                  <div class="ng-autocomplete" style="width: 100%;">
-                    <span>Search scripts:</span>
-                    <ng-autocomplete 
-                      [data]="scriptResults"
-                      [searchKeyword]="keywordScripts"
-                      (selected)='selectEventScripts($event)'
-                      (inputChanged)='onChangeSearchScripts($event)'
-                      (inputFocused)='onFocusedScripts($event)'
-                      [itemTemplate]="itemTemplateScripts"
-                      [notFoundTemplate]="notFoundTemplateScripts"
-                      [placeholder]="placeholderTextScripts"
-                      [historyListMaxNumber]="15"
-                      [minQueryLength]="2">                                 
-                    </ng-autocomplete>
-                    <ng-template #itemTemplateScripts let-item>
-                        <a href="javascript:void(0)">
-                            <span [innerHTML]="item.searchstring"></span>  
-                        </a>
-                    </ng-template>
-                    <ng-template #notFoundTemplateScripts let-notFound>
-                    <div [innerHTML]="notFound"></div>
-                    </ng-template>
-                  </div>
-                  <span *ngIf="selectedScript">
-                    <ngb-carousel [showNavigationArrows]="false" [showNavigationIndicators]="false">
-                      <ng-template ngbSlide>
-                        <div class="picsum-img-wrapper mt-5" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(selectedScript.script.homepageartworkid);">
-                          <img style="width: 65%;" src="{{artwork.url}}">
-                        </div>
-                        <div class="carousel-caption">
-                          <div class="row align-items-end" *ngFor="let artwork of getArtworkFromId(selectedScript.script.homepageartworkid);">
-                            <h3 class="text-left" style="text-shadow: 1.5px 1.5px #000000;">{{selectedScript.script.name}}</h3>
-                            <div class="text-left" *ngIf="selectedScript.script.description != ''" style="text-shadow: 1.5px 1.5px #000000;">
-                              {{selectedScript.script.description}}
-                            </div>
-                            <figcaption class="text-left blockquote-footer text-white" style="text-shadow: 1.5px 1.5px #000000;">{{selectedScript.script.author}}</figcaption>
-                            <div class="text-left" *ngIf="selectedScript.script.exhibitionids.length > 0" style="text-shadow: 1.5px 1.5px #000000;">Exhibitions:
-                              <ng-container *ngFor="let exhibition of getExhibitionsFromIds(selectedScript.script.exhibitionids); let last = last">
-                                {{exhibition.name}}
-                                <ng-container *ngIf="!last">, </ng-container>
-                              </ng-container>
-                              <br/><br/>
-                            </div>
-                            <div class="text-left" style="text-shadow: 1.5px 1.5px #000000;">Themes:
-                              <ng-container *ngFor="let theme of getThemesFromIds(selectedScript.script.themeids); let last = last">
-                                {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
-                              </ng-container>
-                            </div>
-                          </div>
-                          <div class="row">
-                            &nbsp;
-                          </div>
-                          <div class="row">
-                            <div class="col">
-                              <a *ngIf="selectedScript.script.open && selectedScript.script.visible" routerLink="/slowLooking/{{selectedScript.script._id}}" [queryParams]="{return:'overview'}">
-                                <button type="button" class="btn btn-link" style="color: white; text-shadow: 1.5px 1.5px #000000;">
-                                  <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
-                                    <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
-                                    <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
-                                  </svg>
-                                  <!-- <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
-                                      <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
-                                      <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
-                                  </svg> -->
-                                  <span> Take part</span>    
-                                </button>
-                              </a>
-                            </div>
-                            <div class="col">
-                              <a *ngIf="selectedScript.script.visible" routerLink="/allResponses/{{selectedScript.script._id}}" target='_blank'>
-                                <button type="button" class="btn btn-link" style="color: white; text-shadow: 1.5px 1.5px #000000;">
-                                  <!-- <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
-                                    <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
-                                    <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
-                                  </svg> -->
-                                  <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
-                                      <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
-                                      <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
-                                  </svg>
-                                  <span> View responses</span>    
-                                </button>
-                              </a>
-                            </div>
-                          </div>
-                          <div class="row">
-                            &nbsp;
-                          </div>
-                        </div>
-                      </ng-template>
-                    </ngb-carousel>
-                  </span>
-                </div>
-            </div>
+        <h2 class="accordion-header" id="heading5">
+          <button style="background-color: rgb(41, 161, 184);" class="accordion-button collapsed text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+              <span><h4>Explore</h4>
+              More Deep Viewpoints scripts</span>
+          </button>
         </h2>
+        <div style="background-color: black;" id="collapse5" class="accordion-collapse collapse text-white" aria-labelledby="heading5">
+            <div class="accordion-body">
+              <div class="ng-autocomplete" style="width: 100%;">
+                <span>Search scripts:</span>
+                <ng-autocomplete 
+                  [data]="scriptResults"
+                  [searchKeyword]="keywordScripts"
+                  (selected)='selectEventScripts($event)'
+                  (inputChanged)='onChangeSearchScripts($event)'
+                  (inputFocused)='onFocusedScripts($event)'
+                  [itemTemplate]="itemTemplateScripts"
+                  [notFoundTemplate]="notFoundTemplateScripts"
+                  [placeholder]="placeholderTextScripts"
+                  [historyListMaxNumber]="15"
+                  [minQueryLength]="2">                                 
+                </ng-autocomplete>
+                <ng-template #itemTemplateScripts let-item>
+                    <a href="javascript:void(0)">
+                        <span [innerHTML]="item.searchstring"></span>  
+                    </a>
+                </ng-template>
+                <ng-template #notFoundTemplateScripts let-notFound>
+                <div [innerHTML]="notFound"></div>
+                </ng-template>
+              </div>
+              <span *ngIf="selectedScript">
+                <ngb-carousel [showNavigationArrows]="false" [showNavigationIndicators]="false">
+                  <ng-template ngbSlide>
+                    <div class="picsum-img-wrapper mt-5" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(selectedScript.script.homepageartworkid);">
+                      <img style="width: 65%;" src="{{artwork.url}}">
+                    </div>
+                    <div class="carousel-caption">
+                      <div class="row align-items-end" *ngFor="let artwork of getArtworkFromId(selectedScript.script.homepageartworkid);">
+                        <h3 class="text-left" style="text-shadow: 1.5px 1.5px #000000;">{{selectedScript.script.name}}</h3>
+                        <div class="text-left" *ngIf="selectedScript.script.description != ''" style="text-shadow: 1.5px 1.5px #000000;">
+                          {{selectedScript.script.description}}
+                        </div>
+                        <figcaption class="text-left blockquote-footer text-white" style="text-shadow: 1.5px 1.5px #000000;">{{selectedScript.script.author}}</figcaption>
+                        <div class="text-left" *ngIf="selectedScript.script.exhibitionids.length > 0" style="text-shadow: 1.5px 1.5px #000000;">Exhibitions:
+                          <ng-container *ngFor="let exhibition of getExhibitionsFromIds(selectedScript.script.exhibitionids); let last = last">
+                            {{exhibition.name}}
+                            <ng-container *ngIf="!last">, </ng-container>
+                          </ng-container>
+                          <br/><br/>
+                        </div>
+                        <div class="text-left" style="text-shadow: 1.5px 1.5px #000000;">Themes:
+                          <ng-container *ngFor="let theme of getThemesFromIds(selectedScript.script.themeids); let last = last">
+                            {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
+                          </ng-container>
+                        </div>
+                      </div>
+                      <div class="row">
+                        &nbsp;
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <a *ngIf="selectedScript.script.open && selectedScript.script.visible" routerLink="/slowLooking/{{selectedScript.script._id}}" [queryParams]="{return:'overview'}">
+                            <button type="button" class="btn btn-link" style="color: white; text-shadow: 1.5px 1.5px #000000;">
+                              <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
+                                <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
+                                <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
+                              </svg>
+                              <!-- <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                  <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                                  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                              </svg> -->
+                              <span> Take part</span>    
+                            </button>
+                          </a>
+                        </div>
+                        <div class="col">
+                          <a *ngIf="selectedScript.script.visible" routerLink="/allResponses/{{selectedScript.script._id}}" target='_blank'>
+                            <button type="button" class="btn btn-link" style="color: white; text-shadow: 1.5px 1.5px #000000;">
+                              <!-- <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
+                                <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
+                                <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
+                              </svg> -->
+                              <svg style="filter: drop-shadow(1.5px 1.5px #000000);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                  <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                                  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                              </svg>
+                              <span> View responses</span>    
+                            </button>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="row">
+                        &nbsp;
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngb-carousel>
+              </span>
+            </div>
+        </div>
     </div>
 </div>
 <p class="lead"></p>

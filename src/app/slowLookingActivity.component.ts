@@ -67,13 +67,12 @@ export class SlowLookingActivityComponent implements OnInit {
 
     ngOnInit() {
 
+        //return to overview rather than home page
         this.activatedRoute.queryParams
             .subscribe(params => {
                 if(params.return == "overview") {
                     this.routerLink = "/overview";
                 }
-                console.log(params.return);
-                console.log(this.routerLink);
             }
         );
 
