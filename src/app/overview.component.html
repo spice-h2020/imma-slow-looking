@@ -116,7 +116,7 @@
                 <div class="row">
                   &nbsp;
                 </div>
-                <div class="row align-items-start mb-5">
+                <div class="row align-items-start">
                   <div class="col-6">
                       <img style="width: 100%;" src="{{selectedExhibition.artwork.url}}" alt="{{selectedExhibition.artwork.name}}">
                   </div>
@@ -136,6 +136,7 @@
                     </div>
                   </div>
                 </div>
+                <hr>
                 <ngb-carousel [showNavigationArrows]="selectedExhibition.scripts.length > 1" [showNavigationIndicators]="selectedExhibition.scripts.length > 1">
                   <ng-template ngbSlide *ngFor="let script of selectedExhibition.scripts">
                     <div class="picsum-img-wrapper" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
@@ -242,7 +243,7 @@
                 <div class="row">
                   &nbsp;
                 </div>
-                <div class="row align-items-end mb-5">
+                <div class="row align-items-end">
                   <div class="col-6">
                       <img style="width: 100%;" src="{{selectedArtwork.artworkurl}}" alt="{{selectedArtwork.name}}">
                   </div>
@@ -252,6 +253,7 @@
                     <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="selectedArtwork.year"></div>
                   </div>
                 </div>
+                <hr>
                 <ngb-carousel [showNavigationArrows]="selectedArtwork.scripts.length > 1" [showNavigationIndicators]="selectedArtwork.scripts.length > 1">
                   <ng-template ngbSlide *ngFor="let script of selectedArtwork.scripts">
                     <div class="picsum-img-wrapper" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
@@ -358,10 +360,11 @@
                 <div class="row">
                   &nbsp;
                 </div>
-                <div class="col mb-5">
+                <div class="col">
                   <h3 class="row text-left">{{selectedTheme.name}}</h3>
                   <div class="row text-left">{{selectedTheme.description}}</div>
                 </div>
+                <hr>
                 <ngb-carousel [showNavigationArrows]="selectedTheme.scripts.length > 1" [showNavigationIndicators]="selectedTheme.scripts.length > 1">
                   <ng-template ngbSlide *ngFor="let script of selectedTheme.scripts">
                     <div class="picsum-img-wrapper" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
@@ -467,7 +470,7 @@
               <span *ngIf="selectedScript">
                 <ngb-carousel [showNavigationArrows]="false" [showNavigationIndicators]="false">
                   <ng-template ngbSlide>
-                    <div class="picsum-img-wrapper mt-5" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(selectedScript.script.homepageartworkid);">
+                    <div class="picsum-img-wrapper mt-3" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(selectedScript.script.homepageartworkid);">
                       <img style="width: 65%;" src="{{artwork.url}}">
                     </div>
                     <div class="carousel-caption">
@@ -524,9 +527,6 @@
                             </button>
                           </a>
                         </div>
-                      </div>
-                      <div class="row">
-                        &nbsp;
                       </div>
                     </div>
                   </ng-template>
