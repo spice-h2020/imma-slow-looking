@@ -3,11 +3,11 @@
         <div class="navbar-brand">IMMA Deep Viewpoints</div>
     </div>
 </div>
-<div *ngFor="let script of getScriptsOfScriptID(slowLookingScript); let i = index" class="col-sm-12 pb-4">
+<div *ngFor="let script of getScriptsOfScriptID(slowLookingScript); let i = index" class="col-sm-12 pb-4 border">
     <h2 class="col-sm-12">{{script.name}}</h2>
     <div class="col-sm-12">
         <p style="white-space: pre-wrap;">{{script.description}}</p>
-        <figcaption *ngIf="script.author != ''" class="blockquote-footer text-black">{{script.author}}</figcaption>
+        <figcaption *ngIf="script.author != ''" class="blockquote-footer text-dark">{{script.author}}</figcaption>
     </div>
     <div *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);" class="row align-items-end mb-3 mr-3">
         <div class="col-8" *ngIf="artwork.url">

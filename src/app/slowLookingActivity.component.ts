@@ -23,6 +23,8 @@ export class SlowLookingActivityComponent implements OnInit {
 
     multiquestionIndex = 0;
 
+    routerLink = "/home";
+
     incrementMultiquestionIndex(len: number) {
         if(this.multiquestionIndex <= len) {
             this.multiquestionIndex = this.multiquestionIndex + 1;
@@ -64,13 +66,22 @@ export class SlowLookingActivityComponent implements OnInit {
     ) { } 
 
     ngOnInit() {
+
+        this.activatedRoute.queryParams
+            .subscribe(params => {
+                if(params.return == "overview") {
+                    this.routerLink = "/overview";
+                }
+                console.log(params.return);
+                console.log(this.routerLink);
+            }
+        );
+
         let _id = this.activatedRoute.snapshot.params.id;
 
         let scripts: Script[] = this.activatedRoute.snapshot.data.model1;
 
         let artworks: Artwork[]  = this.activatedRoute.snapshot.data.model2;
-
-        console.log("artworks", artworks);
 
         // get the script whether or not it is open
         // let SLscript = scripts.find(x => x._id == _id);

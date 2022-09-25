@@ -1,7 +1,7 @@
 <paNavBar></paNavBar>
 <div *ngIf="!scriptfound">
     <p>Script not found. The script might be currently closed to new contributions.</p>
-    <button class="btn btn-secondary" routerLink="/home">Try Deep Viewpoints activities for yourself</button><br/><br/>
+    <button class="btn btn-secondary" [routerLink]="routerLink">Try Deep Viewpoints activities for yourself</button><br/><br/>
 </div>
 <div *ngIf="scriptfound" class="border pl-3 pr-3 pt-3" style="width:100%">
 <div *ngFor="let stage of currentScript.stages; let i = index">
@@ -32,7 +32,7 @@
             <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                 <div class="text-right">
                     <!-- <button class="m-3 btn btn-warning" (click)="statementBack(i);" *ngIf="i > 0">Back</button> -->
-                    <button class="m-3 btn btn-warning" (click)="statementEnd();" routerLink="/home">Save</button>
+                    <button class="m-3 btn btn-warning" (click)="statementEnd();" [routerLink]="routerLink">Save</button>
                 </div>
             </span>
             <span *ngIf="slowLookingMaximumScriptStageIndex != i">
@@ -93,7 +93,7 @@
                     <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                         <div class="text-right">
                             <!-- <button class="m-3 btn btn-warning" *ngIf="i > 0">Back</button> -->
-                            <button class="m-3 btn btn-warning" (click)="multiquestionEnd(multiquestionIndex, answer.value, stage, stage.body, newMultiquestionAction)" routerLink="/home">Save</button>
+                            <button class="m-3 btn btn-warning" (click)="multiquestionEnd(multiquestionIndex, answer.value, stage, stage.body, newMultiquestionAction)" [routerLink]="routerLink">Save</button>
                         </div>
                     </span>
                     <!-- continue if not last stage -->
@@ -118,7 +118,7 @@
                     <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                         <div class="text-right">
                             <!-- <button class="m-3 btn btn-warning" *ngIf="i > 0">Back</button> -->
-                            <button class="m-3 btn btn-warning" (click)="multiquestionEnd(multiquestionIndex, answer.value, stage, stage.body, newMultiquestionAction)" routerLink="/home">Save</button>
+                            <button class="m-3 btn btn-warning" (click)="multiquestionEnd(multiquestionIndex, answer.value, stage, stage.body, newMultiquestionAction)" [routerLink]="routerLink">Save</button>
                         </div>
                     </span>
                     <!-- continue if not last stage -->
@@ -169,7 +169,7 @@
                 <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                     <div class="text-right">
                         <!-- <button class="m-3 btn btn-warning" *ngIf="i > 0">Back</button> -->
-                        <button class="m-3 btn btn-warning" (click)="questionEnd(stage, stage.body, newQuestionAction);" routerLink="/home">Save</button>
+                        <button class="m-3 btn btn-warning" (click)="questionEnd(stage, stage.body, newQuestionAction);" [routerLink]="routerLink">Save</button>
                     </div>
                 </span>
                 <!-- continue if not last stage -->
@@ -216,7 +216,7 @@
                 <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                     <div class="text-right">
                         <!-- <button class="m-3 btn btn-warning" *ngIf="i > 0">Back</button> -->
-                        <button class="m-3 btn btn-warning" (click)="storyEnd(stage, stage.body, newStoryAction);" routerLink="/home">Save</button>
+                        <button class="m-3 btn btn-warning" (click)="storyEnd(stage, stage.body, newStoryAction);" [routerLink]="routerLink">Save</button>
                     </div>
                 </span>
 

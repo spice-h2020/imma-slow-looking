@@ -111,7 +111,7 @@ export class OverviewComponent implements OnInit {
             //only include scripts with a homepageartwork, at least one artwork and at lest one stage
             if(script.homepageartworkid != undefined && script.artworkids.length > 0 && script.stages.length > 0) {
 
-                if(script.visible || script.open) {
+                if(script.visible) {
                     //add to the artwork result array
                     if(script.artworkids) {
                         for(var artworkid of script.artworkids) {
