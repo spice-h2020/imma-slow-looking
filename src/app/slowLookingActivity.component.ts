@@ -374,7 +374,7 @@ export class SlowLookingActivityComponent implements OnInit {
         this.updateAnswers(multiquestionIndex,answervalue); 
         this.submittedAnswer=true; 
         this.newMultiquestionAction.questionStage = stage; 
-        this.newMultiquestionAction.questions = stage.body; 
+        this.newMultiquestionAction.questions = stagebody; 
         this.addActionToActivity(newMultiquestionAction); 
         this.resetNewMultiQuestionAction(); 
         this.resetAnswerValue(); 

@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Gallery, GalleryItem, GalleryRef, ImageItem } from "ng-gallery";
 import { Lightbox } from "ng-gallery/lightbox";
+import { questionanswer } from "./action.model";
 import { Activity } from "./activity.model";
 import { Artwork } from "./artwork.model";
 import { Model } from "./repository.model";
@@ -134,5 +135,9 @@ export class AllResponsesComponent implements OnInit {
         return usedArtworks;
     }
 
+
+    sortAnswers(answers: questionanswer[]) {
+        return answers.sort((a1, a2) => {if(a1.question > a2.question) {return 1;} else {return -1;}})
+    }
     
 }

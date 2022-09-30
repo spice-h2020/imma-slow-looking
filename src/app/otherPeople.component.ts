@@ -6,6 +6,7 @@ import { Script } from "./script.model";
 import { Theme } from "./theme.model";
 import { LinkText } from "./linktext.service";
 import { CollectionArtwork } from "./collectionArtwork.model";
+import { questionanswer } from "./action.model";
 
 
 @Component({
@@ -29,6 +30,10 @@ export class OtherPeopleComponent {
     
     getScriptsOfTheme(_id: string): Script[] {
         return this.model.getVisibleScriptsOfTheme(_id);
+    }
+
+    sortAnswers(answers: questionanswer[]) {
+        return answers.sort((a1, a2) => {if(a1.question > a2.question) {return 1;} else {return -1;}})
     }
 
     getApprovedActivitiesOfAScript(_id: string): Activity[] {

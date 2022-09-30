@@ -188,7 +188,6 @@ export class Model {
     }
 
     updateThemePosition(theme: Theme, newPosition: number) {
-        console.log(theme, newPosition);
         //if old position < new
         if(theme.id < newPosition) {
             for(var newTheme of this.dbThemes) {
@@ -550,7 +549,5 @@ export class Model {
         }
         return candidate;
     }
-    foo123() {
-        return "asdadasdsa";
-    }
+
 }

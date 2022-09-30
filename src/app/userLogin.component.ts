@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { questionanswer } from "./action.model";
 import { Activity } from "./activity.model";
 import { CurrentUser } from "./currentUser.service";
 import { Model } from "./repository.model";
@@ -95,6 +96,10 @@ export class UserLoginComponent {
 
     getScript(_id: string): Script {
         return this.model.getScript(_id);
+    }
+
+    sortAnswers(answers: questionanswer[]) {
+        return answers.sort((a1, a2) => {if(a1.question > a2.question) {return 1;} else {return -1;}})
     }
 
 }
