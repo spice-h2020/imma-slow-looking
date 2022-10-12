@@ -60,3 +60,17 @@ a {color: rgb(170, 170, 170);
   height: 100%;
   border: none;
 }
+
+.carousel-item-next{
+  transition: transform 0s ease-in-out;
+}
+
+.carousel-item-prev{
+    transition: transform 0s ease-in-out;
+}
+.carousel-item-left {
+    transform: translateX(-100%);
+}
+.carousel-item-right {
+    transform: translateX(100%);
+}
