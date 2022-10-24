@@ -159,7 +159,7 @@
 
                 <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.body | linkifyHtml"></p>
                 <div *ngIf="stage.help">
-                    <div class="col-sm-12"><img align="right" width="20" style="background-color:white;" src="assets/img/question-help.png" (click)="toggleQuestionHelp()"></div>
+                    <div class="col-sm-12"><img align="right" width="20" style="background-color:white; cursor: pointer;" src="assets/img/question-help.png" (click)="toggleQuestionHelp()"></div>
                     <div class="col-sm-12" style="float:left; white-space: pre-wrap;" *ngIf="showQuestionHelp" [innerHTML]="stage.help | linkifyHtml"></div>
                 </div>
                 <!-- get the answer -->
