@@ -247,7 +247,7 @@
                             <!-- <button class="btn btn-success mr-1" (click)="addShareWithMuseumStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">shareWithMuseum</button> 
                                 <button class="btn btn-success mr-1" (click)="addFollowStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">follow</button> <button class="btn btn-success mr-1" (click)="addShareWithSomeoneStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">shareWithSomeone</button>  -->
                             <!-- <button class="btn btn-success mr-1" (click)="addThankyouStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">thankyou</button> -->
-                            <img class="ml-3" width="20" style="background-color:white;" src="assets/img/question-help.png" (click)="toggleStageHelp(); newStageMessage=false;">
+                            <img class="ml-3" width="20" style="background-color:white; cursor: pointer;" src="assets/img/question-help.png" (click)="toggleStageHelp(); newStageMessage=false;">
                         </span>
                    
                         <br/>
@@ -560,10 +560,17 @@
                                     <span class="font-weight-bold">Text {{i+1}} : </span><span style="white-space: pre-wrap;" [innerHTML]="question | linkify"></span><br/>
                                 </span>
                             </span>
-                            <span *ngIf='stage.stagetype!=="multiquestion"'>
+                            <span *ngIf='stage.stagetype!=="multiquestion" && stage.stagetype!=="question"'>
                                 <span class="font-weight-bold">Text: </span><span style="white-space: pre-wrap;" [innerHTML]="stage.body | linkify"></span><br/>
                             </span>
                             <span *ngIf='stage.stagetype=="question"'>
+                                <span class="font-weight-bold">Text: </span><span style="white-space: pre-wrap;" [innerHTML]="stage.question.title | linkify"></span><br/>
+                                <span *ngIf="stage.question.choice"><strong>Options: </strong>
+                                    <span *ngFor="let option of stage.question.options; let last=last;">
+                                        {{option}}<span *ngIf="!last">, </span>
+                                    </span>
+                                <br/>
+                                </span>
                                 <span class="font-weight-bold">Help text: </span><span style="white-space: pre-wrap;" [innerHTML]="stage.help | linkify"></span><br/>
                             </span>
                             <span *ngIf="editScriptStage==0 && editScriptDescription=='0'"> 
@@ -667,9 +674,44 @@
                             <tr><td class="align-top">
                                 <span class="font-weight-bold">Text:</span>
                             </td><td>
-                                <span *ngIf='stage.stagetype!="multiquestion"'>
+                                <span *ngIf='stage.stagetype!="multiquestion" && stage.stagetype!="question"'>
                                     <textarea rows="3" class="form-control" [(ngModel)]="stage.body"></textarea>
                                 </span>
+                                <!-- <ng-container *ngIf='stage.stagetype=="question"'> -->
+                                <span *ngIf='stage.stagetype=="question"'>
+                                    <textarea rows="3" class="form-control" [(ngModel)]="stage.question.title"></textarea>
+                                </span>
+
+                                <table *ngIf='stage.stagetype=="question"'>
+                                    <tr><td class="align-middle">
+                                        <div class="form-check form-check-inline">
+                                            <input
+                                                class="form-check-input"
+                                                type="checkbox"
+                                                [value]="stage.question.choice"
+                                                [(ngModel)] = "stage.question.choice"
+                                                (click) = "checkQuestionOptions(script, i);"
+                                            /> 
+                                        </div>          
+                                    </td>
+                                    <td class="align-top">
+                                        <label class="form-check-label">Multiple choice</label><br/>
+                                    </td></tr>
+                                </table>
+                                <table *ngIf='stage.stagetype=="question" && stage.question.choice' style="width: 100%;">
+                                    <tr *ngFor="let option of stage.question.options; let index=index; trackBy:trackByIdx">
+                                        <td>
+                                            <textarea rows="1" class="form-control" [(ngModel)]="stage.question.options[index]"></textarea>
+                                        </td><td><button class="btn btn-danger float-right" (click)="deleteQuestionOption(script, i, index);" [disabled]="stage.question.options.length < 3">Delete option</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-success" (click)='stage.question.options = stage.question.options.concat("Option ".concat(stage.question.options.length+1));'>Add option</button>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <!-- </ng-container> -->
                                 <span *ngIf='stage.stagetype=="multiquestion"'>
                                     <table style="width: 100%;">
                                         <tbody cdkDropList (cdkDropListDropped)="drop($event, script, i)">

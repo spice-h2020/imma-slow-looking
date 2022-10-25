@@ -1,3 +1,5 @@
+import { Question } from "./question.model";
+
 export class Stage {
     constructor (
         public type: string = "stage",
@@ -64,6 +66,7 @@ export class questionStage extends Stage {
         public position?: number,
         public title: string = "Title goes here",
         public body: string = "Question goes here",
+        public question: Question = {type: "question", title: "Question goes here", choice: false, options: []},
         public help?: string,
         public stagetype: string = "question",
         public includeartworks: Array<string> = [],
@@ -96,6 +99,7 @@ export class multiquestionStage extends Stage {
         public position?: number,
         public title: string = "Title goes here",
         public body: Array<string> = ["First question goes here","Second question goes here"],
+        public questions: Array<Question> = [],
         public help?: string,
         public sequential: boolean = true,
         public stagetype: string = "multiquestion",

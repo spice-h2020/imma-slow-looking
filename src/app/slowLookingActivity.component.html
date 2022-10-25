@@ -157,26 +157,39 @@
                     </div>
                 </div>
 
-                <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.body | linkifyHtml"></p>
+                <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.question.title | linkifyHtml"></p>
                 <div *ngIf="stage.help">
                     <div class="col-sm-12"><img align="right" width="20" style="background-color:white; cursor: pointer;" src="assets/img/question-help.png" (click)="toggleQuestionHelp()"></div>
                     <div class="col-sm-12" style="float:left; white-space: pre-wrap;" *ngIf="showQuestionHelp" [innerHTML]="stage.help | linkifyHtml"></div>
                 </div>
                 <!-- get the answer -->
-                <textarea class="col-sm-12" rows="3" class="form-control" [(ngModel)]="newQuestionAction.answer"></textarea>
-
+                <div *ngIf="!stage.question.choice" class="col-sm-12">
+                    <textarea class="col-sm-12" rows="3" class="form-control" [(ngModel)]="newQuestionAction.answer"></textarea>
+                </div>
+                <div class="col-sm-12" *ngIf="stage.question.choice" class="col-sm-12">
+                    <div *ngFor="let option of stage.question.options" class="border form-check">
+                        <input
+                            class="form-check-input"
+                            type="radio"
+                            [value]="option"
+                            [(ngModel)] = "newQuestionAction.answer"
+                        />
+                        <label class="form-check-label">{{option}}</label><br/>
+                    </div>
+                </div>
+                
                 <!-- return to list if last stage -->
                 <span *ngIf="slowLookingMaximumScriptStageIndex == i">
                     <div class="text-right">
                         <!-- <button class="m-3 btn btn-warning" *ngIf="i > 0">Back</button> -->
-                        <button class="m-3 btn btn-warning" (click)="questionEnd(stage, stage.body, newQuestionAction);" [routerLink]="routerLink">Save</button>
+                        <button class="m-3 btn btn-warning" (click)="questionEnd(stage, stage.question.title, newQuestionAction);" [routerLink]="routerLink">Save</button>
                     </div>
                 </span>
                 <!-- continue if not last stage -->
                 <span *ngIf="slowLookingMaximumScriptStageIndex != i">
                     <div class="text-right">
                         <!-- <button class="m-3 btn btn-warning" *ngIf="i > 0">Back</button> -->
-                        <button class="m-3 btn btn-warning" (click)="questionContinue(i, stage, stage.body, newQuestionAction);">Continue</button>
+                        <button class="m-3 btn btn-warning" (click)="questionContinue(i, stage, stage.question.title, newQuestionAction);">Continue</button>
                     </div>
                 </span>
             </div>

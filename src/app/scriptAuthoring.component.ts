@@ -538,6 +538,23 @@ export class ScriptAuthoringComponent {
         }
     }
 
+    deleteQuestionOption(script: Script, stageNumber: number, optionNumber: number) {
+        if(script.stages[stageNumber] as questionStage) {
+            (script.stages[stageNumber] as questionStage).question.options.splice(optionNumber, 1);
+            this.saveScript(script);
+        }
+    }
+
+    checkQuestionOptions(script: Script, stageNumber: number) {
+        console.log(script, stageNumber);
+        if(script.stages[stageNumber] as questionStage) {
+            if((script.stages[stageNumber] as questionStage).question.options.length < 2) {
+                (script.stages[stageNumber] as questionStage).question.options = ["Option 1", "Option 2"];
+                this.saveScript(script);
+            }
+        }
+    }
+
     stageDrop(script: Script, event: CdkDragDrop<string[]>) {
         this.model.moveScriptStage(script, event.previousIndex, event.currentIndex);
     }
