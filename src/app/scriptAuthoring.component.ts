@@ -11,6 +11,7 @@ import { HttpClient } from "@angular/common/http";
 import { Exhibition } from "./exhibition.model";
 import { ConfigSettings } from "./config";
 import { LinkText } from "./linktext.service";
+import { Question } from "./question.model";
 
 @Component({
     selector: "paScriptAuthoring",
@@ -32,6 +33,12 @@ export class ScriptAuthoringComponent {
     newStageMessage: boolean = false;
 
     newStageMessageText: string = "New stage added to the end of your script";
+
+    initializeNewQuestion() {
+        let newQuestion = new Question;
+        newQuestion = {type: "question", title: "Question goes here", choice: false, options: []};
+        return newQuestion;
+    }
 
     //URL for accessing the script directly
     scriptURL(script: Script): string {
@@ -524,16 +531,37 @@ export class ScriptAuthoringComponent {
         return this.currentuser.getUserID() != undefined;
     }
     
-    drop(event: CdkDragDrop<string[]>, script: Script, i: number) {
+    drop2(event: CdkDragDrop<string[]>, script: Script, i: number) {
         if(script.stages[i] as multiquestionStage && script.stages[i].hasOwnProperty, 'body') {
             moveItemInArray(script.stages[i].body, event.previousIndex, event.currentIndex);
             this.saveScript(script);
         }
     }
 
-    deleteMultistageQuestion(script: Script, stageNumber: number, questionNumber: number) {
+    drop(event: CdkDragDrop<string[]>, script: Script, i: number) {
+        if(script.stages[i] as multiquestionStage) {
+            moveItemInArray((script.stages[i] as multiquestionStage).questions, event.previousIndex, event.currentIndex);
+            this.saveScript(script);
+        }
+    }
+
+    deleteMultistageQuestion2(script: Script, stageNumber: number, questionNumber: number) {
         if(script.stages[stageNumber] as multiquestionStage && script.stages[stageNumber].hasOwnProperty, 'body') {
             script.stages[stageNumber].body.splice(questionNumber, 1);
+            this.saveScript(script);
+        }
+    }
+
+    deleteMultistageQuestion(script: Script, stageNumber: number, questionNumber: number) {
+        if(script.stages[stageNumber] as multiquestionStage) {
+            (script.stages[stageNumber] as multiquestionStage).questions.splice(questionNumber, 1);
+            this.saveScript(script);
+        }
+    }
+
+    deleteMultiquestionOption(script: Script, stageNumber: number, questionNumber: number, optionNumber: number) {
+        if(script.stages[stageNumber] as multiquestionStage) {
+            (script.stages[stageNumber] as multiquestionStage).questions[questionNumber].options.splice(optionNumber, 1);
             this.saveScript(script);
         }
     }
@@ -545,8 +573,16 @@ export class ScriptAuthoringComponent {
         }
     }
 
+    checkMultiquestionOptions(script: Script, stageNumber: number, questionNumber: number) {
+        if(script.stages[stageNumber] as multiquestionStage) {
+            if((script.stages[stageNumber] as multiquestionStage).questions[questionNumber].options.length < 2) {
+                (script.stages[stageNumber] as multiquestionStage).questions[questionNumber].options = ["Option 1", "Option 2"];
+                this.saveScript(script);
+            }
+        }
+    }
+
     checkQuestionOptions(script: Script, stageNumber: number) {
-        console.log(script, stageNumber);
         if(script.stages[stageNumber] as questionStage) {
             if((script.stages[stageNumber] as questionStage).question.options.length < 2) {
                 (script.stages[stageNumber] as questionStage).question.options = ["Option 1", "Option 2"];

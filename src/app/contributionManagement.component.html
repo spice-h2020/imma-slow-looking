@@ -47,8 +47,8 @@
                                             <p *ngIf="item._id!=editContribution" class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
                                         </span>
                                         <span *ngIf="action.questionStage.stagetype == 'multiquestion' && action.answers">
-                                            <span *ngFor="let answer of action.answers">
-                                                <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.questionStage.body[answer.question]"></span>
+                                            <span *ngFor="let answer of sortAnswers(action.answers)">
+                                                <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.questions[answer.question]"></span>
                                                 <span *ngIf="item._id==editContribution">
                                                     <textarea class="col-sm-12" rows="3" class="form-control" [(ngModel)]="answer.answer"></textarea>
                                                 </span>
@@ -131,7 +131,7 @@
                                             </span>
                                             <span *ngIf="action.questionStage.stagetype == 'multiquestion' && action.answers">
                                                 <span *ngFor="let answer of action.answers">
-                                                    <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.questionStage.body[answer.question]"></span>
+                                                    <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.questions[answer.question]"></span>
                                                     <span *ngIf="item._id==editContribution">
                                                         <textarea class="col-sm-12" rows="3" class="form-control" [(ngModel)]="answer.answer"></textarea>
                                                     </span>
@@ -214,7 +214,7 @@
                                             </span>
                                             <span *ngIf="action.questionStage.stagetype == 'multiquestion' && action.answers">
                                                 <span *ngFor="let answer of action.answers">
-                                                    <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.questionStage.body[answer.question]"></span>
+                                                    <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.questions[answer.question]"></span>
                                                     <span *ngIf="item._id==editContribution">
                                                         <textarea class="col-sm-12" rows="3" class="form-control" [(ngModel)]="answer.answer"></textarea>
                                                     </span>

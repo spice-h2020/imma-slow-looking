@@ -556,8 +556,17 @@
                                 <span class="font-weight-bold">Help text: </span><span style="white-space: pre-wrap;" [innerHTML]="stage.help | linkify"></span><br/>
                             </span>
                             <span *ngIf='stage.stagetype=="multiquestion"'>
-                                <span *ngFor="let question of stage.body; let i=index" class="mr-3">
-                                    <span class="font-weight-bold">Text {{i+1}} : </span><span style="white-space: pre-wrap;" [innerHTML]="question | linkify"></span><br/>
+                                <span *ngFor="let question of stage.questions; let i=index" class="mr-3">
+                                    <span class="font-weight-bold">Text {{i+1}}: </span><span style="white-space: pre-wrap;" [innerHTML]="question.title | linkify"></span><br/>
+
+                                    <span *ngIf="question.choice"><strong>Text {{i+1}} options: </strong>
+                                        <span *ngFor="let option of question.options; let last=last;">
+                                            {{option}}<span *ngIf="!last">, </span>
+                                        </span>
+                                    <br/>
+                                    </span>
+
+
                                 </span>
                             </span>
                             <span *ngIf='stage.stagetype!=="multiquestion" && stage.stagetype!=="question"'>
@@ -698,7 +707,7 @@
                                         <label class="form-check-label">Multiple choice</label><br/>
                                     </td></tr>
                                 </table>
-                                <table *ngIf='stage.stagetype=="question" && stage.question.choice' style="width: 100%;">
+                                <table *ngIf='stage.stagetype=="question" && stage.question.choice' style="width: 100%;" class="table table-dark">
                                     <tr *ngFor="let option of stage.question.options; let index=index; trackBy:trackByIdx">
                                         <td>
                                             <textarea rows="1" class="form-control" [(ngModel)]="stage.question.options[index]"></textarea>
@@ -715,15 +724,37 @@
                                 <span *ngIf='stage.stagetype=="multiquestion"'>
                                     <table style="width: 100%;">
                                         <tbody cdkDropList (cdkDropListDropped)="drop($event, script, i)">
-                                            <tr *ngFor="let q of stage.body; let index=index; trackBy:trackByIdx" cdkDrag cdkDragLockAxis="y">
+                                            <tr *ngFor="let q of stage.questions; let index=index; trackBy:trackByIdx" cdkDrag cdkDragLockAxis="y">
                                                 <td>
                                                     <span class="drag-handle" style="cursor: move;" cdkDragHandle>
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
                                                             <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                                                         </svg>
                                                     </span>
-                                                    <span class="font-weight-bold">Question {{index+1}}: </span><br/><textarea rows="3" class="form-control" [(ngModel)]="stage.body[index]"></textarea>
-                                                    <button class="btn btn-danger float-right" (click)="deleteMultistageQuestion(script, i, index)" [disabled]="stage.body.length < 3">Delete question</button>
+                                                    <span class="font-weight-bold">Question {{index+1}}: </span><br/><textarea rows="3" class="form-control" [(ngModel)]="stage.questions[index].title"></textarea>
+                                                    <div class="form-check ml-1">
+                                                        <input
+                                                           class="form-check-input"
+                                                           type="checkbox"
+                                                           [value]="stage.questions[index].choice"
+                                                           [(ngModel)] = "stage.questions[index].choice"
+                                                           (click) = "checkMultiquestionOptions(script, i, index);"
+                                                       /> 
+                                                       <label class="form-check-label">Multiple choice</label>
+                                                        <button class="btn btn-danger float-right" (click)="deleteMultistageQuestion(script, i, index)" [disabled]="stage.questions.length < 3">Delete question</button>
+                                                    </div>
+                                                    <table *ngIf='stage.stagetype=="multiquestion" && stage.questions[index].choice' style="width: 100%;" style="width: 100%; background-color:#EEEEEE;">
+                                                        <tr *ngFor="let option of stage.questions[index].options; let oi=index; trackBy:trackByIdx">
+                                                            <td>
+                                                                <textarea rows="1" class="form-control" [(ngModel)]="stage.questions[index].options[oi]"></textarea>
+                                                            </td><td><button class="btn btn-danger float-right" (click)="deleteMultiquestionOption(script, i, index, oi)" [disabled]="stage.questions[index].options.length < 3">Delete option</button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <button class="btn btn-success" (click)='stage.questions[index].options = stage.questions[index].options.concat("Option ".concat(stage.questions[index].options.length+1));'>Add option</button>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
                                                 </td>
                                             </tr> 
                                         </tbody>
@@ -736,7 +767,7 @@
                                 <textarea rows="3" class="form-control" [(ngModel)]="stage.help"></textarea>
                             </td></tr>
 
-                            <tr *ngIf='stage.stagetype=="multiquestion"'><td></td><td><button class="btn btn-success mr-3" (click)='stage.body = stage.body.concat("Question goes here")'>Add new question</button></td></tr>
+                            <tr *ngIf='stage.stagetype=="multiquestion"'><td></td><td><button class="btn btn-success mr-3" (click)='stage.questions = stage.questions.concat(initializeNewQuestion())'>Add new question</button></td></tr>
                             
                             </table>
                             <span>

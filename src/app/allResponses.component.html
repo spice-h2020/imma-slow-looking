@@ -104,7 +104,7 @@
                                         </span>
                                         <span *ngIf="action.questionStage.stagetype == 'multiquestion' && action.answers">
                                             <span *ngFor="let answer of sortAnswers(action.answers)">
-                                                <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.questionStage.body[answer.question] | linkify"></span>
+                                                <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.questions[answer.question] | linkify"></span>
                                                 <p class="font-weight-normal" style="white-space: pre-wrap;">{{answer.answer}}</p>
                                             </span>
                                         </span>

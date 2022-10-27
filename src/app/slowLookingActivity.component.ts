@@ -12,6 +12,7 @@ import { RestDataSource } from "./rest.datasource";
 import { delay } from "rxjs/operators";
 import { Gallery, GalleryItem, GalleryRef, ImageItem } from "ng-gallery";
 import { Lightbox } from "ng-gallery/lightbox";
+import { Question } from "./question.model";
 
 
 @Component({
@@ -174,6 +175,7 @@ export class SlowLookingActivityComponent implements OnInit {
         this.multiquestionIndex = rand;
         this.setAnswerValue(rand);
     }
+
     submittedAnswer = false;
     resetAnswerValue() {
         this.answervalue = new UntypedFormControl();
@@ -191,18 +193,6 @@ export class SlowLookingActivityComponent implements OnInit {
             this.answervalue.setValue("");
         }
     };
-
-    myanswertext = "";
-
-    getCurrentAnswer(index: number) {
-        let answer = this.newMultiquestionAction.answers.find(x => x.question == index);
-        if (answer == undefined) {
-            return "";
-        }
-        else {
-            return answer.answer;
-        }
-    }
 
     updateAnswers(index: number, value: string) {
         let nqa = new questionanswer(index, value);
@@ -352,13 +342,13 @@ export class SlowLookingActivityComponent implements OnInit {
         this.slowLookingCurrentScriptStageIndex=i-1;
     }
 
-    multiquestionContinue(multiquestionIndex, answervalue, stage, stagebody, i, newMultiquestionAction) {
+    multiquestionContinue(multiquestionIndex, answervalue, stage, stagequestions, i, newMultiquestionAction) {
         // (click)="multiquestionContinue(multiquestionIndex, answer.value, stage, stage.body, i, newMultiquestionAction)"
         // (click)="updateAnswers(multiquestionIndex, answer.value); submittedAnswer=true; newMultiquestionAction.questionStage = stage; newMultiquestionAction.questions = stage.body; slowLookingCurrentScriptStageIndex=i+1; addActionToActivity(newMultiquestionAction); resetNewMultiQuestionAction(); resetAnswerValue(); showQuestionHelp=false; submittedAnswer=false; multiquestionIndex=0"
         this.updateAnswers(multiquestionIndex, answervalue);
         this.submittedAnswer=true; 
         this.newMultiquestionAction.questionStage = stage; 
-        this.newMultiquestionAction.questions = stagebody; 
+        this.newMultiquestionAction.questions = this.getQuestionTextFromQuestions(stagequestions); 
         this.slowLookingCurrentScriptStageIndex=i+1; 
         this.addActionToActivity(newMultiquestionAction); 
         this.resetNewMultiQuestionAction(); 
@@ -368,13 +358,13 @@ export class SlowLookingActivityComponent implements OnInit {
         this.multiquestionIndex=0
     }
 
-    multiquestionEnd(multiquestionIndex, answervalue, stage, stagebody, newMultiquestionAction) {
+    multiquestionEnd(multiquestionIndex, answervalue, stage, stagequestions, newMultiquestionAction) {
         // (click)="multiquestionEnd(multiquestionIndex, answer.value, stage, stage.body, newMultiquestionAction)"
         // (click)="updateAnswers(multiquestionIndex, answer.value); submittedAnswer=true; newMultiquestionAction.questionStage = stage; newMultiquestionAction.questions = stage.body; addActionToActivity(newMultiquestionAction); resetNewMultiQuestionAction(); resetAnswerValue(); addActivity(); slowLookingScript='0'; multiquestionIndex=0"
         this.updateAnswers(multiquestionIndex,answervalue); 
         this.submittedAnswer=true; 
         this.newMultiquestionAction.questionStage = stage; 
-        this.newMultiquestionAction.questions = stagebody; 
+        this.newMultiquestionAction.questions = this.getQuestionTextFromQuestions(stagequestions); 
         this.addActionToActivity(newMultiquestionAction); 
         this.resetNewMultiQuestionAction(); 
         this.resetAnswerValue(); 
@@ -385,6 +375,14 @@ export class SlowLookingActivityComponent implements OnInit {
 
     multiquestionBack() {
         
+    }
+
+    getQuestionTextFromQuestions(questions: Question[]) {
+        let questionText = [];
+        for(var question of questions) {
+            questionText = questionText.concat(question.title);
+        }
+        return questionText;
     }
 
     questionContinue(i, stage, stagebody, newQuestionAction) {

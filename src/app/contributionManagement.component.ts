@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { questionanswer } from "./action.model";
 import { Activity } from "./activity.model";
 import { CurrentUser } from "./currentUser.service";
 import { Model } from "./repository.model";
@@ -104,6 +105,9 @@ export class ContributionManagementComponent {
         return this.model.getUsers().sort((a, b) => (a.id < b.id) ? -1 : 1);;
     }
 
+    sortAnswers(answers: questionanswer[]) {
+        return answers.sort((a1, a2) => {if(a1.question > a2.question) {return 1;} else {return -1;}})
+    }
 }
 
 
