@@ -74,3 +74,29 @@ a {color: rgb(170, 170, 170);
 .carousel-item-right {
     transform: translateX(100%);
 }
+
+.nav-pills {
+  border-bottom: 1px solid rgb(90, 98, 106); 
+}
+.nav-pills .nav-link.active {
+  /* background-color: rgb(90, 98, 106) !important; */
+  background-color: rgb(254, 180, 14) !important;
+  color: rgb(33, 33, 31) !important;
+  margin-right: 20px;
+  border-bottom: 3px solid black; 
+}
+
+.nav-pills .nav-link:not(.active) {
+  /* background-color: rgb(90, 98, 106) !important; */
+  background-color: rgb(254, 180, 14) !important;
+  color: rgb(33, 33, 31) !important;
+  margin-right: 20px;
+  border-bottom: 3px solid rgb(254, 180, 14); 
+}
+
+.nav-pills .nav-link:hover {
+  /* background-color: rgb(71, 79, 85) !important; */
+  background-color: rgb(215, 153, 8) !important;
+  /* border-bottom: 3px solid rgb(215, 153, 8);  */
+  border-bottom: 3px solid rgb(71, 71, 71); 
+}

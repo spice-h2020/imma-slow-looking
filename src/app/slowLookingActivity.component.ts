@@ -185,7 +185,7 @@ export class SlowLookingActivityComponent implements OnInit {
         if(this.newMultiquestionAction.answers == undefined) {
             this.newMultiquestionAction.answers = [];
         }
-        let qa = this.newMultiquestionAction.answers.find(x => x.question == index)
+        let qa = this.newMultiquestionAction.answers.find(x => x.question == index);
         if(qa) {
             this.answervalue.setValue(qa.answer);
         }
@@ -200,7 +200,7 @@ export class SlowLookingActivityComponent implements OnInit {
             this.newMultiquestionAction.answers = [];
         }
 
-        let newarray = this.newMultiquestionAction.answers.filter(answer => answer.question != index)
+        let newarray = this.newMultiquestionAction.answers.filter(answer => answer.question != index);
         newarray.push(nqa);
         this.newMultiquestionAction.answers = newarray;
     }

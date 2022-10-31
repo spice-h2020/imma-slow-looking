@@ -12,11 +12,11 @@ import { ConfigSettings } from "./config";
 import { Question } from "./question.model";
 
 @Component({
-    selector: "paScriptAuthoring",
-    templateUrl: "scriptAuthoring.component.html"
+    selector: "paScriptWizard",
+    templateUrl: "scriptWizard.component.html"
 }) 
 
-export class ScriptAuthoringComponent {
+export class ScriptWizardComponent {
 
     constructor(public currentuser: CurrentUser, private model: Model){}
 
@@ -79,6 +79,18 @@ export class ScriptAuthoringComponent {
     showOpenScripts: boolean = true;
 
     showClosedScripts: boolean = true;
+
+    selectScript(_id: string) {
+        this.viewScript = _id;
+        this.selectedScript  = this.getScript(_id);
+    }
+
+    unselectScript() {
+        this.viewScript = '0';
+        this.selectedScript = undefined;
+    }
+
+    selectedScript: Script = undefined;
 
     viewScript: string = "0";
 

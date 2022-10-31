@@ -18,6 +18,7 @@ import { AllResponsesComponent } from './allResponses.component';
 import { OverviewComponent } from './overview.component';
 import { ExhibitionTableComponent } from './exhibitionTable.component';
 import { ModelResolver6 } from './model.resolver6';
+import { ScriptWizardComponent } from './scriptWizard.component';
 
 const routes: Routes = [
   { path: 'home', component: HomepageComponent, resolve: { model1: ModelResolver1, model2: ModelResolver2, model3: ModelResolver3 } },
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'management', component: ContributionManagementComponent, resolve: {model4: ModelResolver4 } },
   { path: 'otherPeople', component: OtherPeopleComponent, resolve: { model1: ModelResolver1, model2: ModelResolver2, model3: ModelResolver3, model4: ModelResolver4 }  },
   { path: 'authoring', component: ScriptAuthoringComponent, resolve: { model1: ModelResolver1, model3: ModelResolver3, model6: ModelResolver6} },
+  { path: 'wizard', component: ScriptWizardComponent, resolve: { model1: ModelResolver1, model3: ModelResolver3, model6: ModelResolver6} },
   { path: 'themes', component: ThemeTableComponent, resolve: { model3: ModelResolver3 } },
   { path: 'artworks', component: ArtworkTableComponent, resolve: { model2: ModelResolver2 } },
   { path: 'users', component: UserTableComponent, resolve: { model5: ModelResolver5 } },
