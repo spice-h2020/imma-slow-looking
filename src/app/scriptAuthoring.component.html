@@ -1,5 +1,5 @@
 <paNavBar></paNavBar>
-<p class="lead">Manage your scripts.</p>{{viewScript}}
+<p class="lead">Manage your scripts.</p>
 <div *ngIf="isAdmin()" class="form-check form-check-inline">
     <label class="form-check-label">Show all scripts:&nbsp;&nbsp;</label>
     <input [(ngModel)]="showallscripts" class="form-check-input" (change)="viewScript='0'; deleteStageConfirmationId=0; showStageHelp=false; newStageMessage=false;"
@@ -102,11 +102,11 @@
                             <td class="align-top"><span *ngIf="first" class="font-weight-bold">Artworks:</span></td>
                             <td class="align-top">
                                 <span *ngIf="artwork.url" class="mr-3">
-                                    <img src="{{artwork.url}}" alt="{{artwork.name}}" class="img-thumbnail" height="auto" width="150px" >
+                                    <img src="{{artwork.url}}" alt="{{artwork.name}}" eight="auto" width="150px">
                                 </span>
-                                <label class="form-check-label align-top"> 
-                                    <div><strong><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></strong></div>
-                                    <div><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></div>
+                                <label class="form-check-label align-bottom"> 
+                                    <div><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></div>
+                                    <div><strong><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></strong></div>
                                     <div>{{artwork.year}}</div>
                                     <!-- <span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span>, <span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span>, {{artwork.year}}  -->
                                 </label>
@@ -314,10 +314,33 @@
                     <tr><td  class="align-top">
                         <span class="font-weight-bold">Artworks: </span>
                     </td><td>
-                        <div *ngFor="let artwork of getArtworks(script)" class="form-check form-check-inline">
-                            <!-- <div class="form-check form-check-inline"> -->
-                                <!-- <div class="w-30"> -->
-                                    <div class="row">
+                        <div *ngFor="let artwork of getArtworks(script)" class="form-check form-check-inline pb-3" style="width: 210px;">
+                            <div class=" align-self-center" style="width: 30px;">
+                                <input 
+                                class="form-check-input"
+                                type="checkbox"
+                                [value]=artwork._id
+                                [ngModel] = "script.artworkids.includes(artwork._id)"
+                                (change) = "artworksChange(script, artwork._id, $event)"
+                                />
+                            </div>
+                            <div class="col-sm">
+                                <div class="row">
+                                    <span *ngIf="artwork.url">
+                                        <img src="{{artwork.url}}" alt="{{artwork.name}}" height="auto" width="150px" >
+                                    </span>
+                                </div>
+                                <div class="row">
+                                    <label class="form-check-label"> 
+                                        <div><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></div>
+                                        <div><strong><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></strong></div>
+                                        <div>{{artwork.year}}</div>
+                                    </label>
+                                </div>
+                            </div>
+
+
+                                    <!-- <div class="row">
                                         <div class="col col-sm-1 align-self-center">
                                             <input 
                                             class="form-check-input"
@@ -338,11 +361,10 @@
                                                     <div><strong><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></strong></div>
                                                     <div><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></div>
                                                     <div>{{artwork.year}}</div>
-                                                    <!-- <span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span>, <span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span>, {{artwork.year}}  -->
                                                 </label>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                 <!-- </div> -->
                             <!-- </div> -->
