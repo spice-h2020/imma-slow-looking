@@ -46,16 +46,16 @@
                                         <a routerLink="/slowLooking/{{script._id}}"><img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}"></a>
                                     </div>
                                     <div class="col" *ngIf="artwork.url">
-                                        <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div></strong>
-                                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"> </div>
+                                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
+                                        <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"> </div></strong>
                                         <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
                                     </div>
                                     <div class="col-8" *ngIf="!artwork.url && artwork.fileLocation">
                                         <img routerLink="/slowLooking/{{script._id}}" class="col-sm-12" src="{{artwork.fileLocation}}" >
                                     </div>
                                     <div class="col" *ngIf="!artwork.url && artwork.fileLocation">
-                                        <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div></strong>
-                                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"> </div>
+                                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
+                                        <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></div></strong>
                                         <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
                                     </div>
                             </div><br/>

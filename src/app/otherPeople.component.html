@@ -61,16 +61,16 @@
                                     <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
                                 </div>
                                 <div class="col" *ngIf="artwork.url">
-                                    <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div></strong>
-                                    <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"> </div>
+                                    <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
+                                    <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></div></strong>
                                     <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
                                 </div>
                                 <div class="col-8" *ngIf="!artwork.url && artwork.fileLocation">
                                     <img routerLink="/slowLooking/{{script._id}}" class="col-sm-12" src="{{artwork.fileLocation}}" >
                                 </div>
                                 <div class="col" *ngIf="!artwork.url && artwork.fileLocation">
-                                    <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div></strong>
-                                    <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"> </div>
+                                    <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
+                                    <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></div></strong>
                                     <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
                                 </div> 
                             </div>
@@ -81,8 +81,8 @@
                                         <img class="col-sm-12" src="{{otherartwork.url}}" alt="{{otherartwork.name}}">
                                     </div>
                                     <div class="col">
-                                        <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="otherartwork.name"></div></strong>
-                                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="otherartwork.artist"> </div>
+                                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="otherartwork.name"></div>
+                                        <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="otherartwork.artist"></div></strong>
                                         <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="otherartwork.year"></div>
                                     </div>
                                 </div>
