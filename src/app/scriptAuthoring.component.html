@@ -155,32 +155,9 @@
                         </span>
                     </td><td>
                         <a routerLink='/slowLooking/{{script._id}}' target='_blank'>
-                            <button type="button" class="btn btn-link" style="color: black;">
-                            <div class="row">
-                                <div class="col-2" style="padding-top: 4px;">
-                                    <svg style="display:block" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
-                                        <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
-                                    </svg>
-                                </div>
-                                &nbsp;Try script
-                              </div>
-                            </button>
+                            <button class="btn btn-light mr-3">Try script <i class='fa fa-external-link'></i></button>
                         </a>
-                        <button type="button" class="btn btn-link" style="color: black;" placement="top" ngbPopover="{{scriptURL(script)}}" popoverTitle="Script URL copied:" ngxClipboard [cbContent]='scriptURL(script)'>
-                            <div class="row">
-                                <div class="col-2" style="padding-top: 4px;">
-                                    <svg style="display:block" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-clipboard" viewBox="0 0 16 16">
-                                        <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
-                                        <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
-                                    </svg>
-                                </div>
-                                Copy URL to clipboard
-                              </div>
-                        </button>
-                        <!-- <span class="mr-3">
-                            <a routerLink='/slowLooking/{{script._id}}' target='_blank' style='color: rgb(108, 117, 125)'>{{scriptURL(script)}}</a>
-                        </span> -->
+                        <button class="btn btn-light" ngbPopover="{{scriptURL(script)}}" popoverTitle="Script URL copied:" ngxClipboard [cbContent]='scriptURL(script)'>Copy script URL <i class="fa fa-clone" aria-hidden="true"></i></button>
                     </td></tr>
                     <tr *ngIf="script.homepageartworkid != undefined && script.artworkids.length > 0 && script.stages.length > 0"><td class="align-top">
                         <!-- script visibility -->
@@ -188,37 +165,10 @@
                             Responses: 
                         </span>
                     </td><td style="vertical-align: top;">
-
-
                         <a routerLink='/allResponses/{{script._id}}' target='_blank'>
-                            <button type="button" class="btn btn-link" style="color: black;">
-                                <div class="row">
-                                    <div class="col-2" style="padding-top: 4px;">
-                                        <svg style="display:block" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
-                                            <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
-                                        </svg>
-                                    </div>
-                                    &nbsp;Open responses
-                                  </div>
-                            </button>
+                            <button class="btn btn-light mr-3">See script responses <i class='fa fa-external-link'></i></button>
                         </a>
-                        <button type="button" class="btn btn-link" style="color: black;" placement="top" ngbPopover="{{responsesURL(script)}}" popoverTitle="Responses URL copied:" ngxClipboard [cbContent]='responsesURL(script)'>
-                            <div class="row">
-                                <div class="col-2" style="padding-top: 4px;">
-                                    <svg style="display:block" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-clipboard" viewBox="0 0 16 16">
-                                        <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
-                                        <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
-                                    </svg>
-                                </div>
-                                Copy URL to clipboard
-                            </div>
-                        </button>
-
-
-                        <!-- <span class="mr-3">
-                            <a routerLink='/allResponses/{{script._id}}' target='_blank' style='color: rgb(108, 117, 125)'>{{responsesURL(script)}}</a>
-                        </span> -->
+                        <button class="btn btn-light" ngbPopover="{{responsesURL(script)}}" popoverTitle="Responses URL copied:" ngxClipboard [cbContent]='responsesURL(script)'>Copy responses URL <i class="fa fa-clone" aria-hidden="true"></i></button>
                     </td></tr>
                 </table>
                     <span *ngIf="viewScript==script._id && editScriptDescription=='0' && editScriptStage==0">
@@ -230,20 +180,24 @@
                     <div class="mt-3" *ngIf="viewScript==script._id  && editScriptDescription=='0'">
                         <hr>
                         <span class="font-weight-bold">Stages</span>
-                        <span *ngIf="editScriptStage==0">
-                            <br/>Add new stage: 
-                            <button class="btn btn-success mr-1" (click)="addStatementStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">statement</button> 
-                            <button class="btn btn-success mr-1" (click)="addQuestionStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">question</button> 
-                            <button class="btn btn-success mr-1" (click)="addMultiQuestionStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">multiquestion</button> 
-                            <button class="btn btn-success mr-1" (click)="addStoryStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">story</button>
-                            <img class="ml-3" width="20" style="background-color:white; cursor: pointer;" src="assets/img/question-help.png" (click)="toggleStageHelp(); newStageMessage=false;">
-                        </span>
+                        <div class="row" *ngIf="editScriptStage==0">
+                            <div class="col-2">
+                                Add stage: 
+                            </div>
+                            <div class="col-10">
+                                <button class="btn btn-success mr-1" (click)="addStatementStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">statement</button> 
+                                <button class="btn btn-success mr-1" (click)="addQuestionStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">question</button> 
+                                <button class="btn btn-success mr-1" (click)="addMultiQuestionStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">multiquestion</button> 
+                                <button class="btn btn-success mr-1" (click)="addStoryStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">story</button>
+                                <img class="ml-3" width="20" style="background-color:white; cursor: pointer;" src="assets/img/question-help.png" (click)="toggleStageHelp(); newStageMessage=false;">
+                            </div>
+                        </div>
                    
-                        <br/>
-                        <div *ngIf="newStageMessage" class="alert alert-success fadeout">
+                        <!-- <br/> -->
+                        <div *ngIf="editScriptStage==0 && newStageMessage" class="alert alert-success fadeout">
                             {{newStageMessageText}}
                         </div>
-                        <div *ngIf="showStageHelp" class="alert alert-info">
+                        <div *ngIf="editScriptStage==0 && showStageHelp" class="alert alert-info">
                             <span class="font-weight-bold">statement: </span><span>Provide a statement giving information or a perspective</span><br/>
                             <span class="font-weight-bold">question: </span><span>Ask a question and optionally provide a help prompt</span><br/>
                             <span class="font-weight-bold">multiquestion: </span><span>Add a number of questions to one stage which can be reloaded at random or shown in sequence</span><br/>
@@ -538,55 +492,111 @@
                                 </span>
                             </span>{{i+1}}<br/>
                             <!-- <span class="font-weight-bold">&nbsp;Position: </span><span>{{i+1}}</span><br/> -->
-                            <span class="font-weight-bold">Title: </span><span>{{stage.title}}</span><br/>
-                            <span class="font-weight-bold">Type: </span><span>{{stage.stagetype}}</span><br/>
-
-                            <span *ngIf="!getArtworksFromIds(stage.title, stage.includeartworks, script, stage).length" class="font-weight-bold">
-                                Show artworks: 
-                            </span>
-                            <table>
-                            <tr *ngFor="let artwork of getArtworksFromIds(stage.title, stage.includeartworks, script, stage); let first = first">
-                                    <td><span *ngIf="first" class="font-weight-bold">Show artworks:</span></td><td><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span>, <span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span>, {{artwork.year}}</td>
-                            </tr>
-                            </table>
-
-
-                            <span *ngIf='stage.stagetype=="multiquestion"'>
-                                <span class="font-weight-bold">Style: </span>
-                                <span *ngIf='stage.sequential'>Questions presented in sequence</span>
-                                <span *ngIf='!stage.sequential'>Random question that can be reloaded</span>
-                                <br/>
-                            </span>
-                            <span *ngIf='stage.stagetype=="multiquestion"'>
-                                <span class="font-weight-bold">Help text: </span><span style="white-space: pre-wrap;" [innerHTML]="stage.help | linkify"></span><br/>
-                            </span>
-                            <span *ngIf='stage.stagetype=="multiquestion"'>
-                                <span *ngFor="let question of stage.questions; let i=index" class="mr-3">
-                                    <span class="font-weight-bold">Text {{i+1}}: </span><span style="white-space: pre-wrap;" [innerHTML]="question.title | linkify"></span><br/>
-
-                                    <span *ngIf="question.choice"><strong>Text {{i+1}} options: </strong>
-                                        <span *ngFor="let option of question.options; let last=last;">
-                                            {{option}}<span *ngIf="!last">, </span>
-                                        </span>
-                                    <br/>
+                            <div class="row">
+                                <div class="col-2">
+                                    <span class="font-weight-bold">Title: </span>
+                                </div>
+                                <div class="col-10">
+                                    <span>{{stage.title}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2">
+                                    <span class="font-weight-bold">Type: </span>
+                                </div>
+                                <div class="col-10">
+                                    <span>{{stage.stagetype}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2">
+                                    <span class="font-weight-bold">Artworks: </span>
+                                </div>
+                                <div class="col-10">
+                                    <span *ngFor="let artwork of getArtworksFromIds(stage.title, stage.includeartworks, script, stage);">
+                                        <span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span>, <span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span>, {{artwork.year}}<br/>
                                     </span>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf='stage.stagetype=="multiquestion"'>
+                                <div class="col-2">
+                                    <span class="font-weight-bold">Style: </span>
+                                </div>
+                                <div class="col-10">
+                                    <span *ngIf='stage.sequential'>Questions presented in sequence</span>
+                                    <span *ngIf='!stage.sequential'>Random question that can be reloaded</span>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf='stage.stagetype=="multiquestion"'>
+                                <div class="col-2">
+                                    <span class="font-weight-bold">Help text: </span>
+                                </div>
+                                <div class="col-10">
+                                    <span style="white-space: pre-wrap;" [innerHTML]="stage.help | linkify"></span>
+                                </div>
+                                
+                            </div>
+                            <ng-container *ngIf='stage.stagetype=="multiquestion"'>
+                                <ng-container *ngFor="let question of stage.questions; let i=index">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <span class="font-weight-bold">Question {{i+1}}: </span>
+                                        </div>
+                                        <div class="col-10">
+                                            <span style="white-space: pre-wrap;" [innerHTML]="question.title | linkify"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row" *ngIf="question.choice">
+                                        <div class="col-2">
+                                            <strong>Options {{i+1}}: </strong>
+                                        </div>
+                                        <div class="col-10">
+                                            <span *ngFor="let option of question.options; let last=last;">
+                                                {{option}}<span *ngIf="!last">, </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </ng-container>
+   
+                            <div class="row" *ngIf='stage.stagetype!=="multiquestion" && stage.stagetype!=="question"'>
+                                <div class="col-2">
+                                    <span class="font-weight-bold">Text: </span>
+                                </div>
+                                <div class="col-10">
+                                    <span style="white-space: pre-wrap;" [innerHTML]="stage.body | linkify"></span>
+                                </div>
+                            </div>
 
-
-                                </span>
-                            </span>
-                            <span *ngIf='stage.stagetype!=="multiquestion" && stage.stagetype!=="question"'>
-                                <span class="font-weight-bold">Text: </span><span style="white-space: pre-wrap;" [innerHTML]="stage.body | linkify"></span><br/>
-                            </span>
-                            <span *ngIf='stage.stagetype=="question"'>
-                                <span class="font-weight-bold">Text: </span><span style="white-space: pre-wrap;" [innerHTML]="stage.question.title | linkify"></span><br/>
-                                <span *ngIf="stage.question.choice"><strong>Options: </strong>
-                                    <span *ngFor="let option of stage.question.options; let last=last;">
+                            <ng-container *ngIf='stage.stagetype=="question"'>
+                                <div class="row" *ngIf='stage.stagetype=="question"'>
+                                    <div class="col-2">
+                                        <span class="font-weight-bold">Text: </span>
+                                    </div>
+                                    <div class="col-10">
+                                        <span style="white-space: pre-wrap;" [innerHTML]="stage.question.title | linkify"></span>
+                                    </div>
+                                </div>
+                                <div class="row" *ngIf="stage.question.choice">
+                                    <div class="col-2">
+                                        <strong>Options: </strong>
+                                    </div>
+                                    <div class="col-10">
+                                        <span *ngFor="let option of stage.question.options; let last=last;">
                                         {{option}}<span *ngIf="!last">, </span>
                                     </span>
-                                <br/>
-                                </span>
-                                <span class="font-weight-bold">Help text: </span><span style="white-space: pre-wrap;" [innerHTML]="stage.help | linkify"></span><br/>
-                            </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-2">
+                                        <span class="font-weight-bold">Help text: </span>
+                                    </div>
+                                    <div class="col-10">
+                                        <span style="white-space: pre-wrap;" [innerHTML]="stage.help | linkify"></span>
+                                    </div>
+                                </div>
+                            </ng-container>
+                            
                             <span *ngIf="editScriptStage==0 && editScriptDescription=='0'"> 
                                 <span class="float">&nbsp;</span>
                                 <span class="float-right">
@@ -625,7 +635,7 @@
                             </td></tr>
                             <tr>
                                 <td class="align-top">
-                                    <span class="font-weight-bold">Show artworks: </span>
+                                    <span class="font-weight-bold">Artworks: </span>
                                 </td>
                                 <td>
                                     <table>
@@ -712,7 +722,7 @@
                                         <label class="form-check-label">Multiple choice</label><br/>
                                     </td></tr>
                                 </table>
-                                <table *ngIf='stage.stagetype=="question" && stage.question.choice' style="width: 100%;" class="table table-dark">
+                                <table *ngIf='stage.stagetype=="question" && stage.question.choice' style="width: 100%; background-color:#EEEEEE;">
                                     <tr *ngFor="let option of stage.question.options; let index=index; trackBy:trackByIdx">
                                         <td>
                                             <textarea rows="1" class="form-control" [(ngModel)]="stage.question.options[index]"></textarea>
@@ -748,7 +758,7 @@
                                                        <label class="form-check-label">Multiple choice</label>
                                                         <button class="btn btn-danger float-right" (click)="deleteMultistageQuestion(script, i, index)" [disabled]="stage.questions.length < 3">Delete question</button>
                                                     </div>
-                                                    <table *ngIf='stage.stagetype=="multiquestion" && stage.questions[index].choice' style="width: 100%;" style="width: 100%; background-color:#EEEEEE;">
+                                                    <table *ngIf='stage.stagetype=="multiquestion" && stage.questions[index].choice' style="width: 100%; background-color:#EEEEEE;">
                                                         <tr *ngFor="let option of stage.questions[index].options; let oi=index; trackBy:trackByIdx">
                                                             <td>
                                                                 <textarea rows="1" class="form-control" [(ngModel)]="stage.questions[index].options[oi]"></textarea>

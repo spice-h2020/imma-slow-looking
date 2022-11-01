@@ -87,6 +87,7 @@
                                 type="radio"
                                 [value]="option"
                                 [formControl]="answervalue"
+                                (change) = "submittedAnswer=false"
                             />
                             <label class="form-check-label">{{option}}</label><br/>
                         </div>
@@ -175,11 +176,10 @@
                 </div>
 
                 <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.question.title | linkifyHtml"></p>
-                <div *ngIf="stage.help">
-                    <div class="col-sm-12"><img align="right" width="20" style="background-color:white; cursor: pointer;" src="assets/img/question-help.png" (click)="toggleQuestionHelp()"></div>
-                    <div class="col-sm-12" style="float:left; white-space: pre-wrap;" *ngIf="showQuestionHelp" [innerHTML]="stage.help | linkifyHtml"></div>
-                </div>
-                <!-- get the answer -->
+                &nbsp;
+                <span class="float-right"><div *ngIf="stage.help" class="col-sm-12" (click)="toggleQuestionHelp()"><img width="20" style="background-color:white; cursor: pointer;" src="assets/img/question-help.png"></div></span>
+                <div class="col-sm-12" style="float:left; white-space: pre-wrap;" *ngIf="stage.help && showQuestionHelp" [innerHTML]="stage.help | linkifyHtml"></div>
+
                 <div *ngIf="!stage.question.choice" class="col-sm-12">
                     <textarea class="col-sm-12" rows="3" class="form-control" [(ngModel)]="newQuestionAction.answer"></textarea>
                 </div>
@@ -190,6 +190,7 @@
                             type="radio"
                             [value]="option"
                             [(ngModel)] = "newQuestionAction.answer"
+                            (change) = "submittedAnswer=false"
                         />
                         <label class="form-check-label">{{option}}</label><br/>
                     </div>

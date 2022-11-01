@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/cdk/overlay-prebuilt.css';
 
+@import "~font-awesome/css/font-awesome.css";   
+
 /* set a max-width for horizontal fluid layout and make it centered */
 .container-fluid {
     margin-right: auto;
@@ -80,23 +82,23 @@ a {color: rgb(170, 170, 170);
 }
 .nav-pills .nav-link.active {
   /* background-color: rgb(90, 98, 106) !important; */
-  background-color: rgb(254, 180, 14) !important;
+  background-color: rgb(245, 194, 68) !important;
   color: rgb(33, 33, 31) !important;
   margin-right: 20px;
-  border-bottom: 3px solid black; 
+  /* border-bottom: 3px solid black;  */
 }
 
 .nav-pills .nav-link:not(.active) {
   /* background-color: rgb(90, 98, 106) !important; */
-  background-color: rgb(254, 180, 14) !important;
+  background-color: white !important;
   color: rgb(33, 33, 31) !important;
   margin-right: 20px;
-  border-bottom: 3px solid rgb(254, 180, 14); 
+  /* border-bottom: 3px solid rgb(254, 180, 14);  */
 }
 
-.nav-pills .nav-link:hover {
+.nav-pills .nav-link:not(.active).nav-link:hover {
   /* background-color: rgb(71, 79, 85) !important; */
-  background-color: rgb(215, 153, 8) !important;
+  background-color: rgb(248, 216, 133) !important;
   /* border-bottom: 3px solid rgb(215, 153, 8);  */
-  border-bottom: 3px solid rgb(71, 71, 71); 
+  /* border-bottom: 3px solid rgb(71, 71, 71);  */
 }

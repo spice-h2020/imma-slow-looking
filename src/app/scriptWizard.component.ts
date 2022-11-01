@@ -112,7 +112,7 @@ export class ScriptWizardComponent {
     addScript() {
         let newscript = new Script();
         newscript.name = "Untitled script";
-        newscript.open = false;
+        newscript.open = true;
         newscript.visible = false;
         newscript.archived = false;
         // newscript.artworkid = this.model.getDefaultArtworkId();

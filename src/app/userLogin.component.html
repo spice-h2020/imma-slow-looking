@@ -21,7 +21,7 @@
 <tr *ngFor="let activity of getActivitiesOfCurrentUser();">
     <td>
     <span *ngIf="deleteConfirmation_Id==activity._id">
-        <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this activity?</strong> <div><button class="btn btn-danger ml-2" (click)="deleteActivity(activity._id)">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteConfirmation_Id=''">Cancel</button></div></div>
+        <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this response?</strong> <div><button class="btn btn-danger ml-2" (click)="deleteActivity(activity._id)">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteConfirmation_Id=''">Cancel</button></div></div>
     </span>
     <span class="text-sm-left font-weight-bold">{{activity.script.name}}</span>
     <div class="card text-white mb-3" style="background-color: #1f959b; border-radius: 15px;">
