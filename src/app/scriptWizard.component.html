@@ -2,7 +2,7 @@
 <p class="lead" *ngIf="viewScript=='0'">Select a script.</p>
 <p class="lead" *ngIf="viewScript!='0'">Selected script: <span *ngIf="selectedScript.name">{{selectedScript.name}}</span><button class="btn btn-secondary float-right mt-1" (click)="unselectScript()">Close script</button></p>
 
-<div *ngIf="viewScript=='0'">
+<div *ngIf="viewScript=='0'" class="container-fluid">
     <div class="row mb-3">
         <div class="col-9">&nbsp;</div>
         <div class="col-3">
@@ -62,7 +62,7 @@
                 </div>
             </div>
         </div>
-        <div class="col" style="min-width: 4em;">
+        <div class="col-2">
             <button class="btn btn-secondary float-right" (click)="selectScript(script._id)">Open script</button>
         </div>
     </div>
