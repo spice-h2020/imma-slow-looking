@@ -198,10 +198,38 @@
                             {{newStageMessageText}}
                         </div>
                         <div *ngIf="editScriptStage==0 && showStageHelp" class="alert alert-info">
-                            <span class="font-weight-bold">statement: </span><span>Provide a statement giving information or a perspective</span><br/>
-                            <span class="font-weight-bold">question: </span><span>Ask a question and optionally provide a help prompt</span><br/>
-                            <span class="font-weight-bold">multiquestion: </span><span>Add a number of questions to one stage which can be reloaded at random or shown in sequence</span><br/>
-                            <span class="font-weight-bold">story: </span><span>Provide a story stem inspired by the artworks</span><br/>
+                            <div class="row">
+                                <div class="col-2" style="min-width: 9em;">
+                                    <span class="font-weight-bold">statement: </span>
+                                </div>
+                                <div class="col">
+                                    <span>Provide a statement giving information or a perspective</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2" style="min-width: 9em;">
+                                    <span class="font-weight-bold">question: </span>
+                                </div>
+                                <div class="col">
+                                    <span>Ask a question and optionally provide a help prompt</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2" style="min-width: 9em;">
+                                    <span class="font-weight-bold">multiquestion: </span>
+                                </div>
+                                <div class="col">
+                                    <span>Add a number of questions to one stage which can be reloaded at random or shown in sequence</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2" style="min-width: 9em;">
+                                    <span class="font-weight-bold">story: </span>
+                                </div>
+                                <div class="col">
+                                    <span>Provide a story stem inspired by the artworks</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                
@@ -220,7 +248,7 @@
                         </td>
                         <td>
                             <textarea rows="3" class="form-control" [(ngModel)]="script.description"></textarea>
-                            <div class = "help-block">A short description of what the activity is about, what will it involve, why people should take part</div>
+                            <div class = "help-block">A short description of what the script is about, what will it involve, why people should take part</div>
                         </td> 
                     </tr>
                     <tr>

@@ -9,12 +9,12 @@
             <button class="btn btn-success float-right" (click)="addScript();">New script</button>
         </div>
     </div>
-    <div class="row mb-3" *ngFor="let script of getScripts(); let i = index">
-        <div class="col-9">
+    <div class="row mb-3 p-3 border" *ngFor="let script of getScripts(); let i = index" style="border-radius: 15px;">
+        <div class="col-10">
             <h4>{{script.name}}</h4>
             <div class="row">
                 <div class="col-3">
-                    Description:
+                    <strong>Description: </strong>
                 </div>
                 <div class="col-9">
                     {{script.name}}
@@ -22,7 +22,7 @@
             </div>
             <div class="row">
                 <div class="col-3">
-                    Author:
+                    <strong>Author: </strong>
                 </div>
                 <div class="col-9">
                     {{script.author}}
@@ -30,7 +30,7 @@
             </div>
             <div class="row">
                 <div class="col-3">
-                    Themes:
+                    <strong>Themes: </strong>
                 </div>
                 <div class="col-9">
                     <span *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
@@ -40,7 +40,7 @@
             </div>
             <div class="row">
                 <div class="col-3">
-                    Artworks:
+                    <strong>Artworks: </strong>
                 </div>
                 <div class="col-9">
                     <span *ngFor="let artwork of getArtworksFromIds(script.name, script.artworkids, script);">
@@ -52,7 +52,7 @@
             </div>
             <div class="row" *ngIf="script.open && script.stages.length > 0;">
                 <div class="col-3">
-                    Script:
+                    <strong>Script: </strong>
                 </div>
                 <div class="col-9">
                     <a routerLink='/slowLooking/{{script._id}}' target='_blank'>
@@ -62,7 +62,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-3">
+        <div class="col" style="min-width: 4em;">
             <button class="btn btn-secondary float-right" (click)="selectScript(script._id)">Open script</button>
         </div>
     </div>
@@ -126,10 +126,38 @@
                 {{newStageMessageText}}
             </div>
             <div *ngIf="editScriptStage==0 && showStageHelp" class="alert alert-info">
-                <span class="font-weight-bold">statement: </span><span>Provide a statement giving information or a perspective</span><br/>
-                <span class="font-weight-bold">question: </span><span>Ask a question and optionally provide a help prompt</span><br/>
-                <span class="font-weight-bold">multiquestion: </span><span>Add a number of questions to one stage which can be reloaded at random or shown in sequence</span><br/>
-                <span class="font-weight-bold">story: </span><span>Provide a story stem inspired by the artworks</span><br/>
+                <div class="row">
+                    <div class="col-2" style="min-width: 9em;">
+                        <span class="font-weight-bold">statement: </span>
+                    </div>
+                    <div class="col">
+                        <span>Provide a statement giving information or a perspective</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2" style="min-width: 9em;">
+                        <span class="font-weight-bold">question: </span>
+                    </div>
+                    <div class="col">
+                        <span>Ask a question and optionally provide a help prompt</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2" style="min-width: 9em;">
+                        <span class="font-weight-bold">multiquestion: </span>
+                    </div>
+                    <div class="col">
+                        <span>Add a number of questions to one stage which can be reloaded at random or shown in sequence</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2" style="min-width: 9em;">
+                        <span class="font-weight-bold">story: </span>
+                    </div>
+                    <div class="col">
+                        <span>Provide a story stem inspired by the artworks</span>
+                    </div>
+                </div>
             </div>
 
 
