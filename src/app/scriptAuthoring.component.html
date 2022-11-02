@@ -700,20 +700,26 @@
                             <tr *ngIf='stage.stagetype=="multiquestion"'>
                                 <td class="align-top"><span class="font-weight-bold">Style: </span></td>
                                 <td>
-                                    <input
-                                    type="radio"
-                                    [value]=true
-                                    name="sequential"
-                                    [(ngModel)] = "stage.sequential"
-                                    />
+                                    <div class="form-check form-check-inline">
+                                        <input
+                                        type="radio"
+                                        class="form-check-input"
+                                        [value]=true
+                                        name="sequential"
+                                        [(ngModel)] = "stage.sequential"
+                                        />
+                                    </div>
                                     <label class="form-check-label ml-1">Questions presented in sequence</label><br/>
-                                    <input
-                                    type="radio"
-                                    [value]=false
-                                    name="sequential"
-                                    [(ngModel)] = "stage.sequential"
-                                    />
-                                    <label class="form-check-label ml-1">Random question that can be reloaded</label><br/>
+                                    <div class="form-check form-check-inline">
+                                        <input
+                                        type="radio"
+                                        class="form-check-input"
+                                        [value]=false
+                                        name="sequential"
+                                        [(ngModel)] = "stage.sequential"
+                                        />
+                                    </div>
+                                    <label class="form-check-label ml-1">Random question that can be reloaded</label>
                                 </td>
                             </tr>
 
@@ -775,7 +781,7 @@
                                                         </svg>
                                                     </span>
                                                     <span class="font-weight-bold">Question {{index+1}}: </span><br/><textarea rows="3" class="form-control" [(ngModel)]="stage.questions[index].title"></textarea>
-                                                    <div class="form-check ml-1">
+                                                    <div class="form-check ml-2">
                                                         <input
                                                            class="form-check-input"
                                                            type="checkbox"
@@ -783,7 +789,7 @@
                                                            [(ngModel)] = "stage.questions[index].choice"
                                                            (click) = "checkMultiquestionOptions(script, i, index);"
                                                        /> 
-                                                       <label class="form-check-label">Multiple choice</label>
+                                                       <label class="form-check-label ml-2">Multiple choice</label>
                                                         <button class="btn btn-danger float-right" (click)="deleteMultistageQuestion(script, i, index)" [disabled]="stage.questions.length < 3">Delete question</button>
                                                     </div>
                                                     <table *ngIf='stage.stagetype=="multiquestion" && stage.questions[index].choice' style="width: 100%; background-color:#EEEEEE;">
