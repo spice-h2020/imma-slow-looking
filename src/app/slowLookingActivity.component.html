@@ -193,10 +193,20 @@
                 </div>
 
                 <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.question.title | linkifyHtml"></p>
-                &nbsp;
-                <span class="float-right"><div *ngIf="stage.help" class="col-sm-12" (click)="toggleQuestionHelp()"><img width="20" style="background-color:white; cursor: pointer;" src="assets/img/question-help.png"></div></span>
-                <div class="col-sm-12" style="float:left; white-space: pre-wrap;" *ngIf="stage.help && showQuestionHelp" [innerHTML]="stage.help | linkifyHtml"></div>
-
+                <div class="row">
+                    <div class="col-10">
+                        <span class="col-sm-12 alert alert-info" style="float:left; white-space: pre-wrap;" *ngIf="stage.help && showQuestionHelp" [innerHTML]="stage.help | linkifyHtml"></span>
+                    </div>
+                    <div class="col-2">
+                        <span class="float-right"><div *ngIf="stage.help" class="col-sm-12" (click)="toggleQuestionHelp()"><img width="20" style="background-color:white; cursor: pointer;" src="assets/img/question-help.png"></div></span>
+                    </div>
+                </div>
+                <!-- <div class="col-sm-12 border container" style="display: block;">
+                    &nbsp;
+                    <span class="float-right"><div *ngIf="stage.help" class="col-sm-12" (click)="toggleQuestionHelp()"><img width="20" style="background-color:white; cursor: pointer;" src="assets/img/question-help.png"></div></span>
+                    <span class="col-sm-12" style="float:left; white-space: pre-wrap;" *ngIf="stage.help && showQuestionHelp" [innerHTML]="stage.help | linkifyHtml"></span>
+                    &nbsp;
+                </div> -->
                 <div *ngIf="!stage.question.choice" class="col-sm-12">
                     <textarea class="col-sm-12" rows="3" class="form-control" [(ngModel)]="newQuestionAction.answer"></textarea>
                 </div>
