@@ -21,8 +21,8 @@
                     </span>
                 </div>
                 <div class="col">
-                    <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div></strong>
-                    <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"> </div>
+                    <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
+                    <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></div></strong>
                     <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
                 </div>
             </div>
@@ -63,13 +63,13 @@
                         </span>
                     </div>
                     <div class="col">
-                        <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div></strong>
-                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"> </div>
+                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
+                        <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></div></strong>
                         <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
                     </div>
                 </div>
 
-                <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.help | linkifyHtml" *ngIf="stage.help"></p>
+                <p class="col-sm-12 alert alert-info" style="white-space: pre-wrap;" [innerHTML]="stage.help | linkifyHtml" *ngIf="stage.help"></p>
 
                 <span *ngIf="stage.sequential">
                     <!-- <div class="col-sm-12">{{stage.body[multiquestionIndex]}}</div><br/> -->
@@ -201,18 +201,18 @@
                         </span>
                     </div>
                     <div class="col">
-                        <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div></strong>
-                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"> </div>
+                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
+                        <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></div></strong>
                         <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
                     </div>
                 </div>
 
                 <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.question.title | linkifyHtml"></p>
                 <div class="row">
-                    <div class="col-10">
+                    <div class="col-11">
                         <span class="col-sm-12 alert alert-info" style="float:left; white-space: pre-wrap;" *ngIf="stage.help && showQuestionHelp" [innerHTML]="stage.help | linkifyHtml"></span>
                     </div>
-                    <div class="col-2">
+                    <div class="col-1">
                         <span class="float-right"><div *ngIf="stage.help" class="col-sm-12" (click)="toggleQuestionHelp()"><img width="20" style="background-color:white; cursor: pointer;" src="assets/img/question-help.png"></div></span>
                     </div>
                 </div>
@@ -272,13 +272,13 @@
                         </span>
                     </div>
                     <div class="col">
-                        <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div></strong>
-                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"> </div>
+                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
+                        <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></div></strong>
                         <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
                     </div>
                 </div>
 
-                <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.help | linkifyHtml"></p>
+                <p class="col-sm-12 alert alert-info" style="white-space: pre-wrap;" [innerHTML]="stage.help | linkifyHtml"></p>
 
                 <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.body | linkifyHtml"></p>
 

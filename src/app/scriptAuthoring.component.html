@@ -265,6 +265,7 @@
                     <tr><td class="align-top">
                         <span class="font-weight-bold">Themes: </span>
                     </td><td>
+                        <span *ngIf="!getThemesFromIds(script.themeids).length" class="text-warning">At least one theme should be selected<br/></span>
                         <div *ngFor="let theme of getThemes()" class="form-check form-check-inline">
                             <!-- <span style="float: left;" class="mr-2 form-check form-check-inline"> -->
                             <input
@@ -276,8 +277,7 @@
                             />
                             <label class="form-check-label">{{theme.name}}&nbsp;&nbsp;</label>
                             <!-- </span> -->
-                        </div><br/>
-                        <span *ngIf="!getThemesFromIds(script.themeids).length" class="text-warning">At least one theme must be selected</span>
+                        </div>
                     </td></tr>
                     <tr><td class="align-top">
                         <span class="font-weight-bold">Exhibitions: </span>
@@ -296,6 +296,8 @@
                     <tr><td  class="align-top">
                         <span class="font-weight-bold">Artworks: </span>
                     </td><td>
+                        <span *ngIf="!getArtworks(script).length" class="text-warning">From the artwork tab the script author needs to add at least one artwork to the collection<br/></span>
+                        <span *ngIf="!getArtworksFromIds(script.name, script.artworkids, script).length" class="text-warning">At least one artwork should be selected<br/></span>
                         <div *ngFor="let artwork of getArtworks(script)" class="form-check form-check-inline pb-3" style="width: 210px;">
                             <div class=" align-self-center" style="width: 30px;">
                                 <input 
@@ -351,13 +353,12 @@
                                 <!-- </div> -->
                             <!-- </div> -->
                         </div>
-                        <span *ngIf="!getArtworks(script).length" class="text-warning">From the artwork tab the script author needs to add at least one artwork to the collection<br/></span>
-                        <span *ngIf="!getArtworksFromIds(script.name, script.artworkids, script).length" class="text-warning">At least one artwork must be selected</span>
                     </td></tr>
 
                     <tr><td  class="align-top">
                         <span class="font-weight-bold">Homepage artwork: </span>
                     </td><td class="align-top"> 
+                        <span *ngIf="script.homepageartworkid==undefined" class="text-warning">An artwork for the homepage should be selected<br/></span>
                         <div *ngFor="let artwork of getArtworksFromIds(script.name, script.artworkids, script)">
                             <div class="form-check form-check-inline">
                                 <input
@@ -370,7 +371,6 @@
                                 <label class="form-check-label">&nbsp;<span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span>, <span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span>, {{artwork.year}} </label>
                             </div>
                         </div>
-                        <span *ngIf="script.homepageartworkid==undefined" class="text-warning">An artwork for the homepage must be selected</span>
                     </td></tr>
 
 
@@ -496,7 +496,7 @@
                     <tr><td colspan="2">
                         <span class="float">&nbsp;</span>
                         <span class="float-right">
-                            <button class="btn btn-warning" (click)="editScriptDescription='0'; saveScript(script)" [disabled]="!getThemesFromIds(script.themeids).length || !getArtworksFromIds(script.name, script.artworkids, script).length || script.homepageartworkid==undefined">Save description</button> 
+                            <button class="btn btn-warning" (click)="editScriptDescription='0'; saveScript(script)">Save description</button> 
                         </span>
                     </td></tr>
                 </table>
@@ -587,12 +587,21 @@
                                 </ng-container>
                             </ng-container>
    
-                            <div class="row" *ngIf='stage.stagetype!=="multiquestion" && stage.stagetype!=="question"'>
+                            <div class="row" *ngIf='stage.stagetype=="statement" || stage.stagetype=="story"'>
                                 <div class="col-2">
                                     <span class="font-weight-bold">Text: </span>
                                 </div>
                                 <div class="col-10">
                                     <span style="white-space: pre-wrap;" [innerHTML]="stage.body | linkify"></span>
+                                </div>
+                            </div>
+
+                            <div class="row" *ngIf='stage.stagetype=="story"'>
+                                <div class="col-2">
+                                    <span class="font-weight-bold">Help text: </span>
+                                </div>
+                                <div class="col-10">
+                                    <span style="white-space: pre-wrap;" [innerHTML]="stage.help | linkify"></span>
                                 </div>
                             </div>
 
