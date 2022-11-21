@@ -1,6 +1,6 @@
 <paNavBar></paNavBar>
 <p class="lead" *ngIf="viewScript=='0'">Select a script.</p>
-<p class="lead" *ngIf="viewScript!='0'">Selected script: <span *ngIf="selectedScript.name">{{selectedScript.name}}</span><button class="btn btn-secondary float-right mt-1" (click)="unselectScript()">Close script</button></p>
+<p class="lead" *ngIf="viewScript!='0'"><strong>Selected script: </strong><span *ngIf="selectedScript.name">{{selectedScript.name}}</span><button class="btn btn-secondary float-right mt-1" (click)="unselectScript()">Close script</button></p>
 
 <div *ngIf="viewScript=='0'" class="row mb-3">
     <div class="col-9">&nbsp;</div>
