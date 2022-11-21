@@ -1,6 +1,6 @@
 # Deep Viewpoints
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.1.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.2.
 
 ## Configuring Deep Viewpoints to work with the SPICE Linked Data Hub
 
