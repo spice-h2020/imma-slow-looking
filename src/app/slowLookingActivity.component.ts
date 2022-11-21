@@ -8,8 +8,6 @@ import { followStage, questionStage, shareWithMuseumStage, shareWithSomeoneStage
 import { ActivatedRoute } from "@angular/router";
 import { UntypedFormControl } from "@angular/forms";
 import { CurrentUser } from "./currentUser.service";
-import { RestDataSource } from "./rest.datasource"; 
-import { delay } from "rxjs/operators";
 import { Gallery, GalleryItem, GalleryRef, ImageItem } from "ng-gallery";
 import { Lightbox } from "ng-gallery/lightbox";
 import { Question } from "./question.model";
@@ -282,6 +280,48 @@ export class SlowLookingActivityComponent implements OnInit {
             this.newActivity.actions = new Array(action);
         }
     }
+    
+    addOrReplaceActionToActivity(i: number, action: Action) {
+        if(this.newActivity.actions == undefined) {
+            this.addActionToActivity(action);
+        }
+        else {
+            const ind = this.newActivity.actions.findIndex(x => x.position == i);
+            if(ind > -1) {
+                this.newActivity.actions[ind] = action;
+            }
+            else {
+                this.addActionToActivity(action);
+            }
+        }
+    }
+
+    getActionOfActivity(i: number) {
+        if(this.newActivity.actions == undefined) {
+            return undefined;
+        }
+        const ind = this.newActivity.actions.findIndex(x => x.position == i);
+        if(ind > -1) {
+            let action = this.newActivity.actions[ind];
+            if(action instanceof questionAction) {
+                // Question action
+                this.newQuestionAction = action;
+            }
+            if(action instanceof storyAction) {
+                // Story action
+                this.newStoryAction = action;
+            }
+            if(action instanceof multiquestionAction) {
+                // Multiquestion action
+                this.newMultiquestionAction = action;
+                this.setAnswerValue(0);
+            }
+            return action;
+        }
+        else {
+            return undefined;
+        }
+    }
 
     resetShareWithSomeoneAction() {
         this.newShareWithFriendAction = new shareWithFriendAction();
@@ -328,6 +368,9 @@ export class SlowLookingActivityComponent implements OnInit {
         // (click)="statementContinue(i);"
         // (click)="slowLookingCurrentScriptStageIndex=i+1;"
         this.slowLookingCurrentScriptStageIndex=i+1;
+        if(this.slowLookingCurrentScriptStageIndex >= 0) {
+            this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
+        }
     }
 
     statementEnd() {
@@ -340,6 +383,9 @@ export class SlowLookingActivityComponent implements OnInit {
     statementBack(i) {
         // (click)="statementBack(i);"
         this.slowLookingCurrentScriptStageIndex=i-1;
+        if(this.slowLookingCurrentScriptStageIndex >= 0) {
+            this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
+        }
     }
 
     multiquestionContinue(multiquestionIndex, answervalue, stage, stagequestions, i, newMultiquestionAction) {
@@ -349,32 +395,57 @@ export class SlowLookingActivityComponent implements OnInit {
         this.submittedAnswer=true; 
         this.newMultiquestionAction.questionStage = stage; 
         this.newMultiquestionAction.questions = this.getQuestionTextFromQuestions(stagequestions); 
+        this.newMultiquestionAction.position = i;
         this.slowLookingCurrentScriptStageIndex=i+1; 
-        this.addActionToActivity(newMultiquestionAction); 
+        // this.addActionToActivity(newMultiquestionAction); 
+        this.addOrReplaceActionToActivity(i, newMultiquestionAction); 
         this.resetNewMultiQuestionAction(); 
         this.resetAnswerValue(); 
         this.showQuestionHelp=false; 
         this.submittedAnswer=false; 
-        this.multiquestionIndex=0
+        this.multiquestionIndex=0;
+        if(this.slowLookingCurrentScriptStageIndex >= 0) {
+            this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
+        }
     }
 
-    multiquestionEnd(multiquestionIndex, answervalue, stage, stagequestions, newMultiquestionAction) {
+    multiquestionEnd(i, multiquestionIndex, answervalue, stage, stagequestions, newMultiquestionAction) {
         // (click)="multiquestionEnd(multiquestionIndex, answer.value, stage, stage.body, newMultiquestionAction)"
         // (click)="updateAnswers(multiquestionIndex, answer.value); submittedAnswer=true; newMultiquestionAction.questionStage = stage; newMultiquestionAction.questions = stage.body; addActionToActivity(newMultiquestionAction); resetNewMultiQuestionAction(); resetAnswerValue(); addActivity(); slowLookingScript='0'; multiquestionIndex=0"
         this.updateAnswers(multiquestionIndex,answervalue); 
         this.submittedAnswer=true; 
         this.newMultiquestionAction.questionStage = stage; 
         this.newMultiquestionAction.questions = this.getQuestionTextFromQuestions(stagequestions); 
-        this.addActionToActivity(newMultiquestionAction); 
+        this.newMultiquestionAction.position = i;
+        // this.addActionToActivity(newMultiquestionAction); 
+        this.addOrReplaceActionToActivity(i, newMultiquestionAction); 
         this.resetNewMultiQuestionAction(); 
         this.resetAnswerValue(); 
         this.addActivity(); 
         this.slowLookingScript='0';
         this.multiquestionIndex=0;
+        if(this.slowLookingCurrentScriptStageIndex >= 0) {
+            this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
+        }
     }
 
-    multiquestionBack() {
-        
+    multiquestionBack(multiquestionIndex, answervalue, stage, stagequestions, i, newMultiquestionAction) {
+        this.updateAnswers(multiquestionIndex, answervalue);
+        this.submittedAnswer=true; 
+        this.newMultiquestionAction.questionStage = stage; 
+        this.newMultiquestionAction.questions = this.getQuestionTextFromQuestions(stagequestions); 
+        this.newMultiquestionAction.position = i;
+        this.slowLookingCurrentScriptStageIndex=i-1; 
+        // this.addActionToActivity(newMultiquestionAction); 
+        this.addOrReplaceActionToActivity(i, newMultiquestionAction); 
+        this.resetNewMultiQuestionAction(); 
+        this.resetAnswerValue(); 
+        this.showQuestionHelp=false; 
+        this.submittedAnswer=false; 
+        this.multiquestionIndex=0;
+        if(this.slowLookingCurrentScriptStageIndex >= 0) {
+            this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
+        }
     }
 
     getQuestionTextFromQuestions(questions: Question[]) {
@@ -391,24 +462,41 @@ export class SlowLookingActivityComponent implements OnInit {
         this.slowLookingCurrentScriptStageIndex=i+1; 
         this.newQuestionAction.questionStage = stage; 
         this.newQuestionAction.question = stagebody; 
-        this.addActionToActivity(newQuestionAction); 
+        this.newQuestionAction.position = i;
+        // this.addActionToActivity(newQuestionAction); 
+        this.addOrReplaceActionToActivity(i, newQuestionAction); 
         this.resetNewQuestionAction(); 
         this.showQuestionHelp=false;
+        if(this.slowLookingCurrentScriptStageIndex >= 0) {
+            this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
+        }
     }
 
-    questionEnd(stage, stagebody, newQuestionAction) {
+    questionEnd(i, stage, stagebody, newQuestionAction) {
         // (click)="questionEnd(stage, stage.body, newQuestionAction);"
         // (click)="newQuestionAction.questionStage = stage; newQuestionAction.question = stage.body; addActionToActivity(newQuestionAction); resetNewQuestionAction(); addActivity(); slowLookingScript='0';" routerLink="/home"
         this.newQuestionAction.questionStage = stage; 
         this.newQuestionAction.question = stagebody; 
-        this.addActionToActivity(newQuestionAction); 
+        this.newQuestionAction.position = i;
+        // this.addActionToActivity(newQuestionAction); 
+        this.addOrReplaceActionToActivity(i, newQuestionAction); 
         this.resetNewQuestionAction(); 
         this.addActivity(); 
         this.slowLookingScript='0';
     }
 
-    questionBack() {
-        
+    questionBack(i, stage, stagebody, newQuestionAction) {
+        this.slowLookingCurrentScriptStageIndex=i-1; 
+        this.newQuestionAction.questionStage = stage; 
+        this.newQuestionAction.question = stagebody; 
+        this.newQuestionAction.position = i;
+        // this.addActionToActivity(newQuestionAction); 
+        this.addOrReplaceActionToActivity(i, newQuestionAction); 
+        this.resetNewQuestionAction(); 
+        this.showQuestionHelp=false;
+        if(this.slowLookingCurrentScriptStageIndex >= 0) {
+            this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
+        }
     }
 
     storyContinue(i, stage, stagebody, newStoryAction) {
@@ -417,22 +505,47 @@ export class SlowLookingActivityComponent implements OnInit {
         this.slowLookingCurrentScriptStageIndex=i+1; 
         this.newStoryAction.storyStage = stage; 
         this.newStoryAction.question = stagebody; 
-        this.addActionToActivity(newStoryAction); 
+        this.newStoryAction.position = i;
+        // this.addActionToActivity(newStoryAction); 
+        this.addOrReplaceActionToActivity(i, newStoryAction); 
         this.resetNewStoryAction();
+        if(this.slowLookingCurrentScriptStageIndex >= 0) {
+            this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
+        }
     }
 
-    storyEnd(stage, stagebody, newStoryAction) {
+    storyEnd(i, stage, stagebody, newStoryAction) {
         // (click)="storyEnd(stage, stage.body, newStoryAction);"
         // (click)="newStoryAction.storyStage = stage; newStoryAction.question = stage.body; addActionToActivity(newStoryAction); resetNewStoryAction(); addActivity(); slowLookingScript='0';" routerLink="/home"
         this.newStoryAction.storyStage = stage; 
         this.newStoryAction.question = stagebody; 
-        this.addActionToActivity(newStoryAction); 
+        this.newStoryAction.position = i;
+        // this.addActionToActivity(newStoryAction); 
+        this.addOrReplaceActionToActivity(i, newStoryAction); 
         this.resetNewStoryAction(); 
         this.addActivity(); 
         this.slowLookingScript='0';
     }
 
-    storyBack() {
-        
+    storyBack(i, stage, stagebody, newStoryAction) {
+        this.slowLookingCurrentScriptStageIndex=i-1; 
+        this.newStoryAction.storyStage = stage; 
+        this.newStoryAction.question = stagebody; 
+        this.newStoryAction.position = i;
+        // this.addActionToActivity(newStoryAction); 
+        this.addOrReplaceActionToActivity(i, newStoryAction); 
+        this.resetNewStoryAction();
+        if(this.slowLookingCurrentScriptStageIndex >= 0) {
+            this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
+        }
     }
+
+    foo(i) {
+        console.log(i);
+        console.log(this.newActivity);
+        console.log(this.newQuestionAction);
+        console.log(this.newStoryAction);
+        console.log(this.newMultiquestionAction);
+    }
+
 }

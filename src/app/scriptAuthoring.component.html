@@ -22,7 +22,7 @@
         </span>
     </div> -->
     <div *ngIf="viewScript=='0' && isLoggedIn() && (!isAdmin() || (isAdmin() && currentUser==1 && !showallscripts))" class="col-xs-12 mb-3 mt-2">
-        <button class="float-right btn btn-success mb-3" (click)="addScript(); deleteConfirmation_Id=''">Add new script</button><br/><br/>
+        <button class="float-right btn btn-success mb-3" (click)="addScript(); deleteConfirmation_Id=''">New script</button><br/><br/>
     </div>
     <div class="col-xs-12" *ngFor="let script of getScripts(); let i = index">
 
@@ -74,6 +74,7 @@
                             Themes: 
                         </span>
                     </td><td class="align-top">
+                        <span *ngIf="!getThemesFromIds(script.themeids).length" class="text-warning">At least one theme should be selected<br/></span>
                         <span *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
                                 {{theme.name}}<span *ngIf="!last">, </span>
                         </span>
@@ -148,7 +149,7 @@
                     <span *ngIf="!script.autoapproved">Awaiting approval</span>
                     <span *ngIf="script.autoapproved">Approved</span><br/>
                     </td></tr> 
-                    <tr *ngIf="script.open"><td class="align-top">
+                    <tr *ngIf="viewScript=='0' && script.open"><td class="align-top">
                         <!-- script visibility -->
                         <span class="mr-3 font-weight-bold">
                             Script: 
@@ -159,7 +160,7 @@
                         </a>
                         <button class="btn btn-light" ngbPopover="{{scriptURL(script)}}" popoverTitle="Script URL copied:" ngxClipboard [cbContent]='scriptURL(script)'>Copy script URL <i class="fa fa-clone" aria-hidden="true"></i></button>
                     </td></tr>
-                    <tr *ngIf="script.homepageartworkid != undefined && script.artworkids.length > 0 && script.stages.length > 0"><td class="align-top">
+                    <tr *ngIf="viewScript=='0' && script.homepageartworkid != undefined && script.artworkids.length > 0 && script.stages.length > 0"><td class="align-top">
                         <!-- script visibility -->
                         <span class="mr-3 font-weight-bold">
                             Responses: 
@@ -296,7 +297,7 @@
                     <tr><td  class="align-top">
                         <span class="font-weight-bold">Artworks: </span>
                     </td><td>
-                        <span *ngIf="!getArtworks(script).length" class="text-warning">From the artwork tab the script author needs to add at least one artwork to the collection<br/></span>
+                        <span *ngIf="!getArtworks(script).length" class="text-warning">From the Artworks tab at least one artwork needs to be added to the collection<br/></span>
                         <span *ngIf="!getArtworksFromIds(script.name, script.artworkids, script).length" class="text-warning">At least one artwork should be selected<br/></span>
                         <div *ngFor="let artwork of getArtworks(script)" class="form-check form-check-inline pb-3" style="width: 210px;">
                             <div class=" align-self-center" style="width: 30px;">
@@ -541,6 +542,8 @@
                                     <span class="font-weight-bold">Artworks: </span>
                                 </div>
                                 <div class="col-10">
+                                    <span *ngIf="!getArtworks(script).length" class="text-warning">From the Artworks tab at least one artwork needs to be added to the collection<br/></span>
+                                    <span *ngIf="!getArtworksFromIds(script.name, script.artworkids, script).length" class="text-warning">At least one artwork should be selected in the script description<br/></span>
                                     <span *ngFor="let artwork of getArtworksFromIds(stage.title, stage.includeartworks, script, stage);">
                                         <span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span>, <span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span>, {{artwork.year}}<br/>
                                     </span>

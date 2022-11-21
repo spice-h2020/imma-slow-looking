@@ -50,30 +50,32 @@
             </td>
         </tr>
     </table>
-    <div class="ng-autocomplete mb-5">
-        <span>Search IMMA collection:</span>
-        <ng-autocomplete 
-          [data]="data"
-          [searchKeyword]="keyword"
-          (selected)='selectEvent($event)'
-          (inputChanged)='onChangeSearch($event)'
-          (inputFocused)='onFocused($event)'
-          [itemTemplate]="itemTemplate"
-          [notFoundTemplate]="notFoundTemplate"
-          [placeholder]="placeholderText"
-          [historyListMaxNumber]="15"
-          [minQueryLength]="2">                                 
-        </ng-autocomplete>
-    
-        <ng-template #itemTemplate let-item>
-            <a href="javascript:void(0)">
-                <span [innerHTML]="item.searchstring"></span>
-            </a>
-        </ng-template>
+    <div class="row">
+        <div class="ng-autocomplete mb-5">
+            <span>Search IMMA collection:</span>
+            <ng-autocomplete 
+            [data]="data"
+            [searchKeyword]="keyword"
+            (selected)='selectEvent($event)'
+            (inputChanged)='onChangeSearch($event)'
+            (inputFocused)='onFocused($event)'
+            [itemTemplate]="itemTemplate"
+            [notFoundTemplate]="notFoundTemplate"
+            [placeholder]="placeholderText"
+            [historyListMaxNumber]="15"
+            [minQueryLength]="2">                                 
+            </ng-autocomplete>
         
-        <ng-template #notFoundTemplate let-notFound>
-        <div [innerHTML]="notFound"></div>
-        </ng-template>
+            <ng-template #itemTemplate let-item>
+                <a href="javascript:void(0)">
+                    <span [innerHTML]="item.searchstring"></span>
+                </a>
+            </ng-template>
+            
+            <ng-template #notFoundTemplate let-notFound>
+            <div [innerHTML]="notFound"></div>
+            </ng-template>
+        </div>
     </div>
     <br/>
     <br/>
