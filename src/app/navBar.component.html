@@ -16,20 +16,20 @@
                   <a class="nav-link" routerLink="/overview" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Overview</a>
                 </li>
                 <li *ngIf="!isLoggedOut()" class="nav-item">
-                  <a class="nav-link" routerLink="/wizard" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Script Wizard</a>
-                </li>
-                <li *ngIf="!isLoggedOut()" class="nav-item">
-                  <a class="nav-link" routerLink="/management" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Management</a>
-                </li>
-                <li *ngIf="!isLoggedOut()" class="nav-item">
-                  <a class="nav-link" routerLink="/authoring" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Scripts</a>
+                  <a class="nav-link" routerLink="/wizard" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Scripts</a>
                 </li>
                 <li *ngIf="!isLoggedOut()" class="nav-item">
                   <a class="nav-link" routerLink="/artworks" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Artworks</a>
                 </li>
                 <li *ngIf="!isLoggedOut()" class="nav-item">
                   <a class="nav-link" routerLink="/themes" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Themes</a>
-                  </li>
+                </li>
+                <li *ngIf="!isLoggedOut()" class="nav-item">
+                  <a class="nav-link" routerLink="/management" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Moderation</a>
+                </li>
+                <li *ngIf="!isLoggedOut()" class="nav-item">
+                  <a class="nav-link" routerLink="/authoring" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Advanced</a>
+                </li>
                 <li *ngIf="isAdmin()" class="nav-item">
                   <a class="nav-link" routerLink="/users" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Users</a>
                 </li>
