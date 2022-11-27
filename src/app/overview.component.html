@@ -23,14 +23,14 @@
                         {{script.description}}
                       </div>
                       <figcaption class="text-left blockquote-footer text-white" style="text-shadow: 1.5px 1.5px #000000;">{{script.author}}</figcaption>
-                      <div class="text-left" *ngIf="script.exhibitionids.length > 0" style="text-shadow: 1.5px 1.5px #000000;">Exhibitions:
+                      <div class="text-left" *ngIf="script.exhibitionids.length > 0" style="text-shadow: 1.5px 1.5px #000000;"><strong>Exhibitions: </strong>
                         <ng-container *ngFor="let exhibition of getExhibitionsFromIds(script.exhibitionids); let last = last">
                           {{exhibition.name}}
                           <ng-container *ngIf="!last">, </ng-container>
                         </ng-container>
                         <br/><br/>
                       </div>
-                      <div class="text-left" style="text-shadow: 1.5px 1.5px #000000;">Themes:
+                      <div class="text-left" style="text-shadow: 1.5px 1.5px #000000;"><strong>Themes: </strong>
                         <ng-container *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
                           {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
                         </ng-container>
@@ -123,14 +123,14 @@
                           {{script.description}}
                         </div>
                         <figcaption class="text-left blockquote-footer text-white" style="text-shadow: 1.5px 1.5px #000000;">{{script.author}}</figcaption>
-                        <div class="text-left" *ngIf="script.exhibitionids.length > 0" style="text-shadow: 1.5px 1.5px #000000;">Exhibitions:
+                        <div class="text-left" *ngIf="script.exhibitionids.length > 0" style="text-shadow: 1.5px 1.5px #000000;"><strong>Exhibitions: </strong>
                           <ng-container *ngFor="let exhibition of getExhibitionsFromIds(script.exhibitionids); let last = last">
                             {{exhibition.name}}
                             <ng-container *ngIf="!last">, </ng-container>
                           </ng-container>
                           <br/><br/>
                         </div>
-                        <div class="text-left" style="text-shadow: 1.5px 1.5px #000000;">Themes:
+                        <div class="text-left" style="text-shadow: 1.5px 1.5px #000000;"><strong>Themes: </strong>
                           <ng-container *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
                             {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
                           </ng-container>
@@ -220,14 +220,14 @@
                           {{script.description}}
                         </div>
                         <figcaption class="text-left blockquote-footer text-white" style="text-shadow: 1.5px 1.5px #000000;">{{script.author}}</figcaption>
-                        <div class="text-left" *ngIf="script.exhibitionids.length > 0" style="text-shadow: 1.5px 1.5px #000000;">Exhibitions:
+                        <div class="text-left" *ngIf="script.exhibitionids.length > 0" style="text-shadow: 1.5px 1.5px #000000;"><strong>Exhibitions: </strong>
                           <ng-container *ngFor="let exhibition of getExhibitionsFromIds(script.exhibitionids); let last = last">
                             {{exhibition.name}}
                             <ng-container *ngIf="!last">, </ng-container>
                           </ng-container>
                           <br/><br/>
                         </div>
-                        <div class="text-left" style="text-shadow: 1.5px 1.5px #000000;">Themes:
+                        <div class="text-left" style="text-shadow: 1.5px 1.5px #000000;"><strong>Themes: </strong>
                           <ng-container *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
                             {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
                           </ng-container>
@@ -311,14 +311,14 @@
                           {{script.description}}
                         </div>
                         <figcaption class="text-left blockquote-footer text-white" style="text-shadow: 1.5px 1.5px #000000;">{{script.author}}</figcaption>
-                        <div class="text-left" *ngIf="script.exhibitionids.length > 0" style="text-shadow: 1.5px 1.5px #000000;">Exhibitions:
+                        <div class="text-left" *ngIf="script.exhibitionids.length > 0" style="text-shadow: 1.5px 1.5px #000000;"><strong>Exhibitions: </strong>
                           <ng-container *ngFor="let exhibition of getExhibitionsFromIds(script.exhibitionids); let last = last">
                             {{exhibition.name}}
                             <ng-container *ngIf="!last">, </ng-container>
                           </ng-container>
                           <br/><br/>
                         </div>
-                        <div class="text-left" style="text-shadow: 1.5px 1.5px #000000;">Themes:
+                        <div class="text-left" style="text-shadow: 1.5px 1.5px #000000;"><strong>Themes: </strong>
                           <ng-container *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
                             {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
                           </ng-container>
@@ -394,14 +394,14 @@
                           {{selectedScript.script.description}}
                         </div>
                         <figcaption class="text-left blockquote-footer text-white" style="text-shadow: 1.5px 1.5px #000000;">{{selectedScript.script.author}}</figcaption>
-                        <div class="text-left" *ngIf="selectedScript.script.exhibitionids.length > 0" style="text-shadow: 1.5px 1.5px #000000;">Exhibitions:
+                        <div class="text-left" *ngIf="selectedScript.script.exhibitionids.length > 0" style="text-shadow: 1.5px 1.5px #000000;"><strong>Exhibitions: </strong>
                           <ng-container *ngFor="let exhibition of getExhibitionsFromIds(selectedScript.script.exhibitionids); let last = last">
                             {{exhibition.name}}
                             <ng-container *ngIf="!last">, </ng-container>
                           </ng-container>
                           <br/><br/>
                         </div>
-                        <div class="text-left" style="text-shadow: 1.5px 1.5px #000000;">Themes:
+                        <div class="text-left" style="text-shadow: 1.5px 1.5px #000000;"><strong>Themes: </strong>
                           <ng-container *ngFor="let theme of getThemesFromIds(selectedScript.script.themeids); let last = last">
                             {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
                           </ng-container>
