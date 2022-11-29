@@ -47,12 +47,12 @@
                 </span>
             </td> 
             <td class="col-xs">
-                <span *ngIf="!tableEditing && writeAccess(item)">
+                <span *ngIf="!tableEditing && writeAccess(item) && deleteConfirmation_Id==''">
                     <button class="btn btn-danger" (click)="confirmDelete(item._id); reloadThemes()">Delete</button>
                 </span>
             </td>
             <td class="col-xs">
-                <span *ngIf="!tableEditing && writeAccess(item)">
+                <span *ngIf="!tableEditing && writeAccess(item) && deleteConfirmation_Id==''">
                     <button class="btn btn-warning" (click)="editrow=item._id; tableEditing=true; deleteConfirmation_Id=''; reloadThemes()">Edit</button>
                 </span>
                 <span *ngIf="tableEditing && editrow==item._id">
