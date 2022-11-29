@@ -1,4 +1,5 @@
 <paNavBar></paNavBar>
+<div style="width: 100%; background-color: white;" class="border pl-3 pr-3 mb-3">
 <p class="lead">Manage responses to your scripts.</p>
 <p *ngIf="isAdmin()">
     Show responses to scripts authored by:&nbsp;
@@ -16,7 +17,7 @@
     <button (click)="managementMode=2" class="btn btn-success col-sm-4 text-center">Approved</button>
     <button (click)="managementMode=3" class="btn btn-warning col-sm-4 text-center">Awaiting approval</button>
 </div>
-
+</div>
 <div [ngSwitch]="managementMode">  
     <div *ngSwitchCase="1">
         <!-- show all -->
@@ -269,3 +270,5 @@
         </div>
     </div>
 </div>
+<br/>
+<br/>

@@ -1,4 +1,5 @@
 <paNavBar></paNavBar>
+<div style="width: 100%; background-color: white;" class="border pl-3 pr-3">
 <p class="lead">Manage the collection of artworks that can be used in your scripts.</p>
 <div *ngIf="isLoggedIn()" class="form-group">
     <table class="table table-sm table-striped"> 
@@ -27,7 +28,7 @@
             </td>
             <td>
                 <div>
-                    <button class="btn btn-danger" (click)="confirmDelete(item._id)">Delete</button>
+                    <button class="float-right btn btn-danger" (click)="confirmDelete(item._id)">Delete</button>
                 </div>
             </td>
         <tr>
@@ -45,7 +46,7 @@
             </td>
             <td>
                 <div *ngIf="selected">
-                    <button class="btn btn-success" (click)="saveArtwork(); selected=false;">Add</button>
+                    <button class="float-right btn btn-success" (click)="saveArtwork(); selected=false;">Add</button>
                 </div>
             </td>
         </tr>
@@ -80,13 +81,11 @@
     <br/>
     <br/>
     <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
 </div>
-
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
 
 

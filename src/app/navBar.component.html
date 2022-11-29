@@ -7,13 +7,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/home" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Home</a>
+                    <a class="nav-link" routerLink="/home" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">In-gallery</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/otherPeople" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Other People</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" routerLink="/overview" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Overview</a>
+                  <a class="nav-link" routerLink="/overview" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">At Home</a>
                 </li>
                 <li *ngIf="!isLoggedOut()" class="nav-item">
                   <a class="nav-link" routerLink="/wizard" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Scripts</a>
@@ -25,7 +25,7 @@
                   <a class="nav-link" routerLink="/themes" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Themes</a>
                 </li>
                 <li *ngIf="!isLoggedOut()" class="nav-item">
-                  <a class="nav-link" routerLink="/management" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Moderation</a>
+                  <a class="nav-link" routerLink="/management" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Management</a>
                 </li>
                 <li *ngIf="!isLoggedOut()" class="nav-item">
                   <a class="nav-link" routerLink="/authoring" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Advanced</a>

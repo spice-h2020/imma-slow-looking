@@ -1,4 +1,5 @@
 <paNavBar></paNavBar>
+<div style="width: 100%; background-color: white;" class="border pl-3 pr-3">
 <p class="lead">Below are the themes which you can link to your scripts. Using existing themes allows your scripts to be displayed with other scripts of that theme. If none of the themes match your script, you can add further themes. Other script authors will be able to link their scripts to your theme.</p>
 <div *ngIf="isLoggedIn()" class="form-group">
 
@@ -59,7 +60,7 @@
                 </span>
             </td>
         </tr>
-        <tr *ngIf="isLoggedIn()">
+        <tr *ngIf="isLoggedIn() && !tableEditing && deleteConfirmation_Id==''">
             <td></td>
             <td>
                 <span *ngIf="!tableEditing && deleteConfirmation_Id==''">
@@ -82,3 +83,6 @@
     </tbody> 
 </table> 
 </div>
+</div>
+<br/>
+<br/>

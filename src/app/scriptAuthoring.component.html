@@ -1,18 +1,23 @@
 <paNavBar></paNavBar>
+<div style="width: 100%; background-color: white;" class="border pl-3 pr-3 mb-3">
 <p class="lead">Manage your scripts.</p>
 <div *ngIf="isAdmin()" class="form-check form-check-inline">
-    <label class="form-check-label">Show all scripts:&nbsp;&nbsp;</label>
+    <label class="form-check-label"><strong>Show all scripts:&nbsp;&nbsp;</strong></label>
     <input [(ngModel)]="showallscripts" class="form-check-input" (change)="viewScript='0'; deleteStageConfirmationId=0; showStageHelp=false; newStageMessage=false;"
     type="checkbox"/>
 </div>
 <p *ngIf="isAdmin() && !showallscripts">
-    <label class="form-check-label">Show scripts authored by:&nbsp;&nbsp;</label>
+    <label class="form-check-label"><strong>Show scripts authored by:&nbsp;&nbsp;</strong></label>
     <select class="form-select form-select-sm" [(ngModel)]="currentUser" (change)="viewScript='0'; deleteStageConfirmationId=0; showStageHelp=false; newStageMessage=false;">
         <option *ngFor="let user of getUsers();" value="{{user.id}}">   
             {{user.id}}: {{user.username}}           
         </option> 
     </select> 
 </p>
+<div *ngIf="viewScript=='0' && isLoggedIn() && (!isAdmin() || (isAdmin() && currentUser==1 && !showallscripts))" class="col-xs-12">
+    <button class="float-right btn btn-success" (click)="addScript(); deleteConfirmation_Id=''">New script</button><br/><br/>
+</div>
+</div>
 <div>
     <!-- <div *ngIf="viewScript=='0'">
         <span>Show:</span><br/>
@@ -21,9 +26,7 @@
             <span class="mr-3"><input type="checkbox" [checked]="showClosedScripts" (change)="showClosedScripts = !showClosedScripts"/><label class="ml-2"> Closed </label></span>
         </span>
     </div> -->
-    <div *ngIf="viewScript=='0' && isLoggedIn() && (!isAdmin() || (isAdmin() && currentUser==1 && !showallscripts))" class="col-xs-12 mt-2">
-        <button class="float-right btn btn-success" (click)="addScript(); deleteConfirmation_Id=''">New script</button><br/><br/>
-    </div>
+
     <div class="col-xs-12" *ngFor="let script of getScripts(); let i = index">
 
         <div *ngIf="((script.open && showOpenScripts) || (!(script.open) && showClosedScripts)) && (viewScript == '0' || viewScript==script._id)" class="card border p-3 mb-3" style="border-radius: 15px;">

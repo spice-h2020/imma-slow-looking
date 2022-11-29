@@ -1,4 +1,5 @@
 <paNavBar></paNavBar>
+<div style="width: 100%; background-color: white;" class="border pl-3 pr-3">
 <p class="lead"></p>
 <p class="lead">
     Find out how others have responded to Deep Viewpoints scripts. 
@@ -10,6 +11,7 @@
     You can also <a routerLink="/home">take part in the scripts</a> for yourself.
 </p>
 <h2>Themes</h2>
+</div>
 <div *ngFor="let theme of getThemes(); let i = index">
     <div *ngIf="getScriptsOfTheme(theme._id).length > 0" class="accordion " id="accordionFlushExample">
         <div class="accordion-item">
@@ -35,7 +37,7 @@
                         <div *ngFor="let script of getScriptsOfTheme(theme._id); let i = index; let last = last">
                             <h4 class="col-sm-12">{{script.name}}</h4> 
                             <div class="col-sm-12">
-                                <p style="white-space: pre-wrap;">{{script.description}}</p>
+                                <p style="white-space: pre-wrap;" [innerHTML]="script.description"></p>
                                 <figcaption *ngIf="script.author != ''" class="blockquote-footer text-black">{{script.author}}</figcaption>
                             </div>
 
@@ -168,6 +170,10 @@
         </div>
     </div>
 </div>
+<div style="width: 100%; background-color: white;" class="border pl-3 pr-3">
 <br/>         
 <h2>Take Part</h2>
     <button class="btn btn-secondary" routerLink="/home">Try Deep Viewpoints scripts for yourself</button><br/><br/>
+</div>
+<br/>
+<br/>

@@ -1,15 +1,24 @@
 <paNavBar></paNavBar>
-<p class="lead" *ngIf="viewScript=='0'">Select a script.</p>
-<p class="lead" *ngIf="viewScript!='0'"><strong>Selected script: </strong><span *ngIf="selectedScript.name">{{selectedScript.name}}</span><button class="btn btn-secondary float-right mt-1" (click)="unselectScript()">Close script</button></p>
+<div style="width: 100%; background-color: white;" class="border pl-3 pr-3 mb-3">
+<!-- <p class="lead" *ngIf="viewScript=='0'">Select a script.</p> -->
+<!-- <p class="lead" *ngIf="viewScript!='0'"><strong>Selected script: </strong><span *ngIf="selectedScript.name">{{selectedScript.name}}</span></p> -->
 
-<div *ngIf="viewScript=='0'" class="row mb-3">
-    <div class="col-9">&nbsp;</div>
+<div *ngIf="viewScript!='0'" class="row mb-3 mt-3">
+    <div class="col-9"><p class="lead"><strong>Selected script: </strong><span *ngIf="selectedScript.name">{{selectedScript.name}}</span></p></div>
+    <div class="col-3">
+        <button class="btn btn-secondary float-right mt-1" (click)="unselectScript()">Close script</button>
+    </div>
+</div>
+
+<div *ngIf="viewScript=='0'" class="row mb-3 mt-3">
+    <div class="col-9"><p class="lead">Select a script.</p></div>
     <div class="col-3">
         <button class="btn btn-success float-right" (click)="addScript();">New script</button>
     </div>
 </div>
+</div>
 <div *ngIf="viewScript=='0'" >
-    <div class="mb-3 p-3 border" style="border-radius: 15px;" *ngFor="let script of getScripts(); let i = index">
+    <div class="mb-3 p-3 border" style="border-radius: 15px; background-color: white;" *ngFor="let script of getScripts(); let i = index">
     <div class="row">
         <div class="col">
             <h4>{{script.name}}</h4>
@@ -75,7 +84,7 @@
 </div>
 
 
-<div *ngIf="viewScript!='0'">
+<div *ngIf="viewScript!='0'" style="width: 100%; background-color: white;" class="pl-3 pr-3 pt-3">
     <ul ngbNav #nav="ngbNav" class="nav-pills">
         <li ngbNavItem>
           <a ngbNavLink>Artworks</a>
@@ -565,4 +574,6 @@
       </ul>
       <div [ngbNavOutlet]="nav"></div>
 </div>
+<br/>
+<br/>
 
