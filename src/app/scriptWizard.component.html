@@ -4,15 +4,15 @@
 <!-- <p class="lead" *ngIf="viewScript!='0'"><strong>Selected script: </strong><span *ngIf="selectedScript.name">{{selectedScript.name}}</span></p> -->
 
 <div *ngIf="viewScript!='0'" class="row mb-3 mt-3">
-    <div class="col-9"><p class="lead"><strong>Selected script: </strong><span *ngIf="selectedScript.name">{{selectedScript.name}}</span></p></div>
-    <div class="col-3">
+    <div class="col-8"><p class="lead"><strong>Selected script: </strong><span *ngIf="selectedScript.name">{{selectedScript.name}}</span></p></div>
+    <div class="col-4">
         <button class="btn btn-secondary float-right mt-1" (click)="unselectScript()">Close script</button>
     </div>
 </div>
 
 <div *ngIf="viewScript=='0'" class="row mb-3 mt-3">
-    <div class="col-9"><p class="lead">Select a script.</p></div>
-    <div class="col-3">
+    <div class="col-8"><p class="lead">Select a script.</p></div>
+    <div class="col-4">
         <button class="btn btn-success float-right" (click)="addScript();">New script</button>
     </div>
 </div>

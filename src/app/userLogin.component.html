@@ -8,15 +8,15 @@
     <span>Password</span>
     <input type="password" class="form-control" [(ngModel)]="password"/>
     <span *ngIf="loginFailed" class="text-warning">Username and/or password incorrect</span><br/>
-    <button class="btn btn-secondary" (click)="loginAttempt()" [disabled]="!username || !password">Login</button>
+    <button class="btn btn-secondary mb-3" (click)="loginAttempt()" [disabled]="!username || !password">Login</button>
 </span>
 <span *ngIf="getCurrentUserID()!=undefined">
     <span>Username</span>
     <p><strong>{{getCurrentUsername()}}</strong></p>
-    <button class="btn btn-secondary" (click)="logout(); clearNewUser(); editContribution=''">Logout</button>
+    <button class="btn btn-secondary mb-3" (click)="logout(); clearNewUser(); editContribution=''">Logout</button>
+<!-- <br/>
 <br/>
-<br/>
-<br/>
+<br/> -->
 <table class="table table-sm">
 <thead class="thead-dark"><tr><th>My contributions</th><th></th></tr></thead>
 <tr *ngFor="let activity of getActivitiesOfCurrentUser();">

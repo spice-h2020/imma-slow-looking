@@ -6,14 +6,18 @@
     <input [(ngModel)]="showallscripts" class="form-check-input" (change)="viewScript='0'; deleteStageConfirmationId=0; showStageHelp=false; newStageMessage=false;"
     type="checkbox"/>
 </div>
-<p *ngIf="isAdmin() && !showallscripts">
-    <label class="form-check-label"><strong>Show scripts authored by:&nbsp;&nbsp;</strong></label>
-    <select class="form-select form-select-sm" [(ngModel)]="currentUser" (change)="viewScript='0'; deleteStageConfirmationId=0; showStageHelp=false; newStageMessage=false;">
-        <option *ngFor="let user of getUsers();" value="{{user.id}}">   
-            {{user.id}}: {{user.username}}           
-        </option> 
-    </select> 
-</p>
+<div *ngIf="isAdmin() && !showallscripts" class="row mb-3">
+    <div class="col-1" style="min-width: 15em;">
+        <label class="form-check-label"><strong>Show scripts authored by:</strong></label>
+    </div>
+    <div class="col">
+        <select class="form-select form-select-sm" [(ngModel)]="currentUser" (change)="viewScript='0'; deleteStageConfirmationId=0; showStageHelp=false; newStageMessage=false;">
+            <option *ngFor="let user of getUsers();" value="{{user.id}}">   
+                {{user.id}}: {{user.username}}           
+            </option> 
+        </select> 
+    </div>
+</div>
 <div *ngIf="viewScript=='0' && isLoggedIn() && (!isAdmin() || (isAdmin() && currentUser==1 && !showallscripts))" class="col-xs-12">
     <button class="float-right btn btn-success" (click)="addScript(); deleteConfirmation_Id=''">New script</button><br/><br/>
 </div>
