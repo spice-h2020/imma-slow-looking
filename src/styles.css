@@ -46,6 +46,22 @@ div {
 a {color: rgb(170, 170, 170);
 }
 
+/*Design Museum*/
+/* .museum-colour {
+  background-color: rgb(255, -0, 0);
+}
+.museum-colour:not(:disabled) {
+  background-color: rgb(255, -0, 0);
+} */
+
+/*IMMA*/
+.museum-colour {
+  background-color: rgb(26, 161, 185);
+}
+.museum-colour:not(:disabled) {
+  background-color: rgb(26, 161, 185);
+}
+
 .container-iframe {
   position: relative;
   width: 100%;

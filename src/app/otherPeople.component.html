@@ -2,14 +2,14 @@
 <div style="width: 100%; background-color: white;" class="border pl-3 pr-3">
 <p class="lead"></p>
 <p class="lead">
-    Find out how others have responded to Deep Viewpoints scripts. 
+    Find out how others have responded to Deep Viewpoints scripts. asdasdasdß
 </p>
 <p class="lead">
     Scripts are organised into themes. Select a theme to begin. Recent responses are shown for each script. Responses are pre-moderated before appearing on Deep Viewpoints.
 </p>
 <p class="lead">
     You can also <a routerLink="/home">take part in the scripts</a> for yourself.
-</p>
+</p> 
 <h2>Themes</h2>
 </div>
 <div *ngFor="let theme of getThemes(); let i = index">
@@ -17,8 +17,7 @@
         <div class="accordion-item">
             <h2 class="accordion-header" id="{{'heading_' + theme._id}}">
                 <button 
-                    style="background-color: rgb(41, 161, 184);"
-                    class="accordion-button collapsed text-white" 
+                    class="accordion-button collapsed text-white museum-colour" 
                     type="button" 
                     data-bs-toggle="collapse" 
                     [attr.data-bs-target]="'#collapse_' + theme._id"
@@ -94,11 +93,10 @@
                             </ng-container>
 
                             <div class="accordion mt-3" id="{{'theme'+theme._id+'script'+script._id}}">
-                                <div class="accordion-item" style="background-color: rgb(41, 161, 184);">
+                                <div class="accordion-item museum-colour">
                                     <h2 class="accordion-header" id="{{'heading_' + 'theme'+theme._id+'script'+script._id}}">
                                         <button 
-                                            style="background-color: rgb(41, 161, 184);"
-                                            class="accordion-button collapsed text-white" 
+                                            class="accordion-button collapsed text-white museum-colour" 
                                             type="button" 
                                             data-bs-toggle="collapse" 
                                             [attr.data-bs-target]="'#collapse_' + 'theme'+theme._id+'script'+script._id"
@@ -116,7 +114,7 @@
                                         <div class="accordion-body">
                                             <div *ngFor="let activity of getApprovedActivitiesOfAScript(script._id).slice(0, maximumResponses); let i = index; let even=even">
                                                 <!-- <div style="background-color: #f2f2f2;" class="rounded-3"> -->
-                                                <div class="card text-white mb-3" style="background-color: rgb(41, 161, 184); border-radius: 15px;">
+                                                <div class="card text-white mb-3 museum-colour" style="border-radius: 15px;">
                                                 <div class="card-body">
                                                     <div *ngFor="let action of activity.actions;">
                                                         <span *ngIf="action.questionStage">

@@ -4,15 +4,15 @@
 <!-- <p class="lead" *ngIf="viewScript!='0'"><strong>Selected script: </strong><span *ngIf="selectedScript.name">{{selectedScript.name}}</span></p> -->
 
 <div *ngIf="viewScript!='0'" class="row mb-3 mt-3">
-    <div class="col-8"><p class="lead"><strong>Selected script: </strong><span *ngIf="selectedScript.name">{{selectedScript.name}}</span></p></div>
-    <div class="col-4">
+    <div class="col"><p class="lead"><strong>Selected script: </strong><span *ngIf="selectedScript.name">{{selectedScript.name}}</span></p></div>
+    <div class="col-4" style="min-width: 8em;">
         <button class="btn btn-secondary float-right mt-1" (click)="unselectScript()">Close script</button>
     </div>
 </div>
 
 <div *ngIf="viewScript=='0'" class="row mb-3 mt-3">
-    <div class="col-8"><p class="lead">Select a script.</p></div>
-    <div class="col-4">
+    <div class="col"><p class="lead">Select a script.</p></div>
+    <div class="col-4" style="min-width: 8em;">
         <button class="btn btn-success float-right" (click)="addScript();">New script</button>
     </div>
 </div>
@@ -191,45 +191,45 @@
                         </span>{{i+1}}<br/>
                         <!-- <span class="font-weight-bold">&nbsp;Position: </span><span>{{i+1}}</span><br/> -->
                         <div class="row">
-                            <div class="col-2">
+                            <div class="col-2" style="min-width: 8em;">
                                 <span class="font-weight-bold">Title: </span>
                             </div>
-                            <div class="col-10">
+                            <div class="col">
                                 <span>{{stage.title}}</span>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-2">
+                            <div class="col-2" style="min-width: 8em;">
                                 <span class="font-weight-bold">Type: </span>
                             </div>
-                            <div class="col-10">
+                            <div class="col">
                                 <span>{{stage.stagetype}}</span>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-2">
+                            <div class="col-2" style="min-width: 8em;">
                                 <span class="font-weight-bold">Artworks: </span>
                             </div>
-                            <div class="col-10">
+                            <div class="col">
                                 <span *ngFor="let artwork of getArtworksFromIds(stage.title, stage.includeartworks, selectedScript, stage);">
                                     <span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span>, <span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span>, {{artwork.year}}<br/>
                                 </span>
                             </div>
                         </div>
                         <div class="row" *ngIf='stage.stagetype=="multiquestion"'>
-                            <div class="col-2">
+                            <div class="col-2" style="min-width: 8em;">
                                 <span class="font-weight-bold">Style: </span>
                             </div>
-                            <div class="col-10">
+                            <div class="col">
                                 <span *ngIf='stage.sequential'>Questions presented in sequence</span>
                                 <span *ngIf='!stage.sequential'>Random question that can be reloaded</span>
                             </div>
                         </div>
                         <div class="row" *ngIf='stage.stagetype=="multiquestion"'>
-                            <div class="col-2">
+                            <div class="col-2" style="min-width: 8em;">
                                 <span class="font-weight-bold">Help text: </span>
                             </div>
-                            <div class="col-10">
+                            <div class="col">
                                 <span style="white-space: pre-wrap;" [innerHTML]="stage.help | linkify"></span>
                             </div>
                             
@@ -237,18 +237,18 @@
                         <ng-container *ngIf='stage.stagetype=="multiquestion"'>
                             <ng-container *ngFor="let question of stage.questions; let i=index">
                                 <div class="row">
-                                    <div class="col-2">
+                                    <div class="col-2" style="min-width: 8em;">
                                         <span class="font-weight-bold">Question {{i+1}}: </span>
                                     </div>
-                                    <div class="col-10">
+                                    <div class="col">
                                         <span style="white-space: pre-wrap;" [innerHTML]="question.title | linkify"></span>
                                     </div>
                                 </div>
                                 <div class="row" *ngIf="question.choice">
-                                    <div class="col-2">
+                                    <div class="col-2" style="min-width: 8em;">
                                         <strong>Options {{i+1}}: </strong>
                                     </div>
-                                    <div class="col-10">
+                                    <div class="col">
                                         <span *ngFor="let option of question.options; let last=last;">
                                             {{option}}<span *ngIf="!last">, </span>
                                         </span>
@@ -258,38 +258,38 @@
                         </ng-container>
 
                         <div class="row" *ngIf='stage.stagetype!=="multiquestion" && stage.stagetype!=="question"'>
-                            <div class="col-2">
+                            <div class="col-2" style="min-width: 8em;">
                                 <span class="font-weight-bold">Text: </span>
                             </div>
-                            <div class="col-10">
+                            <div class="col">
                                 <span style="white-space: pre-wrap;" [innerHTML]="stage.body | linkify"></span>
                             </div>
                         </div>
 
                         <ng-container *ngIf='stage.stagetype=="question"'>
                             <div class="row" *ngIf='stage.stagetype=="question"'>
-                                <div class="col-2">
+                                <div class="col-2" style="min-width: 8em;">
                                     <span class="font-weight-bold">Text: </span>
                                 </div>
-                                <div class="col-10">
+                                <div class="col">
                                     <span style="white-space: pre-wrap;" [innerHTML]="stage.question.title | linkify"></span>
                                 </div>
                             </div>
                             <div class="row" *ngIf="stage.question.choice">
-                                <div class="col-2">
+                                <div class="col-2" style="min-width: 8em;">
                                     <strong>Options: </strong>
                                 </div>
-                                <div class="col-10">
+                                <div class="col">
                                     <span *ngFor="let option of stage.question.options; let last=last;">
                                     {{option}}<span *ngIf="!last">, </span>
                                 </span>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-2">
+                                <div class="col-2" style="min-width: 8em;">
                                     <span class="font-weight-bold">Help text: </span>
                                 </div>
-                                <div class="col-10">
+                                <div class="col">
                                     <span style="white-space: pre-wrap;" [innerHTML]="stage.help | linkify"></span>
                                 </div>
                             </div>
