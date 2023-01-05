@@ -11,7 +11,7 @@
       </h2>
       <div style="background-color: black;" id="collapse1" class="accordion-collapse collapse show text-white" aria-labelledby="heading1">
           <div class="accordion-body">
-              <ngb-carousel>
+              <ngb-carousel *ngIf="firstScripts.length > 0">
                 <ng-template ngbSlide *ngFor="let script of firstScripts">
                   <div class="picsum-img-wrapper" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
                     <img style="width: 65%;" src="{{artwork.url}}">
@@ -85,7 +85,7 @@
                 </ng-autocomplete>
                 <ng-template #itemTemplateExhibitions let-item>
                     <a href="javascript:void(0)">
-                      <span [innerHTML]="item.searchstring"></span>
+                      <span [innerHTML]="item.name"></span>
                     </a>
                 </ng-template>
                 <ng-template #notFoundTemplateExhibitions let-notFound>
@@ -165,7 +165,7 @@
         <h2 class="accordion-header" id="heading3">
           <button class="accordion-button collapsed text-white museum-colour" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
               <span><h4>Artworks</h4>
-                Script related to works from the IMMA collection</span>
+                Scripts related to works from the IMMA collection</span>
           </button>
         </h2>
         <div style="background-color: black;" id="collapse3" class="accordion-collapse collapse text-white" aria-labelledby="heading3">
