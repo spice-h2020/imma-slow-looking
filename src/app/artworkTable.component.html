@@ -1,6 +1,6 @@
 <paNavBar></paNavBar>
 <div style="width: 100%; background-color: white;" class="border pl-3 pr-3">
-<p class="lead">Manage the collection of artworks that can be used in your scripts.</p>
+<p class="lead">{{configSettings.artworks_para1}}</p>
 <div *ngIf="isLoggedIn()" class="form-group">
     <table class="table table-sm table-striped"> 
         <thead class="thead-dark"><tr><th width="20%">My artworks</th><th></th><th></th></tr></thead>
@@ -53,7 +53,7 @@
     </table>
     <div class="row">
         <div class="ng-autocomplete mb-5 ml-1">
-            <span>Search IMMA collection:</span>
+            <span>{{configSettings.artworks_searchprompt}}</span>
             <ng-autocomplete 
             [data]="data"
             [searchKeyword]="keyword"

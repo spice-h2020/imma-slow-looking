@@ -9,20 +9,22 @@
         <div *ngIf="stage.stagetype == 'statement'">  
             <h2 class="col-sm-12">{{stage.title}}</h2>
 
-            <!-- show included artworks -->
-            <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3 mr-3">
-                <div class="col-8">
-                    <span *ngIf="artwork.url">
-                        <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;">
-                    </span>
-                    <span *ngIf="!artwork.url && artwork.fileLocation">
-                        <img class="col-sm-12" src="{{artwork.fileLocation}}" style="cursor: pointer;">
-                    </span>
-                </div>
-                <div class="col">
-                    <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
-                    <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></div></strong>
-                    <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
+            <div class="col-sm-12">
+                <!-- show included artworks -->
+                <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3">
+                    <div class="col-8">
+                        <div class="row" *ngIf="artwork.url">
+                            <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;">
+                        </div>
+                        <div class="row" *ngIf="!artwork.url && artwork.fileLocation">
+                            <img src="{{artwork.fileLocation}}" style="cursor: pointer;">
+                        </div>
+                    </div>
+                    <div class="col ml-3">
+                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
+                        <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></div></strong>
+                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
+                    </div>
                 </div>
             </div>
 
@@ -56,20 +58,22 @@
                 <!-- show title and question  -->
                 <h2 class="col-sm-12">{{stage.title}}</h2>
 
-                <!-- show included artworks -->
-                <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3 mr-3">
-                    <div class="col-8">
-                        <span *ngIf="artwork.url">
-                            <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;">
-                        </span>
-                        <span *ngIf="!artwork.url && artwork.fileLocation">
-                            <img class="col-sm-12" src="{{artwork.fileLocation}}" style="cursor: pointer;">
-                        </span>
-                    </div>
-                    <div class="col">
-                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
-                        <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></div></strong>
-                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
+                <div class="col-sm-12">
+                    <!-- show included artworks -->
+                    <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3">
+                        <div class="col-8">
+                            <div class="row" *ngIf="artwork.url">
+                                <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;">
+                            </div>
+                            <div class="row" *ngIf="!artwork.url && artwork.fileLocation">
+                                <img src="{{artwork.fileLocation}}" style="cursor: pointer;">
+                            </div>
+                        </div>
+                        <div class="col ml-3">
+                            <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
+                            <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></div></strong>
+                            <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
+                        </div>
                     </div>
                 </div>
 
@@ -77,6 +81,7 @@
 
                 <span *ngIf="stage.sequential">
                     <!-- <div class="col-sm-12">{{stage.body[multiquestionIndex]}}</div><br/> -->
+                    <!-- <p class="col-sm-12">{{multiquestionIndex+1}}/{{stage.questions.length}}</p> -->
                     <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.questions[multiquestionIndex].title | linkifyHtml"></p>
 
                     <!-- get answer -->
@@ -143,6 +148,7 @@
                 
                 <span *ngIf="!stage.sequential">
                     <!-- <span class="col-sm-12">{{stage.body[multiquestionIndex]}}</span><br/><br/> -->
+                    <!-- <p class="col-sm-12">{{multiquestionIndex+1}}/{{stage.questions.length}}</p> -->
                     <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.questions[multiquestionIndex].title | linkifyHtml"></p>
                     <!-- <button class="m-3 btn btn-warning" (click)="randomiseQuestion(stage.body.length-1); submittedAnswer=false;">Reload question</button> -->
 
@@ -207,22 +213,25 @@
                 <!-- show title and question  -->
                 <h2 class="col-sm-12">{{stage.title}}</h2>
 
-                <!-- show included artworks -->
-                <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3 mr-3">
-                    <div class="col-8">
-                        <span *ngIf="artwork.url">
-                            <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;">
-                        </span>
-                        <span *ngIf="!artwork.url && artwork.fileLocation">
-                            <img class="col-sm-12" src="{{artwork.fileLocation}}" style="cursor: pointer;">
-                        </span>
-                    </div>
-                    <div class="col">
-                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
-                        <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></div></strong>
-                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
+                <div class="col-sm-12">
+                    <!-- show included artworks -->
+                    <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3">
+                        <div class="col-8">
+                            <div class="row" *ngIf="artwork.url">
+                                <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;">
+                            </div>
+                            <div class="row" *ngIf="!artwork.url && artwork.fileLocation">
+                                <img src="{{artwork.fileLocation}}" style="cursor: pointer;">
+                            </div>
+                        </div>
+                        <div class="col ml-3">
+                            <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
+                            <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></div></strong>
+                            <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
+                        </div>
                     </div>
                 </div>
+
 
                 <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.question.title | linkifyHtml"></p>
                 <div class="row">
@@ -283,22 +292,25 @@
                 <!-- show title  -->
                 <h2 class="col-sm-12">{{stage.title}}</h2>
 
-                <!-- show included artworks -->
-                <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3 mr-3">
-                    <div class="col-8">
-                        <span *ngIf="artwork.url">
-                            <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;">
-                        </span>
-                        <span *ngIf="!artwork.url && artwork.fileLocation">
-                            <img class="col-sm-12" src="{{artwork.fileLocation}}" style="cursor: pointer;">
-                        </span>
-                    </div>
-                    <div class="col">
-                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
-                        <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></div></strong>
-                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
+                <div class="col-sm-12">
+                    <!-- show included artworks -->
+                    <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3">
+                        <div class="col-8">
+                            <div class="row" *ngIf="artwork.url">
+                                <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;">
+                            </div>
+                            <div class="row" *ngIf="!artwork.url && artwork.fileLocation">
+                                <img src="{{artwork.fileLocation}}" style="cursor: pointer;">
+                            </div>
+                        </div>
+                        <div class="col ml-3">
+                            <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
+                            <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></div></strong>
+                            <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
+                        </div>
                     </div>
                 </div>
+
 
                 <p class="col-sm-12 alert alert-info" style="white-space: pre-wrap;" [innerHTML]="stage.help | linkifyHtml"></p>
 

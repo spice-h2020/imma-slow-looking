@@ -7,6 +7,7 @@ import { Theme } from "./theme.model";
 import { LinkText } from "./linktext.service";
 import { CollectionArtwork } from "./collectionArtwork.model";
 import { questionanswer } from "./action.model";
+import { ConfigSettings } from "./config";
 
 
 @Component({
@@ -17,6 +18,9 @@ import { questionanswer } from "./action.model";
 export class OtherPeopleComponent {
 
     constructor(private model: Model, private linktext: LinkText){}
+
+    // configuration settings
+    configSettings = new ConfigSettings;
 
     mode: number = 1;
     

@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { ConfigSettings } from "./config";
 import { Model } from "./repository.model";
 import { Script } from "./script.model";
 import { Theme } from "./theme.model";
@@ -11,6 +12,9 @@ import { Theme } from "./theme.model";
 export class HomepageComponent {
 
     constructor(private model: Model){}
+
+    // configuration settings
+    configSettings = new ConfigSettings;
 
     getThemes(): Theme[] {
         let themes =  this.model.getThemes();

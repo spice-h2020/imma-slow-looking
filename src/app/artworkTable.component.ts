@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { Artwork } from "./artwork.model";
+import { ConfigSettings } from "./config";
 import { CurrentUser } from "./currentUser.service";
 import { Model } from "./repository.model";
 
@@ -11,13 +12,16 @@ import { Model } from "./repository.model";
 
 export class ArtworkTableComponent {
 
+    // configuration settings
+    configSettings = new ConfigSettings;
+
     deleteConfirmation_Id = "";
 
     confirmDelete(_id: string) {
         this.deleteConfirmation_Id = _id;
     }
 
-    placeholderText = "Artwork, artist or year";
+    placeholderText = this.configSettings.artworks_searchplaceholder;
     selected: boolean = false;
     selectItem: Array<any> = [];
 

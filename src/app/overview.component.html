@@ -41,8 +41,8 @@
                     </div>
                     <div class="row">
                       <div class="col">
-                        <a *ngIf="script.open && script.visible" routerLink='/slowLooking/{{script._id}}' [queryParams]="{return:'overview'}" target='_blank'>
-                          <button class="btn btn-link mr-3" style="font-size: large; color: white; text-shadow: 1.5px 1.5px #000000;">View script <i class='fa fa-external-link'></i></button>
+                        <a *ngIf="script.open && script.visible" routerLink='/slowLooking/{{script._id}}' [queryParams]="{return:'overview'}">
+                          <button class="btn btn-link mr-3" style="font-size: large; color: white; text-shadow: 1.5px 1.5px #000000;">View script <i class='fa fa-link'></i></button>
                         </a>
                       </div>
                       <div class="col">
@@ -64,7 +64,7 @@
         <h2 class="accordion-header" id="heading2">
           <button class="accordion-button collapsed text-white museum-colour" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
               <span><h4>Exhibitions</h4>
-                Scripts inspired by IMMA exhibitions</span>
+                {{configSettings.overview_exhibitiondescription}}</span>
           </button>
         </h2>
         <div style="background-color: black;" id="collapse2" class="accordion-collapse collapse text-white" aria-labelledby="heading2">
@@ -141,8 +141,8 @@
                       </div>
                       <div class="row">
                         <div class="col">
-                          <a *ngIf="script.open && script.visible" routerLink='/slowLooking/{{script._id}}' [queryParams]="{return:'overview'}" target='_blank'>
-                            <button class="btn btn-link mr-3" style="font-size: large; color: white; text-shadow: 1.5px 1.5px #000000;">View script <i class='fa fa-external-link'></i></button>
+                          <a *ngIf="script.open && script.visible" routerLink='/slowLooking/{{script._id}}' [queryParams]="{return:'overview'}">
+                            <button class="btn btn-link mr-3" style="font-size: large; color: white; text-shadow: 1.5px 1.5px #000000;">View script <i class='fa fa-link'></i></button>
                           </a>
                         </div>
                         <div class="col">
@@ -164,14 +164,14 @@
     <div class="accordion-item">
         <h2 class="accordion-header" id="heading3">
           <button class="accordion-button collapsed text-white museum-colour" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
-              <span><h4>Artworks</h4>
-                Scripts related to works from the IMMA collection</span>
+              <span><h4>{{configSettings.overview_artworkstitle}}</h4>
+                {{configSettings.overview_artworksdescription}}</span>
           </button>
         </h2>
         <div style="background-color: black;" id="collapse3" class="accordion-collapse collapse text-white" aria-labelledby="heading3">
             <div class="accordion-body">
               <div class="ng-autocomplete" style="width: 100%;">
-                <span>Search artworks:</span>
+                <span>{{configSettings.overview_artworkssearchprompt}}</span>
                 <ng-autocomplete 
                   [data]="artworkResults"
                   [searchKeyword]="keywordArtworks"
@@ -238,8 +238,8 @@
                       </div>
                       <div class="row">
                         <div class="col">
-                          <a *ngIf="script.open && script.visible" routerLink='/slowLooking/{{script._id}}' [queryParams]="{return:'overview'}" target='_blank'>
-                            <button class="btn btn-link mr-3" style="font-size: large; color: white; text-shadow: 1.5px 1.5px #000000;">View script <i class='fa fa-external-link'></i></button>
+                          <a *ngIf="script.open && script.visible" routerLink='/slowLooking/{{script._id}}' [queryParams]="{return:'overview'}">
+                            <button class="btn btn-link mr-3" style="font-size: large; color: white; text-shadow: 1.5px 1.5px #000000;">View script <i class='fa fa-link'></i></button>
                           </a>
                         </div>
                         <div class="col">
@@ -329,8 +329,8 @@
                       </div>
                       <div class="row">
                         <div class="col">
-                          <a *ngIf="script.open && script.visible" routerLink='/slowLooking/{{script._id}}' [queryParams]="{return:'overview'}" target='_blank'>
-                            <button class="btn btn-link mr-3" style="font-size: large; color: white; text-shadow: 1.5px 1.5px #000000;">View script <i class='fa fa-external-link'></i></button>
+                          <a *ngIf="script.open && script.visible" routerLink='/slowLooking/{{script._id}}' [queryParams]="{return:'overview'}">
+                            <button class="btn btn-link mr-3" style="font-size: large; color: white; text-shadow: 1.5px 1.5px #000000;">View script <i class='fa fa-link'></i></button>
                           </a>
                         </div>
                         <div class="col">
@@ -412,8 +412,8 @@
                       </div>
                       <div class="row">
                         <div class="col">
-                          <a *ngIf="selectedScript.script.open && selectedScript.script.visible" routerLink='/slowLooking/{{selectedScript.script._id}}' [queryParams]="{return:'overview'}" target='_blank'>
-                            <button class="btn btn-link mr-3" style="font-size: large; color: white; text-shadow: 1.5px 1.5px #000000;">View script <i class='fa fa-external-link'></i></button>
+                          <a *ngIf="selectedScript.script.open && selectedScript.script.visible" routerLink='/slowLooking/{{selectedScript.script._id}}' [queryParams]="{return:'overview'}">
+                            <button class="btn btn-link mr-3" style="font-size: large; color: white; text-shadow: 1.5px 1.5px #000000;">View script <i class='fa fa-link'></i></button>
                           </a>
                         </div>
                         <div class="col">
@@ -431,11 +431,18 @@
     </div>
 </div>
 <div style="width: 100%; background-color: white;" class="border pl-3 pr-3">
+
 <p class="lead"></p>
+<p class="lead">
+  {{configSettings.overview_para1a}}<strong>{{configSettings.overview_para1b}}</strong>{{configSettings.overview_para1c}}
+</p>
+<p class="lead">{{configSettings.overview_para2}}</p>
+
+<!-- <p class="lead"></p>
 <p class="lead">
   Deep Viewpoints contains short <strong>scripts</strong> that guide you through looking at and responding to artworks. Many of the scripts have been developed by citizen curators, providing a new perspective on the IMMA collection.
 </p>
-<p class="lead">As well as taking part in the scripts you can also view the responses of others. Responses are pre-moderated before appearing on Deep Viewpoints.</p>
+<p class="lead">As well as taking part in the scripts you can also view the responses of others. Responses are pre-moderated before appearing on Deep Viewpoints.</p> -->
 </div>
 <br/>
 <br/>

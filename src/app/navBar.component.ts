@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { ConfigSettings } from "./config";
 import { CurrentUser } from "./currentUser.service";
 import { Model } from "./repository.model";
 import { User } from "./user.model";
@@ -12,6 +13,9 @@ import { User } from "./user.model";
 export class NavBarComponent {
 
     constructor(public currentuser: CurrentUser, private model: Model){}
+
+    // configuration settings
+    configSettings = new ConfigSettings;
 
     isAdmin() {
         return this.currentuser.getUserID() == 1;

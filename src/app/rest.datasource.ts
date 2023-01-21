@@ -15,7 +15,7 @@ import { Exhibition } from "./exhibition.model";
     // configuration settings
     private configSettings = new ConfigSettings;
 
-    private APIURL = 'https://spice.kmi.open.ac.uk/demos/slow-looking-api/object/';
+    private APIURL = this.configSettings.APIURL;
 
     // Citizen data URLs 
     private exhibitionUrl = this.APIURL + this.configSettings.citizenDatasetUUID + '?query=%7B%22type%22:%22exhibition%22%7D&limit=9999';

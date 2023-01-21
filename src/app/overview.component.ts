@@ -5,6 +5,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Artwork } from "./artwork.model";
 import { Theme } from "./theme.model";
 import { Exhibition } from "./exhibition.model";
+import { ConfigSettings } from "./config";
 
 
 
@@ -16,6 +17,9 @@ import { Exhibition } from "./exhibition.model";
 export class OverviewComponent implements OnInit {
 
     constructor(private model: Model, private activatedRoute: ActivatedRoute){}
+
+    // configuration settings
+    configSettings = new ConfigSettings;
 
     scripts: Script[];
     artworks: Artwork[] = [];
@@ -34,7 +38,7 @@ export class OverviewComponent implements OnInit {
     firstScripts: Script[] = [];
 
     //artwork search
-    placeholderTextArtworks = "Artwork, artist or year";
+    placeholderTextArtworks = this.configSettings.overview_searchplaceholder;
     keywordArtworks = 'searchstring';
     selectEventArtworks(item) {
         // do something with selected item
