@@ -59,8 +59,25 @@
                                 </div>
                             </div><br/> -->
 
+                            <div class="col-sm-12">
+                                <div *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);" class="row align-items-end mb-3">
+                                    <div class="col-8">
+                                        <div class="row" *ngIf="artwork.url">
+                                            <a routerLink="/slowLooking/{{script._id}}"><img src="{{artwork.url}}" alt="{{artwork.name}}" style="width: 100%"></a>
+                                        </div>
+                                        <div class="row" *ngIf="!artwork.url && artwork.fileLocation">
+                                            <img src="{{artwork.fileLocation}}" style="cursor: pointer;">
+                                        </div>
+                                    </div>
+                                    <div class="col ml-3">
+                                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
+                                        <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></div></strong>
+                                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
+                                    </div>
+                                </div>
+                            </div>
                             
-                            <div *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);" class="row align-items-end mb-3 mr-3">
+                            <!-- <div *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);" class="row align-items-end mb-3 mr-3">
                                 <div class="col-8" *ngIf="artwork.url">
                                     <img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}">
                                 </div>
@@ -77,7 +94,7 @@
                                     <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></div></strong>
                                     <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
                                 </div> 
-                            </div>
+                            </div> -->
 
                             <ng-container *ngIf="getNonHomepageArtworksOfScript(script).length > 0">
                                 <div *ngFor="let otherartwork of getNonHomepageArtworksOfScript(script);" class="row align-items-end mb-3">

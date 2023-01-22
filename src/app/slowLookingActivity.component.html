@@ -77,7 +77,7 @@
                     </div>
                 </div>
 
-                <p class="col-sm-12 alert alert-info" style="white-space: pre-wrap;" [innerHTML]="stage.help | linkifyHtml" *ngIf="stage.help"></p>
+                <p class="pl-3 pr-3 alert alert-info" style="white-space: pre-wrap;" [innerHTML]="stage.help | linkifyHtml" *ngIf="stage.help"></p>
 
                 <span *ngIf="stage.sequential">
                     <!-- <div class="col-sm-12">{{stage.body[multiquestionIndex]}}</div><br/> -->
@@ -186,7 +186,7 @@
                         <div class="col text-left">
                             <!-- <button class="m-3 btn btn-warning" *ngIf="i != 0" (click)="multiquestionBack(multiquestionIndex, answervalue.value, stage, stage.questions, i, newMultiquestionAction)">Back</button> -->
                         </div>
-                        <div class="text-right border">
+                        <div class="text-right">
                             <button class="mt-1 mr-2 mb-3 btn btn-secondary" *ngIf="i != 0" (click)="multiquestionBack(multiquestionIndex, answervalue.value, stage, stage.questions, i, newMultiquestionAction)">Back</button>
                             <button class="mt-1 mb-3 btn btn-secondary" (click)="multiquestionEnd(i, multiquestionIndex, answervalue.value, stage, stage.questions, newMultiquestionAction)" [routerLink]="routerLink">Save</button>
                         </div>
@@ -235,11 +235,12 @@
 
                 <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.question.title | linkifyHtml"></p>
                 <div class="row">
-                    <div class="col-11">
-                        <span class="col-sm-12 alert alert-info" style="float:left; white-space: pre-wrap;" *ngIf="stage.help && showQuestionHelp" [innerHTML]="stage.help | linkifyHtml"></span>
+                    <div class="col">
+                        <span class="alert alert-info pl-3 pr-3" style="float:left; white-space: pre-wrap;" *ngIf="stage.help && showQuestionHelp" [innerHTML]="stage.help | linkifyHtml"></span>
                     </div>
                     <div class="col-1">
-                        <span class="float-right"><div *ngIf="stage.help" class="col-sm-12" (click)="toggleQuestionHelp()"><img width="20" style="background-color:white; cursor: pointer;" src="assets/img/question-help.png"></div></span>
+                        <img *ngIf="stage.help" (click)="toggleQuestionHelp()" width="20" style="float: right; background-color:white; cursor: pointer;" src="assets/img/question-help.png">
+                        <!-- <span class="float-right"><div *ngIf="stage.help" class="col-sm-12" (click)="toggleQuestionHelp()"><img width="20" style="background-color:white; cursor: pointer;" src="assets/img/question-help.png"></div></span> -->
                     </div>
                 </div>
                 <!-- <div class="col-sm-12 border container" style="display: block;">
