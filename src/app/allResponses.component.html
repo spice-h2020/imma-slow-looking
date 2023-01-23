@@ -74,11 +74,10 @@
     </ng-container>
 
     <div class="accordion mt-3" id="{{'script'+script._id}}">
-        <div class="accordion-item" style="background-color: rgb(41, 161, 184);">
+        <div class="accordion-item museum-colour">
             <h2 class="accordion-header" id="{{'heading_' + 'script'+script._id}}">
                 <button 
-                    style="background-color: rgb(41, 161, 184);"
-                    class="accordion-button collapsed text-white" 
+                    class="accordion-button collapsed text-white museum-colour" 
                     type="button" 
                     data-bs-toggle="collapse" 
                     [attr.data-bs-target]="'#collapse_' + 'script'+script._id"
@@ -96,7 +95,7 @@
                 <div class="accordion-body">
                     <div *ngFor="let activity of getApprovedActivitiesOfAScript(script._id); let i = index; let even=even">
                         <!-- <div style="background-color: #f2f2f2;" class="rounded-3"> -->
-                        <div class="card text-white mb-3" style="background-color: rgb(41, 161, 184); border-radius: 15px;">
+                        <div class="card text-white mb-3 museum-colour" style="border-radius: 15px;">
                         <div class="card-body">
                             <div *ngFor="let action of activity.actions;">
                                 <span *ngIf="action.questionStage">
