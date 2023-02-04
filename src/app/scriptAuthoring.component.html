@@ -41,7 +41,7 @@
                         {{script.name}}
                         <span *ngIf="viewScript=='0'" class="float-right">
                             <button class="ml-5 btn btn-danger" (click)="confirmDelete(script._id)">Delete script</button>
-                            <button class="ml-5 btn btn-secondary" (click)="viewScript=script._id; deleteConfirmation_Id=''">Open script</button>  
+                            <button class="ml-5 btn btn-secondary" (click)="viewScript=script._id; deleteConfirmation_Id=''; showup();">Open script</button>  
                         </span>
                         <span *ngIf="viewScript==script._id && editScriptDescription=='0' && editScriptStage==0" class="float-right">
                             <button class="ml-5 btn btn-secondary float-right" (click)="viewScript='0'; deleteStageConfirmationId=0; showStageHelp=false; newStageMessage=false;">Close script</button>
@@ -191,10 +191,11 @@
                     </span>
                     <div class="mt-3" *ngIf="viewScript==script._id  && editScriptDescription=='0'">
                         <hr>
-                        <span class="font-weight-bold">Stages</span>
+                        <p>Manage the stages of your script.</p>
+                        <!-- <span class="font-weight-bold">Stages</span> -->
                         <div class="row" *ngIf="editScriptStage==0">
                             <div class="col-2">
-                                Add stage: 
+                                <span class="font-weight-bold">Add stage:</span>
                             </div>
                             <div class="col-10">
                                 <button class="btn btn-success mr-1" (click)="addStatementStageToScript(script); deleteStageConfirmationId=0; showStageHelp=false;">statement</button> 

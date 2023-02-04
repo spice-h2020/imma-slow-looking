@@ -20,6 +20,10 @@ import { Question } from "./question.model";
 
 export class SlowLookingActivityComponent implements OnInit {
 
+    showup() {
+        window.scroll(0,0);
+    }
+
     multiquestionIndex = 0;
 
     routerLink = "/home";
@@ -371,6 +375,7 @@ export class SlowLookingActivityComponent implements OnInit {
         if(this.slowLookingCurrentScriptStageIndex >= 0) {
             this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
         }
+        this.showup();
     }
 
     statementEnd() {
@@ -386,6 +391,7 @@ export class SlowLookingActivityComponent implements OnInit {
         if(this.slowLookingCurrentScriptStageIndex >= 0) {
             this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
         }
+        this.showup();
     }
 
     multiquestionContinue(multiquestionIndex, answervalue, stage, stagequestions, i, newMultiquestionAction) {
@@ -407,6 +413,7 @@ export class SlowLookingActivityComponent implements OnInit {
         if(this.slowLookingCurrentScriptStageIndex >= 0) {
             this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
         }
+        this.showup();
     }
 
     multiquestionEnd(i, multiquestionIndex, answervalue, stage, stagequestions, newMultiquestionAction) {
@@ -446,6 +453,7 @@ export class SlowLookingActivityComponent implements OnInit {
         if(this.slowLookingCurrentScriptStageIndex >= 0) {
             this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
         }
+        this.showup();
     }
 
     getQuestionTextFromQuestions(questions: Question[]) {
@@ -470,6 +478,7 @@ export class SlowLookingActivityComponent implements OnInit {
         if(this.slowLookingCurrentScriptStageIndex >= 0) {
             this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
         }
+        this.showup();
     }
 
     questionEnd(i, stage, stagebody, newQuestionAction) {
@@ -497,6 +506,7 @@ export class SlowLookingActivityComponent implements OnInit {
         if(this.slowLookingCurrentScriptStageIndex >= 0) {
             this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
         }
+        this.showup();
     }
 
     storyContinue(i, stage, stagebody, newStoryAction) {
@@ -512,6 +522,7 @@ export class SlowLookingActivityComponent implements OnInit {
         if(this.slowLookingCurrentScriptStageIndex >= 0) {
             this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
         }
+        this.showup();
     }
 
     storyEnd(i, stage, stagebody, newStoryAction) {
@@ -538,6 +549,7 @@ export class SlowLookingActivityComponent implements OnInit {
         if(this.slowLookingCurrentScriptStageIndex >= 0) {
             this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
         }
+        this.showup();
     }
 
     foo(i) {

@@ -20,6 +20,10 @@ export class ScriptAuthoringComponent {
 
     constructor(public currentuser: CurrentUser, private model: Model){}
 
+    showup() {
+        window.scroll(0,0);
+    }
+
     private configSettings = new ConfigSettings;
 
     currentUser: number = 1;

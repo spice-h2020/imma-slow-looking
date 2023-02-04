@@ -5,6 +5,7 @@ import { Lightbox } from "ng-gallery/lightbox";
 import { questionanswer } from "./action.model";
 import { Activity } from "./activity.model";
 import { Artwork } from "./artwork.model";
+import { ConfigSettings } from "./config";
 import { Model } from "./repository.model";
 import { Script } from "./script.model";
 
@@ -22,6 +23,9 @@ export class AllResponsesComponent implements OnInit {
         public gallery: Gallery,
         public lightbox: Lightbox
         ){}
+
+    // configuration settings
+    configSettings = new ConfigSettings;
 
     slowLookingScript = "0";
 

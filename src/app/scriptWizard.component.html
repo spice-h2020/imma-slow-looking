@@ -6,7 +6,7 @@
 <div *ngIf="viewScript!='0'" class="row mb-3 mt-3">
     <div class="col"><p class="lead"><strong>Selected script: </strong><span *ngIf="selectedScript.name">{{selectedScript.name}}</span></p></div>
     <div class="col-4" style="min-width: 8em;">
-        <button class="btn btn-secondary float-right mt-1" (click)="unselectScript()">Close script</button>
+        <button class="btn btn-secondary float-right mt-1" (click)="editScriptStage=0; showStageHelp=false; unselectScript()">Close script</button>
     </div>
 </div>
 
@@ -24,7 +24,7 @@
             <h4>{{script.name}}</h4>
         </div>
         <div class="col-1" style="min-width: 8em;">
-            <button class="btn btn-secondary float-right" (click)="selectScript(script._id)">Open script</button>
+            <button class="btn btn-secondary float-right" (click)="selectScript(script._id); showup();">Open script</button>
         </div>
     </div>
     <div class="row">
@@ -127,7 +127,7 @@
             <p>Manage the stages of your script.</p>
             <div class="row" *ngIf="editScriptStage==0">
                 <div class="col-2">
-                    Add stage: 
+                    <span class="font-weight-bold">Add stage:</span>
                 </div>
                 <div class="col-10">
                     <button class="btn btn-success mr-1" (click)="addStatementStageToScript(selectedScript); deleteStageConfirmationId=0; showStageHelp=false;">statement</button> 
@@ -475,7 +475,12 @@
                                                     <tr *ngFor="let option of stage.questions[index].options; let oi=index; trackBy:trackByIdx">
                                                         <td>
                                                             <textarea rows="1" class="form-control" [(ngModel)]="stage.questions[index].options[oi]"></textarea>
-                                                        </td><td><button class="btn btn-danger float-right" (click)="deleteMultiquestionOption(selectedScript, i, index, oi)" [disabled]="stage.questions[index].options.length < 3">Delete option</button></td>
+                                                        </td><td><button class="btn btn-danger float-right" (click)="deleteMultiquestionOption(selectedScript, i, index, oi)">Delete option</button></td>
+                                                    </tr>
+                                                    <tr *ngIf="!stage.questions[index].options.length">
+                                                        <td class="alert alert-info" >
+                                                            As this multiple choice question has no options it will be displayed as a statement.
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td>
