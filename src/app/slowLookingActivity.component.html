@@ -236,10 +236,10 @@
                 <p class="col-sm-12" style="white-space: pre-wrap;" [innerHTML]="stage.question.title | linkifyHtml"></p>
                 <div class="row">
                     <div class="col">
-                        <span class="alert alert-info pl-3 pr-3" style="float:left; white-space: pre-wrap;" *ngIf="stage.help && showQuestionHelp" [innerHTML]="stage.help | linkifyHtml"></span>
+                        <span class="alert alert-info pl-3 pr-3" style="float:left; white-space: pre-wrap; width: 100%;" *ngIf="stage.help && showQuestionHelp" [innerHTML]="stage.help | linkifyHtml"></span>
                     </div>
-                    <div class="col-1">
-                        <img *ngIf="stage.help" (click)="toggleQuestionHelp()" width="20" style="float: right; background-color:white; cursor: pointer;" src="assets/img/question-help.png">
+                    <div class="col-1" style="max-width: 25px;">
+                        <img *ngIf="stage.help" (click)="toggleQuestionHelp()" width="25" style="float: right; background-color:white; cursor: pointer;" src="assets/img/question-help.png">
                         <!-- <span class="float-right"><div *ngIf="stage.help" class="col-sm-12" (click)="toggleQuestionHelp()"><img width="20" style="background-color:white; cursor: pointer;" src="assets/img/question-help.png"></div></span> -->
                     </div>
                 </div>
