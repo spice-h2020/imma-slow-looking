@@ -6,7 +6,7 @@
 <div *ngIf="viewScript!='0'" class="row mb-3 mt-3">
     <div class="col"><p class="lead"><strong>Selected script: </strong><span *ngIf="selectedScript.name">{{selectedScript.name}}</span></p></div>
     <div class="col-4" style="min-width: 8em;">
-        <button class="btn btn-secondary float-right mt-1" (click)="editScriptStage=0; showStageHelp=false; unselectScript()">Close script</button>
+        <button *ngIf="editScriptStage==0" class="btn btn-secondary float-right mt-1" (click)="editScriptStage=0; showStageHelp=false; unselectScript()">Close script</button>
     </div>
 </div>
 
