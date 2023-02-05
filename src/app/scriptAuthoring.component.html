@@ -232,7 +232,7 @@
                                     <span class="font-weight-bold">multiquestion: </span>
                                 </div>
                                 <div class="col">
-                                    <span>Add a number of questions to one stage which can be reloaded at random or shown in sequence</span>
+                                    <span>Add a number of questions to one stage which can be shuffled at random or shown in sequence</span>
                                 </div>
                             </div>
                             <div class="row">
@@ -567,7 +567,7 @@
                                 </div>
                                 <div class="col">
                                     <span *ngIf='stage.sequential'>Questions presented in sequence</span>
-                                    <span *ngIf='!stage.sequential'>Random question that can be reloaded</span>
+                                    <span *ngIf='!stage.sequential'>Random question that can be shuffled</span>
                                 </div>
                             </div>
                             <div class="row" *ngIf='stage.stagetype=="multiquestion"'>
@@ -743,7 +743,7 @@
                                         [(ngModel)] = "stage.sequential"
                                         />
                                     </div>
-                                    <label class="form-check-label ml-1">Random question that can be reloaded</label>
+                                    <label class="form-check-label ml-1">Random question that can be shuffled</label>
                                 </td>
                             </tr>
 
