@@ -166,8 +166,8 @@
                             Script: 
                         </span>
                     </td><td>
-                        <a routerLink='/slowLooking/{{script._id}}' target='_blank'>
-                            <button class="btn btn-light mr-3">View script <i class='fa fa-external-link'></i></button>
+                        <a routerLink='/slowLooking/{{script._id}}'>
+                            <button class="btn btn-light mr-3">View script <i class='fa fa-link'></i></button>
                         </a>
                         <button class="btn btn-light" ngbPopover="{{scriptURL(script)}}" popoverTitle="Script URL copied:" ngxClipboard [cbContent]='scriptURL(script)'>Copy script URL <i class="fa fa-clone" aria-hidden="true"></i></button>
                     </td></tr>
@@ -177,8 +177,8 @@
                             Responses: 
                         </span>
                     </td><td style="vertical-align: top;">
-                        <a routerLink='/allResponses/{{script._id}}' target='_blank'>
-                            <button class="btn btn-light mr-3">View responses <i class='fa fa-external-link'></i></button>
+                        <a routerLink='/allResponses/{{script._id}}'>
+                            <button class="btn btn-light mr-3">View responses <i class='fa fa-link'></i></button>
                         </a>
                         <button class="btn btn-light" ngbPopover="{{responsesURL(script)}}" popoverTitle="Responses URL copied:" ngxClipboard [cbContent]='responsesURL(script)'>Copy responses URL <i class="fa fa-clone" aria-hidden="true"></i></button>
                     </td></tr>

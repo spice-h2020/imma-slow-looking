@@ -8,9 +8,6 @@
 <p class="lead">
     {{configSettings.otherPeople_para2}}
 </p>
-<p class="lead">
-    {{configSettings.otherPeople_para3a}}<a routerLink="/home">{{configSettings.otherPeople_para3b}}</a>{{configSettings.otherPeople_para3c}}
-</p> 
 <h2>Themes</h2>
 </div>
 <div *ngFor="let theme of getThemes(); let i = index">
@@ -167,8 +164,8 @@
                                                 </div>
                                             </div>
                                             <div *ngIf="getApprovedActivitiesOfAScript(script._id).length > maximumResponses">
-                                                <a routerLink="/allResponses/{{script._id}}" target='_blank'>
-                                                    <button class="btn btn-secondary mr-3">Show all <i class='fa fa-external-link'></i></button>
+                                                <a routerLink="/allResponses/{{script._id}}">
+                                                    <button class="btn btn-secondary mr-3">Show all</button>
                                                 </a>
                                             </div>
                                         </div>
@@ -188,8 +185,14 @@
 </div>
 <div style="width: 100%; background-color: white;" class="border pl-3 pr-3">
 <br/>         
-<h2>Take Part</h2>
-    <button class="btn btn-secondary" routerLink="/home">Try Deep Viewpoints scripts for yourself</button><br/><br/>
+<h2>Scripts</h2>
+<p class="lead">
+    {{configSettings.otherPeople_para3a}}{{configSettings.otherPeople_para3b}}{{configSettings.otherPeople_para3c}}
+</p> 
+<div class="col mx-auto text-center" style="width: 100%;">
+    <button class="btn btn-secondary" routerLink="/home">Try Deep Viewpoints scripts for yourself</button>
+</div>
+<br/>
 </div>
 <br/>
 <br/>
