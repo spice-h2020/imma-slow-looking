@@ -11,8 +11,8 @@
     {{configSettings.home_para1a}}<strong>{{configSettings.home_para1b}}</strong>{{configSettings.home_para1c}}
 </p>
 <p class="lead">{{configSettings.home_para2}}</p>
-
-<h2>Themes</h2>
+<p class="lead">{{configSettings.home_para3a}}<a routerLink="/otherPeople">{{configSettings.home_para3b}}</a>{{configSettings.home_para3c}}</p>
+<!-- <h2>Themes</h2> -->
 </div>
 <div *ngFor="let theme of getThemes(); let i = index">
     <div *ngIf="getScriptsOfTheme(theme._id).length > 0" class="accordion " id="accordionFlushExample">
@@ -92,13 +92,13 @@
     </div>
 </div>
 <div style="width: 100%; background-color: white;" class="border pl-3 pr-3">
-<br/>
+<!-- <br/>
 <h2>Responses</h2>
 <p class="lead">{{configSettings.home_para3a}}{{configSettings.home_para3b}}{{configSettings.home_para3c}}</p>
 <div class="col mx-auto text-center" style="width: 100%;">
     <button class="btn btn-secondary" routerLink="/otherPeople">Find out how others have responded to the scripts</button>
 </div>
-<br/>
+<br/> -->
 </div>
 <br/>
 <br/>
