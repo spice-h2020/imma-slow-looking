@@ -662,7 +662,11 @@
                         </span>
                         <!-- edit script stage -->
                         <span *ngIf="stage.id==editScriptStage">
-                            <table width=100%><th></th><th></th>
+                            <table style="width:100%"><th></th><th></th>
+                                <colgroup>
+                                    <col span="1" style="width: 16%;">
+                                    <col span="1" style="width: 84%;">
+                                </colgroup>
                             <tr><td>
                                 <span class="drag-handle" style="cursor: move;" cdkDragHandle>
                                 </span>
@@ -757,7 +761,7 @@
                                 <span class="font-weight-bold">Text:</span>
                             </td><td>
                                 <span *ngIf='stage.stagetype!="multiquestion" && stage.stagetype!="question"'>
-                                    <textarea rows="3" class="form-control" [(ngModel)]="stage.body"></textarea>
+                                    <textarea rows="5" class="form-control" [(ngModel)]="stage.body"></textarea>
                                 </span>
                                 <!-- <ng-container *ngIf='stage.stagetype=="question"'> -->
                                 <span *ngIf='stage.stagetype=="question"'>
