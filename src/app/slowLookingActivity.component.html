@@ -12,7 +12,7 @@
             <div class="col-sm-12">
                 <!-- show included artworks -->
                 <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3">
-                    <div class="col-6">
+                    <div class="col-sm-6">
                         <div class="row" *ngIf="artwork.url">
                             <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;">
                         </div>
@@ -20,7 +20,7 @@
                             <img src="{{artwork.fileLocation}}" style="cursor: pointer;">
                         </div>
                     </div>
-                    <div class="col ml-3">
+                    <div class="col-sm ml-3">
                         <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
                         <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></div></strong>
                         <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
@@ -61,7 +61,7 @@
                 <div class="col-sm-12">
                     <!-- show included artworks -->
                     <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3">
-                        <div class="col-6">
+                        <div class="col-sm-6">
                             <div class="row" *ngIf="artwork.url">
                                 <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;">
                             </div>
@@ -69,7 +69,7 @@
                                 <img src="{{artwork.fileLocation}}" style="cursor: pointer;">
                             </div>
                         </div>
-                        <div class="col ml-3">
+                        <div class="col-sm ml-3">
                             <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
                             <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></div></strong>
                             <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
@@ -216,7 +216,7 @@
                 <div class="col-sm-12">
                     <!-- show included artworks -->
                     <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3">
-                        <div class="col-6">
+                        <div class="col-sm-6">
                             <div class="row" *ngIf="artwork.url">
                                 <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;">
                             </div>
@@ -224,7 +224,7 @@
                                 <img src="{{artwork.fileLocation}}" style="cursor: pointer;">
                             </div>
                         </div>
-                        <div class="col ml-3">
+                        <div class="col-sm ml-3">
                             <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
                             <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></div></strong>
                             <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
@@ -296,7 +296,7 @@
                 <div class="col-sm-12">
                     <!-- show included artworks -->
                     <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3">
-                        <div class="col-6">
+                        <div class="col-sm-6">
                             <div class="row" *ngIf="artwork.url">
                                 <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;">
                             </div>
@@ -304,7 +304,7 @@
                                 <img src="{{artwork.fileLocation}}" style="cursor: pointer;">
                             </div>
                         </div>
-                        <div class="col ml-3">
+                        <div class="col-sm ml-3">
                             <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
                             <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></div></strong>
                             <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
