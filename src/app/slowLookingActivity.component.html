@@ -12,7 +12,7 @@
             <div class="col-sm-12">
                 <!-- show included artworks -->
                 <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3">
-                    <div class="col-8">
+                    <div class="col-6">
                         <div class="row" *ngIf="artwork.url">
                             <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;">
                         </div>
@@ -61,7 +61,7 @@
                 <div class="col-sm-12">
                     <!-- show included artworks -->
                     <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3">
-                        <div class="col-8">
+                        <div class="col-6">
                             <div class="row" *ngIf="artwork.url">
                                 <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;">
                             </div>
@@ -216,7 +216,7 @@
                 <div class="col-sm-12">
                     <!-- show included artworks -->
                     <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3">
-                        <div class="col-8">
+                        <div class="col-6">
                             <div class="row" *ngIf="artwork.url">
                                 <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;">
                             </div>
@@ -296,7 +296,7 @@
                 <div class="col-sm-12">
                     <!-- show included artworks -->
                     <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3">
-                        <div class="col-8">
+                        <div class="col-6">
                             <div class="row" *ngIf="artwork.url">
                                 <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;">
                             </div>
