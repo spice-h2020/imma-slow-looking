@@ -24,7 +24,7 @@ export class ScriptWizardComponent {
         window.scroll(0,0);
     }
     
-    private configSettings = new ConfigSettings;
+    configSettings = new ConfigSettings;
 
     currentUser: number = 1;
 

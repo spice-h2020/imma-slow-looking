@@ -98,14 +98,16 @@
                             </div> -->
 
                             <ng-container *ngIf="getNonHomepageArtworksOfScript(script).length > 0">
-                                <div *ngFor="let otherartwork of getNonHomepageArtworksOfScript(script);" class="row align-items-end mb-3">
-                                    <div class="col-4" *ngIf="otherartwork.url">
-                                        <img class="col-sm-12" src="{{otherartwork.url}}" alt="{{otherartwork.name}}">
-                                    </div>
-                                    <div class="col">
-                                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="otherartwork.name"></div>
-                                        <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="otherartwork.artist"></div></strong>
-                                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="otherartwork.year"></div>
+                                <div class="col-sm-12">
+                                    <div *ngFor="let otherartwork of getNonHomepageArtworksOfScript(script);" class="row align-items-end mb-3">
+                                        <div class="col-sm-4" *ngIf="otherartwork.url">
+                                            <div class="row"><img src="{{otherartwork.url}}" style="width: 100%;" alt="{{otherartwork.name}}"></div>
+                                        </div>
+                                        <div class="col-sm ml-3">
+                                            <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="otherartwork.name"></div>
+                                            <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="otherartwork.artist"></div></strong>
+                                            <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="otherartwork.year"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </ng-container>
