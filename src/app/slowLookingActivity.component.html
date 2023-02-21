@@ -10,20 +10,19 @@
             <h2 class="col-sm-12">{{stage.title}}</h2>
 
             <div class="col-sm-12">
-                <!-- show included artworks -->
-                <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3">
+                <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks);" class="row align-items-end mb-3">
                     <div class="col-sm-6">
                         <div class="row" *ngIf="artwork.url">
-                            <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;">
+                            <a routerLink="/slowLooking/1"><img src="{{artwork.url}}" alt="{{artwork.name}}" style="width: 100%"></a>
                         </div>
                         <div class="row" *ngIf="!artwork.url && artwork.fileLocation">
                             <img src="{{artwork.fileLocation}}" style="cursor: pointer;">
                         </div>
                     </div>
                     <div class="col-sm ml-3">
-                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
-                        <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></div></strong>
-                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
+                        <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.name"></div>
+                        <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></div></strong>
+                        <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></div>
                     </div>
                 </div>
             </div>
@@ -70,9 +69,9 @@
                             </div>
                         </div>
                         <div class="col-sm ml-3">
-                            <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
-                            <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></div></strong>
-                            <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
+                            <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.name"></div>
+                            <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></div></strong>
+                            <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></div>
                         </div>
                     </div>
                 </div>
@@ -225,9 +224,9 @@
                             </div>
                         </div>
                         <div class="col-sm ml-3">
-                            <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
-                            <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></div></strong>
-                            <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
+                            <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.name"></div>
+                            <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></div></strong>
+                            <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></div>
                         </div>
                     </div>
                 </div>
@@ -305,9 +304,9 @@
                             </div>
                         </div>
                         <div class="col-sm ml-3">
-                            <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
-                            <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></div></strong>
-                            <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
+                            <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.name"></div>
+                            <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></div></strong>
+                            <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></div>
                         </div>
                     </div>
                 </div>

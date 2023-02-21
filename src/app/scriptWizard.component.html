@@ -110,9 +110,14 @@
                     </div>
                     <div class="row">
                         <label class="form-check-label"> 
-                            <div><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></div>
+                        <div class="ml-3">
+                            <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.name"></div>
+                            <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></div></strong>
+                            <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></div>
+                        </div>
+                            <!-- <div><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></div>
                             <div><strong><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></strong></div>
-                            <div>{{artwork.year}}</div>
+                            <div>{{artwork.year}}</div> -->
                         </label>
                     </div>
                 </div>
