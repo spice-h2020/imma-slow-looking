@@ -13,7 +13,7 @@
                 <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks);" class="row align-items-end mb-3">
                     <div class="col-sm-6">
                         <div class="row" *ngIf="artwork.url">
-                            <a routerLink="/slowLooking/1"><img src="{{artwork.url}}" alt="{{artwork.name}}" style="width: 100%"></a>
+                            <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;">
                         </div>
                         <div class="row" *ngIf="!artwork.url && artwork.fileLocation">
                             <img src="{{artwork.fileLocation}}" style="cursor: pointer;">
