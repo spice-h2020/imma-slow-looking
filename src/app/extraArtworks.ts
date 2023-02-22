@@ -63,6 +63,15 @@ export class ExtraArtworks {
         new CollectionArtwork("View of Vetheuil", "Claude Monet", "1880", "https://www.artofmasters.com/wp-content/uploads/2021/02/View-of-Vetheuil-1880-by-Claude-Monet-ORIGINAL-corrections24feb2021_1500px-776x1024.jpg", "View of Vetheuil, 1880, Claude Monet"),
         new CollectionArtwork("The Sound of Silence", "Max Ernst", "1943-44", "https://www.theartpostblog.com/wp-content/uploads/2017/06/the-sound-of-silence-max-ernst.jpg", "The Sound of Silence, Max Ernst, 1943-44"),
 
+        new CollectionArtwork("Statement", "Tomasz Madajczak", "2022", "https://spiceimageworkaround.files.wordpress.com/2023/02/tomasz-statement-new.jpg", "Statement, Tomasz Madajczak, 2022"),
+        new CollectionArtwork("Bengal Tiger Hunt", "Amna Walayat", "2020", "https://pbs.twimg.com/media/EfYLGazXkAAU_u-?format=jpg&name=4096x4096", "Bengal Tiger Hunt, Amna Walayat, 2020"),
+        new CollectionArtwork("Evergreen", "Laragh Pittman", "2022", "https://spiceimageworkaround.files.wordpress.com/2023/02/evergreen.jpg", "Evergreen, Laragh Pittman, 2022"),
+        new CollectionArtwork("Fear (ترس)", "Roxana Manouchehri", "2022", "https://spiceimageworkaround.files.wordpress.com/2023/02/fear.jpg", "Fear (ترس), Roxana Manouchehri, 2022"),
+        new CollectionArtwork("Ravages of War", "Joe Odiboh", "2022", "https://spiceimageworkaround.files.wordpress.com/2023/02/ravages-of-war.jpg", "Ravages of War, Joe Odiboh, 2022"),
+        new CollectionArtwork("The African Drum", "Antonio D’Souza", "2023", "https://spiceimageworkaround.files.wordpress.com/2023/02/the-african-drum.jpg", "The African Drum, Antonio D’Souza, 2023"),
+        new CollectionArtwork("The African Drum (detail)", "Antonio D’Souza", "2023", "https://spiceimageworkaround.files.wordpress.com/2023/02/drum-detail-4.jpg", "The African Drum (detail), Antonio D’Souza, 2023"),
+        new CollectionArtwork("BUPEI", "Ibrahim Mahama", "2017", "https://spiceimageworkaround.files.wordpress.com/2023/02/ibrahim-mahama-photo-a.dsouza.jpg", "BUPEI, Ibrahim Mahama, 2017")
+
     ]
 
 }
