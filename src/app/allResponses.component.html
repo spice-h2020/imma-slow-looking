@@ -65,7 +65,8 @@
         <div class="col-sm-12">
             <div *ngFor="let otherartwork of getNonHomepageArtworksOfScript(script);" class="row align-items-end mb-3">
                 <div class="col-sm-4" *ngIf="otherartwork.url">
-                    <div class="row"><img src="{{otherartwork.url}}" alt="{{otherartwork.name}}" (click)="startLightbox(otherartwork.url)" style="width: 100%; cursor: pointer;"></div>
+                    <!-- <div class="row"><img src="{{otherartwork.url}}" alt="{{otherartwork.name}}" (click)="startLightbox(otherartwork.url)" style="width: 100%; cursor: pointer;"></div> -->
+                    <img src="{{otherartwork.url}}" alt="{{otherartwork.name}}" (click)="startLightbox(otherartwork.url)" style="width: 100%; cursor: pointer;">
                 </div>
                 <div class="col-sm ml-3">
                     <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="otherartwork.name"></div>
