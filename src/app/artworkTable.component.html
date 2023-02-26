@@ -3,27 +3,35 @@
 <p class="lead">{{configSettings.artworks_para1}}</p>
 <div *ngIf="isLoggedIn()" class="form-group">
     <table class="table table-sm table-striped"> 
-        <thead class="thead-dark"><tr><th width="20%">My artworks</th><th></th><th></th></tr></thead>
+        <thead class="thead-dark"><tr><th>My artworks</th><th></th></tr></thead>
         <tr *ngFor="let item of getArtworks(); let i = index">
             <td>
-                <a href="{{item.url}}" target='_blank'><img src="{{item.url}}" alt="{{item.name}}" height="auto" width="150px" ></a>
-            </td>
-            <td class="align-bottom">
+                <div class="col-sm-12">
+                    <div class="row align-items-end mb-3">
+                        <div class="col-sm-6" style="max-width: 160px;">
+                            <img src="{{item.url}}" alt="{{item.name}}" height="auto" width="150px" >
+            <!-- </td>
+            <td class="align-bottom"> -->
                 <!-- <div> -->
-                    <span style="white-space: pre-wrap;" [innerHTML]="item.name"></span><br/>
-                    <strong><span style="white-space: pre-wrap;" [innerHTML]="item.artist"></span></strong><br/>
-                    <span>{{item.year}}</span>
-                    <span *ngIf="deleteConfirmation_Id==item._id">
-                        <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this artwork from your collection?</strong>
-                        <span *ngIf="getScriptsOfAnArtwork(item._id).length > 0">
-                            <p><strong>It will be removed from the following scripts:</strong></p>
-                        </span>
-                        <ul *ngFor="let artworkscript of getScriptsOfAnArtwork(item._id);">
-                            <li>{{artworkscript.name}}</li>
-                        </ul>
-                        <div><button class="btn btn-danger ml-2" (click)="deleteArtwork(item._id)">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteConfirmation_Id=''">Cancel</button></div>
                         </div>
-                    </span>
+                        <div class="col-sm ml-3">
+                            <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="item.name"></div>
+                            <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="item.artist"></div></strong>
+                            <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;">{{item.year}}</div>
+                            <span *ngIf="deleteConfirmation_Id==item._id">
+                                <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this artwork from your collection?</strong>
+                                <span *ngIf="getScriptsOfAnArtwork(item._id).length > 0">
+                                    <p><strong>It will be removed from the following scripts:</strong></p>
+                                </span>
+                                <ul *ngFor="let artworkscript of getScriptsOfAnArtwork(item._id);">
+                                    <li>{{artworkscript.name}}</li>
+                                </ul>
+                                <div><button class="btn btn-danger ml-2" (click)="deleteArtwork(item._id)">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteConfirmation_Id=''">Cancel</button></div>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
                 <!-- </div> -->
             </td>
             <td>
@@ -31,17 +39,22 @@
                     <button class="float-right btn btn-danger" (click)="confirmDelete(item._id)">Delete</button>
                 </div>
             </td>
+        </tr>
         <tr>
             <td>
-                <div *ngIf="selected">
-                    <img src="{{selectedURL()}}" alt="{{selectedName()}}" height="auto" width="150px" >
-                </div>
-            </td>
-            <td class="align-bottom">
-                <div *ngIf="selected">
-                    <span style="white-space: pre-wrap;" [innerHTML]="selectedName()"></span><br/>
-                    <strong><span style="white-space: pre-wrap;" [innerHTML]="selectedArtist()"></span></strong><br/>
-                    <span style="white-space: pre-wrap;" [innerHTML]="selectedYear()"></span>
+                <div *ngIf="selected" class="col-sm-12">
+                    <div class="row align-items-end mb-3">
+                        <div class="col-sm-6" style="max-width: 160px;">
+                            <img src="{{selectedURL()}}" alt="{{selectedName()}}" height="auto" width="150px" >
+                        </div>
+            <!-- </td>
+            <td class="align-bottom"> -->
+                        <div class="col-sm ml-3">
+                            <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="selectedName()"></div>
+                            <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="selectedArtist()"></div></strong>
+                            <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="selectedYear()"></div>
+                        </div>
+                    </div>
                 </div>
             </td>
             <td>
