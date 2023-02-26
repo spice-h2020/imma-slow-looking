@@ -196,45 +196,45 @@
                         </span>{{i+1}}<br/>
                         <!-- <span class="font-weight-bold">&nbsp;Position: </span><span>{{i+1}}</span><br/> -->
                         <div class="row">
-                            <div class="col-2" style="min-width: 8em;">
-                                <span class="font-weight-bold">Title: </span>
+                            <div class="col-sm-2" style="min-width: 8em;">
+                                <span class="font-weight-bold">Title1: </span>
                             </div>
-                            <div class="col">
+                            <div class="col-sm">
                                 <span>{{stage.title}}</span>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-2" style="min-width: 8em;">
+                            <div class="col-sm-2" style="min-width: 8em;">
                                 <span class="font-weight-bold">Type: </span>
                             </div>
-                            <div class="col">
+                            <div class="col-sm">
                                 <span>{{stage.stagetype}}</span>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-2" style="min-width: 8em;">
+                            <div class="col-sm-2" style="min-width: 8em;">
                                 <span class="font-weight-bold">Artworks: </span>
                             </div>
-                            <div class="col">
+                            <div class="col-sm">
                                 <span *ngFor="let artwork of getArtworksFromIds(stage.title, stage.includeartworks, selectedScript, stage);">
                                     <span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span>, <span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span>, {{artwork.year}}<br/>
                                 </span>
                             </div>
                         </div>
                         <div class="row" *ngIf='stage.stagetype=="multiquestion"'>
-                            <div class="col-2" style="min-width: 8em;">
+                            <div class="col-sm-2" style="min-width: 8em;">
                                 <span class="font-weight-bold">Style: </span>
                             </div>
-                            <div class="col">
+                            <div class="col-sm">
                                 <span *ngIf='stage.sequential'>Questions presented in sequence</span>
                                 <span *ngIf='!stage.sequential'>Random question that can be shuffled</span>
                             </div>
                         </div>
                         <div class="row" *ngIf='stage.stagetype=="multiquestion"'>
-                            <div class="col-2" style="min-width: 8em;">
+                            <div class="col-sm-2" style="min-width: 8em;">
                                 <span class="font-weight-bold">Help text: </span>
                             </div>
-                            <div class="col">
+                            <div class="col-sm">
                                 <span style="white-space: pre-wrap;" [innerHTML]="stage.help | linkify"></span>
                             </div>
                             
@@ -263,47 +263,47 @@
                         </ng-container>
 
                         <div class="row" *ngIf='stage.stagetype=="story"'>
-                            <div class="col-2" style="min-width: 8em;">
+                            <div class="col-sm-2" style="min-width: 8em;">
                                 <span class="font-weight-bold">Help text: </span>
                             </div>
-                            <div class="col">
+                            <div class="col-sm">
                                 <span style="white-space: pre-wrap;" [innerHTML]="stage.help | linkify"></span>
                             </div>
                         </div>
                         
                         <div class="row" *ngIf='stage.stagetype=="statement" || stage.stagetype=="story"'>
-                            <div class="col-2" style="min-width: 8em;">
+                            <div class="col-sm-2" style="min-width: 8em;">
                                 <span class="font-weight-bold">Text: </span>
                             </div>
-                            <div class="col">
+                            <div class="col-sm">
                                 <span style="white-space: pre-wrap;" [innerHTML]="stage.body | linkify"></span>
                             </div>
                         </div>
 
                         <ng-container *ngIf='stage.stagetype=="question"'>
                             <div class="row" *ngIf='stage.stagetype=="question"'>
-                                <div class="col-2" style="min-width: 8em;">
+                                <div class="col-sm-2" style="min-width: 8em;">
                                     <span class="font-weight-bold">Text: </span>
                                 </div>
-                                <div class="col">
+                                <div class="col-sm">
                                     <span style="white-space: pre-wrap;" [innerHTML]="stage.question.title | linkify"></span>
                                 </div>
                             </div>
                             <div class="row" *ngIf="stage.question.choice">
-                                <div class="col-2" style="min-width: 8em;">
+                                <div class="col-sm-2" style="min-width: 8em;">
                                     <strong>Options: </strong>
                                 </div>
-                                <div class="col">
+                                <div class="col-sm">
                                     <span *ngFor="let option of stage.question.options; let last=last;">
                                     {{option}}<span *ngIf="!last">, </span>
                                 </span>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-2" style="min-width: 8em;">
+                                <div class="col-sm-2" style="min-width: 8em;">
                                     <span class="font-weight-bold">Help text: </span>
                                 </div>
-                                <div class="col">
+                                <div class="col-sm">
                                     <span style="white-space: pre-wrap;" [innerHTML]="stage.help | linkify"></span>
                                 </div>
                             </div>
@@ -322,38 +322,30 @@
                     </span>
                     <!-- edit script stage -->
                     <span *ngIf="stage.id==editScriptStage">
-                        <table style="width:100%"><th></th><th></th>
-                            <colgroup>
-                                <col span="1" style="width: 16%;">
-                                <col span="1" style="width: 84%;">
-                            </colgroup>
-                        <tr><td>
-                            <span class="drag-handle" style="cursor: move;" cdkDragHandle>
-                            </span>
-                            {{i+1}}
-                        </td><td>
-                            <!-- <select (change)="shiftStagePosition(script, $event, i); editScriptStage=0">
-                                <option *ngFor="let pos of script.stages; let ind = index" [selected]="ind==i" value="{{ind}}">   
-                                    {{ind+1}}           
-                                </option> 
-                            </select> -->
-                            <!-- <textarea rows="1" class="form-control" [(ngModel)]="stage.title"></textarea> -->
-                        </td></tr>
-                        <tr><td>
-                            <span class="font-weight-bold">Type:</span>
-                        </td><td>
-                            <span>{{stage.stagetype}}</span>
-                        </td></tr>
-                        <tr><td>
-                            <span class="font-weight-bold">Title:</span>
-                        </td><td>
-                            <textarea rows="1" class="form-control" [(ngModel)]="stage.title"></textarea>
-                        </td></tr>
-                        <tr>
-                            <td class="align-top">
+                        <span class="drag-handle" style="cursor: move;" cdkDragHandle>
+                        </span>
+                        {{i+1}}<br/>
+                        <div class="row">
+                            <div class="col-sm-2" style="min-width: 8em;">
+                                <span class="font-weight-bold">Type:</span>
+                            </div>
+                            <div class="col-sm">
+                                <span>{{stage.stagetype}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2" style="min-width: 8em;">
+                                <span class="font-weight-bold">Title:</span>
+                            </div>
+                            <div class="col-sm">
+                                <textarea rows="1" class="form-control" [(ngModel)]="stage.title"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2" style="min-width: 8em;">
                                 <span class="font-weight-bold">Artworks: </span>
-                            </td>
-                            <td>
+                            </div>
+                            <div class="col-sm">
                                 <table>
                                     <tr *ngFor="let artwork of getArtworksFromIds(selectedScript.name, selectedScript.artworkids, selectedScript)" class="mr-3">
                                         <td class="align-middle">
@@ -383,11 +375,13 @@
                                         <br/>
                                     </tr>
                                 </table>
-                            </td>
-                        </tr>
-                        <tr *ngIf='stage.stagetype=="multiquestion"'>
-                            <td class="align-top"><span class="font-weight-bold">Style: </span></td>
-                            <td>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf='stage.stagetype=="multiquestion"'>
+                            <div class="col-sm-2" style="min-width: 8em;">
+                                <span class="font-weight-bold">Style: </span>
+                            </div>
+                            <div class="col-sm">
                                 <div class="form-check form-check-inline">
                                     <input
                                     type="radio"
@@ -408,110 +402,126 @@
                                     />
                                 </div>
                                 <label class="form-check-label ml-1">Random question that can be shuffled</label>
-                            </td>
-                        </tr>
+                            </div>
+                        </div>
 
-                        <tr *ngIf='stage.stagetype=="story" || stage.stagetype=="multiquestion"'><td class="align-top">
-                            <span class="font-weight-bold">Help text:</span>
-                        </td><td>
-                            <textarea rows="3" class="form-control" [(ngModel)]="stage.help"></textarea>
-                        </td></tr>
+                        <div class="row" *ngIf='stage.stagetype=="story" || stage.stagetype=="multiquestion"'>
+                            <div class="col-sm-2" style="min-width: 8em;">
+                                <span class="font-weight-bold">Help text:</span>
+                            </div>
+                            <div class="col-sm">
+                                <textarea rows="3" class="form-control" [(ngModel)]="stage.help"></textarea>
+                            </div>
+                        </div>
 
-                        <tr><td class="align-top">
-                            <span class="font-weight-bold">Text:</span>
-                        </td><td>
-                            <span *ngIf='stage.stagetype!="multiquestion" && stage.stagetype!="question"'>
-                                <textarea rows="5" class="form-control" [(ngModel)]="stage.body"></textarea>
-                            </span>
-                            <!-- <ng-container *ngIf='stage.stagetype=="question"'> -->
-                            <span *ngIf='stage.stagetype=="question"'>
-                                <textarea rows="3" class="form-control" [(ngModel)]="stage.question.title"></textarea>
-                            </span>
+                        <div class="row">
+                            <div class="col-sm-2" style="min-width: 8em;">
+                                <span class="font-weight-bold">Text:</span>
+                            </div>
+                            <div class="col-sm">
+                                <span *ngIf='stage.stagetype!="multiquestion" && stage.stagetype!="question"'>
+                                    <textarea rows="5" class="form-control" [(ngModel)]="stage.body"></textarea>
+                                </span>
+                                <!-- <ng-container *ngIf='stage.stagetype=="question"'> -->
+                                <span *ngIf='stage.stagetype=="question"'>
+                                    <textarea rows="3" class="form-control" [(ngModel)]="stage.question.title"></textarea>
+                                </span>
 
-                            <table *ngIf='stage.stagetype=="question"'>
-                                <tr><td class="align-middle">
-                                    <div class="form-check form-check-inline">
-                                        <input
-                                            class="form-check-input"
-                                            type="checkbox"
-                                            [value]="stage.question.choice"
-                                            [(ngModel)] = "stage.question.choice"
-                                            (click) = "checkQuestionOptions(selectedScript, i);"
-                                        /> 
-                                    </div>          
-                                </td>
-                                <td class="align-top">
-                                    <label class="form-check-label">Multiple choice</label><br/>
-                                </td></tr>
-                            </table>
-                            <table *ngIf='stage.stagetype=="question" && stage.question.choice' style="width: 100%; background-color:#EEEEEE;">
-                                <tr *ngFor="let option of stage.question.options; let index=index; trackBy:trackByIdx">
-                                    <td>
-                                        <textarea rows="1" class="form-control" [(ngModel)]="stage.question.options[index]"></textarea>
-                                    </td><td><button class="btn btn-danger float-right" (click)="deleteQuestionOption(selectedScript, i, index);" [disabled]="stage.question.options.length < 3">Delete option</button></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <button class="btn btn-success" (click)='stage.question.options = stage.question.options.concat("Option ".concat(stage.question.options.length+1));'>Add option</button>
+                                <table *ngIf='stage.stagetype=="question"'>
+                                    <tr><td class="align-middle">
+                                        <div class="form-check form-check-inline">
+                                            <input
+                                                class="form-check-input"
+                                                type="checkbox"
+                                                [value]="stage.question.choice"
+                                                [(ngModel)] = "stage.question.choice"
+                                                (click) = "checkQuestionOptions(selectedScript, i);"
+                                            /> 
+                                        </div>          
                                     </td>
-                                </tr>
-                            </table>
-
-                            <!-- </ng-container> -->
-                            <span *ngIf='stage.stagetype=="multiquestion"'>
-                                <table style="width: 100%;">
-                                    <tbody cdkDropList (cdkDropListDropped)="drop($event, selectedScript, i)">
-                                        <tr *ngFor="let q of stage.questions; let index=index; trackBy:trackByIdx" cdkDrag cdkDragLockAxis="y">
-                                            <td>
-                                                <span class="drag-handle" style="cursor: move;" cdkDragHandle>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-                                                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                                                    </svg>
-                                                </span>
-                                                <span class="font-weight-bold">Question {{index+1}}: </span><br/><textarea rows="3" class="form-control" [(ngModel)]="stage.questions[index].title"></textarea>
-                                                <div class="form-check ml-2">
-                                                    <input
-                                                       class="form-check-input"
-                                                       type="checkbox"
-                                                       [value]="stage.questions[index].choice"
-                                                       [(ngModel)] = "stage.questions[index].choice"
-                                                       (click) = "checkMultiquestionOptions(selectedScript, i, index);"
-                                                   /> 
-                                                   <label class="form-check-label ml-2">Multiple choice</label>
-                                                    <button class="btn btn-danger float-right" (click)="deleteMultistageQuestion(selectedScript, i, index)" [disabled]="stage.questions.length < 3">Delete question</button>
-                                                </div>
-                                                <table *ngIf='stage.stagetype=="multiquestion" && stage.questions[index].choice' style="width: 100%; background-color:#EEEEEE;">
-                                                    <tr *ngFor="let option of stage.questions[index].options; let oi=index; trackBy:trackByIdx">
-                                                        <td>
-                                                            <textarea rows="1" class="form-control" [(ngModel)]="stage.questions[index].options[oi]"></textarea>
-                                                        </td><td><button class="btn btn-danger float-right" (click)="deleteMultiquestionOption(selectedScript, i, index, oi)">Delete option</button></td>
-                                                    </tr>
-                                                    <tr *ngIf="!stage.questions[index].options.length">
-                                                        <td class="alert alert-info" >
-                                                            As this multiple choice question has no options it will be displayed as a statement.
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <button class="btn btn-success" (click)='stage.questions[index].options = stage.questions[index].options.concat("Option ".concat(stage.questions[index].options.length+1));'>Add option</button>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                        </tr> 
-                                    </tbody>
+                                    <td class="align-top">
+                                        <label class="form-check-label">Multiple choice</label><br/>
+                                    </td></tr>
                                 </table>
-                            </span>
-                        </td></tr>
-                        <tr *ngIf='stage.stagetype=="question"'><td class="align-top">
-                            <span class="font-weight-bold">Help text:</span>
-                        </td><td>
-                            <textarea rows="3" class="form-control" [(ngModel)]="stage.help"></textarea>
-                        </td></tr>
+                                <table *ngIf='stage.stagetype=="question" && stage.question.choice' style="width: 100%; background-color:#EEEEEE;">
+                                    <tr *ngFor="let option of stage.question.options; let index=index; trackBy:trackByIdx">
+                                        <td>
+                                            <textarea rows="1" class="form-control" [(ngModel)]="stage.question.options[index]"></textarea>
+                                        </td><td><button class="btn btn-danger float-right" (click)="deleteQuestionOption(selectedScript, i, index);" [disabled]="stage.question.options.length < 3">Delete option</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-success" (click)='stage.question.options = stage.question.options.concat("Option ".concat(stage.question.options.length+1));'>Add option</button>
+                                        </td>
+                                    </tr>
+                                </table>
 
-                        <tr *ngIf='stage.stagetype=="multiquestion"'><td></td><td><button class="btn btn-success mr-3" (click)='stage.questions = stage.questions.concat(initializeNewQuestion())'>Add new question</button></td></tr>
+                                <!-- </ng-container> -->
+                                <span *ngIf='stage.stagetype=="multiquestion"'>
+                                    <table style="width: 100%;">
+                                        <tbody cdkDropList (cdkDropListDropped)="drop($event, selectedScript, i)">
+                                            <tr *ngFor="let q of stage.questions; let index=index; trackBy:trackByIdx" cdkDrag cdkDragLockAxis="y">
+                                                <td>
+                                                    <span class="drag-handle" style="cursor: move;" cdkDragHandle>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                                                            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                                                        </svg>
+                                                    </span>
+                                                    <span class="font-weight-bold">Question {{index+1}}: </span><br/><textarea rows="3" class="form-control" [(ngModel)]="stage.questions[index].title"></textarea>
+                                                    <div class="form-check ml-2">
+                                                        <input
+                                                        class="form-check-input"
+                                                        type="checkbox"
+                                                        [value]="stage.questions[index].choice"
+                                                        [(ngModel)] = "stage.questions[index].choice"
+                                                        (click) = "checkMultiquestionOptions(selectedScript, i, index);"
+                                                    /> 
+                                                    <label class="form-check-label ml-2">Multiple choice</label>
+                                                        <button class="btn btn-danger float-right" (click)="deleteMultistageQuestion(selectedScript, i, index)" [disabled]="stage.questions.length < 3">Delete question</button>
+                                                    </div>
+                                                    <table *ngIf='stage.stagetype=="multiquestion" && stage.questions[index].choice' style="width: 100%; background-color:#EEEEEE;">
+                                                        <tr *ngFor="let option of stage.questions[index].options; let oi=index; trackBy:trackByIdx">
+                                                            <td>
+                                                                <textarea rows="1" class="form-control" [(ngModel)]="stage.questions[index].options[oi]"></textarea>
+                                                            </td><td><button class="btn btn-danger float-right" (click)="deleteMultiquestionOption(selectedScript, i, index, oi)">Delete option</button></td>
+                                                        </tr>
+                                                        <tr *ngIf="!stage.questions[index].options.length">
+                                                            <td class="alert alert-info" >
+                                                                As this multiple choice question has no options it will be displayed as a statement.
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <button class="btn btn-success" (click)='stage.questions[index].options = stage.questions[index].options.concat("Option ".concat(stage.questions[index].options.length+1));'>Add option</button>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr> 
+                                        </tbody>
+                                    </table>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf='stage.stagetype=="question"'>
+                            <div class="col-sm-2" style="min-width: 8em;">
+                                <span class="font-weight-bold">Help text:</span>
+                            </div>
+                            <div class="col-sm">
+                                <textarea rows="3" class="form-control" [(ngModel)]="stage.help"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row" *ngIf='stage.stagetype=="multiquestion"'>
+                            <div class="col-sm-2" style="min-width: 8em;">
+                                &nbsp;
+                            </div>
+                            <div class="col-sm">
+                                <button class="btn btn-success mr-3" (click)='stage.questions = stage.questions.concat(initializeNewQuestion())'>Add new question</button>
+                            </div>
+                        </div>
                         
-                        </table>
+                      
                         <span>
                             <button class="btn btn-warning float-right" (click)="editScriptStage=0; saveScript(selectedScript)">Save stage</button><br/>
                         </span>
@@ -556,7 +566,7 @@
                         <span class="font-weight-bold">Title: </span>
                     </div>
                     <div class="col-sm">
-                        <textarea rows="1" class="form-control" [(ngModel)]="selectedScript.name" (change)="saveScript(selectedScript)"></textarea>
+                        <textarea rows="2" class="form-control" [(ngModel)]="selectedScript.name" (change)="saveScript(selectedScript)"></textarea>
                     </div>
                 </div>
 
