@@ -31,6 +31,7 @@
                     <h4>{{item.name}}</h4>
                 </span>
                 <span *ngIf="tableEditing && editrow==item._id">
+                    <strong><span>Theme title:</span></strong><br/>
                     <textarea rows="2" class="form-control" [(ngModel)]="item.name"></textarea>
                 </span>
             <!-- </td>
@@ -44,6 +45,7 @@
                     </span>
                 </span>
                 <span *ngIf="tableEditing && editrow==item._id">
+                    <strong><span>Theme description:</span></strong><br/>
                     <textarea rows="3" class="form-control" [(ngModel)]="item.description"></textarea>
                 </span>
             <!-- </td> 
