@@ -18,15 +18,22 @@
 <br/>
 <br/> -->
 <table class="table table-sm">
-<thead class="thead-dark"><tr><th>My responses</th><th></th></tr></thead>
+<thead class="thead-dark"><tr><th>My responses</th><th></thead>
 <tr *ngFor="let activity of getActivitiesOfCurrentUser();">
     <td>
+    <h4 class="text-sm-left font-weight-bold">
+        {{activity.script.name}}
+        <div class="float-right">
+            <button *ngIf="activity._id!=editContribution" (click)="editContribution=activity._id" class="float-right btn btn-warning">Edit</button>
+            <button *ngIf="activity._id!=editContribution" (click)="confirmDelete(activity._id); editContribution=''" class="mr-3 float-right btn btn-danger">Delete</button>
+            <button *ngIf="activity._id==editContribution" (click)="editContribution=''; saveActivity(activity)" class="float-right btn btn-warning">Save</button>
+        </div>
+    </h4>
     <span *ngIf="deleteConfirmation_Id==activity._id">
         <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this response?</strong> <div><button class="btn btn-danger ml-2" (click)="deleteActivity(activity._id)">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteConfirmation_Id=''">Cancel</button></div></div>
     </span>
-    <span class="text-sm-left font-weight-bold">{{activity.script.name}}</span>
-    <div class="card text-white mb-3 museum-colour" style="border-radius: 15px;">
-        <div class="card-body p-5">
+    <div class="card text-white mb-3 museum-colour" style="border-radius: 15px; clear: both;">
+        <div class="card-body">
             <div *ngFor="let action of activity.actions;">
                 <span *ngIf="action.questionStage">
                     <span *ngIf="action.questionStage.stagetype">
@@ -68,11 +75,11 @@
         </div>
     </div>
     </td>
-    <td><span class="text-sm-left font-weight-bold">&nbsp;</span><br/>
+    <!-- <td><span class="text-sm-left font-weight-bold">&nbsp;</span><br/>
         <span *ngIf="activity._id!=editContribution"><button (click)="editContribution=activity._id" class="mb-3 mr-3 btn btn-warning">Edit</button><br/></span>
         <span *ngIf="activity._id!=editContribution"><button (click)="confirmDelete(activity._id); editContribution=''" class="btn btn-danger">Delete</button></span>
         <span *ngIf="activity._id==editContribution"><button (click)="editContribution=''; saveActivity(activity)" class="btn btn-warning">Save</button></span>
-    </td>
+    </td> -->
 </tr>
 </table>
 </span>
