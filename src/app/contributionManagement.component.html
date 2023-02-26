@@ -33,9 +33,13 @@
             <div class="text-sm-left">
                 <table class="table table-sm">
                 <tr><td width="90%">
-                    <span class="text-sm-left font-weight-bold">{{item.script.name}}</span>
-
-                    <div class="card text-white mb-3 museum-colour" style="border-radius: 15px;">
+                    <h4 class="text-sm-left">{{item.script.name}}
+                        <div class="float-right">
+                            <button *ngIf="item._id!=editContribution" (click)="editContribution=item._id" class="float-right btn btn-warning">Edit</button>
+                            <button *ngIf="item._id==editContribution" (click)="editContribution=''; saveActivity(item)" class="float-right btn btn-warning">Save</button>
+                        </div>
+                    </h4>
+                    <div class="card text-white mb-3 museum-colour" style="border-radius: 15px; clear: both;">
                         <div class="card-body">
                             <div *ngFor="let action of item.actions;">
                                 <span *ngIf="action.questionStage">
@@ -82,11 +86,11 @@
                         <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this response?</strong> <div><button class="btn btn-danger ml-2" (click)="deleteActivity(item._id)">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteConfirmation_Id=''">Cancel</button></div></div>
                     </span>
                 </td>
-                <td width="10%">
+                <!-- <td width="10%">
                     <span class="text-sm-left font-weight-bold">&nbsp;</span><br/>
                     <span *ngIf="item._id!=editContribution"><button (click)="editContribution=item._id" class="mb-3 mr-3 btn btn-warning">Edit</button><br/></span>
                     <span *ngIf="item._id==editContribution"><button (click)="editContribution=''; saveActivity(item)" class="btn btn-warning">Save</button></span>
-                </td>
+                </td> -->
                 </tr>
                 </table>
             </div>
@@ -116,9 +120,14 @@
             <div class="text-sm-left">
                 <table class="table table-sm">
                     <tr><td width="90%">
-                        <span class="text-sm-left font-weight-bold">{{item.script.name}}</span>
+                        <h4 class="text-sm-left">{{item.script.name}}
+                            <div class="float-right">
+                                <button *ngIf="item._id!=editContribution" (click)="editContribution=item._id" class="float-right btn btn-warning">Edit</button>
+                                <button *ngIf="item._id==editContribution" (click)="editContribution=''; saveActivity(item)" class="float-right btn btn-warning">Save</button>
+                            </div>
+                        </h4>
     
-                        <div class="card text-white mb-3 museum-colour" style="border-radius: 15px;">
+                        <div class="card text-white mb-3 museum-colour" style="border-radius: 15px; clear: both;">
                             <div class="card-body p-5">
                                 <div *ngFor="let action of item.actions;">
                                     <span *ngIf="action.questionStage">
@@ -165,11 +174,11 @@
                             <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this activity?</strong> <div><button class="btn btn-danger ml-2" (click)="deleteActivity(item._id)">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteConfirmation_Id=''">Cancel</button></div></div>
                         </span>
                     </td>
-                    <td width="10%">
+                    <!-- <td width="10%">
                         <span class="text-sm-left font-weight-bold">&nbsp;</span><br/>
                         <span *ngIf="item._id!=editContribution"><button (click)="editContribution=item._id" class="mb-3 mr-3 btn btn-warning">Edit</button><br/></span>
                         <span *ngIf="item._id==editContribution"><button (click)="editContribution=''; saveActivity(item)" class="btn btn-warning">Save</button></span>
-                    </td>
+                    </td> -->
                     </tr>
                     </table>                
             </div>
@@ -199,9 +208,14 @@
             <div class="text-sm-left">
                 <table class="table table-sm">
                     <tr><td width="90%">
-                        <span class="text-sm-left font-weight-bold">{{item.script.name}}</span>
+                        <h4 class="text-sm-left">{{item.script.name}}
+                            <div class="float-right">
+                                <button *ngIf="item._id!=editContribution" (click)="editContribution=item._id" class="float-right btn btn-warning">Edit</button>
+                                <button *ngIf="item._id==editContribution" (click)="editContribution=''; saveActivity(item)" class="float-right btn btn-warning">Save</button>
+                            </div>
+                        </h4>    
     
-                        <div class="card text-white mb-3 museum-colour" style="border-radius: 15px;">
+                        <div class="card text-white mb-3 museum-colour" style="border-radius: 15px; clear: both;">
                             <div class="card-body p-5">
                                 <div *ngFor="let action of item.actions;">
                                     <span *ngIf="action.questionStage">
@@ -248,11 +262,11 @@
                             <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this activity?</strong> <div><button class="btn btn-danger ml-2" (click)="deleteActivity(item._id)">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteConfirmation_Id=''">Cancel</button></div></div>
                         </span>
                     </td>
-                    <td width="10%">
+                    <!-- <td width="10%">
                         <span class="text-sm-left font-weight-bold">&nbsp;</span><br/>
                         <span *ngIf="item._id!=editContribution"><button (click)="editContribution=item._id" class="mb-3 mr-3 btn btn-warning">Edit</button><br/></span>
                         <span *ngIf="item._id==editContribution"><button (click)="editContribution=''; saveActivity(item)" class="btn btn-warning">Save</button></span>
-                    </td>
+                    </td> -->
                     </tr>
                     </table>                
 

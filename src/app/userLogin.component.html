@@ -21,7 +21,7 @@
 <thead class="thead-dark"><tr><th>My responses</th><th></thead>
 <tr *ngFor="let activity of getActivitiesOfCurrentUser();">
     <td>
-    <h4 class="text-sm-left font-weight-bold">
+    <h4 class="text-sm-left">
         {{activity.script.name}}
         <div class="float-right">
             <button *ngIf="activity._id!=editContribution" (click)="editContribution=activity._id" class="float-right btn btn-warning">Edit</button>
