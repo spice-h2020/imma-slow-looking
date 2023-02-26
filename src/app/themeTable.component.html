@@ -4,7 +4,8 @@
 <div *ngIf="isLoggedIn()" class="form-group">
 
 <table class="table table-sm"> 
-    <thead class="thead-dark"><tr><th>Position</th><th>Theme</th><th>Description</th><th></th><th></th></tr></thead>
+    <!-- <thead class="thead-dark"><tr><th></th><th>Theme</th><th>Description</th><th></th><th></th></tr></thead> -->
+    <thead class="thead-dark"><tr><th>Position</th><th>Theme</tr></thead>
     <tbody cdkDropList (cdkDropListDropped)="drop($event)"> 
         <tr *ngFor="let item of getThemes(); let i = index" cdkDrag cdkDragLockAxis="y"> 
             <td class="col-xs">
@@ -27,15 +28,15 @@
             </td>
             <td class="col-xs">
                 <span *ngIf="!tableEditing || editrow!=item._id">
-                    {{item.name}}
+                    <h4>{{item.name}}</h4>
                 </span>
                 <span *ngIf="tableEditing && editrow==item._id">
-                    <textarea rows="3" class="form-control" [(ngModel)]="item.name"></textarea>
+                    <textarea rows="2" class="form-control" [(ngModel)]="item.name"></textarea>
                 </span>
-            </td>
-            <td class="col-md">
+            <!-- </td>
+            <td class="col-md"> -->
                 <span *ngIf="!tableEditing || editrow!=item._id">
-                    {{item.description}}
+                    <p>{{item.description}}</p>
                     <span *ngIf="deleteConfirmation_Id==item._id">
                         <br/>
                         <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this theme?</strong> <div><button class="btn btn-danger ml-2" (click)="deleteTheme(item._id); deleteConfirmation_Id=''">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteConfirmation_Id=''">Cancel</button></div></div>
@@ -45,17 +46,17 @@
                 <span *ngIf="tableEditing && editrow==item._id">
                     <textarea rows="3" class="form-control" [(ngModel)]="item.description"></textarea>
                 </span>
-            </td> 
-            <td class="col-xs">
-                <span *ngIf="!tableEditing && writeAccess(item) && deleteConfirmation_Id==''">
-                    <button class="btn btn-danger" (click)="confirmDelete(item._id); reloadThemes()">Delete</button>
+            <!-- </td> 
+            <td class="col-xs"> -->
+                <span *ngIf="!tableEditing && writeAccess(item) && deleteConfirmation_Id==''" style="float:right">
+                    <button class="btn btn-danger ml-3" (click)="confirmDelete(item._id); reloadThemes()">Delete</button>
                 </span>
-            </td>
-            <td class="col-xs">
-                <span *ngIf="!tableEditing && writeAccess(item) && deleteConfirmation_Id==''">
+            <!-- </td>
+            <td class="col-xs"> -->
+                <span *ngIf="!tableEditing && writeAccess(item) && deleteConfirmation_Id==''" style="float:right">
                     <button class="btn btn-warning" (click)="editrow=item._id; tableEditing=true; deleteConfirmation_Id=''; reloadThemes()">Edit</button>
                 </span>
-                <span *ngIf="tableEditing && editrow==item._id">
+                <span *ngIf="tableEditing && editrow==item._id" style="float:right">
                     <button class="btn btn-warning" (click)="tableEditing=false; addTheme(item); reloadThemes()" [disabled]="!item.name || !item.description">Save</button>
                 </span>
             </td>
@@ -64,19 +65,21 @@
             <td></td>
             <td>
                 <span *ngIf="!tableEditing && deleteConfirmation_Id==''">
-                    <textarea rows="3" class="form-control" [(ngModel)]="newTheme.name" (change)="reloadThemes()"></textarea>
+                    <strong><span>Theme title:</span></strong><br/>
+                    <textarea rows="2" class="form-control" [(ngModel)]="newTheme.name" (change)="reloadThemes()"></textarea>
                 </span>
-            </td>
-            <td>
+            <!-- </td>
+            <td> -->
                 <span *ngIf="!tableEditing && deleteConfirmation_Id==''">
+                    <strong><span>Theme description:</span></strong><br/>
                     <textarea rows="3" class="form-control" [(ngModel)]="newTheme.description" (change)="reloadThemes()"></textarea>
                 </span>
-            </td>
-            <td>
-            </td>
-            <td>
-                <span *ngIf="!tableEditing && deleteConfirmation_Id==''">
-                    <button class="btn btn-success" (click)="addTheme(newTheme)" [disabled]="!newTheme.name || !newTheme.description">Add</button>
+            <!-- </td>
+            <td> -->
+            <!-- </td>
+            <td> -->
+                <span *ngIf="!tableEditing && deleteConfirmation_Id==''" style="float:right">
+                    <button class="btn btn-success mt-1" (click)="addTheme(newTheme)" [disabled]="!newTheme.name || !newTheme.description">Add</button>
                 </span>
             </td>
         </tr> 
