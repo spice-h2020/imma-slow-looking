@@ -10,13 +10,48 @@
     </select> 
 </p>
 <div *ngIf="isLoggedIn()">
-    Show responses with status:
+    <strong><span>Show responses:</span></strong>
 </div>
-<div *ngIf="isLoggedIn()" class="mb-4">
+<div *ngIf="isLoggedIn()" class="row pl-4 pr-4 mb-4">
+    <div class="col-sm-4">
+        <input
+        style="vertical-align: top;"
+        class="form-check-input"
+        type="radio"
+        [value]="1"
+        name="artwork.name"
+        [(ngModel)] = "managementMode"
+        />
+        <label class="form-check-label"><span class="text-secondary">&nbsp;All</span></label>
+    </div>
+    <div class="col-sm-4">
+        <input
+        style="vertical-align: top;"
+        class="form-check-input"
+        type="radio"
+        [value]="2"
+        name="artwork.name"
+        [(ngModel)] = "managementMode"
+        />
+        <label class="form-check-label"><span class="text-success">&nbsp;Approved</span></label>
+    </div>
+    <div class="col-sm-4">
+        <input
+        style="vertical-align: top;"
+        class="form-check-input"
+        type="radio"
+        [value]="3"
+        name="artwork.name"
+        [(ngModel)] = "managementMode"
+        />
+        <label class="form-check-label"><span class="text-warning">&nbsp;Awaiting approval</span></label>
+    </div>
+</div>
+<!-- <div *ngIf="isLoggedIn()" class="mb-4">
     <button (click)="managementMode=1" class="btn btn-secondary col-sm-4 text-center">All</button>
     <button (click)="managementMode=2" class="btn btn-success col-sm-4 text-center">Approved</button>
     <button (click)="managementMode=3" class="btn btn-warning col-sm-4 text-center">Awaiting approval</button>
-</div>
+</div> -->
 </div>
 <div [ngSwitch]="managementMode">  
     <div *ngSwitchCase="1">
