@@ -312,6 +312,11 @@ export class ScriptWizardComponent {
         return myartworks;
     }
 
+    getArtworkAsList(_id: string) {
+        let artwork = this.model.getArtwork(_id);
+        return [artwork];
+    } 
+    
     getArtwork(_id: string) {
         let artwork = this.model.getArtwork(_id);
         return artwork;

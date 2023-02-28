@@ -70,7 +70,25 @@ export class ExtraArtworks {
         new CollectionArtwork("Ravages of War", "Joe Odiboh", "2022", "https://spiceimageworkaround.files.wordpress.com/2023/02/ravages-of-war.jpg", "Ravages of War, Joe Odiboh, 2022"),
         new CollectionArtwork("The African Drum", "Antonio D’Souza", "2023", "https://spiceimageworkaround.files.wordpress.com/2023/02/the-african-drum.jpg", "The African Drum, Antonio D’Souza, 2023"),
         new CollectionArtwork("The African Drum (detail)", "Antonio D’Souza", "2023", "https://spiceimageworkaround.files.wordpress.com/2023/02/drum-detail-4.jpg", "The African Drum (detail), Antonio D’Souza, 2023"),
-        new CollectionArtwork("BUPEI", "Ibrahim Mahama", "2017", "https://spiceimageworkaround.files.wordpress.com/2023/02/ibrahim-mahama-photo-a.dsouza.jpg", "BUPEI, Ibrahim Mahama, 2017")
+        new CollectionArtwork("BUPEI", "Ibrahim Mahama", "2017", "https://spiceimageworkaround.files.wordpress.com/2023/02/ibrahim-mahama-photo-a.dsouza.jpg", "BUPEI, Ibrahim Mahama, 2017"),
+
+        new CollectionArtwork("Blighters", "Kevin Mooney", "2018-21", "http://www.kevinmooney.org/kevinmooneyportfolio/wp-content/uploads/2022/11/Blighters.jpg", "Blighters, Kevin Mooney, 2018-21"),
+        new CollectionArtwork("Carrier", "Kevin Mooney", "2021", "http://www.kevinmooney.org/kevinmooneyportfolio/wp-content/uploads/2022/11/Carrier.jpg", "Carrier, Kevin Mooney, 2021"),
+        new CollectionArtwork("Ilcruthach", "Kevin Mooney", "2021", "http://www.kevinmooney.org/kevinmooneyportfolio/wp-content/uploads/2022/11/Ilcruthach-162-x-130-cm-Oil-and-distemper-on-jute-2021.jpg", "Ilcruthach, Kevin Mooney, 2021"),
+        new CollectionArtwork("Mammal", "Kevin Mooney", "2020", "http://www.kevinmooney.org/kevinmooneyportfolio/wp-content/uploads/2020/12/Mammal.jpeg", "Mammal, Kevin Mooney, 2020"),
+        new CollectionArtwork("Puffs", "Kevin Mooney", "2018", "http://www.kevinmooney.org/kevinmooneyportfolio/wp-content/uploads/2020/04/Puffsweb.jpg", "Puffs, Kevin Mooney, 2018"),
+        new CollectionArtwork("Emigré", "Kevin Mooney", "2019", "http://www.kevinmooney.org/kevinmooneyportfolio/wp-content/uploads/2019/06/Emigre.jpg", "Emigré, Kevin Mooney, 2019"),
+        new CollectionArtwork("Orbs", "Kevin Mooney", "2018", "http://www.kevinmooney.org/kevinmooneyportfolio/wp-content/uploads/2019/06/Orbs.jpg", "Orbs, Kevin Mooney, 2018"),
+        new CollectionArtwork("Island", "Kevin Mooney", "2020", "http://www.kevinmooney.org/kevinmooneyportfolio/wp-content/uploads/2020/12/Island.jpg", "Island, Kevin Mooney, 2020"),
+        new CollectionArtwork("Seer", "Kevin Mooney", "2021", "http://www.kevinmooney.org/kevinmooneyportfolio/wp-content/uploads/2022/11/Seer-55-x-45-cm-oil-and-distemper-on-jute-2021.jpg", "Seer, Kevin Mooney, 2021"),
+        new CollectionArtwork("Bone Fire", "Kevin Mooney", "2021", "https://hillsborofineart.com/wp-content/uploads/2022/12/Mooney_Kevin_Bonefire.jpg", "Bone Fire, Kevin Mooney, 2021"),
+        new CollectionArtwork("Peasant", "Kevin Mooney", "2018", "http://www.kevinmooney.org/kevinmooneyportfolio/wp-content/uploads/2016/08/Peasant-1.jpg", "Peasant, Kevin Mooney, 2018"),
+        new CollectionArtwork("Storyteller", "Kevin Mooney", "2016", "https://www.eva.ie/wp-content/uploads/2018/10/EVA-2018_Kevin-Mooney_Storyteller.jpg", "Storyteller, Kevin Mooney, 2016"),
+        new CollectionArtwork("Mutator", "Kevin Mooney", "2021", "https://imma.ie/wp-content/uploads/2022/10/IMM1122KM108.jpg", "Mutator, Kevin Mooney, 2021"),
+        new CollectionArtwork("B Movie", "Kevin Mooney", "2021", "https://hillsborofineart.com/wp-content/uploads/2022/06/Kevin-Mooney_BMovie-Hillsboro-Fine-Art.jpg", "B Movie, Kevin Mooney, 2021"),
+        new CollectionArtwork("Seeing Cloud", "Kevin Mooney", "2016", "http://www.kevinmooney.org/kevinmooneyportfolio/wp-content/uploads/2022/11/Seeing-Cloud.jpg", "Seeing Cloud, Kevin Mooney, 2016"),
+        new CollectionArtwork("Beast", "Kevin Mooney", "2020", "https://www.westcorkartscentre.com/contentfiles/images/Exhibition%20Images/Arts%20Council/Kevin%20Mooney,%20Beast,%202020.jpg", "Beast, Kevin Mooney, 2020")
+
 
     ]
 
