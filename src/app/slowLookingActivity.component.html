@@ -34,7 +34,7 @@
                 </div> -->
                 <div class="col text-right">
                     <button class="mt-1 mr-2 mb-3 btn btn-secondary" *ngIf="i != 0" (click)="statementBack(i);">Back</button>
-                    <button class="mt-1 mb-3 btn btn-secondary" (click)="statementEnd();" [routerLink]="routerLink">Save</button>
+                    <button class="mt-1 mb-3 btn btn-secondary" (click)="statementEnd();" [routerLink]="routerLink">Close</button>
                 </div>
             </div>
             <div *ngIf="slowLookingMaximumScriptStageIndex != i" class="row">
@@ -130,7 +130,7 @@
                         </div> -->
                         <div class="col text-right">
                             <button class="mt-1 mr-2 mb-3 btn btn-secondary" *ngIf="i != 0" (click)="multiquestionBack(multiquestionIndex, answervalue.value, stage, stage.questions, i, newMultiquestionAction)">Back</button>
-                            <button class="mt-1 mb-3 btn btn-secondary" (click)="multiquestionEnd(i, multiquestionIndex, answervalue.value, stage, stage.questions, newMultiquestionAction)" [routerLink]="routerLink">Save</button>
+                            <button class="mt-1 mb-3 btn btn-secondary" (click)="multiquestionEnd(i, multiquestionIndex, answervalue.value, stage, stage.questions, newMultiquestionAction)" [routerLink]="routerLink">Close</button>
                         </div>
                     </div>
                     <!-- continue if not last stage -->
@@ -178,7 +178,7 @@
                         </div> -->
                     </div>
 
-                    <!-- <button class="m-3 btn btn-warning" (click)="updateAnswers(multiquestionIndex, answer.value); submittedAnswer=true;">Save</button> -->
+                    <!-- <button class="m-3 btn btn-warning" (click)="updateAnswers(multiquestionIndex, answer.value); submittedAnswer=true;">Close</button> -->
 
                     <!-- return to list if last stage -->
                     <span *ngIf="slowLookingMaximumScriptStageIndex == i" class="row">
@@ -187,7 +187,7 @@
                         </div> -->
                         <div class="text-right">
                             <button class="mt-1 mr-2 mb-3 btn btn-secondary" *ngIf="i != 0" (click)="multiquestionBack(multiquestionIndex, answervalue.value, stage, stage.questions, i, newMultiquestionAction)">Back</button>
-                            <button class="mt-1 mb-3 btn btn-secondary" (click)="multiquestionEnd(i, multiquestionIndex, answervalue.value, stage, stage.questions, newMultiquestionAction)" [routerLink]="routerLink">Save</button>
+                            <button class="mt-1 mb-3 btn btn-secondary" (click)="multiquestionEnd(i, multiquestionIndex, answervalue.value, stage, stage.questions, newMultiquestionAction)" [routerLink]="routerLink">Close</button>
                         </div>
                     </span>
                     <!-- continue if not last stage -->
@@ -270,7 +270,7 @@
                     </div> -->
                     <div class="col text-right">
                         <button class="mt-1 mr-2 mb-3 btn btn-secondary" *ngIf="i != 0" (click)="questionBack(i, stage, stage.question.title, newQuestionAction);">Back</button>
-                        <button class="mt-1 mb-3 btn btn-secondary" (click)="questionEnd(i, stage, stage.question.title, newQuestionAction);" [routerLink]="routerLink">Save</button>
+                        <button class="mt-1 mb-3 btn btn-secondary" (click)="questionEnd(i, stage, stage.question.title, newQuestionAction);" [routerLink]="routerLink">Close</button>
                     </div>
                 </div>
                 <!-- continue if not last stage -->
@@ -329,7 +329,7 @@
                     </div> -->
                     <div class="text-right">
                         <button class="mt-1 mr-2 mb-3 btn btn-secondary" *ngIf="i != 0" (click)="storyBack(i, stage, stage.body, newStoryAction);">Back</button>
-                        <button class="mt-1 mb-3 btn btn-secondary" (click)="storyEnd(i, stage, stage.body, newStoryAction);" [routerLink]="routerLink">Save</button>
+                        <button class="mt-1 mb-3 btn btn-secondary" (click)="storyEnd(i, stage, stage.body, newStoryAction);" [routerLink]="routerLink">Close</button>
                     </div>
                 </div>
 

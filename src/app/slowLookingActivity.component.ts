@@ -72,11 +72,11 @@ export class SlowLookingActivityComponent implements OnInit {
 
         let _id = this.activatedRoute.snapshot.params.id;
         
-        //return to overview rather than home page
+        //return to gallery rather than home page
         this.activatedRoute.queryParams
             .subscribe(params => {
-                if(params.return == "overview") {
-                    this.routerLink = "/overview";
+                if(params.return == "gallery") {
+                    this.routerLink = "/gallery";
                 }
                 if(params.return == "responses") {
                     this.routerLink = "/allResponses/"+_id;

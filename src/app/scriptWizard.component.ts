@@ -18,7 +18,7 @@ import { Question } from "./question.model";
 
 export class ScriptWizardComponent {
 
-    constructor(public currentuser: CurrentUser, private model: Model){}
+    constructor(public currentuser: CurrentUser, public model: Model){}
 
     showup() {
         window.scroll(0,0);
@@ -85,18 +85,14 @@ export class ScriptWizardComponent {
     showClosedScripts: boolean = true;
 
     selectScript(_id: string) {
-        this.viewScript = _id;
-        this.selectedScript  = this.getScript(_id);
+        this.model.viewScript = _id;
+        this.model.selectedScript  = this.getScript(_id);
     }
 
     unselectScript() {
-        this.viewScript = '0';
-        this.selectedScript = undefined;
+        this.model.viewScript = '0';
+        this.model.selectedScript = undefined;
     }
-
-    selectedScript: Script = undefined;
-
-    viewScript: string = "0";
 
     editScriptDescription: string = "0";
 
@@ -336,7 +332,7 @@ export class ScriptWizardComponent {
         let stage = this.addStatementStage(script);
         this.model.addStageToScript(script, stage);
         //set vars
-        this.viewScript = script._id;
+        this.model.viewScript = script._id;
         this.newStageMessageText = "New statement stage added to the end of your script";
         this.newStageMessage = true;
         // this.editScriptStage = stage.id;
@@ -346,7 +342,7 @@ export class ScriptWizardComponent {
         let stage = this.addQuestionStage(script);
         this.model.addStageToScript(script, stage);
         //set vars
-        this.viewScript = script._id;
+        this.model.viewScript = script._id;
         this.newStageMessageText = "New question stage added to the end of your script";
         this.newStageMessage = true;
         // this.editScriptStage = stage.id;
@@ -356,7 +352,7 @@ export class ScriptWizardComponent {
         let stage = this.addStoryStage(script);
         this.model.addStageToScript(script, stage);
         //set vars
-        this.viewScript = script._id;
+        this.model.viewScript = script._id;
         this.newStageMessageText = "New story stage added to the end of your script";
         this.newStageMessage = true;
         // this.editScriptStage = stage.id;
@@ -366,7 +362,7 @@ export class ScriptWizardComponent {
         let stage = this.addMultiQuestionStage(script);
         this.model.addStageToScript(script, stage);
         //set vars
-        this.viewScript = script._id;
+        this.model.viewScript = script._id;
         this.newStageMessageText = "New multiquestion stage added to the end of your script";
         this.newStageMessage = true;
         //this.editScriptStage = stage.id;

@@ -31,6 +31,14 @@ export class Model {
     private dbUsers: User[] = new Array<User>();
     private dbExhibitions: Exhibition[] = new Array<Exhibition>();
 
+
+    selectedScript: Script = undefined;
+    viewScript: string = "0";
+    selectScript(_id: string) {
+        this.viewScript = _id;
+        this.selectedScript  = this.getScript(_id);
+    }
+
     //add artworks not in LDH//
     private extraArtworks = new ExtraArtworks;
     private dbCollectionArtworks: CollectionArtwork[] = this.extraArtworks.artworks;
@@ -365,6 +373,7 @@ export class Model {
         if (script._id == undefined) {
             this.dbDataSource.saveScript(script).subscribe(p => {
                 this.dbScripts.push(p);
+                this.selectScript(p._id);
             });
         }
         else {

@@ -21,7 +21,7 @@ import { ModelResolver6 } from './model.resolver6';
 import { ScriptWizardComponent } from './scriptWizard.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomepageComponent, resolve: { model1: ModelResolver1, model2: ModelResolver2, model3: ModelResolver3 } },
+  { path: 'gallery', component: HomepageComponent, resolve: { model1: ModelResolver1, model2: ModelResolver2, model3: ModelResolver3 } },
   { path: 'slowLooking/:id', component: SlowLookingActivityComponent, resolve: { model1: ModelResolver1, model2: ModelResolver2, model3: ModelResolver3 } },
   { path: 'management', component: ContributionManagementComponent, resolve: {model4: ModelResolver4 } },
   { path: 'otherPeople', component: OtherPeopleComponent, resolve: { model1: ModelResolver1, model2: ModelResolver2, model3: ModelResolver3, model4: ModelResolver4 }  },
@@ -33,7 +33,7 @@ const routes: Routes = [
   { path: 'exhibitions', component: ExhibitionTableComponent, resolve: { model6: ModelResolver6 } },
   { path: 'login', component: UserLoginComponent, resolve: { model5: ModelResolver5 } },
   { path: 'allResponses/:id', component: AllResponsesComponent, resolve: { model1: ModelResolver1, model2: ModelResolver2, model4: ModelResolver4 } },
-  { path: 'overview', component: OverviewComponent, resolve: {model1: ModelResolver1, model2: ModelResolver2, model3: ModelResolver3, model6: ModelResolver6}},
+  { path: 'home', component: OverviewComponent, resolve: {model1: ModelResolver1, model2: ModelResolver2, model3: ModelResolver3, model6: ModelResolver6}},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home'}
 ];
