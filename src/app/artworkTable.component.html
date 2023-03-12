@@ -19,11 +19,8 @@
                 </span>
                 <div class="col-sm-12">
                     <div class="row align-items-end mb-3">
-                        <div class="col-sm-6" style="max-width: 160px;">
-                            <img src="{{item.url}}" alt="{{item.name}}" height="auto" width="150px" >
-            <!-- </td>
-            <td class="align-bottom"> -->
-                <!-- <div> -->
+                        <div class="col-md-4 col-sm-6 col-12" style="width:100%">
+                            <img src="{{item.url}}" alt="{{item.name}}" height="auto" style="width:100%">
                         </div>
                         <div class="col-sm ml-3">
                             <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="item.name"></div>
@@ -44,8 +41,8 @@
             <td>
                 <div *ngIf="selected" class="col-sm-12">
                     <div class="row align-items-end mb-3">
-                        <div class="col-sm-6" style="max-width: 160px;">
-                            <img src="{{selectedURL()}}" alt="{{selectedName()}}" height="auto" width="150px" >
+                        <div class="col-md-4 col-sm-6 col-12" style="width:100%">
+                            <img src="{{selectedURL()}}" alt="{{selectedName()}}" height="auto" style="width:100%">
                         </div>
             <!-- </td>
             <td class="align-bottom"> -->
