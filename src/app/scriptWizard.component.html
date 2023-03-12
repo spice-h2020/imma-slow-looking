@@ -115,8 +115,44 @@
           <a ngbNavLink>Artworks</a>
           <ng-template ngbNavContent>
             <p>Choose the artworks for your script.</p>
-            <div *ngFor="let artwork of getArtworks(model.selectedScript)" class="form-check form-check-inline pb-3 ml-1" style="width: 260px;">
+            <div class="row itemsBlock">
+                <div *ngFor="let artwork of getArtworks(model.selectedScript)" class="col-md-4 col-sm-6 col-12 pb-3">
+                    <div class="row p-3">
+                        <div class=" align-self-center col-1" style="width: 30px;">&nbsp;
+                            <input 
+                            class="form-check-input"
+                            type="checkbox"
+                            [value]=artwork._id
+                            [ngModel] = "model.selectedScript.artworkids.includes(artwork._id)"
+                            (change) = "artworksChange(model.selectedScript, artwork._id, $event)"
+                            />
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <span *ngIf="artwork.url">
+                                    <img src="{{artwork.url}}" alt="{{artwork.name}}" height="auto" width="100%" >
+                                </span>
+                            </div>
+                            <div class="row">
+                                <label class="form-check-label"> 
+                                <div class="ml-3">
+                                    <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.name"></div>
+                                    <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></div></strong>
+                                    <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></div>
+                                </div>
+                                    <!-- <div><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></div>
+                                    <div><strong><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></strong></div>
+                                    <div>{{artwork.year}}</div> -->
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+              
+                </div>
+            </div>
 
+            <!-- <div *ngFor="let artwork of getArtworks(model.selectedScript)" class="form-check form-check-inline pb-3 ml-1" style="width: 260px;"> -->
+            <!-- <div *ngFor="let artwork of getArtworks(model.selectedScript)" class="form-check form-check-inline pb-3 ml-1" style="width: 260px;">
      
                 <div class=" align-self-center" style="width: 30px;">
                     <input 
@@ -140,14 +176,12 @@
                             <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></div></strong>
                             <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></div>
                         </div>
-                            <!-- <div><span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span></div>
-                            <div><strong><span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span></strong></div>
-                            <div>{{artwork.year}}</div> -->
+
                         </label>
                     </div>
                 </div>
           
-            </div>
+            </div> -->
             <br/><br/>
            </ng-template>
         </li>
