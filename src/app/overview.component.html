@@ -30,9 +30,9 @@
                           {{exhibition.name}}
                           <ng-container *ngIf="!last">, </ng-container>
                         </ng-container>
-                        <br/><br/>
+                        <br/>
                       </div>
-                      <div class="text-left" style="text-shadow: 1.5px 1.5px #000000;"><strong>Themes: </strong>
+                      <div class="text-left" *ngIf="script.themeids.length > 0" style="text-shadow: 1.5px 1.5px #000000;"><strong>Themes: </strong>
                         <ng-container *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
                           {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
                         </ng-container>
@@ -132,9 +132,9 @@
                             {{exhibition.name}}
                             <ng-container *ngIf="!last">, </ng-container>
                           </ng-container>
-                          <br/><br/>
+                          <br/>
                         </div>
-                        <div class="text-left" style="text-shadow: 1.5px 1.5px #000000;"><strong>Themes: </strong>
+                        <div class="text-left" *ngIf="script.themeids.length > 0" style="text-shadow: 1.5px 1.5px #000000;"><strong>Themes: </strong>
                           <ng-container *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
                             {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
                           </ng-container>
@@ -231,9 +231,9 @@
                             {{exhibition.name}}
                             <ng-container *ngIf="!last">, </ng-container>
                           </ng-container>
-                          <br/><br/>
+                          <br/>
                         </div>
-                        <div class="text-left" style="text-shadow: 1.5px 1.5px #000000;"><strong>Themes: </strong>
+                        <div class="text-left" *ngIf="script.themeids.length > 0" style="text-shadow: 1.5px 1.5px #000000;"><strong>Themes: </strong>
                           <ng-container *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
                             {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
                           </ng-container>
@@ -324,9 +324,9 @@
                             {{exhibition.name}}
                             <ng-container *ngIf="!last">, </ng-container>
                           </ng-container>
-                          <br/><br/>
+                          <br/>
                         </div>
-                        <div class="text-left" style="text-shadow: 1.5px 1.5px #000000;"><strong>Themes: </strong>
+                        <div class="text-left" *ngIf="script.themeids.length > 0" style="text-shadow: 1.5px 1.5px #000000;"><strong>Themes: </strong>
                           <ng-container *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
                             {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
                           </ng-container>
@@ -409,9 +409,9 @@
                             {{exhibition.name}}
                             <ng-container *ngIf="!last">, </ng-container>
                           </ng-container>
-                          <br/><br/>
+                          <br/>
                         </div>
-                        <div class="text-left" style="text-shadow: 1.5px 1.5px #000000;"><strong>Themes: </strong>
+                        <div class="text-left" *ngIf="selectedScript.script.themeids.length > 0" style="text-shadow: 1.5px 1.5px #000000;"><strong>Themes: </strong>
                           <ng-container *ngFor="let theme of getThemesFromIds(selectedScript.script.themeids); let last = last">
                             {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
                           </ng-container>

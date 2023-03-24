@@ -87,8 +87,20 @@ export class ExtraArtworks {
         new CollectionArtwork("Mutator", "Kevin Mooney", "2021", "https://imma.ie/wp-content/uploads/2022/10/IMM1122KM108.jpg", "Mutator, Kevin Mooney, 2021"),
         new CollectionArtwork("B Movie", "Kevin Mooney", "2021", "https://hillsborofineart.com/wp-content/uploads/2022/06/Kevin-Mooney_BMovie-Hillsboro-Fine-Art.jpg", "B Movie, Kevin Mooney, 2021"),
         new CollectionArtwork("Seeing Cloud", "Kevin Mooney", "2016", "https://hillsborofineart.com/wp-content/uploads/2022/12/Mooney_Kevin_Seeing-Cloud.jpg", "Seeing Cloud, Kevin Mooney, 2016"),
-        new CollectionArtwork("Beast", "Kevin Mooney", "2020", "https://www.westcorkartscentre.com/contentfiles/images/Exhibition%20Images/Arts%20Council/Kevin%20Mooney,%20Beast,%202020.jpg", "Beast, Kevin Mooney, 2020")
+        new CollectionArtwork("Beast", "Kevin Mooney", "2020", "https://www.westcorkartscentre.com/contentfiles/images/Exhibition%20Images/Arts%20Council/Kevin%20Mooney,%20Beast,%202020.jpg", "Beast, Kevin Mooney, 2020"),
 
+        new CollectionArtwork("Madonna and Child (after Masaccio)", "Patricia Hurl", "1984-85", "https://imma.ie/wp-content/uploads/2022/12/ph1-scaled.jpg", "Madonna and Child (after Masaccio), Patricia Hurl, 1984-85"),
+        new CollectionArtwork("The Kerry Babies Trial", "Patricia Hurl", "1985", "https://imma.ie/wp-content/uploads/2022/12/ph2-scaled.jpg", "The Kerry Babies Trial, Patricia Hurl, 1985"),
+        new CollectionArtwork("Jingle Bells", "Patricia Hurl", "1986-87", "https://imma.ie/wp-content/uploads/2022/12/ph4.jpg", "Jingle Bells, Patricia Hurl, 1986-87"),
+        new CollectionArtwork("Irish Gothic (Living Room)", "Patricia Hurl", "", "https://imma.ie/wp-content/uploads/2023/01/Patricia-Hurl_Irish-Gothic-1.jpg", "Irish Gothic (Living Room), Patricia Hurl"),
+        new CollectionArtwork("Adam and Eve (after Masaccio)", "Patricia Hurl", "", "http://www.hurlrudin.com/images/Living_Room_Myths/Adam_Eve_after_Masaccio.jpg", "Adam and Eve (after Masaccio), Patricia Hurl"),
+        new CollectionArtwork("Once Upon a Time", "Patricia Hurl", "1986", "http://www.hurlrudin.com/images/Living_Room_Myths/Once_upon_a_time_2.jpg", "Once Upon a Time, Patricia Hurl, 1986"),
+        new CollectionArtwork("Hush a Bye Baby", "Patricia Hurl", "1986", "http://www.hurlrudin.com/images/Living_Room_Myths/Hush_a_bye_baby.jpg", "Hush a Bye Baby, Patricia Hurl, 1986"),
+        new CollectionArtwork("The Company Wife", "Patricia Hurl", "", "https://spiceimageworkaround.files.wordpress.com/2023/03/hurl4.png", "The Company Wife, Patricia Hurl"),
+        new CollectionArtwork("Warrior X", "Patricia Hurl", "", "https://spiceimageworkaround.files.wordpress.com/2023/03/hurl3.png", "Warrior X, Patricia Hurl"),
+        new CollectionArtwork("Warrior II", "Patricia Hurl", "", "https://spiceimageworkaround.files.wordpress.com/2023/03/warrior.png", "Warrior II, Patricia Hurl"),
+        new CollectionArtwork("And she never even read Turgenev", "Patricia Hurl", "", "https://spiceimageworkaround.files.wordpress.com/2023/03/hurl5.png", "And she never even read Turgenev, Patricia Hurl"),
+        new CollectionArtwork("Living Room", "Patricia Hurl", "", "https://spiceimageworkaround.files.wordpress.com/2023/03/hurl2.png", "Living Room, Patricia Hurl")
 
     ]
 
