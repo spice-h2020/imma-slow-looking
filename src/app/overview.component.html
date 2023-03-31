@@ -14,7 +14,7 @@
               <ngb-carousel *ngIf="firstScripts.length > 0">
                 <ng-template ngbSlide *ngFor="let script of firstScripts">
                   <div class="picsum-img-wrapper" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
-                    <div class="col-md-8 col-sm-10 col-12 text-center mx-auto" style="width: 100%;">
+                    <div class="col-md-6 col-sm-8 col-10 text-center mx-auto" style="width: 100%;">
                         <img style="width: 100%;" src="{{artwork.url}}">
                     </div>
                   </div>
