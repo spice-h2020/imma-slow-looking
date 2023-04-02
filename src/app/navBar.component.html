@@ -29,9 +29,9 @@
                 <li *ngIf="!isLoggedOut()" class="nav-item">
                   <a class="nav-link" routerLink="/management" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Management</a>
                 </li>
-                <li *ngIf="!isLoggedOut()" class="nav-item">
+                <!-- <li *ngIf="!isLoggedOut()" class="nav-item">
                   <a class="nav-link" routerLink="/authoring" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Advanced</a>
-                </li>
+                </li> -->
                 <li *ngIf="isAdmin()" class="nav-item">
                   <a class="nav-link" routerLink="/users" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Users</a>
                 </li>

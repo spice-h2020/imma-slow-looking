@@ -53,6 +53,32 @@ export class ScriptWizardComponent {
         // return window.location.origin.concat("/allResponses/", script._id);
     }
 
+    toggleScriptStatus(script) {
+        script.open = !script.open;
+        this.saveScript(script);
+    }
+
+    toggleScriptVisibility(script) {
+        script.visible = !script.visible;
+        this.saveScript(script);
+    }
+
+    toggleScriptApproval(script) {
+        script.autoapproved = !script.autoapproved;
+        this.saveScript(script);
+    }
+
+    restoreScript(script) {
+        script.removed = false;
+        this.saveScript(script);
+    }
+
+    removeScript(script) {
+        script.removed = true;
+        this.saveScript(script);
+        this.removeConfirmation_Id = "";
+    }
+
     toggleStageHelp() {
         if(this.showStageHelp) {
             this.showStageHelp = false;
@@ -60,6 +86,12 @@ export class ScriptWizardComponent {
         else {
             this.showStageHelp = true;
         }
+    }
+
+    removeConfirmation_Id = "";
+
+    confirmRemove(_id: string) {
+        this.removeConfirmation_Id = _id;
     }
 
     deleteConfirmation_Id = "";
@@ -420,6 +452,11 @@ export class ScriptWizardComponent {
 
         // filter scripts for login
         let filteredScripts = this.filterScriptsForLogin(scripts);
+
+        //filter removed scripts for non-admin
+        if(!this.isAdmin()) {
+            filteredScripts = filteredScripts.filter(x => !x.removed);
+        }
 
         let sortedScripts = filteredScripts.sort((a, b) => (a.id > b.id) ? -1 : 1);
         return sortedScripts;

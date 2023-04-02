@@ -116,7 +116,7 @@
                 <ngb-carousel [showNavigationArrows]="selectedExhibition.scripts.length > 1" [showNavigationIndicators]="selectedExhibition.scripts.length > 1">
                   <ng-template ngbSlide *ngFor="let script of selectedExhibition.scripts">
                     <div class="picsum-img-wrapper" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
-                      <div class="col-md-8 col-sm-10 col-12 text-center mx-auto" style="width: 100%;">
+                      <div class="col-md-6 col-sm-8 col-10 text-center mx-auto" style="width: 100%;">
                         <img style="width: 100%;" src="{{artwork.url}}">
                       </div>
                     </div>
@@ -215,7 +215,7 @@
                 <ngb-carousel [showNavigationArrows]="selectedArtwork.scripts.length > 1" [showNavigationIndicators]="selectedArtwork.scripts.length > 1">
                   <ng-template ngbSlide *ngFor="let script of selectedArtwork.scripts">
                     <div class="picsum-img-wrapper" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
-                      <div class="col-md-8 col-sm-10 col-12 text-center mx-auto" style="width: 100%;">
+                      <div class="col-md-6 col-sm-8 col-10 text-center mx-auto" style="width: 100%;">
                         <img style="width: 100%;" src="{{artwork.url}}">
                       </div>
                     </div>
@@ -308,7 +308,7 @@
                 <ngb-carousel [showNavigationArrows]="selectedTheme.scripts.length > 1" [showNavigationIndicators]="selectedTheme.scripts.length > 1">
                   <ng-template ngbSlide *ngFor="let script of selectedTheme.scripts">
                     <div class="picsum-img-wrapper" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
-                      <div class="col-md-8 col-sm-10 col-12 text-center mx-auto" style="width: 100%;">
+                      <div class="col-md-6 col-sm-8 col-10 text-center mx-auto" style="width: 100%;">
                         <img style="width: 100%;" src="{{artwork.url}}">
                     </div>
                     </div>
@@ -393,7 +393,7 @@
                 <ngb-carousel [showNavigationArrows]="false" [showNavigationIndicators]="false">
                   <ng-template ngbSlide>
                     <div class="picsum-img-wrapper mt-3" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(selectedScript.script.homepageartworkid);">
-                      <div class="col-md-8 col-sm-10 col-12 text-center mx-auto" style="width: 100%;">
+                      <div class="col-md-6 col-sm-8 col-10 text-center mx-auto" style="width: 100%;">
                         <img style="width: 100%;" src="{{artwork.url}}">
                       </div>
                     </div>
