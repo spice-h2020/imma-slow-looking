@@ -81,6 +81,9 @@ export class SlowLookingActivityComponent implements OnInit {
                 if(params.return == "responses") {
                     this.routerLink = "/allResponses/"+_id;
                 }
+                if(params.return == "scripts") {
+                    this.routerLink = "/wizard";
+                }
             }
         );
 

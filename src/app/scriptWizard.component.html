@@ -1,10 +1,15 @@
 <paNavBar></paNavBar>
-<div style="width: 100%; background-color: white;" class="border pl-3 pr-3 mb-3">
+<div style="width: 100%; background-color: white;" class="border pl-3 pr-3 mb-3" *ngIf="!isLoggedOut()">
 <!-- <p class="lead" *ngIf="viewScript=='0'">Select a script.</p> -->
 <!-- <p class="lead" *ngIf="viewScript!='0'"><strong>Selected script: </strong><span *ngIf="selectedScript.name">{{selectedScript.name}}</span></p> -->
 
     <div *ngIf="model.viewScript!='0'" class="row mb-3 mt-3">
-        <div class="col"><p class="lead"><strong>Selected script: </strong><span *ngIf="model.selectedScript.name">{{model.selectedScript.name}}</span></p></div>
+        <div class="col">
+            <p class="lead">
+                <strong>Selected script: </strong>
+                <span *ngIf="model.selectedScript.name">{{model.selectedScript.name}}</span>
+            </p>
+        </div>
         <div class="col-4" style="min-width: 8em;">
             <button *ngIf="editScriptStage==0" class="btn btn-secondary float-right mt-1" (click)="editScriptStage=0; showStageHelp=false; unselectScript()">Close script</button>
         </div>
@@ -25,7 +30,7 @@
         </div>
         <div class="col"><p class="lead">Select a script.</p></div>
         <div class="col-4" style="min-width: 8em;">
-            <button class="btn btn-success float-right" (click)="addScript();">New script</button>
+            <button class="btn btn-success float-right" (click)="addScript();" *ngIf="(!isAdmin() || (isAdmin() && currentUser==1))">New script</button>
         </div>
     </div>
 
@@ -112,7 +117,7 @@
                     <strong>Script: </strong>
                 </div>
                 <div class="col-sm">
-                    <a routerLink='/slowLooking/{{script._id}}'>
+                    <a routerLink='/slowLooking/{{script._id}}' [queryParams]="{return:'scripts'}">
                         <button class="btn btn-light mr-3">View script <i class='fa fa-link'></i></button>
                     </a>
                     <button class="btn btn-light" ngbPopover="{{scriptURL(script)}}" popoverTitle="Script URL copied:" ngxClipboard [cbContent]='scriptURL(script)'>Copy script URL <i class="fa fa-clone" aria-hidden="true"></i></button>

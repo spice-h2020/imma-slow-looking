@@ -575,4 +575,8 @@ export class ScriptWizardComponent {
     isAdmin() {
         return this.currentuser.getUserID() == 1;
     }
+
+    isLoggedOut() {
+        return this.currentuser.getUserID() == undefined;
+    }
 }
