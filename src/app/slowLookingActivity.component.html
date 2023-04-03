@@ -32,9 +32,11 @@
             <p style="white-space: pre-wrap;" [innerHTML]="stage.body | linkifyHtml"></p>
 
             <div *ngIf="slowLookingMaximumScriptStageIndex == i" class="row bg-light">
-                <div class="col text-left align-items-end">
-                    &nbsp;<br/>
-                    &nbsp;<figcaption class="text-left blockquote-footer">{{currentScript.author}}</figcaption>
+                <div class="col text-left">
+                    <div class="row align-items-end">
+                        &nbsp;
+                        <figcaption class="text-left blockquote-footer">{{currentScript.author}}</figcaption>
+                    </div>
                 </div>
                 <div class="col text-right">
                     <button class="mt-3 mr-2 mb-3 btn btn-secondary" *ngIf="i != 0" (click)="statementBack(i);">Back</button>
@@ -44,8 +46,8 @@
             <div *ngIf="slowLookingMaximumScriptStageIndex != i" class="row bg-light">
                 <div class="col text-left">
                     <div class="row align-items-end">
-                        &nbsp;<br/>
-                        <figcaption class="blockquote-footer">{{currentScript.author}}</figcaption>
+                        &nbsp;
+                        <figcaption class="text-left blockquote-footer">{{currentScript.author}}</figcaption>
                     </div>
                 </div>
                 <div class="col text-right">
