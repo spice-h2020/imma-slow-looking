@@ -63,11 +63,12 @@
         <div class="col-md-1" style="min-width: 16em;" *ngIf="isAdmin()">
             <button class="btn btn-secondary float-right" (click)="selectScript(script._id); showup();">Open script</button>
             <button class="btn btn-danger float-right mr-3" (click)="confirmDelete(script._id)">Delete script</button>
-            <button class="btn btn-success float-right mt-3" style="clear: both;" *ngIf="script.removed" (click)="restoreScript(script); showup();">Restore script</button>
+            <button class="btn btn-success float-right mt-3" style="clear: both;" *ngIf="script.removed" (click)="restoreScript(script);">Restore script</button>
+            <button class="btn btn-danger float-right mt-3" style="clear: both;" *ngIf="!script.removed && currentUser!=1" (click)="removeScript(script);">Remove script</button>
         </div>
         <div class="col-md-1" style="min-width: 16em;" *ngIf="!isAdmin()">
             <button class="btn btn-secondary float-right" (click)="selectScript(script._id); showup();">Open script</button>
-            <button class="btn btn-danger float-right mr-3" (click)="confirmRemove(script._id); showup();">Remove script</button>
+            <button class="btn btn-danger float-right mr-3" (click)="confirmRemove(script._id);">Remove script</button>
         </div>
     </div>
     <div class="row" *ngIf="removeConfirmation_Id==script._id">
