@@ -100,7 +100,9 @@ export class ExtraArtworks {
         new CollectionArtwork("Warrior X", "Patricia Hurl", "", "https://spiceimageworkaround.files.wordpress.com/2023/03/hurl3.png", "Warrior X, Patricia Hurl"),
         new CollectionArtwork("Warrior II", "Patricia Hurl", "", "https://spiceimageworkaround.files.wordpress.com/2023/03/warrior.png", "Warrior II, Patricia Hurl"),
         new CollectionArtwork("And she never even read Turgenev", "Patricia Hurl", "", "https://spiceimageworkaround.files.wordpress.com/2023/03/hurl5.png", "And she never even read Turgenev, Patricia Hurl"),
-        new CollectionArtwork("Living Room", "Patricia Hurl", "", "https://spiceimageworkaround.files.wordpress.com/2023/03/hurl2.png", "Living Room, Patricia Hurl")
+        new CollectionArtwork("Living Room", "Patricia Hurl", "", "https://spiceimageworkaround.files.wordpress.com/2023/03/hurl2.png", "Living Room, Patricia Hurl"),
+        new CollectionArtwork("Exploding Head", "Patricia Hurl", "", "https://spiceimageworkaround.files.wordpress.com/2023/04/qwe23432423.jpg", "Exploding Head, Patricia Hurl"),
+        new CollectionArtwork("Sunday Rituals", "Patricia Hurl", "", "https://spiceimageworkaround.files.wordpress.com/2023/04/32424232.jpg", "Sunday Rituals, Patricia Hurl")
 
     ]
 
