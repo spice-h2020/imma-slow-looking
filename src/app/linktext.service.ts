@@ -45,11 +45,12 @@ export class LinkText{
         replaceFn : function(match) { 
             switch(match.getType()) {
                 case 'url' : 
-                    if(match.getAnchorHref().includes("youtube.com")) {
-                        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+                    if(match.getAnchorHref().includes("youtube.com") || match.getAnchorHref().includes("youtube-nocookie.com") || match.getAnchorHref().includes("youtu.be")) {
+                        const regExp = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube(-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/;
+                        // const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
                         const mymatch = match.getAnchorHref().match(regExp);
-                        if(mymatch && mymatch[2].length === 11) {
-                            return '<div class="container-iframe"><iframe class="responsive-iframe" src="' + 'https://www.youtube.com/embed/' + mymatch[2] + '" frameborder="0" allowfullscreen></iframe></div>';
+                        if(mymatch && mymatch[6].length === 11) {
+                            return '<div class="container-iframe"><iframe class="responsive-iframe" src="' + 'https://www.youtube.com/embed/' + mymatch[6] + '" frameborder="0" allowfullscreen></iframe></div>';
                         }
                         else {
                             return "";
