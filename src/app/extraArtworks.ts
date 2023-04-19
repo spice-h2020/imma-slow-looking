@@ -135,8 +135,22 @@ export class ExtraArtworks {
         new CollectionArtwork("Oh Woe to that Poor Siegel", "Vitkovska", "1987", "https://spiceimageworkaround.files.wordpress.com/2023/04/vitkovska-hore-tiy-chaytsi-nebozi.jpg", "Oh Woe to that Poor Siegel, Vitkovska, 1987"),
         new CollectionArtwork("Lion", "Yablonska", "1976", "https://spiceimageworkaround.files.wordpress.com/2023/04/yablonska-lion.jpg", "Lion, Yablonska, 1976"),
         new CollectionArtwork("Ukrainian Woman Hanna Struk", "Zaretskyy", "1925-1990 (years of life)", "https://spiceimageworkaround.files.wordpress.com/2023/04/zaretskyy-ukrayinka-hanna-struk.jpg", "Ukrainian Woman Hanna Struk, Zaretskyy, 1925-1990 (years of life)"),
-        new CollectionArtwork("Roundelay of the Beatles, Fairytale", "Zhuk", "1914", "https://spiceimageworkaround.files.wordpress.com/2023/04/zhuk-kazka-khorovod-zhukiv.jpg", "Roundelay of the Beatles, Fairytale, Zhuk, 1914")
+        new CollectionArtwork("Roundelay of the Beatles, Fairytale", "Zhuk", "1914", "https://spiceimageworkaround.files.wordpress.com/2023/04/zhuk-kazka-khorovod-zhukiv.jpg", "Roundelay of the Beatles, Fairytale, Zhuk, 1914"),
 
+        new CollectionArtwork("Pride & Joy (1)", "Leanne McDonagh", "2015", "https://leannemcdonaghart.com/wp-content/uploads/2017/11/No.18-Pride-Joy-1a.jpg", "Pride & Joy (1), Leanne McDonagh, 2015"),
+        new CollectionArtwork("Pride & Joy (2)", "Leanne McDonagh", "2015", "https://leannemcdonaghart.com/wp-content/uploads/2017/11/No.18-Pride-Joy-2.jpg", "Pride & Joy (2), Leanne McDonagh, 2015"),
+        new CollectionArtwork("Pride & Joy (3)", "Leanne McDonagh", "2015", "https://leannemcdonaghart.com/wp-content/uploads/2017/11/No.18-Pride-Joy-3a-1.jpg", "Pride & Joy (3), Leanne McDonagh, 2015"),
+        new CollectionArtwork("Untitled", "Stella (EPIC)", "2023", "https://spiceimageworkaround.files.wordpress.com/2023/04/stella.png", "Untitled, Stella (EPIC), 2023"),
+        new CollectionArtwork("Untitled", "Alan (EPIC)", "2023", "https://spiceimageworkaround.files.wordpress.com/2023/04/alan.png", "Untitled, Alan (EPIC), 2023"),
+        new CollectionArtwork("Untitled", "Andrea (EPIC)", "2023", "https://spiceimageworkaround.files.wordpress.com/2023/04/andrea.png", "Untitled, Andrea (EPIC), 2023"),
+        new CollectionArtwork("Untitled", "Cian (EPIC)", "2023", "https://spiceimageworkaround.files.wordpress.com/2023/04/cian.png", "Untitled, Cian (EPIC), 2023"),
+        new CollectionArtwork("Untitled", "Clara (EPIC)", "2023", "https://spiceimageworkaround.files.wordpress.com/2023/04/clara.png", "Untitled, Clara (EPIC), 2023"),
+        new CollectionArtwork("Untitled", "Emily (EPIC)", "2023", "https://spiceimageworkaround.files.wordpress.com/2023/04/emily-2.png", "Untitled, Emily (EPIC), 2023"),
+        new CollectionArtwork("Untitled", "Hannah (EPIC)", "2023", "https://spiceimageworkaround.files.wordpress.com/2023/04/hannah.png", "Untitled, Hannah (EPIC), 2023"),
+        new CollectionArtwork("Untitled", "Jerry (EPIC)", "2023", "https://spiceimageworkaround.files.wordpress.com/2023/04/jerry.png", "Untitled, Jerry (EPIC), 2023"),
+        new CollectionArtwork("Untitled", "Kai (EPIC)", "2023", "https://spiceimageworkaround.files.wordpress.com/2023/04/kai.png", "Untitled, Kai (EPIC), 2023"),
+        new CollectionArtwork("Untitled", "Kylie (EPIC)", "2023", "https://spiceimageworkaround.files.wordpress.com/2023/04/kylie.png", "Untitled, Kylie (EPIC), 2023"),
+        new CollectionArtwork("Untitled", "Reece (EPIC)", "2023", "https://spiceimageworkaround.files.wordpress.com/2023/04/reece.png", "Untitled, Reece (EPIC), 2023")
     ]
 
 }
