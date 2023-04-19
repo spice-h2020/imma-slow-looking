@@ -240,9 +240,12 @@
 <div *ngIf="model.viewScript!='0'" style="width: 100%; background-color: white;" class="pl-3 pr-3 pt-3">
     <ul ngbNav #nav="ngbNav" class="nav-pills">
         <li ngbNavItem>
-          <a ngbNavLink><strong>Artworks</strong></a>
+          <a ngbNavLink>Artworks</a>
           <ng-template ngbNavContent>
             <p>Choose the artworks for your script.</p>
+            <div class="alert alert-info" *ngIf="getArtworks(model.selectedScript).length == 0">
+                Use the <strong>Artworks</strong> option from the top pull-down menu to add artworks to your personal collection. These can then be added to your scripts.
+            </div>
             <div class="row itemsBlock">
                 <div *ngFor="let artwork of getArtworks(model.selectedScript)" class="col-md-4 col-sm-6 col-12 pb-3">
                     <div class="row p-3">
@@ -314,7 +317,7 @@
            </ng-template>
         </li>
         <li ngbNavItem>
-          <a ngbNavLink><strong>Stages</strong></a>
+          <a ngbNavLink>Stages</a>
           <ng-template ngbNavContent>
             <p>Manage the stages of your script.</p>
             <div class="row" *ngIf="editScriptStage==0">
@@ -370,7 +373,7 @@
 
             <table width=100%>
                 <tbody cdkDropList (cdkDropListDropped)="stageDrop(model.selectedScript, $event)">
-                <tr *ngFor="let stage of model.selectedScript.stages; let i = index" class="border mt-3 p-3 mb-3" cdkDrag cdkDragLockAxis="y">
+                <tr *ngFor="let stage of model.selectedScript.stages; let i = index" class="border-top border-bottom mt-3 p-3 mb-3" cdkDrag cdkDragLockAxis="y">
                 <td>
                     <!-- show script stage -->
                     <span *ngIf="stage.id!=editScriptStage"> 
@@ -721,7 +724,7 @@
           </ng-template>
         </li>
         <li ngbNavItem>
-            <a ngbNavLink><strong>Themes</strong></a>
+            <a ngbNavLink>Themes</a>
             <ng-template ngbNavContent>
                 <p>
                     Choose one or more themes for your script.
@@ -742,7 +745,7 @@
             </ng-template>
         </li>
         <li ngbNavItem>
-            <a ngbNavLink><strong>Title</strong></a>
+            <a ngbNavLink>Title</a>
             <ng-template ngbNavContent>
                 <p>
                     Decide how your script will be presented in Deep Viewpoints. 
