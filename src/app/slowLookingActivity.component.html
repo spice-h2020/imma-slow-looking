@@ -33,24 +33,18 @@
 
             <div *ngIf="slowLookingMaximumScriptStageIndex == i" class="row bg-light">
                 <div class="col text-left">
-                    <div class="row align-items-end">
-                        &nbsp;
-                        <figcaption class="text-left blockquote-footer">{{currentScript.author}}</figcaption>
-                    </div>
+                    <figcaption class="mt-3 text-left blockquote-footer">{{currentScript.author}}</figcaption>
                 </div>
-                <div class="col text-right">
+                <div class="col-2 text-right" style="min-width: 11em;">
                     <button class="mt-3 mr-2 mb-3 btn btn-secondary" *ngIf="i != 0" (click)="statementBack(i);">Back</button>
                     <button class="mt-3 mb-3 btn btn-secondary" (click)="statementEnd();" [routerLink]="routerLink">Close</button>
                 </div>
             </div>
             <div *ngIf="slowLookingMaximumScriptStageIndex != i" class="row bg-light">
                 <div class="col text-left">
-                    <div class="row align-items-end">
-                        &nbsp;
-                        <figcaption class="text-left blockquote-footer">{{currentScript.author}}</figcaption>
-                    </div>
+                    <figcaption class="mt-3 text-left blockquote-footer">{{currentScript.author}}</figcaption>
                 </div>
-                <div class="col text-right">
+                <div class="col-2 text-right" style="min-width: 11em;">
                     <button class="mt-3 mr-2 mb-3 btn btn-secondary" *ngIf="i != 0" (click)="statementBack(i);">Back</button>
                     <button *ngIf="slowLookingMaximumScriptStageIndex != i" class="mt-3 mb-3 btn btn-secondary" (click)="statementContinue(i);">Continue</button>
                 </div>
@@ -138,12 +132,9 @@
                     <!-- return to list if last stage -->
                     <div *ngIf="slowLookingMaximumScriptStageIndex == i" class="row bg-light">
                         <div class="col text-left">
-                            <div class="row align-items-end">
-                                &nbsp;
-                                <figcaption class="text-left blockquote-footer">{{currentScript.author}}</figcaption>
-                            </div>
+                                <figcaption class="mt-3 text-left blockquote-footer">{{currentScript.author}}</figcaption>
                         </div>
-                        <div class="col text-right">
+                        <div class="col-2 text-right" style="min-width: 11em;">
                             <button class="mt-3 mr-2 mb-3 btn btn-secondary" *ngIf="i != 0" (click)="multiquestionBack(multiquestionIndex, answervalue.value, stage, stage.questions, i, newMultiquestionAction)">Back</button>
                             <button class="mt-3 mb-3 btn btn-secondary" (click)="multiquestionEnd(i, multiquestionIndex, answervalue.value, stage, stage.questions, newMultiquestionAction)" [routerLink]="routerLink">Close</button>
                         </div>
@@ -151,12 +142,9 @@
                     <!-- continue if not last stage -->
                     <div *ngIf="slowLookingMaximumScriptStageIndex != i" class="row bg-light">
                         <div class="col text-left">
-                            <div class="row align-items-end">
-                                &nbsp;
-                                <figcaption class="text-left blockquote-footer">{{currentScript.author}}</figcaption>
-                            </div>
+                            <figcaption class="mt-3 text-left blockquote-footer">{{currentScript.author}}</figcaption>
                         </div>
-                        <div class="col text-right">
+                        <div class="col-2 text-right" style="min-width: 11em;">
                             <button class="mt-3 mr-2 mb-3 btn btn-secondary" *ngIf="i != 0" (click)="multiquestionBack(multiquestionIndex, answervalue.value, stage, stage.questions, i, newMultiquestionAction)">Back</button>
                             <button class="mt-3 mb-3 btn btn-secondary" (click)="multiquestionContinue(multiquestionIndex, answervalue.value, stage, stage.questions, i, newMultiquestionAction)">Continue</button>
                         </div>
@@ -200,12 +188,9 @@
                     <!-- return to list if last stage -->
                     <div *ngIf="slowLookingMaximumScriptStageIndex == i" class="row bg-light">
                         <div class="col text-left">
-                            <div class="row align-items-end">
-                                &nbsp;
-                                <figcaption class="text-left blockquote-footer">{{currentScript.author}}</figcaption>
-                            </div>
+                            <figcaption class="mt-3 text-left blockquote-footer">{{currentScript.author}}</figcaption>
                         </div>
-                        <div class="col text-right">
+                        <div class="col-2 text-right" style="min-width: 11em;">
                             <button class="mt-3 mr-2 mb-3 btn btn-secondary" *ngIf="i != 0" (click)="multiquestionBack(multiquestionIndex, answervalue.value, stage, stage.questions, i, newMultiquestionAction)">Back</button>
                             <button class="mt-3 mb-3 btn btn-secondary" (click)="multiquestionEnd(i, multiquestionIndex, answervalue.value, stage, stage.questions, newMultiquestionAction)" [routerLink]="routerLink">Close</button>
                         </div>
@@ -213,12 +198,9 @@
                     <!-- continue if not last stage -->
                     <div *ngIf="slowLookingMaximumScriptStageIndex != i" class="row bg-light">
                         <div class="col text-left">
-                            <div class="row align-items-end">
-                                &nbsp;
-                                <figcaption class="text-left blockquote-footer">{{currentScript.author}}</figcaption>
-                            </div>
+                            <figcaption class="mt-3 text-left blockquote-footer">{{currentScript.author}}</figcaption>
                         </div>
-                        <div class="col text-right">
+                        <div class="col-2 text-right" style="min-width: 11em;">
                             <button class="mt-3 mr-2 mb-3 btn btn-secondary" *ngIf="i != 0" (click)="multiquestionBack(multiquestionIndex, answervalue.value, stage, stage.questions, i, newMultiquestionAction)">Back</button>
                             <button class="mt-3 mb-3 btn btn-secondary" (click)="multiquestionContinue(multiquestionIndex, answervalue.value, stage, stage.questions, i, newMultiquestionAction)">Continue</button>
                         </div>
@@ -292,12 +274,9 @@
                 <!-- return to list if last stage -->
                 <div *ngIf="slowLookingMaximumScriptStageIndex == i" class="row bg-light">
                     <div class="col text-left">
-                        <div class="row align-items-end">
-                            &nbsp;
-                            <figcaption class="text-left blockquote-footer">{{currentScript.author}}</figcaption>
-                        </div>
+                        <figcaption class="mt-3 text-left blockquote-footer">{{currentScript.author}}</figcaption>
                     </div>
-                    <div class="col text-right">
+                    <div class="col-2 text-right" style="min-width: 11em;">
                         <button class="mt-3 mr-2 mb-3 btn btn-secondary" *ngIf="i != 0" (click)="questionBack(i, stage, stage.question.title, newQuestionAction);">Back</button>
                         <button class="mt-3 mb-3 btn btn-secondary" (click)="questionEnd(i, stage, stage.question.title, newQuestionAction);" [routerLink]="routerLink">Close</button>
                     </div>
@@ -305,12 +284,9 @@
                 <!-- continue if not last stage -->
                 <div *ngIf="slowLookingMaximumScriptStageIndex != i" class="row bg-light">
                     <div class="col text-left">
-                        <div class="row align-items-end">
-                            &nbsp;
-                            <figcaption class="text-left blockquote-footer">{{currentScript.author}}</figcaption>
-                        </div>
+                        <figcaption class="mt-3 text-left blockquote-footer">{{currentScript.author}}</figcaption>
                     </div>
-                    <div class="col text-right">
+                    <div class="col-2 text-right" style="min-width: 11em;">
                         <button class="mt-3 mr-2 mb-3 btn btn-secondary" *ngIf="i != 0" (click)="questionBack(i, stage, stage.question.title, newQuestionAction);">Back</button>
                         <button class="mt-3 mb-3 btn btn-secondary" (click)="questionContinue(i, stage, stage.question.title, newQuestionAction);">Continue</button>
                     </div>
@@ -358,12 +334,9 @@
                 <!-- return to list if last stage -->
                 <div *ngIf="slowLookingMaximumScriptStageIndex == i" class="row bg-light">
                     <div class="col text-left">
-                        <div class="row align-items-end">
-                            &nbsp;
-                            <figcaption class="text-left blockquote-footer">{{currentScript.author}}</figcaption>
-                        </div>
+                        <figcaption class="mt-3 text-left blockquote-footer">{{currentScript.author}}</figcaption>
                     </div>
-                    <div class="col text-right">
+                    <div class="col-2 text-right" style="min-width: 11em;">
                         <button class="mt-3 mr-2 mb-3 btn btn-secondary" *ngIf="i != 0" (click)="storyBack(i, stage, stage.body, newStoryAction);">Back</button>
                         <button class="mt-3 mb-3 btn btn-secondary" (click)="storyEnd(i, stage, stage.body, newStoryAction);" [routerLink]="routerLink">Close</button>
                     </div>
@@ -372,12 +345,9 @@
                 <!-- continue if not last stage -->
                 <div *ngIf="slowLookingMaximumScriptStageIndex != i" class="row bg-light">
                     <div class="col text-left">
-                        <div class="row align-items-end">
-                            &nbsp;
-                            <figcaption class="text-left blockquote-footer">{{currentScript.author}}</figcaption>
-                        </div>
+                        <figcaption class="mt-3 text-left blockquote-footer">{{currentScript.author}}</figcaption>
                     </div>
-                    <div class="col text-right">
+                    <div class="col-2 text-right" style="min-width: 11em;">
                         <button class="mt-3 mr-2 mb-3 btn btn-secondary" *ngIf="i != 0" (click)="storyBack(i, stage, stage.body, newStoryAction);">Back</button>
                         <button class="mt-3 mb-3 btn btn-secondary" (click)="storyContinue(i, stage, stage.body, newStoryAction);">Continue</button>
                     </div>

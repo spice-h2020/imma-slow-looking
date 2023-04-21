@@ -128,9 +128,15 @@
                                 </span>
                             </div>
                             <hr>
-                            <div class="d-flex justify-content-between">
-                                <p class="mb-0">{{activity.authorname}}</p>
-                                <h6 class="mb-0"><span class="badge rounded-pill" style="background-color: rgba(0,0,0, 0.2);">{{activity.likes}}</span> <i (click)="addLikeToActivity(activity);" class="fas fa-heart ms-2"></i></h6>
+                            <div style="width: 100%;">
+                                <div class="row">
+                                <div class="col text-left">
+                                    {{activity.authorname}}
+                                </div>
+                                <div class="col-4 text-right" style="max-width: 5em;">
+                                    <span><span class="badge rounded-pill" style="background-color: rgba(0,0,0, 0.2);">{{activity.likes}}</span> <i class="fas fa-heart ms-2"></i></span>
+                                </div>
+                                </div>
                             </div>
                         </div>
                         </div>
