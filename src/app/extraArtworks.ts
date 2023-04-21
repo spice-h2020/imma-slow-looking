@@ -150,7 +150,9 @@ export class ExtraArtworks {
         new CollectionArtwork("Untitled", "Jerry (EPIC)", "2023", "https://spiceimageworkaround.files.wordpress.com/2023/04/jerry.png", "Untitled, Jerry (EPIC), 2023"),
         new CollectionArtwork("Untitled", "Kai (EPIC)", "2023", "https://spiceimageworkaround.files.wordpress.com/2023/04/kai.png", "Untitled, Kai (EPIC), 2023"),
         new CollectionArtwork("Untitled", "Kylie (EPIC)", "2023", "https://spiceimageworkaround.files.wordpress.com/2023/04/kylie.png", "Untitled, Kylie (EPIC), 2023"),
-        new CollectionArtwork("Untitled", "Reece (EPIC)", "2023", "https://spiceimageworkaround.files.wordpress.com/2023/04/reece.png", "Untitled, Reece (EPIC), 2023")
+        new CollectionArtwork("Untitled", "Reece (EPIC)", "2023", "https://spiceimageworkaround.files.wordpress.com/2023/04/reece.png", "Untitled, Reece (EPIC), 2023"),
+
+        new CollectionArtwork("Pride of Place group at IMMA", "Michael Collins, Mags O’Sullivan, Ann Maguire", "March, 2023", "https://spiceimageworkaround.files.wordpress.com/2023/04/img_20230321_103609_1-688288317-e1682002773406.jpg", "Pride of Place group at IMMA, Michael Collins, Mags O’Sullivan, Ann Maguire, March, 2023")
     ]
 
 }
