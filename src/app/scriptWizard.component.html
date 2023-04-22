@@ -406,6 +406,9 @@
                                 <span class="font-weight-bold">Artworks: </span>
                             </div>
                             <div class="col-sm">
+                                <span *ngIf="!getArtworksFromIds(model.selectedScript.name, model.selectedScript.artworkids, model.selectedScript).length" class="text-info">
+                                    Select artworks for your script from the Artworks tab.
+                                </span>
                                 <span *ngFor="let artwork of getArtworksFromIds(stage.title, stage.includeartworks, model.selectedScript, stage);">
                                     <span style="white-space: pre-wrap;" [innerHTML]="artwork.name"></span>, <span style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></span>, {{artwork.year}}<br/>
                                 </span>
@@ -536,6 +539,9 @@
                                 <span class="font-weight-bold">Artworks: </span>
                             </div>
                             <div class="col-sm">
+                                <div *ngIf="!getArtworksFromIds(model.selectedScript.name, model.selectedScript.artworkids, model.selectedScript).length" class="text-info">
+                                    Select artworks for your script from the Artworks tab.
+                                </div>
                                 <table>
                                     <tr *ngFor="let artwork of getArtworksFromIds(model.selectedScript.name, model.selectedScript.artworkids, model.selectedScript)" class="mr-3">
                                         <td class="align-middle">
@@ -776,6 +782,9 @@
                     </div>
                     
                     <div class="col-sm">
+                        <div *ngIf="!getArtworksFromIds(model.selectedScript.name, model.selectedScript.artworkids, model.selectedScript).length" class="text-info">
+                            Select artworks for your script from the Artworks tab.
+                        </div>
                         <div *ngFor="let artwork of getArtworksFromIds(model.selectedScript.name, model.selectedScript.artworkids, model.selectedScript)">
                             <div class="form-check form-check-inline">
                                 <input
