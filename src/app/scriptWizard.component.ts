@@ -147,6 +147,7 @@ export class ScriptWizardComponent {
         newscript.open = true;
         newscript.visible = false;
         newscript.archived = false;
+        newscript.autoapproved = true;
         // newscript.artworkid = this.model.getDefaultArtworkId();
         // newscript.themeids = [this.model.getDefaultThemeId()];
         newscript.themeids = [];
