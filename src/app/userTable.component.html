@@ -23,7 +23,7 @@
                             {{item.displayname}}
                         </span>
                         <span *ngIf="tableEditing && editrow==item._id">
-                            <textarea rows="1" class="form-control" [(ngModel)]="item.displayname"></textarea>
+                            <textarea rows="2" class="form-control" [(ngModel)]="item.displayname"></textarea>
                         </span>
                     </td>
                     <td>
@@ -63,7 +63,7 @@
                     </td>
                     <td>
                         <span *ngIf="!tableEditing">
-                            <textarea rows="1" class="form-control" [(ngModel)]="newUser.displayname"></textarea>
+                            <textarea rows="2" class="form-control" [(ngModel)]="newUser.displayname"></textarea>
                         </span>
                     </td>
                     <td>
