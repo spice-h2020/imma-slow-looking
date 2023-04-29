@@ -16,7 +16,7 @@ import { ConfigSettings } from "./config";
 
 export class OverviewComponent implements OnInit {
 
-    constructor(private model: Model, private activatedRoute: ActivatedRoute){}
+    constructor(public model: Model, private activatedRoute: ActivatedRoute){}
 
     // configuration settings
     configSettings = new ConfigSettings;
@@ -26,10 +26,10 @@ export class OverviewComponent implements OnInit {
     themes: Theme[];
     exhibitions: Exhibition[];
 
-    selectedArtwork = undefined;
-    selectedTheme = undefined;
-    selectedScript = undefined;
-    selectedExhibition = undefined;
+    // selectedArtwork = undefined;
+    // selectedTheme = undefined;
+    // selectedScript = undefined;
+    // selectedExhibition = undefined;
 
     artworkResults: {artworkurl: string, name: string, artist: string, year: string, searchstring: string, scripts: Script[]}[] = [];
     themeResults: {themeid: string, name: string, description: string, searchstring: string, scripts: Script[]}[] = [];
@@ -42,7 +42,7 @@ export class OverviewComponent implements OnInit {
     keywordArtworks = 'searchstring';
     selectEventArtworks(item) {
         // do something with selected item
-        this.selectedArtwork = item;
+        this.model.selectedArtwork = item;
     }
   
     onChangeSearchArtworks(val: string) {
@@ -59,7 +59,7 @@ export class OverviewComponent implements OnInit {
     keywordThemes = 'searchstring';
     selectEventThemes(item) {
         // do something with selected item
-        this.selectedTheme = item;
+        this.model.selectedTheme = item;
     }
   
     onChangeSearchThemes(val: string) {
@@ -76,7 +76,7 @@ export class OverviewComponent implements OnInit {
     keywordExhibitions = 'searchstring';
     selectEventExhibitions(item) {
         // do something with selected item
-        this.selectedExhibition = item;
+        this.model.selectedExhibition = item;
     }
   
     onChangeSearchExhibitions(val: string) {
@@ -93,7 +93,7 @@ export class OverviewComponent implements OnInit {
     keywordScripts = 'searchstring';
     selectEventScripts(item) {
         // do something with selected item
-        this.selectedScript = item;
+        this.model.selectedOverviewScript = item;
     }
     
     onChangeSearchScripts(val: string) {

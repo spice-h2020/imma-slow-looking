@@ -31,7 +31,13 @@ export class Model {
     private dbUsers: User[] = new Array<User>();
     private dbExhibitions: Exhibition[] = new Array<Exhibition>();
 
+    //selections from overview pape
+    selectedArtwork = undefined;
+    selectedTheme = undefined;
+    selectedOverviewScript = undefined;
+    selectedExhibition = undefined;
 
+    //script selection from script wizard (authoring)
     selectedScript: Script = undefined;
     viewScript: string = "0";
     selectScript(_id: string) {

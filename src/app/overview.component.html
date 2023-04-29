@@ -88,27 +88,27 @@
                 <div [innerHTML]="notFound"></div>
                 </ng-template>
               </div>
-              <span *ngIf="selectedExhibition">
+              <span *ngIf="model.selectedExhibition">
                 <div class="row">
                   &nbsp;
                 </div>
                 <div class="row align-items-start">
                   <div class="col-sm-6">
-                      <img style="width: 100%;" src="{{selectedExhibition.artwork.url}}" alt="{{selectedExhibition.artwork.name}}">
+                      <img style="width: 100%;" src="{{model.selectedExhibition.artwork.url}}" alt="{{model.selectedExhibition.artwork.name}}">
                   </div>
                   <div class="col-sm">
-                    <div class="row text-left"><h4 style="white-space: pre-wrap;" [innerHTML]="selectedExhibition.name"></h4></div>
-                    <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="selectedExhibition.description"></span></div>
+                    <div class="row text-left"><h4 style="white-space: pre-wrap;" [innerHTML]="model.selectedExhibition.name"></h4></div>
+                    <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="model.selectedExhibition.description"></span></div>
                     <div class="row text-right">
-                      <a href="{{selectedExhibition.url}}" target='_blank'>
+                      <a href="{{model.selectedExhibition.url}}" target='_blank'>
                         <button class="btn btn-link mr-3" style="font-size: large; color: white; text-shadow: 1.5px 1.5px #000000;">Exhibition <i class='fa fa-external-link'></i></button>
                       </a>
                     </div>
                   </div>
                 </div>
                 <hr>
-                <ngb-carousel [showNavigationArrows]="selectedExhibition.scripts.length > 1" [showNavigationIndicators]="selectedExhibition.scripts.length > 1">
-                  <ng-template ngbSlide *ngFor="let script of selectedExhibition.scripts">
+                <ngb-carousel [showNavigationArrows]="model.selectedExhibition.scripts.length > 1" [showNavigationIndicators]="model.selectedExhibition.scripts.length > 1">
+                  <ng-template ngbSlide *ngFor="let script of model.selectedExhibition.scripts">
                     <div class="picsum-img-wrapper" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
                       <div class="col-md-6 col-sm-8 col-10 text-center mx-auto" style="width: 100%;">
                         <img style="width: 100%;" src="{{artwork.url}}">
@@ -185,23 +185,23 @@
                 <div [innerHTML]="notFound"></div>
                 </ng-template>
               </div>
-              <span *ngIf="selectedArtwork">
+              <span *ngIf="model.selectedArtwork">
                 <div class="row">
                   &nbsp;
                 </div>
                 <div class="row align-items-end">
                   <div class="col-sm-6">
-                      <img style="width: 100%;" src="{{selectedArtwork.artworkurl}}" alt="{{selectedArtwork.name}}">
+                      <img style="width: 100%;" src="{{model.selectedArtwork.artworkurl}}" alt="{{model.selectedArtwork.name}}">
                   </div>
                   <div class="col-sm ml-3">
-                    <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="selectedArtwork.name"></div>
-                    <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="selectedArtwork.artist"></div></strong>
-                    <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="selectedArtwork.year"></div>
+                    <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="model.selectedArtwork.name"></div>
+                    <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="model.selectedArtwork.artist"></div></strong>
+                    <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="model.selectedArtwork.year"></div>
                   </div>
                 </div>
                 <hr>
-                <ngb-carousel [showNavigationArrows]="selectedArtwork.scripts.length > 1" [showNavigationIndicators]="selectedArtwork.scripts.length > 1">
-                  <ng-template ngbSlide *ngFor="let script of selectedArtwork.scripts">
+                <ngb-carousel [showNavigationArrows]="model.selectedArtwork.scripts.length > 1" [showNavigationIndicators]="model.selectedArtwork.scripts.length > 1">
+                  <ng-template ngbSlide *ngFor="let script of model.selectedArtwork.scripts">
                     <div class="picsum-img-wrapper" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
                       <div class="col-md-6 col-sm-8 col-10 text-center mx-auto" style="width: 100%;">
                         <img style="width: 100%;" src="{{artwork.url}}">
@@ -278,17 +278,17 @@
                 <div [innerHTML]="notFound"></div>
                 </ng-template>
               </div>
-              <span *ngIf="selectedTheme">
+              <span *ngIf="model.selectedTheme">
                 <div class="row">
                   &nbsp;
                 </div>
                 <div class="col">
-                  <h3 class="row text-left">{{selectedTheme.name}}</h3>
-                  <div class="row text-left">{{selectedTheme.description}}</div>
+                  <h3 class="row text-left">{{model.selectedTheme.name}}</h3>
+                  <div class="row text-left">{{model.selectedTheme.description}}</div>
                 </div>
                 <hr>
-                <ngb-carousel [showNavigationArrows]="selectedTheme.scripts.length > 1" [showNavigationIndicators]="selectedTheme.scripts.length > 1">
-                  <ng-template ngbSlide *ngFor="let script of selectedTheme.scripts">
+                <ngb-carousel [showNavigationArrows]="model.selectedTheme.scripts.length > 1" [showNavigationIndicators]="model.selectedTheme.scripts.length > 1">
+                  <ng-template ngbSlide *ngFor="let script of model.selectedTheme.scripts">
                     <div class="picsum-img-wrapper" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
                       <div class="col-md-6 col-sm-8 col-10 text-center mx-auto" style="width: 100%;">
                         <img style="width: 100%;" src="{{artwork.url}}">
@@ -365,42 +365,42 @@
                 <div [innerHTML]="notFound"></div>
                 </ng-template>
               </div>
-              <span *ngIf="selectedScript">
+              <span *ngIf="model.selectedOverviewScript">
                 <ngb-carousel [showNavigationArrows]="false" [showNavigationIndicators]="false">
                   <ng-template ngbSlide>
-                    <div class="picsum-img-wrapper mt-3" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(selectedScript.script.homepageartworkid);">
+                    <div class="picsum-img-wrapper mt-3" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(model.selectedOverviewScript.script.homepageartworkid);">
                       <div class="col-md-6 col-sm-8 col-10 text-center mx-auto" style="width: 100%;">
                         <img style="width: 100%;" src="{{artwork.url}}">
                       </div>
                     </div>
                     <div class="carousel-caption">
-                      <div class="row align-items-end" *ngFor="let artwork of getArtworkFromId(selectedScript.script.homepageartworkid);">
-                        <h3 class="text-left" style="text-shadow: 1.5px 1.5px #000000;">{{selectedScript.script.name}}</h3>
-                        <div class="text-left" *ngIf="selectedScript.script.description != ''" style="text-shadow: 1.5px 1.5px #000000;">
-                          {{selectedScript.script.description}}
+                      <div class="row align-items-end" *ngFor="let artwork of getArtworkFromId(model.selectedOverviewScript.script.homepageartworkid);">
+                        <h3 class="text-left" style="text-shadow: 1.5px 1.5px #000000;">{{model.selectedOverviewScript.script.name}}</h3>
+                        <div class="text-left" *ngIf="model.selectedOverviewScript.script.description != ''" style="text-shadow: 1.5px 1.5px #000000;">
+                          {{model.selectedOverviewScript.script.description}}
                         </div>
-                        <figcaption class="text-left blockquote-footer text-white" style="text-shadow: 1.5px 1.5px #000000;">{{selectedScript.script.author}}</figcaption>
-                        <div class="text-left" *ngIf="selectedScript.script.exhibitionids.length > 0" style="text-shadow: 1.5px 1.5px #000000;"><strong>Exhibitions: </strong>
-                          <ng-container *ngFor="let exhibition of getExhibitionsFromIds(selectedScript.script.exhibitionids); let last = last">
+                        <figcaption class="text-left blockquote-footer text-white" style="text-shadow: 1.5px 1.5px #000000;">{{model.selectedOverviewScript.script.author}}</figcaption>
+                        <div class="text-left" *ngIf="model.selectedOverviewScript.script.exhibitionids.length > 0" style="text-shadow: 1.5px 1.5px #000000;"><strong>Exhibitions: </strong>
+                          <ng-container *ngFor="let exhibition of getExhibitionsFromIds(model.selectedOverviewScript.script.exhibitionids); let last = last">
                             {{exhibition.name}}
                             <ng-container *ngIf="!last">, </ng-container>
                           </ng-container>
                           <br/>
                         </div>
-                        <div class="text-left" *ngIf="selectedScript.script.themeids.length > 0" style="text-shadow: 1.5px 1.5px #000000;"><strong>Themes: </strong>
-                          <ng-container *ngFor="let theme of getThemesFromIds(selectedScript.script.themeids); let last = last">
+                        <div class="text-left" *ngIf="model.selectedOverviewScript.script.themeids.length > 0" style="text-shadow: 1.5px 1.5px #000000;"><strong>Themes: </strong>
+                          <ng-container *ngFor="let theme of getThemesFromIds(model.selectedOverviewScript.script.themeids); let last = last">
                             {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
                           </ng-container>
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-sm" *ngIf="selectedScript.script.open && selectedScript.script.visible">
-                          <a routerLink='/slowLooking/{{selectedScript.script._id}}' [queryParams]="{return:'home'}">
+                        <div class="col-sm" *ngIf="model.selectedOverviewScript.script.open && model.selectedOverviewScript.script.visible">
+                          <a routerLink='/slowLooking/{{model.selectedOverviewScript.script._id}}' [queryParams]="{return:'home'}">
                             <button class="btn btn-dark mt-3" style="width: 10em; font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View script <i class='fa fa-link'></i></button>
                           </a>
                         </div>
-                        <div class="col-sm" *ngIf="selectedScript.script.visible && !statementOnlyScript(selectedScript.script)">
-                          <a routerLink='/allResponses/{{selectedScript.script._id}}'>
+                        <div class="col-sm" *ngIf="model.selectedOverviewScript.script.visible && !statementOnlyScript(model.selectedOverviewScript.script)">
+                          <a routerLink='/allResponses/{{model.selectedOverviewScript.script._id}}'>
                             <button class="btn btn-dark mt-3" style="width: 10em; font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View responses <i class='fa fa-link'></i></button>
                           </a>
                         </div>
