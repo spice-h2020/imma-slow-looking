@@ -435,18 +435,18 @@
                         <ng-container *ngIf='stage.stagetype=="multiquestion"'>
                             <ng-container *ngFor="let question of stage.questions; let i=index">
                                 <div class="row">
-                                    <div class="col-2" style="min-width: 8em;">
+                                    <div class="col-sm-2" style="min-width: 8em;">
                                         <span class="font-weight-bold">Question {{i+1}}: </span>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-sm">
                                         <span style="white-space: pre-wrap;" [innerHTML]="question.title | linkify"></span>
                                     </div>
                                 </div>
                                 <div class="row" *ngIf="question.choice">
-                                    <div class="col-2" style="min-width: 8em;">
+                                    <div class="col-sm-2" style="min-width: 8em;">
                                         <strong>Options {{i+1}}: </strong>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-sm">
                                         <span *ngFor="let option of question.options; let last=last;">
                                             {{option}}<span *ngIf="!last">, </span>
                                         </span>
