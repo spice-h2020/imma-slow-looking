@@ -18,11 +18,11 @@
         </select> 
     </div>
 </div>
-<div *ngIf="viewScript=='0' && isLoggedIn() && (!isAdmin() || (isAdmin() && currentUser==1 && !showallscripts))" class="col-xs-12">
+<div *ngIf="viewScript=='0' && isAdmin() && currentUser==1 && !showallscripts" class="col-xs-12">
     <button class="float-right btn btn-success" (click)="addScript(); deleteConfirmation_Id=''">New script</button><br/><br/>
 </div>
 </div>
-<div>
+<div *ngIf="isAdmin()">
     <!-- <div *ngIf="viewScript=='0'">
         <span>Show:</span><br/>
         <span>
