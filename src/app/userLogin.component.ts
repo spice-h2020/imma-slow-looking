@@ -57,6 +57,12 @@ export class UserLoginComponent {
 
     logout() {
         this.currentuser.logout();
+        this.unselectScript();
+    }
+
+    unselectScript() {
+        this.model.viewScript = '0';
+        this.model.selectedScript = undefined;
     }
     
     loginAttempt() {
