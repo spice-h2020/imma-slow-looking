@@ -142,7 +142,7 @@
                     <button class="btn btn-light" ngbPopover="{{scriptURL(script)}}" popoverTitle="Script URL copied:" ngxClipboard [cbContent]='scriptURL(script)'>Copy script URL <i class="fa fa-clone" aria-hidden="true"></i></button>
                 </div>
             </div>
-            <div class="row mt-1" *ngIf="script.stages.length > 0;">
+            <div class="row mt-1" *ngIf="script.stages.length > 0 && !statementOnlyScript(script)">
                 <div class="col-sm-2" style="min-width: 8em;">
                     <strong>Responses: </strong>
                 </div>

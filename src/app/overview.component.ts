@@ -258,7 +258,13 @@ export class OverviewComponent implements OnInit {
         }
     }
 
-
-
+    statementOnlyScript(script: Script) {
+        for(var stage of script.stages) {
+            if(stage.stagetype != "statement") {
+                return false;
+            }
+        }
+        return true;
+    }
 
 }

@@ -580,4 +580,14 @@ export class ScriptWizardComponent {
     isLoggedOut() {
         return this.currentuser.getUserID() == undefined;
     }
+
+    statementOnlyScript(script: Script) {
+        for(var stage of script.stages) {
+            if(stage.stagetype != "statement") {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

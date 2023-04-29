@@ -38,23 +38,17 @@
                         </ng-container>
                       </div>
                     </div>
-                    <div class="row">
-                      &nbsp;
-                    </div>
-                    <div class="row">
-                      <div class="col">
-                        <a *ngIf="script.open && script.visible" routerLink='/slowLooking/{{script._id}}' [queryParams]="{return:'home'}">
-                          <button class="btn btn-link mr-3" style="font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View script <i class='fa fa-link'></i></button>
+                    <div class="row mb-3">
+                      <div class="col-sm" *ngIf="script.open && script.visible">
+                        <a routerLink='/slowLooking/{{script._id}}' [queryParams]="{return:'home'}">
+                          <button class="btn btn-dark mt-3" style="width: 10em; font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View script <i class='fa fa-link'></i></button>
                         </a>
                       </div>
-                      <div class="col">
-                        <a *ngIf="script.visible" routerLink='/allResponses/{{script._id}}'>
-                          <button class="btn btn-link mr-3" style="font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View responses <i class='fa fa-link'></i></button>
+                      <div class="col-sm" *ngIf="script.visible && !statementOnlyScript(script)" >
+                        <a routerLink='/allResponses/{{script._id}}'>
+                          <button class="btn btn-dark mt-3" style="width: 10em; font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View responses <i class='fa fa-link'></i></button>
                         </a>
                       </div>
-                    </div>
-                    <div class="row">
-                      &nbsp;
                     </div>
                   </div>
                 </ng-template>
@@ -140,23 +134,17 @@
                           </ng-container>
                         </div>
                       </div>
-                      <div class="row">
-                        &nbsp;
-                      </div>
-                      <div class="row">
-                        <div class="col">
-                          <a *ngIf="script.open && script.visible" routerLink='/slowLooking/{{script._id}}' [queryParams]="{return:'home'}">
-                            <button class="btn btn-link mr-3" style="font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View script <i class='fa fa-link'></i></button>
+                      <div class="row mb-3">
+                        <div class="col-sm" *ngIf="script.open && script.visible">
+                          <a routerLink='/slowLooking/{{script._id}}' [queryParams]="{return:'home'}">
+                            <button class="btn btn-dark mt-3" style="width: 10em; font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View script <i class='fa fa-link'></i></button>
                           </a>
                         </div>
-                        <div class="col">
-                          <a *ngIf="script.visible" routerLink='/allResponses/{{script._id}}'>
-                            <button class="btn btn-link mr-3" style="font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View responses <i class='fa fa-link'></i></button>
+                        <div class="col-sm" *ngIf="script.visible && !statementOnlyScript(script)">
+                          <a routerLink='/allResponses/{{script._id}}'>
+                            <button class="btn btn-dark mt-3" style="width: 10em; font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View responses <i class='fa fa-link'></i></button>
                           </a>
                         </div>
-                      </div>
-                      <div class="row">
-                        &nbsp;
                       </div>
                     </div>
                   </ng-template>
@@ -239,23 +227,17 @@
                           </ng-container>
                         </div>
                       </div>
-                      <div class="row">
-                        &nbsp;
-                      </div>
-                      <div class="row">
-                        <div class="col">
-                          <a *ngIf="script.open && script.visible" routerLink='/slowLooking/{{script._id}}' [queryParams]="{return:'home'}">
-                            <button class="btn btn-link mr-3" style="font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View script <i class='fa fa-link'></i></button>
+                      <div class="row mb-3">
+                        <div class="col-sm" *ngIf="script.open && script.visible" >
+                          <a routerLink='/slowLooking/{{script._id}}' [queryParams]="{return:'home'}">
+                            <button class="btn btn-dark mt-3" style="width: 10em; font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View script <i class='fa fa-link'></i></button>
                           </a>
                         </div>
-                        <div class="col">
-                          <a *ngIf="script.visible" routerLink='/allResponses/{{script._id}}'>
-                            <button class="btn btn-link mr-3" style="font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View responses <i class='fa fa-link'></i></button>
+                        <div class="col-sm" *ngIf="script.visible && !statementOnlyScript(script)">
+                          <a routerLink='/allResponses/{{script._id}}'>
+                            <button class="btn btn-dark mt-3" style="width: 10em; font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View responses <i class='fa fa-link'></i></button>
                           </a>
                         </div>
-                      </div>
-                      <div class="row">
-                        &nbsp;
                       </div>
                     </div>
                   </ng-template>
@@ -332,23 +314,17 @@
                           </ng-container>
                         </div>
                       </div>
-                      <div class="row">
-                        &nbsp;
-                      </div>
-                      <div class="row">
-                        <div class="col">
-                          <a *ngIf="script.open && script.visible" routerLink='/slowLooking/{{script._id}}' [queryParams]="{return:'home'}">
-                            <button class="btn btn-link mr-3" style="font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View script <i class='fa fa-link'></i></button>
+                      <div class="row mb-3">
+                        <div class="col-sm" *ngIf="script.open && script.visible">
+                          <a routerLink='/slowLooking/{{script._id}}' [queryParams]="{return:'home'}">
+                            <button class="btn btn-dark mt-3" style="width: 10em; font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View script <i class='fa fa-link'></i></button>
                           </a>
                         </div>
-                        <div class="col">
-                          <a *ngIf="script.visible" routerLink='/allResponses/{{script._id}}'>
-                            <button class="btn btn-link mr-3" style="font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View responses <i class='fa fa-link'></i></button>
+                        <div class="col-sm" *ngIf="script.visible && !statementOnlyScript(script)">
+                          <a routerLink='/allResponses/{{script._id}}'>
+                            <button class="btn btn-dark mt-3" style="width: 10em; font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View responses <i class='fa fa-link'></i></button>
                           </a>
                         </div>
-                      </div>
-                      <div class="row">
-                        &nbsp;
                       </div>
                     </div>
                   </ng-template>
@@ -418,17 +394,14 @@
                         </div>
                       </div>
                       <div class="row">
-                        &nbsp;
-                      </div>
-                      <div class="row">
-                        <div class="col">
-                          <a *ngIf="selectedScript.script.open && selectedScript.script.visible" routerLink='/slowLooking/{{selectedScript.script._id}}' [queryParams]="{return:'home'}">
-                            <button class="btn btn-link mr-3" style="font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View script <i class='fa fa-link'></i></button>
+                        <div class="col-sm" *ngIf="selectedScript.script.open && selectedScript.script.visible">
+                          <a routerLink='/slowLooking/{{selectedScript.script._id}}' [queryParams]="{return:'home'}">
+                            <button class="btn btn-dark mt-3" style="width: 10em; font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View script <i class='fa fa-link'></i></button>
                           </a>
                         </div>
-                        <div class="col">
-                          <a *ngIf="selectedScript.script.visible" routerLink='/allResponses/{{selectedScript.script._id}}'>
-                            <button class="btn btn-link mr-3" style="font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View responses <i class='fa fa-link'></i></button>
+                        <div class="col-sm" *ngIf="selectedScript.script.visible && !statementOnlyScript(selectedScript.script)">
+                          <a routerLink='/allResponses/{{selectedScript.script._id}}'>
+                            <button class="btn btn-dark mt-3" style="width: 10em; font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View responses <i class='fa fa-link'></i></button>
                           </a>
                         </div>
                       </div>

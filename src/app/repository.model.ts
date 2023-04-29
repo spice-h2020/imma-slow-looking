@@ -350,11 +350,22 @@ export class Model {
         return this.dbScripts.filter(x => this.visible(x));
     }
 
-    getVisibleScriptsOfTheme(_id: string): Script[] {
+    getVisibleRespondableScriptsOfTheme(_id: string): Script[] {
         let scripts = this.getVisibleScripts().filter(x => this.hasTheme(x, _id));
         scripts = scripts.filter(x => this.scriptHasArtworkAndStage(x));
+        scripts = scripts.filter(x => !this.statementOnlyScript(x));
         return scripts;
     }
+
+    statementOnlyScript(script: Script) {
+        for(var stage of script.stages) {
+            if(stage.stagetype != "statement") {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     getScriptsOfTheme(_id: string): Script[] {
         let scripts = this.getOpenVisibleScripts().filter(x => this.hasTheme(x, _id));

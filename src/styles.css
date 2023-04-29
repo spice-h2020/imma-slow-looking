@@ -118,3 +118,7 @@ a {color: rgb(170, 170, 170);
   /* border-bottom: 3px solid rgb(215, 153, 8);  */
   /* border-bottom: 3px solid rgb(71, 71, 71);  */
 }
+
+.overviewbutton:hover {
+  background-color: gray;
+}

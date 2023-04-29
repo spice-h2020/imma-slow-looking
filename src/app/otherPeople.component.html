@@ -35,7 +35,7 @@
                 >
                     <div class="accordion-body">
                         <div *ngFor="let script of getScriptsOfTheme(theme._id); let i = index; let last = last">
-                            <h4 class="col-sm-12">{{script.name}}</h4> 
+                            <h4 class="col-sm-12">{{script.name}}</h4>
                             <div class="col-sm-12">
                                 <p style="white-space: pre-wrap;" [innerHTML]="script.description"></p>
                                 <figcaption *ngIf="script.author != ''" class="blockquote-footer text-black">{{script.author}}</figcaption>

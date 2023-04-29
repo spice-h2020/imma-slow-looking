@@ -33,7 +33,7 @@ export class OtherPeopleComponent {
     }
     
     getScriptsOfTheme(_id: string): Script[] {
-        return this.model.getVisibleScriptsOfTheme(_id);
+        return this.model.getVisibleRespondableScriptsOfTheme(_id);
     }
 
     sortAnswers(answers: questionanswer[]) {
