@@ -14,7 +14,7 @@
     <div class="col-sm-12" *ngIf="getArtworkFromId(script.homepageartworkid).length > 0">
         <div *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);" class="row align-items-end mb-3">
             <ng-container *ngIf="artwork != undefined">
-                <div class="col-sm-6" *ngIf="artwork.url">
+                <div class="col-md-6 col-sm-8" *ngIf="artwork.url">
                     <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer; width: 100%;">
                 </div>
                 <div class="col-sm ml-3" *ngIf="artwork.url">
