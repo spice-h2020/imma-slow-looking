@@ -334,6 +334,92 @@
         </div>
     </div>
     <div class="accordion-item">
+      <h2 class="accordion-header" id="heading6">
+          <button class="accordion-button collapsed text-white museum-colour" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+              <span><h4>Authors</h4>
+              Scripts created by different authors</span>
+          </button>
+      </h2>
+      <div style="background-color: black;" id="collapse6" class="accordion-collapse collapse text-white" aria-labelledby="heading6">
+          <div class="accordion-body">
+            <div class="ng-autocomplete" style="width: 100%;">
+              <span>Search authors:</span>
+              <ng-autocomplete 
+                [data]="userResults"
+                [searchKeyword]="keywordUsers"
+                (selected)='selectEventUsers($event)'
+                (inputChanged)='onChangeSearchUsers($event)'
+                (inputFocused)='onFocusedUsers($event)'
+                [itemTemplate]="itemTemplateUsers"
+                [notFoundTemplate]="notFoundTemplateUsers"
+                [placeholder]="placeholderTextUsers"
+                [historyListMaxNumber]="15"
+                [minQueryLength]="2">                                 
+              </ng-autocomplete>
+              <ng-template #itemTemplateUsers let-item>
+                  <a href="javascript:void(0)">
+                    <span [innerHTML]="item.searchstring"></span>
+                  </a>
+              </ng-template>
+              <ng-template #notFoundTemplateUsers let-notFound>
+              <div [innerHTML]="notFound"></div>
+              </ng-template>
+            </div>
+            <span *ngIf="model.selectedUser">
+              <div class="row">
+                &nbsp;
+              </div>
+              <div class="col">
+                <h3 class="row text-left">{{model.selectedUser.name}}</h3>
+              </div>
+              <hr>
+              <ngb-carousel [showNavigationArrows]="model.selectedUser.scripts.length > 1" [showNavigationIndicators]="model.selectedUser.scripts.length > 1">
+                <ng-template ngbSlide *ngFor="let script of model.selectedUser.scripts">
+                  <div class="picsum-img-wrapper" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
+                    <div class="col-md-6 col-sm-8 col-10 text-center mx-auto" style="width: 100%;">
+                      <img style="width: 100%;" src="{{artwork.url}}">
+                  </div>
+                  </div>
+                  <div class="carousel-caption">
+                    <div class="row align-items-end">
+                      <h3 class="text-left overviewshadow">{{script.name}}</h3>
+                      <div class="text-left overviewshadow" *ngIf="script.description != ''">
+                        {{script.description}}
+                      </div>
+                      <figcaption class="text-left blockquote-footer text-white overviewshadow">{{script.author}}</figcaption>
+                      <div class="text-left overviewshadow" *ngIf="script.exhibitionids.length > 0"><strong>Exhibitions: </strong>
+                        <ng-container *ngFor="let exhibition of getExhibitionsFromIds(script.exhibitionids); let last = last">
+                          {{exhibition.name}}
+                          <ng-container *ngIf="!last">, </ng-container>
+                        </ng-container>
+                        <br/>
+                      </div>
+                      <div class="text-left overviewshadow" *ngIf="script.themeids.length > 0"><strong>Themes: </strong>
+                        <ng-container *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
+                          {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
+                        </ng-container>
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <div class="col-sm" *ngIf="script.open && script.visible">
+                        <a routerLink='/slowLooking/{{script._id}}' [queryParams]="{return:'home'}">
+                          <button class="btn btn-dark mt-3 overviewshadow" style="width: 10em; font-size: large; color: white; line-height: 1.2;">View script <i class='fa fa-link'></i></button>
+                        </a>
+                      </div>
+                      <div class="col-sm" *ngIf="script.visible && !statementOnlyScript(script)">
+                        <a routerLink='/allResponses/{{script._id}}'>
+                          <button class="btn btn-dark mt-3 overviewshadow" style="width: 10em; font-size: large; color: white; line-height: 1.2;">View responses <i class='fa fa-link'></i></button>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </ngb-carousel>
+            </span>
+          </div>
+      </div>
+  </div>
+    <div class="accordion-item">
         <h2 class="accordion-header" id="heading5">
           <button class="accordion-button collapsed text-white museum-colour" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
               <span><h4>Explore</h4>

@@ -35,6 +35,7 @@ export class Model {
     selectedArtwork = undefined;
     selectedTheme = undefined;
     selectedOverviewScript = undefined;
+    selectedUser = undefined;
     selectedExhibition = undefined;
 
     //script selection from script wizard (authoring)

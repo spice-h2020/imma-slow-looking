@@ -6,6 +6,7 @@ import { Artwork } from "./artwork.model";
 import { Theme } from "./theme.model";
 import { Exhibition } from "./exhibition.model";
 import { ConfigSettings } from "./config";
+import { User } from "./user.model";
 
 
 
@@ -24,6 +25,7 @@ export class OverviewComponent implements OnInit {
     scripts: Script[];
     artworks: Artwork[] = [];
     themes: Theme[];
+    users: User[];
     exhibitions: Exhibition[];
 
     // selectedArtwork = undefined;
@@ -31,6 +33,7 @@ export class OverviewComponent implements OnInit {
     // selectedScript = undefined;
     // selectedExhibition = undefined;
 
+    userResults: {userid: string, name: string, searchstring: string, scripts: Script[]}[] = [];
     artworkResults: {artworkurl: string, name: string, artist: string, year: string, searchstring: string, scripts: Script[]}[] = [];
     themeResults: {themeid: string, name: string, description: string, searchstring: string, scripts: Script[]}[] = [];
     scriptResults: {searchstring: string, script: Script}[] = [];
@@ -86,6 +89,23 @@ export class OverviewComponent implements OnInit {
     
     onFocusedExhibitions(e){
       // do something when input is focused
+    }
+
+    //user search
+    placeholderTextUsers = "Script author";
+    keywordUsers = 'searchstring';
+    selectEventUsers(item) {
+        // do something with selected item
+        this.model.selectedUser = item;
+    }
+    
+    onChangeSearchUsers(val: string) {
+        // fetch remote data from here
+        // And reassign the 'data' which is binded to 'data' property.
+    }
+    
+    onFocusedUsers(e){
+        // do something when input is focused
     }
 
     //script search
@@ -147,6 +167,17 @@ export class OverviewComponent implements OnInit {
                                     this.themeResults.push({themeid: themeid, name: this.themes[themeind].name, description: this.themes[themeind].description, searchstring: this.themes[themeind].name+": "+this.themes[themeind].description, scripts: [script]});
                                 }
                             }
+                        }
+                    }
+
+                    //add to the user result array
+                    if(script.owner) {
+                        let userresind = this.userResults.findIndex(x => x.userid == script.owner);
+                        if(userresind > -1) {
+                            this.userResults[userresind].scripts.push(script);
+                        }
+                        else {
+                            this.userResults.push({userid: script.owner, name: script.author, searchstring: script.author, scripts: [script]});
                         }
                     }
 
