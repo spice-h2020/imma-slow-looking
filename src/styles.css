@@ -119,6 +119,7 @@ a {color: rgb(170, 170, 170);
   /* border-bottom: 3px solid rgb(71, 71, 71);  */
 }
 
-.overviewbutton:hover {
-  background-color: gray;
+.overviewshadow {
+  text-shadow: 0px 0px 20px #000000, 0px 0px 15px #000000, 0px 0px 10px #000000, 0px 0px 5px #000000, 0px 0px 2px #000000, 0px 0px 1px #000000;
 }
+

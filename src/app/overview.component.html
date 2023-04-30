@@ -20,19 +20,19 @@
                   </div>
                   <div class="carousel-caption">
                     <div class="row align-items-end">
-                      <h3 class="text-left" style="text-shadow: 1.5px 1.5px #000000;">{{script.name}}</h3>
-                      <div class="text-left" *ngIf="script.description != ''" style="text-shadow: 1.5px 1.5px #000000;">
+                      <h3 class="text-left overviewshadow">{{script.name}}</h3>
+                      <div class="text-left overviewshadow" *ngIf="script.description != ''">
                         {{script.description}}
                       </div>
-                      <figcaption class="text-left blockquote-footer text-white" style="text-shadow: 1.5px 1.5px #000000;">{{script.author}}</figcaption>
-                      <div class="text-left" *ngIf="script.exhibitionids.length > 0" style="text-shadow: 1.5px 1.5px #000000;"><strong>Exhibitions: </strong>
+                      <figcaption class="text-left blockquote-footer text-white overviewshadow">{{script.author}}</figcaption>
+                      <div class="text-left overviewshadow" *ngIf="script.exhibitionids.length > 0"><strong>Exhibitions: </strong>
                         <ng-container *ngFor="let exhibition of getExhibitionsFromIds(script.exhibitionids); let last = last">
                           {{exhibition.name}}
                           <ng-container *ngIf="!last">, </ng-container>
                         </ng-container>
                         <br/>
                       </div>
-                      <div class="text-left" *ngIf="script.themeids.length > 0" style="text-shadow: 1.5px 1.5px #000000;"><strong>Themes: </strong>
+                      <div class="text-left overviewshadow" *ngIf="script.themeids.length > 0"><strong>Themes: </strong>
                         <ng-container *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
                           {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
                         </ng-container>
@@ -41,12 +41,12 @@
                     <div class="row mb-3">
                       <div class="col-sm" *ngIf="script.open && script.visible">
                         <a routerLink='/slowLooking/{{script._id}}' [queryParams]="{return:'home'}">
-                          <button class="btn btn-dark mt-3" style="width: 10em; font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View script <i class='fa fa-link'></i></button>
+                          <button class="btn btn-dark mt-3 overviewshadow" style="width: 10em; font-size: large; color: white; line-height: 1.2;">View script <i class='fa fa-link'></i></button>
                         </a>
                       </div>
                       <div class="col-sm" *ngIf="script.visible && !statementOnlyScript(script)" >
                         <a routerLink='/allResponses/{{script._id}}'>
-                          <button class="btn btn-dark mt-3" style="width: 10em; font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View responses <i class='fa fa-link'></i></button>
+                          <button class="btn btn-dark mt-3 overviewshadow" style="width: 10em; font-size: large; color: white; line-height: 1.2;">View responses <i class='fa fa-link'></i></button>
                         </a>
                       </div>
                     </div>
@@ -101,7 +101,7 @@
                     <div class="row text-left"><span style="white-space: pre-wrap;" [innerHTML]="model.selectedExhibition.description"></span></div>
                     <div class="row text-right">
                       <a href="{{model.selectedExhibition.url}}" target='_blank'>
-                        <button class="btn btn-link mr-3" style="font-size: large; color: white; text-shadow: 1.5px 1.5px #000000;">Exhibition <i class='fa fa-external-link'></i></button>
+                        <button class="btn btn-link mr-3 overviewshadow" style="font-size: large; color: white;">Exhibition <i class='fa fa-external-link'></i></button>
                       </a>
                     </div>
                   </div>
@@ -116,19 +116,19 @@
                     </div>
                     <div class="carousel-caption">
                       <div class="row align-items-end">
-                        <h3 class="text-left" style="text-shadow: 1.5px 1.5px #000000;">{{script.name}}</h3>
-                        <div class="text-left" *ngIf="script.description != ''" style="text-shadow: 1.5px 1.5px #000000;">
+                        <h3 class="text-left overviewshadow">{{script.name}}</h3>
+                        <div class="text-left overviewshadow" *ngIf="script.description != ''">
                           {{script.description}}
                         </div>
-                        <figcaption class="text-left blockquote-footer text-white" style="text-shadow: 1.5px 1.5px #000000;">{{script.author}}</figcaption>
-                        <div class="text-left" *ngIf="script.exhibitionids.length > 0" style="text-shadow: 1.5px 1.5px #000000;"><strong>Exhibitions: </strong>
+                        <figcaption class="text-left blockquote-footer text-white overviewshadow">{{script.author}}</figcaption>
+                        <div class="text-left overviewshadow" *ngIf="script.exhibitionids.length > 0"><strong>Exhibitions: </strong>
                           <ng-container *ngFor="let exhibition of getExhibitionsFromIds(script.exhibitionids); let last = last">
                             {{exhibition.name}}
                             <ng-container *ngIf="!last">, </ng-container>
                           </ng-container>
                           <br/>
                         </div>
-                        <div class="text-left" *ngIf="script.themeids.length > 0" style="text-shadow: 1.5px 1.5px #000000;"><strong>Themes: </strong>
+                        <div class="text-left overviewshadow" *ngIf="script.themeids.length > 0"><strong>Themes: </strong>
                           <ng-container *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
                             {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
                           </ng-container>
@@ -137,12 +137,12 @@
                       <div class="row mb-3">
                         <div class="col-sm" *ngIf="script.open && script.visible">
                           <a routerLink='/slowLooking/{{script._id}}' [queryParams]="{return:'home'}">
-                            <button class="btn btn-dark mt-3" style="width: 10em; font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View script <i class='fa fa-link'></i></button>
+                            <button class="btn btn-dark mt-3 overviewshadow" style="width: 10em; font-size: large; color: white; line-height: 1.2;">View script <i class='fa fa-link'></i></button>
                           </a>
                         </div>
                         <div class="col-sm" *ngIf="script.visible && !statementOnlyScript(script)">
                           <a routerLink='/allResponses/{{script._id}}'>
-                            <button class="btn btn-dark mt-3" style="width: 10em; font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View responses <i class='fa fa-link'></i></button>
+                            <button class="btn btn-dark mt-3 overviewshadow" style="width: 10em; font-size: large; color: white; line-height: 1.2;">View responses <i class='fa fa-link'></i></button>
                           </a>
                         </div>
                       </div>
@@ -209,19 +209,19 @@
                     </div>
                     <div class="carousel-caption">
                       <div class="row align-items-end">
-                        <h3 class="text-left" style="text-shadow: 1.5px 1.5px #000000;">{{script.name}}</h3>
-                        <div class="text-left" *ngIf="script.description != ''" style="text-shadow: 1.5px 1.5px #000000;">
+                        <h3 class="text-left overviewshadow">{{script.name}}</h3>
+                        <div class="text-left overviewshadow" *ngIf="script.description != ''">
                           {{script.description}}
                         </div>
-                        <figcaption class="text-left blockquote-footer text-white" style="text-shadow: 1.5px 1.5px #000000;">{{script.author}}</figcaption>
-                        <div class="text-left" *ngIf="script.exhibitionids.length > 0" style="text-shadow: 1.5px 1.5px #000000;"><strong>Exhibitions: </strong>
+                        <figcaption class="text-left blockquote-footer text-white overviewshadow">{{script.author}}</figcaption>
+                        <div class="text-left overviewshadow" *ngIf="script.exhibitionids.length > 0"><strong>Exhibitions: </strong>
                           <ng-container *ngFor="let exhibition of getExhibitionsFromIds(script.exhibitionids); let last = last">
                             {{exhibition.name}}
                             <ng-container *ngIf="!last">, </ng-container>
                           </ng-container>
                           <br/>
                         </div>
-                        <div class="text-left" *ngIf="script.themeids.length > 0" style="text-shadow: 1.5px 1.5px #000000;"><strong>Themes: </strong>
+                        <div class="text-left overviewshadow" *ngIf="script.themeids.length > 0"><strong>Themes: </strong>
                           <ng-container *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
                             {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
                           </ng-container>
@@ -230,12 +230,12 @@
                       <div class="row mb-3">
                         <div class="col-sm" *ngIf="script.open && script.visible" >
                           <a routerLink='/slowLooking/{{script._id}}' [queryParams]="{return:'home'}">
-                            <button class="btn btn-dark mt-3" style="width: 10em; font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View script <i class='fa fa-link'></i></button>
+                            <button class="btn btn-dark mt-3 overviewshadow" style="width: 10em; font-size: large; color: white; line-height: 1.2;">View script <i class='fa fa-link'></i></button>
                           </a>
                         </div>
                         <div class="col-sm" *ngIf="script.visible && !statementOnlyScript(script)">
                           <a routerLink='/allResponses/{{script._id}}'>
-                            <button class="btn btn-dark mt-3" style="width: 10em; font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View responses <i class='fa fa-link'></i></button>
+                            <button class="btn btn-dark mt-3 overviewshadow" style="width: 10em; font-size: large; color: white; line-height: 1.2;">View responses <i class='fa fa-link'></i></button>
                           </a>
                         </div>
                       </div>
@@ -296,19 +296,19 @@
                     </div>
                     <div class="carousel-caption">
                       <div class="row align-items-end">
-                        <h3 class="text-left" style="text-shadow: 1.5px 1.5px #000000;">{{script.name}}</h3>
-                        <div class="text-left" *ngIf="script.description != ''" style="text-shadow: 1.5px 1.5px #000000;">
+                        <h3 class="text-left overviewshadow">{{script.name}}</h3>
+                        <div class="text-left overviewshadow" *ngIf="script.description != ''">
                           {{script.description}}
                         </div>
-                        <figcaption class="text-left blockquote-footer text-white" style="text-shadow: 1.5px 1.5px #000000;">{{script.author}}</figcaption>
-                        <div class="text-left" *ngIf="script.exhibitionids.length > 0" style="text-shadow: 1.5px 1.5px #000000;"><strong>Exhibitions: </strong>
+                        <figcaption class="text-left blockquote-footer text-white overviewshadow">{{script.author}}</figcaption>
+                        <div class="text-left overviewshadow" *ngIf="script.exhibitionids.length > 0"><strong>Exhibitions: </strong>
                           <ng-container *ngFor="let exhibition of getExhibitionsFromIds(script.exhibitionids); let last = last">
                             {{exhibition.name}}
                             <ng-container *ngIf="!last">, </ng-container>
                           </ng-container>
                           <br/>
                         </div>
-                        <div class="text-left" *ngIf="script.themeids.length > 0" style="text-shadow: 1.5px 1.5px #000000;"><strong>Themes: </strong>
+                        <div class="text-left overviewshadow" *ngIf="script.themeids.length > 0"><strong>Themes: </strong>
                           <ng-container *ngFor="let theme of getThemesFromIds(script.themeids); let last = last">
                             {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
                           </ng-container>
@@ -317,12 +317,12 @@
                       <div class="row mb-3">
                         <div class="col-sm" *ngIf="script.open && script.visible">
                           <a routerLink='/slowLooking/{{script._id}}' [queryParams]="{return:'home'}">
-                            <button class="btn btn-dark mt-3" style="width: 10em; font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View script <i class='fa fa-link'></i></button>
+                            <button class="btn btn-dark mt-3 overviewshadow" style="width: 10em; font-size: large; color: white; line-height: 1.2;">View script <i class='fa fa-link'></i></button>
                           </a>
                         </div>
                         <div class="col-sm" *ngIf="script.visible && !statementOnlyScript(script)">
                           <a routerLink='/allResponses/{{script._id}}'>
-                            <button class="btn btn-dark mt-3" style="width: 10em; font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View responses <i class='fa fa-link'></i></button>
+                            <button class="btn btn-dark mt-3 overviewshadow" style="width: 10em; font-size: large; color: white; line-height: 1.2;">View responses <i class='fa fa-link'></i></button>
                           </a>
                         </div>
                       </div>
@@ -375,19 +375,19 @@
                     </div>
                     <div class="carousel-caption">
                       <div class="row align-items-end" *ngFor="let artwork of getArtworkFromId(model.selectedOverviewScript.script.homepageartworkid);">
-                        <h3 class="text-left" style="text-shadow: 1.5px 1.5px #000000;">{{model.selectedOverviewScript.script.name}}</h3>
-                        <div class="text-left" *ngIf="model.selectedOverviewScript.script.description != ''" style="text-shadow: 1.5px 1.5px #000000;">
+                        <h3 class="text-left overviewshadow">{{model.selectedOverviewScript.script.name}}</h3>
+                        <div class="text-left overflow-auto overviewshadow" *ngIf="model.selectedOverviewScript.script.description != ''" style="max-height: 300px;">
                           {{model.selectedOverviewScript.script.description}}
                         </div>
-                        <figcaption class="text-left blockquote-footer text-white" style="text-shadow: 1.5px 1.5px #000000;">{{model.selectedOverviewScript.script.author}}</figcaption>
-                        <div class="text-left" *ngIf="model.selectedOverviewScript.script.exhibitionids.length > 0" style="text-shadow: 1.5px 1.5px #000000;"><strong>Exhibitions: </strong>
+                        <figcaption class="text-left blockquote-footer text-white overviewshadow">{{model.selectedOverviewScript.script.author}}</figcaption>
+                        <div class="text-left overviewshadow" *ngIf="model.selectedOverviewScript.script.exhibitionids.length > 0"><strong>Exhibitions: </strong>
                           <ng-container *ngFor="let exhibition of getExhibitionsFromIds(model.selectedOverviewScript.script.exhibitionids); let last = last">
                             {{exhibition.name}}
                             <ng-container *ngIf="!last">, </ng-container>
                           </ng-container>
                           <br/>
                         </div>
-                        <div class="text-left" *ngIf="model.selectedOverviewScript.script.themeids.length > 0" style="text-shadow: 1.5px 1.5px #000000;"><strong>Themes: </strong>
+                        <div class="text-left overviewshadow" *ngIf="model.selectedOverviewScript.script.themeids.length > 0"><strong>Themes: </strong>
                           <ng-container *ngFor="let theme of getThemesFromIds(model.selectedOverviewScript.script.themeids); let last = last">
                             {{theme.name}}<ng-container *ngIf="!last">, </ng-container>
                           </ng-container>
@@ -396,12 +396,12 @@
                       <div class="row">
                         <div class="col-sm" *ngIf="model.selectedOverviewScript.script.open && model.selectedOverviewScript.script.visible">
                           <a routerLink='/slowLooking/{{model.selectedOverviewScript.script._id}}' [queryParams]="{return:'home'}">
-                            <button class="btn btn-dark mt-3" style="width: 10em; font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View script <i class='fa fa-link'></i></button>
+                            <button class="btn btn-dark mt-3 overviewshadow" style="width: 10em; font-size: large; color: white; line-height: 1.2;">View script <i class='fa fa-link'></i></button>
                           </a>
                         </div>
                         <div class="col-sm" *ngIf="model.selectedOverviewScript.script.visible && !statementOnlyScript(model.selectedOverviewScript.script)">
                           <a routerLink='/allResponses/{{model.selectedOverviewScript.script._id}}'>
-                            <button class="btn btn-dark mt-3" style="width: 10em; font-size: large; color: white; text-shadow: 1.5px 1.5px #000000; line-height: 1.2;">View responses <i class='fa fa-link'></i></button>
+                            <button class="btn btn-dark mt-3 overviewshadow" style="width: 10em; font-size: large; color: white; line-height: 1.2;">View responses <i class='fa fa-link'></i></button>
                           </a>
                         </div>
                       </div>
