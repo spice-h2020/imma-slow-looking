@@ -304,6 +304,11 @@ export class Model {
     }
 
     // Script
+
+    refreshScripts() {
+        this.dbDataSource.getScriptData().subscribe(data => this.dbScripts = data);
+    }
+
     getScripts(): Script[] {
         return this.dbScripts;
     }
@@ -442,6 +447,11 @@ export class Model {
     }
 
     // Activity
+
+    refreshActivities() {
+        this.dbDataSource.getActivityData().subscribe(data => this.dbActivities = data);
+    }
+
     getActivity(id: number) {
         return this.dbActivities.find(x => this.locator(x, id));
     }

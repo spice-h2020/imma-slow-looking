@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="col-4" style="min-width: 8em;">
-                <button *ngIf="editScriptStage==0" class="btn btn-secondary float-right mt-1" (click)="editScriptStage=0; showStageHelp=false; unselectScript()">Close script</button>
+                <button *ngIf="editScriptStage==0" class="btn btn-secondary float-right mt-1" (click)="editScriptStage=0; showStageHelp=false; unselectScript(); reloadScripts();">Close script</button>
             </div>
         </div>
         
@@ -148,7 +148,7 @@
                 </div>
                 <div class="col-sm">
                     <a routerLink='/allResponses/{{script._id}}'>
-                        <button class="btn btn-light mr-3">View responses <i class='fa fa-link'></i></button>
+                        <button class="btn btn-light mr-3" (click)="reloadActivities();">View responses <i class='fa fa-link'></i></button>
                     </a>
                     <button class="btn btn-light" ngbPopover="{{responsesURL(script)}}" popoverTitle="Script URL copied:" ngxClipboard [cbContent]='responsesURL(script)'>Copy responses URL <i class="fa fa-clone" aria-hidden="true"></i></button>
                 </div>
@@ -228,7 +228,7 @@
                         />
                         <label class="form-check-label">Approved&nbsp;&nbsp;</label>
                     </div>
-                    <div class = "help-block">Awaiting approval means responses have to be moderated from the Management page. Approved means they will appear directly on Other People.</div>
+                    <div class = "help-block">Awaiting approval means responses have to be moderated from the Management page. Approved means they will appear directly on the Responses page.</div>
                 </div>
             </div>
         </div>

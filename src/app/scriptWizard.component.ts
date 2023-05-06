@@ -20,6 +20,14 @@ export class ScriptWizardComponent {
 
     constructor(public currentuser: CurrentUser, public model: Model){}
 
+    reloadScripts() {
+        this.model.refreshScripts();
+    }
+
+    reloadActivities() {
+        this.model.refreshActivities();
+    }
+
     showup() {
         window.scroll(0,0);
     }
