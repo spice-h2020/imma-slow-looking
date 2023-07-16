@@ -17,6 +17,11 @@ import { User } from "./user.model";
 
 export class OverviewComponent implements OnInit {
 
+    public handleMissingImage(event: Event) {
+        console.log(event);
+        (event.target as HTMLImageElement).src = 'assets/img/488199.png';
+    }
+
     constructor(public model: Model, private activatedRoute: ActivatedRoute){}
 
     // configuration settings

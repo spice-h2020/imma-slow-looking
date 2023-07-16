@@ -18,6 +18,10 @@ import { Question } from "./question.model";
 
 export class ScriptWizardComponent {
 
+    public handleMissingImage(event: Event) {
+        (event.target as HTMLImageElement).src = 'assets/img/488199.png';
+    }
+
     constructor(public currentuser: CurrentUser, public model: Model){}
 
     reloadScripts() {

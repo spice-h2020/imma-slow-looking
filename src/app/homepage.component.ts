@@ -11,6 +11,10 @@ import { Theme } from "./theme.model";
 
 export class HomepageComponent {
 
+    public handleMissingImage(event: Event) {
+        (event.target as HTMLImageElement).src = 'assets/img/488199.png';
+    }
+    
     constructor(private model: Model){}
 
     // configuration settings

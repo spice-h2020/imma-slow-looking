@@ -13,10 +13,10 @@
                 <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks);" class="row align-items-end mb-3">
                     <div class="col-sm-6">
                         <div class="row" *ngIf="artwork.url">
-                            <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;">
+                            <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;" (error)="handleMissingImage($event)">
                         </div>
                         <div class="row" *ngIf="!artwork.url && artwork.fileLocation">
-                            <img src="{{artwork.fileLocation}}" style="cursor: pointer;">
+                            <img src="{{artwork.fileLocation}}" style="cursor: pointer;" (error)="handleMissingImage($event)">
                         </div>
                     </div>
                     <div class="col-sm">
@@ -65,10 +65,10 @@
                     <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3">
                         <div class="col-sm-6">
                             <div class="row" *ngIf="artwork.url">
-                                <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;">
+                                <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;" (error)="handleMissingImage($event)">
                             </div>
                             <div class="row" *ngIf="!artwork.url && artwork.fileLocation">
-                                <img src="{{artwork.fileLocation}}" style="cursor: pointer;">
+                                <img src="{{artwork.fileLocation}}" style="cursor: pointer;" (error)="handleMissingImage($event)">
                             </div>
                         </div>
                         <div class="col-sm">
@@ -222,10 +222,10 @@
                     <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3">
                         <div class="col-sm-6">
                             <div class="row" *ngIf="artwork.url">
-                                <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;">
+                                <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;" (error)="handleMissingImage($event)">
                             </div>
                             <div class="row" *ngIf="!artwork.url && artwork.fileLocation">
-                                <img src="{{artwork.fileLocation}}" style="cursor: pointer;">
+                                <img src="{{artwork.fileLocation}}" style="cursor: pointer;" (error)="handleMissingImage($event)">
                             </div>
                         </div>
                         <div class="col-sm">
@@ -305,10 +305,10 @@
                     <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3">
                         <div class="col-sm-6">
                             <div class="row" *ngIf="artwork.url">
-                                <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;">
+                                <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;" (error)="handleMissingImage($event)">
                             </div>
                             <div class="row" *ngIf="!artwork.url && artwork.fileLocation">
-                                <img src="{{artwork.fileLocation}}" style="cursor: pointer;">
+                                <img src="{{artwork.fileLocation}}" style="cursor: pointer;" (error)="handleMissingImage($event)">
                             </div>
                         </div>
                         <div class="col-sm">

@@ -12,6 +12,10 @@ import { Model } from "./repository.model";
 
 export class ArtworkTableComponent {
 
+    public handleMissingImage(event: Event) {
+        (event.target as HTMLImageElement).src = 'assets/img/488199.png';
+    }
+
     // configuration settings
     configSettings = new ConfigSettings;
 

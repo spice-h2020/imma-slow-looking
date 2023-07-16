@@ -17,6 +17,10 @@ import { ConfigSettings } from "./config";
 
 export class OtherPeopleComponent {
 
+    public handleMissingImage(event: Event) {
+        (event.target as HTMLImageElement).src = 'assets/img/488199.png';
+    }
+
     constructor(private model: Model, private linktext: LinkText){}
 
     // configuration settings

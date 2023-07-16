@@ -20,6 +20,10 @@ import { Question } from "./question.model";
 
 export class SlowLookingActivityComponent implements OnInit {
 
+    public handleMissingImage(event: Event) {
+        (event.target as HTMLImageElement).src = 'assets/img/488199.png';
+    }
+
     showup() {
         window.scroll(0,0);
     }

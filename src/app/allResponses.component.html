@@ -15,7 +15,7 @@
         <div *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);" class="row align-items-end mb-3">
             <ng-container *ngIf="artwork != undefined">
                 <div class="col-md-6 col-sm-8" *ngIf="artwork.url">
-                    <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer; width: 100%;">
+                    <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer; width: 100%;" (error)="handleMissingImage($event)">
                 </div>
                 <div class="col-sm ml-3" *ngIf="artwork.url">
                     <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.name"></div>
@@ -23,7 +23,7 @@
                     <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></div>
                 </div>
                 <div class="col-sm-6" *ngIf="!artwork.url && artwork.fileLocation">
-                    <img routerLink="/slowLooking/{{script._id}}" class="col-sm-12" src="{{artwork.fileLocation}}" >
+                    <img routerLink="/slowLooking/{{script._id}}" class="col-sm-12" src="{{artwork.fileLocation}}" (error)="handleMissingImage($event)">
                 </div>
                 <div class="col-sm ml-3" *ngIf="!artwork.url && artwork.fileLocation">
                     <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.name"></div>
@@ -38,7 +38,7 @@
         <div class="row itemsBlock">
             <div *ngFor="let otherartwork of getNonHomepageArtworksOfScript(script);" class="col-md-4 col-sm-6 col-12 pb-3">
                 <div class="row">
-                    <img *ngIf="otherartwork.url" src="{{otherartwork.url}}" alt="{{otherartwork.name}}" (click)="startLightbox(otherartwork.url)" style="height: auto; width: 100%; cursor: pointer;">
+                    <img *ngIf="otherartwork.url" src="{{otherartwork.url}}" alt="{{otherartwork.name}}" (click)="startLightbox(otherartwork.url)" style="height: auto; width: 100%; cursor: pointer;" (error)="handleMissingImage($event)">
                 </div>
                 <div class="row">
                     <div class="ml-3">

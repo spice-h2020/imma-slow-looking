@@ -45,10 +45,10 @@
                                 <div *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);" class="row align-items-end mb-3">
                                     <div class="col-md-6 col-sm-8">
                                         <div class="row" *ngIf="artwork.url">
-                                            <img src="{{artwork.url}}" alt="{{artwork.name}}" style="width: 100%">
+                                            <img src="{{artwork.url}}" alt="{{artwork.name}}" style="width: 100%" (error)="handleMissingImage($event)">
                                         </div>
                                         <div class="row" *ngIf="!artwork.url && artwork.fileLocation">
-                                            <img src="{{artwork.fileLocation}}" style="cursor: pointer;">
+                                            <img src="{{artwork.fileLocation}}" style="cursor: pointer;" (error)="handleMissingImage($event)">
                                         </div>
                                     </div>
                                     <div class="col-sm ml-3">
@@ -63,7 +63,7 @@
                                 <div class="row itemsBlock">
                                     <div *ngFor="let otherartwork of getNonHomepageArtworksOfScript(script);" class="col-md-4 col-sm-6 col-12 pb-3">
                                         <div class="row">
-                                            <img *ngIf="otherartwork.url" src="{{otherartwork.url}}" alt="{{otherartwork.name}}" style="height: auto; width: 100%;">
+                                            <img *ngIf="otherartwork.url" src="{{otherartwork.url}}" alt="{{otherartwork.name}}" style="height: auto; width: 100%;" (error)="handleMissingImage($event)">
                                         </div>
                                         <div class="row">
                                             <div class="ml-3">

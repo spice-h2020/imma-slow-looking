@@ -15,7 +15,7 @@
                 <ng-template ngbSlide *ngFor="let script of firstScripts">
                   <div class="picsum-img-wrapper" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
                     <div class="col-md-6 col-sm-8 col-10 text-center mx-auto" style="width: 100%;">
-                        <img style="width: 100%;" src="{{artwork.url}}">
+                        <img style="width: 100%;" src="{{artwork.url}}" (error)="handleMissingImage($event)">
                     </div>
                   </div>
                   <div class="carousel-caption">
@@ -94,7 +94,7 @@
                 </div>
                 <div class="row align-items-start">
                   <div class="col-sm-6">
-                      <img style="width: 100%;" src="{{model.selectedExhibition.artwork.url}}" alt="{{model.selectedExhibition.artwork.name}}">
+                      <img style="width: 100%;" src="{{model.selectedExhibition.artwork.url}}" alt="{{model.selectedExhibition.artwork.name}}" (error)="handleMissingImage($event)">
                   </div>
                   <div class="col-sm">
                     <div class="row text-left"><h4 style="white-space: pre-wrap;" [innerHTML]="model.selectedExhibition.name"></h4></div>
@@ -111,7 +111,7 @@
                   <ng-template ngbSlide *ngFor="let script of model.selectedExhibition.scripts">
                     <div class="picsum-img-wrapper" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
                       <div class="col-md-6 col-sm-8 col-10 text-center mx-auto" style="width: 100%;">
-                        <img style="width: 100%;" src="{{artwork.url}}">
+                        <img style="width: 100%;" src="{{artwork.url}}" (error)="handleMissingImage($event)">
                       </div>
                     </div>
                     <div class="carousel-caption">
@@ -191,7 +191,7 @@
                 </div>
                 <div class="row align-items-end">
                   <div class="col-sm-6">
-                      <img style="width: 100%;" src="{{model.selectedArtwork.artworkurl}}" alt="{{model.selectedArtwork.name}}">
+                      <img style="width: 100%;" src="{{model.selectedArtwork.artworkurl}}" alt="{{model.selectedArtwork.name}}" (error)="handleMissingImage($event)">
                   </div>
                   <div class="col-sm ml-3">
                     <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="model.selectedArtwork.name"></div>
@@ -204,7 +204,7 @@
                   <ng-template ngbSlide *ngFor="let script of model.selectedArtwork.scripts">
                     <div class="picsum-img-wrapper" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
                       <div class="col-md-6 col-sm-8 col-10 text-center mx-auto" style="width: 100%;">
-                        <img style="width: 100%;" src="{{artwork.url}}">
+                        <img style="width: 100%;" src="{{artwork.url}}" (error)="handleMissingImage($event)">
                       </div>
                     </div>
                     <div class="carousel-caption">
@@ -291,7 +291,7 @@
                   <ng-template ngbSlide *ngFor="let script of model.selectedTheme.scripts">
                     <div class="picsum-img-wrapper" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
                       <div class="col-md-6 col-sm-8 col-10 text-center mx-auto" style="width: 100%;">
-                        <img style="width: 100%;" src="{{artwork.url}}">
+                        <img style="width: 100%;" src="{{artwork.url}}" (error)="handleMissingImage($event)">
                     </div>
                     </div>
                     <div class="carousel-caption">
@@ -377,7 +377,7 @@
                 <ng-template ngbSlide *ngFor="let script of model.selectedUser.scripts">
                   <div class="picsum-img-wrapper" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
                     <div class="col-md-6 col-sm-8 col-10 text-center mx-auto" style="width: 100%;">
-                      <img style="width: 100%;" src="{{artwork.url}}">
+                      <img style="width: 100%;" src="{{artwork.url}}" (error)="handleMissingImage($event)">
                   </div>
                   </div>
                   <div class="carousel-caption">
@@ -456,7 +456,7 @@
                   <ng-template ngbSlide>
                     <div class="picsum-img-wrapper mt-3" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(model.selectedOverviewScript.script.homepageartworkid);">
                       <div class="col-md-6 col-sm-8 col-10 text-center mx-auto" style="width: 100%;">
-                        <img style="width: 100%;" src="{{artwork.url}}">
+                        <img style="width: 100%;" src="{{artwork.url}}" (error)="handleMissingImage($event)">
                       </div>
                     </div>
                     <div class="carousel-caption">
