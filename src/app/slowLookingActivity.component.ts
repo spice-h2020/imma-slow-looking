@@ -28,6 +28,8 @@ export class SlowLookingActivityComponent implements OnInit {
         window.scroll(0,0);
     }
 
+    remainingMultiquestions: number[] = [];
+
     multiquestionIndex = 0;
 
     routerLink = "/home";
@@ -182,13 +184,16 @@ export class SlowLookingActivityComponent implements OnInit {
       };
 
     randomiseQuestion(len:number) {
-        len = len-1;
-        let rand = this.randomInt(0, len);
-        if(rand >= this.multiquestionIndex) {
-            rand=rand+1;
+        if(this.remainingMultiquestions.length) {
+            let selectednum = this.randomInt(0, this.remainingMultiquestions.length-1);
+            this.multiquestionIndex=this.remainingMultiquestions[selectednum];
+            this.setAnswerValue(this.remainingMultiquestions[selectednum]);
+            this.remainingMultiquestions.splice(selectednum,1);
         }
-        this.multiquestionIndex = rand;
-        this.setAnswerValue(rand);
+        else {
+            //all used up so repopulate remaining multiquestions
+            this.resetmultiquestionindex();
+        }
     }
 
     submittedAnswer = false;
@@ -331,7 +336,7 @@ export class SlowLookingActivityComponent implements OnInit {
             if(action instanceof multiquestionAction) {
                 // Multiquestion action
                 this.newMultiquestionAction = action;
-                this.setAnswerValue(0);
+                // this.setAnswerValue(0);
             }
             return action;
         }
@@ -382,11 +387,16 @@ export class SlowLookingActivityComponent implements OnInit {
     resetmultiquestionindex() {
         if(this.currentScript.stages[this.slowLookingCurrentScriptStageIndex].stagetype == "multiquestion") {
             if(!(this.currentScript.stages[this.slowLookingCurrentScriptStageIndex] as multiquestionStage).sequential) {
-                let myint: number = this.randomInt(0, (this.currentScript.stages[this.slowLookingCurrentScriptStageIndex] as multiquestionStage).questions.length-1);
-                this.multiquestionIndex=myint;
+                this.remainingMultiquestions = Array.from(Array((this.currentScript.stages[this.slowLookingCurrentScriptStageIndex] as multiquestionStage).questions.length).keys()).map(x => x);
+     
+                let selectednum = this.randomInt(0, this.remainingMultiquestions.length-1);
+                this.multiquestionIndex=this.remainingMultiquestions[selectednum];
+                this.setAnswerValue(this.remainingMultiquestions[selectednum]);
+                this.remainingMultiquestions.splice(selectednum,1);
             }
             else {
                 this.multiquestionIndex=0;
+                this.setAnswerValue(0);
             }
         }
         else {
@@ -401,11 +411,12 @@ export class SlowLookingActivityComponent implements OnInit {
         // (click)="slowLookingCurrentScriptStageIndex=i+1;"
         this.slowLookingCurrentScriptStageIndex=i+1;
 
-        this.resetmultiquestionindex();
-
         if(this.slowLookingCurrentScriptStageIndex >= 0) {
             this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
         }
+
+        this.resetmultiquestionindex();
+
         this.showup();
     }
 
@@ -420,11 +431,12 @@ export class SlowLookingActivityComponent implements OnInit {
         // (click)="statementBack(i);"
         this.slowLookingCurrentScriptStageIndex=i-1;
 
-        this.resetmultiquestionindex();
-
         if(this.slowLookingCurrentScriptStageIndex >= 0) {
             this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
         }
+
+        this.resetmultiquestionindex();
+
         this.showup();
     }
 
@@ -443,13 +455,14 @@ export class SlowLookingActivityComponent implements OnInit {
         this.resetAnswerValue(); 
         this.showQuestionHelp=false; 
         this.submittedAnswer=false; 
-
-        // this.multiquestionIndex=0;
-        this.resetmultiquestionindex();
         
         if(this.slowLookingCurrentScriptStageIndex >= 0) {
             this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
         }
+
+        // this.multiquestionIndex=0;
+        this.resetmultiquestionindex();
+
         this.showup();
     }
 
@@ -487,12 +500,13 @@ export class SlowLookingActivityComponent implements OnInit {
         this.showQuestionHelp=false; 
         this.submittedAnswer=false; 
 
-        // this.multiquestionIndex=0;
-        this.resetmultiquestionindex();
-
         if(this.slowLookingCurrentScriptStageIndex >= 0) {
             this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
         }
+
+        // this.multiquestionIndex=0;
+        this.resetmultiquestionindex();
+
         this.showup();
     }
 
@@ -516,11 +530,12 @@ export class SlowLookingActivityComponent implements OnInit {
         this.resetNewQuestionAction(); 
         this.showQuestionHelp=false;
 
-        this.resetmultiquestionindex();
-
         if(this.slowLookingCurrentScriptStageIndex >= 0) {
             this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
         }
+
+        this.resetmultiquestionindex();
+
         this.showup();
     }
 
@@ -547,11 +562,12 @@ export class SlowLookingActivityComponent implements OnInit {
         this.resetNewQuestionAction(); 
         this.showQuestionHelp=false;
 
-        this.resetmultiquestionindex();
-
         if(this.slowLookingCurrentScriptStageIndex >= 0) {
             this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
         }
+
+        this.resetmultiquestionindex();
+
         this.showup();
     }
 
@@ -566,11 +582,12 @@ export class SlowLookingActivityComponent implements OnInit {
         this.addOrReplaceActionToActivity(i, newStoryAction); 
         this.resetNewStoryAction();
 
-        this.resetmultiquestionindex();
-
         if(this.slowLookingCurrentScriptStageIndex >= 0) {
             this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
         }
+
+        this.resetmultiquestionindex();
+
         this.showup();
     }
 
@@ -596,11 +613,12 @@ export class SlowLookingActivityComponent implements OnInit {
         this.addOrReplaceActionToActivity(i, newStoryAction); 
         this.resetNewStoryAction();
 
-        this.resetmultiquestionindex();
-
         if(this.slowLookingCurrentScriptStageIndex >= 0) {
             this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
         }
+
+        this.resetmultiquestionindex();
+
         this.showup();
     }
 
