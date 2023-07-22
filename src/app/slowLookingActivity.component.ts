@@ -115,6 +115,9 @@ export class SlowLookingActivityComponent implements OnInit {
             // set current stage index to zero
             this.slowLookingCurrentScriptStageIndex = 0;  
 
+            //set multiquestion index
+            this.resetmultiquestionindex();
+
             // set maximum stage index to length -1
             this.slowLookingMaximumScriptStageIndex = SLscript.stages.length-1;
 
@@ -376,12 +379,30 @@ export class SlowLookingActivityComponent implements OnInit {
         return this.model.getArtwork(_id);
     }
 
+    resetmultiquestionindex() {
+        if(this.currentScript.stages[this.slowLookingCurrentScriptStageIndex].stagetype == "multiquestion") {
+            if(!(this.currentScript.stages[this.slowLookingCurrentScriptStageIndex] as multiquestionStage).sequential) {
+                let myint: number = this.randomInt(0, (this.currentScript.stages[this.slowLookingCurrentScriptStageIndex] as multiquestionStage).questions.length-1);
+                this.multiquestionIndex=myint;
+            }
+            else {
+                this.multiquestionIndex=0;
+            }
+        }
+        else {
+            this.multiquestionIndex=0;
+        }
+    }
+
     //navigation actions
 
     statementContinue(i) {
         // (click)="statementContinue(i);"
         // (click)="slowLookingCurrentScriptStageIndex=i+1;"
         this.slowLookingCurrentScriptStageIndex=i+1;
+
+        this.resetmultiquestionindex();
+
         if(this.slowLookingCurrentScriptStageIndex >= 0) {
             this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
         }
@@ -398,6 +419,9 @@ export class SlowLookingActivityComponent implements OnInit {
     statementBack(i) {
         // (click)="statementBack(i);"
         this.slowLookingCurrentScriptStageIndex=i-1;
+
+        this.resetmultiquestionindex();
+
         if(this.slowLookingCurrentScriptStageIndex >= 0) {
             this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
         }
@@ -419,7 +443,10 @@ export class SlowLookingActivityComponent implements OnInit {
         this.resetAnswerValue(); 
         this.showQuestionHelp=false; 
         this.submittedAnswer=false; 
-        this.multiquestionIndex=0;
+
+        // this.multiquestionIndex=0;
+        this.resetmultiquestionindex();
+        
         if(this.slowLookingCurrentScriptStageIndex >= 0) {
             this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
         }
@@ -459,7 +486,10 @@ export class SlowLookingActivityComponent implements OnInit {
         this.resetAnswerValue(); 
         this.showQuestionHelp=false; 
         this.submittedAnswer=false; 
-        this.multiquestionIndex=0;
+
+        // this.multiquestionIndex=0;
+        this.resetmultiquestionindex();
+
         if(this.slowLookingCurrentScriptStageIndex >= 0) {
             this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
         }
@@ -485,6 +515,9 @@ export class SlowLookingActivityComponent implements OnInit {
         this.addOrReplaceActionToActivity(i, newQuestionAction); 
         this.resetNewQuestionAction(); 
         this.showQuestionHelp=false;
+
+        this.resetmultiquestionindex();
+
         if(this.slowLookingCurrentScriptStageIndex >= 0) {
             this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
         }
@@ -513,6 +546,9 @@ export class SlowLookingActivityComponent implements OnInit {
         this.addOrReplaceActionToActivity(i, newQuestionAction); 
         this.resetNewQuestionAction(); 
         this.showQuestionHelp=false;
+
+        this.resetmultiquestionindex();
+
         if(this.slowLookingCurrentScriptStageIndex >= 0) {
             this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
         }
@@ -529,6 +565,9 @@ export class SlowLookingActivityComponent implements OnInit {
         // this.addActionToActivity(newStoryAction); 
         this.addOrReplaceActionToActivity(i, newStoryAction); 
         this.resetNewStoryAction();
+
+        this.resetmultiquestionindex();
+
         if(this.slowLookingCurrentScriptStageIndex >= 0) {
             this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
         }
@@ -556,6 +595,9 @@ export class SlowLookingActivityComponent implements OnInit {
         // this.addActionToActivity(newStoryAction); 
         this.addOrReplaceActionToActivity(i, newStoryAction); 
         this.resetNewStoryAction();
+
+        this.resetmultiquestionindex();
+
         if(this.slowLookingCurrentScriptStageIndex >= 0) {
             this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
         }
