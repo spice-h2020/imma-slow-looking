@@ -76,7 +76,7 @@ export class AllResponsesComponent implements OnInit {
 
     openLightbox(index: number) {
         if(this.slowLookingScript != "0") {
-            this.lightbox.open(index, this.slowLookingScript);
+            this.lightbox.open(index, this.slowLookingScript, {panelClass: 'fullscreen'});
         }
     }
 

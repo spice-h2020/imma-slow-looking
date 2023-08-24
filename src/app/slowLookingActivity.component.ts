@@ -172,7 +172,7 @@ export class SlowLookingActivityComponent implements OnInit {
     }
     
     openLightbox(index: number) {
-        this.lightbox.open(index, this.currentScript._id);
+        this.lightbox.open(index, this.currentScript._id, {panelClass: 'fullscreen'});
     }
 
     answerChanged(event) {
