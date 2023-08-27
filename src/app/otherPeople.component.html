@@ -119,11 +119,39 @@
                                                         <span *ngIf="action.questionStage">
                                                             <span *ngIf="action.questionStage.stagetype">
                                                                 <span *ngIf="action.questionStage.stagetype != 'multiquestion'">
+                                                                    <h4 *ngIf="action.questionStage.title && action.questionStage.title != ''">{{action.questionStage.title}}</h4>
+                                                                    <div *ngIf="action.questionStage.includeartworks.length" class="mb-3">
+                                                                        <div *ngFor="let artwork of action.questionStage.includeartworks">
+                                                                            <div *ngFor="let artwork of getArtworkFromId(artwork);">
+                                                                                <span style="white-space: pre-wrap; line-height: 1.2; " [innerHTML]="artwork.name"></span>
+                                                                                <span *ngIf="artwork.name!='' && artwork.artist!=''">, </span>
+                                                                                <span style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></span>
+                                                                                <span *ngIf="artwork.artist!='' && artwork.year!=''">, </span>
+                                                                                <span style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></span><br/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <em *ngIf="action.questionStage.help && action.questionStage.help != ''"><p style="white-space: pre-wrap;" [innerHTML]="action.questionStage.help | linkify"></p></em>
                                                                     <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question | linkify"></span>
                                                                     <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
                                                                 </span>
                                                                 <span *ngIf="action.questionStage.stagetype == 'multiquestion' && action.answers">
-                                                                    <span *ngFor="let answer of sortAnswers(action.answers)">
+                                                                    <span *ngFor="let answer of sortAnswers(action.answers); let first = first;">
+                                                                        <ng-container *ngIf="first">
+                                                                            <h4 *ngIf="action.questionStage.title && action.questionStage.title != ''">{{action.questionStage.title}}</h4>
+                                                                            <div *ngIf="action.questionStage.includeartworks.length" class="mb-3">
+                                                                                <div *ngFor="let artwork of action.questionStage.includeartworks">
+                                                                                    <div *ngFor="let artwork of getArtworkFromId(artwork);">
+                                                                                        <span style="white-space: pre-wrap; line-height: 1.2; " [innerHTML]="artwork.name"></span>
+                                                                                        <span *ngIf="artwork.name!='' && artwork.artist!=''">, </span>
+                                                                                        <span style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></span>
+                                                                                        <span *ngIf="artwork.artist!='' && artwork.year!=''">, </span>
+                                                                                        <span style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></span><br/>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <em *ngIf="action.questionStage.help && action.questionStage.help != ''"><p style="white-space: pre-wrap;" [innerHTML]="action.questionStage.help | linkify"></p></em>
+                                                                        </ng-container>
                                                                         <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.questions[answer.question] | linkify"></span>
                                                                         <p class="font-weight-normal" style="white-space: pre-wrap;">{{answer.answer}}</p>
                                                                     </span>
@@ -133,6 +161,18 @@
                                                         <span *ngIf="action.storyStage">
                                                             <span *ngIf="action.storyStage.stagetype">
                                                                 <span *ngIf="action.storyStage.stagetype == 'story'">
+                                                                    <h4 *ngIf="action.storyStage.title && action.storyStage.title != ''">{{action.storyStage.title}}</h4>
+                                                                    <div *ngIf="action.storyStage.includeartworks.length" class="mb-3">
+                                                                        <div *ngFor="let artwork of action.storyStage.includeartworks">
+                                                                            <div *ngFor="let artwork of getArtworkFromId(artwork);">
+                                                                                <span style="white-space: pre-wrap; line-height: 1.2; " [innerHTML]="artwork.name"></span>
+                                                                                <span *ngIf="artwork.name!='' && artwork.artist!=''">, </span>
+                                                                                <span style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></span>
+                                                                                <span *ngIf="artwork.artist!='' && artwork.year!=''">, </span>
+                                                                                <span style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></span><br/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                     <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question | linkify"></span>
                                                                     <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
                                                                 </span>
@@ -186,3 +226,4 @@
 </div>
 <br/>
 <br/>
+<button (click)="getScripts()">do it</button>

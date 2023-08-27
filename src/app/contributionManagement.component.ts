@@ -108,6 +108,20 @@ export class ContributionManagementComponent {
     sortAnswers(answers: questionanswer[]) {
         return answers.sort((a1, a2) => {if(a1.question > a2.question) {return 1;} else {return -1;}})
     }
+
+    getArtworkFromId(artworkId: string) {
+        let artwork = this.getArtwork(artworkId);
+        if(artwork == undefined) {
+            return [];
+        }
+        else {
+            return [artwork]
+        }
+    }
+
+    getArtwork(_id: string) {
+        return this.model.getArtwork(_id);
+    }
 }
 
 
