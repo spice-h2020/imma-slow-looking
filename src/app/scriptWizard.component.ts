@@ -10,6 +10,7 @@ import { User } from "./user.model";
 import { Exhibition } from "./exhibition.model";
 import { ConfigSettings } from "./config";
 import { Question } from "./question.model";
+import { findIndex } from "rxjs/operators";
 
 @Component({
     selector: "paScriptWizard",
@@ -47,6 +48,12 @@ export class ScriptWizardComponent {
     newStageMessage: boolean = false;
 
     newStageMessageText: string = "New stage added to the end of your script";
+
+    copyStageMessage: boolean = false;
+
+    copyStageMessageText: string = "Stage copied below"
+
+    copiedStage: number = undefined;
 
     initializeNewQuestion() {
         let newQuestion = new Question;
@@ -185,6 +192,42 @@ export class ScriptWizardComponent {
 
     getScript(_id: string) {
         return this.model.getScript(_id);
+    }
+
+    copyStage(stageIndex: number, stageID: number) {
+        let script = this.model.selectedScript;
+        console.log(script, stageIndex);
+
+        console.log(script.stages[stageIndex]);
+
+        //need to make a deep copy of the stage
+        let newStage: Stage = JSON.parse(JSON.stringify(script.stages[stageIndex]));
+
+        newStage.id = null;
+
+        newStage.id = this.model.saveStage(newStage, script);
+
+        this.model.addStageToScript(script, newStage);
+
+        let newIndex = script.stages.findIndex(x => x.id == newStage.id);
+
+        //move stage just after copied stage
+
+        console.log("stageId",newStage.id);
+        console.log("newIndex",newIndex);
+
+        console.log("newStage", newStage);
+
+        //newIndex stageIndex+1
+        if(newIndex >= stageIndex+1) {
+            this.model.moveScriptStage(script, newIndex, stageIndex+1);
+        }
+
+        this.copyStageMessage = true;
+
+        this.copiedStage = stageID;
+        // stage.id = this.model.saveStage(stage, script);
+
     }
 
     addWelcomeStage(script: Script, id?: number) {
@@ -582,6 +625,7 @@ export class ScriptWizardComponent {
     }
 
     stageDrop(script: Script, event: CdkDragDrop<string[]>) {
+        console.log(script, event.previousIndex, event.currentIndex);
         this.model.moveScriptStage(script, event.previousIndex, event.currentIndex);
     }
 
