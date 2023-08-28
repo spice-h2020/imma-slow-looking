@@ -8,7 +8,8 @@ export class Stage {
         public title?: string,
         public stagetype?: string,
         public includeartworks: Array<string> = [],
-        public body?: any
+        public body?: any,
+        public shuffle: boolean = false
     ) {
     }
 }
@@ -23,8 +24,9 @@ export class welcomeStage extends Stage {
         public body: string = "Hello and welcome to this Deep Viewpoints activity.",
         public stagetype: string = "welcome",
         public includeartworks: Array<string> = [],
+        public shuffle: boolean = false
     ) {
-        super(type, id, position, title, stagetype, includeartworks, body);
+        super(type, id, position, title, stagetype, includeartworks, body, shuffle);
     }
 }
 
@@ -38,8 +40,9 @@ export class contextStage extends Stage {
         public body: string = "Contextual information goes here",
         public stagetype: string = "context",
         public includeartworks: Array<string> = [],
+        public shuffle: boolean = false
     ) {
-        super(type, id, position, title, stagetype, includeartworks, body);
+        super(type, id, position, title, stagetype, includeartworks, body, shuffle);
     }
 }
 
@@ -53,8 +56,9 @@ export class statementStage extends Stage {
         public body: string = "Statement goes here",
         public stagetype: string = "statement",
         public includeartworks: Array<string> = [],
+        public shuffle: boolean = false
     ) {
-        super(type, id, position, title, stagetype, includeartworks, body);
+        super(type, id, position, title, stagetype, includeartworks, body, shuffle);
     }
 }
 
@@ -70,8 +74,9 @@ export class questionStage extends Stage {
         public help?: string,
         public stagetype: string = "question",
         public includeartworks: Array<string> = [],
+        public shuffle: boolean = false
     ) {
-        super(type, id, position, title, stagetype, includeartworks, body);
+        super(type, id, position, title, stagetype, includeartworks, body, shuffle);
     }
 }
 
@@ -86,8 +91,9 @@ export class storyStage extends Stage {
         public help: string = "Please read and complete the following story: ",
         public stagetype: string = "story",
         public includeartworks: Array<string> = [],
+        public shuffle: boolean = false
     ) {
-        super(type, id, position, title, stagetype, includeartworks, body);
+        super(type, id, position, title, stagetype, includeartworks, body, shuffle);
     }
 }
 
@@ -105,8 +111,9 @@ export class multiquestionStage extends Stage {
         public sequential: boolean = true,
         public stagetype: string = "multiquestion",
         public includeartworks: Array<string> = [],
+        public shuffle: boolean = false
     ) {
-        super(type, id, position, title, stagetype, includeartworks, body);
+        super(type, id, position, title, stagetype, includeartworks, body, shuffle);
     }
 }
 
@@ -121,8 +128,9 @@ export class shareWithMuseumStage extends Stage {
         public share: boolean = true,
         public stagetype: string = "shareWithMuseum",
         public includeartworks: Array<string> = [],
+        public shuffle: boolean = false
     ) {
-        super(type, id, position, title, stagetype, includeartworks, body);
+        super(type, id, position, title, stagetype, includeartworks, body, shuffle);
     }
 }
 
@@ -136,8 +144,9 @@ export class followStage extends Stage {
         public body: string = "Would you like to receive a link to your Deep Viewpoints activity via email? If so, enter your email address.",
         public stagetype: string = "follow",
         public includeartworks: Array<string> = [],
+        public shuffle: boolean = false
     ) {
-        super(type, id, position, title, stagetype, includeartworks, body);
+        super(type, id, position, title, stagetype, includeartworks, body, shuffle);
     }
 }
 
@@ -153,8 +162,9 @@ export class shareWithSomeoneStage extends Stage {
         "Remember to include your name in the message so they know who sent it",
         public stagetype: string = "shareWithSomeone",
         public includeartworks: Array<string> = [],
+        public shuffle: boolean = false
     ) {
-        super(type, id, position, title, stagetype, includeartworks, body);
+        super(type, id, position, title, stagetype, includeartworks, body, shuffle);
     }
 }
 
@@ -169,7 +179,8 @@ export class thankyouStage extends Stage {
         //  + "Share the activity over social media. This shares the activity, not your own response to it.",
         public stagetype: string = "thankyou",
         public includeartworks: Array<string> = [],
+        public shuffle: boolean = false
     ) {
-        super(type, id, position, title, stagetype, includeartworks, body);
+        super(type, id, position, title, stagetype, includeartworks, body, shuffle);
     }
 }

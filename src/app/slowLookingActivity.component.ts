@@ -4,13 +4,14 @@ import { Activity } from "./activity.model";
 import { Model } from "./repository.model";
 import { Script } from "./script.model";
 import { Artwork } from "./artwork.model";
-import { followStage, questionStage, shareWithMuseumStage, shareWithSomeoneStage, multiquestionStage } from "./stage.model";
+import { followStage, questionStage, shareWithMuseumStage, shareWithSomeoneStage, multiquestionStage, Stage } from "./stage.model";
 import { ActivatedRoute } from "@angular/router";
 import { UntypedFormControl } from "@angular/forms";
 import { CurrentUser } from "./currentUser.service";
 import { Gallery, GalleryItem, GalleryRef, ImageItem } from "ng-gallery";
 import { Lightbox } from "ng-gallery/lightbox";
 import { Question } from "./question.model";
+import { findIndex } from "rxjs/operators";
 
 
 @Component({
@@ -109,7 +110,30 @@ export class SlowLookingActivityComponent implements OnInit {
         else {
             this.scriptfound = true;
 
-            this.currentScript = SLscript;
+            //need to make a deep copy so shuffled changes do not propogate back to the referenced script
+            let NewScriptItem = JSON.parse(JSON.stringify(SLscript));
+
+            this.currentScript = NewScriptItem;
+
+            //get positions of shuffle stages
+            let positions: number[] = [];
+            let index: number = 0;
+            for(var stage of this.currentScript.stages) {
+                if(stage.shuffle) {
+                    positions.push(index);
+                }
+                index = index+1;
+            }
+
+            //shuffle order of shuffle stages
+            let shuffled = positions.slice().sort(() => (Math.random() > .5) ? 1 : -1);
+
+            var mystages = this.currentScript.stages.slice();
+
+            //shuffle the shuffle stages
+            let shuffledStages = this.shuffleStages(mystages, positions, shuffled);
+            
+            this.currentScript.stages = shuffledStages;
 
             // set script id
             this.slowLookingScript = _id;
@@ -121,16 +145,16 @@ export class SlowLookingActivityComponent implements OnInit {
             this.resetmultiquestionindex();
 
             // set maximum stage index to length -1
-            this.slowLookingMaximumScriptStageIndex = SLscript.stages.length-1;
+            this.slowLookingMaximumScriptStageIndex = this.currentScript.stages.length-1;
 
             // initialize activity of the script
             this.newActivity = new Activity();
-            this.newActivity.script = SLscript;
-            this.newActivity.approved = SLscript.autoapproved;
+            this.newActivity.script = this.currentScript;
+            this.newActivity.approved = this.currentScript.autoapproved;
 
             //set lightbox images
-            if(SLscript.artworkids.length > 0) {
-                for(var artworkid of this.getUsedArtworkIds(SLscript)) {
+            if(this.currentScript.artworkids.length > 0) {
+                for(var artworkid of this.getUsedArtworkIds(this.currentScript)) {
                     let artworkindex = artworks.findIndex(x => x._id == artworkid);
                     if(artworkindex > -1) {
                         this.currentScriptImages.push(new ImageItem({src: artworks[artworkindex].url, thumb: artworks[artworkindex].url}));
@@ -141,6 +165,22 @@ export class SlowLookingActivityComponent implements OnInit {
                 this.lightboxGalleryRef.load(this.currentScriptImages);
             }
         }
+    }
+
+    shuffleStages(stages: Stage[], positionOfShuffleStages: number[], shuffled: number[]): Stage[] {
+        let index: number = 0;
+        let newScriptStages: Stage[] = [];
+        for(var stage of stages) {
+            let i = positionOfShuffleStages.findIndex(x => x == index);
+            if(i < 0) {
+                newScriptStages.push(stage);
+            }
+            else {
+                newScriptStages.push(stages[shuffled[i]]);
+            }
+            index = index+1;
+        }
+        return newScriptStages;
     }
 
     getUsedArtworkIds(script: Script) {
