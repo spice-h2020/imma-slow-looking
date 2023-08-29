@@ -55,6 +55,12 @@ export class ScriptWizardComponent {
 
     copiedStage: number = undefined;
 
+    copyScriptMessage: boolean = false;
+
+    copyScriptMessageText: string = "Script copied"
+
+    copiedScript: number = undefined;
+
     initializeNewQuestion() {
         let newQuestion = new Question;
         newQuestion = {type: "question", title: "Question goes here", choice: false, options: []};
@@ -190,15 +196,27 @@ export class ScriptWizardComponent {
         this.editScriptStage=0;
     }
 
+    copyScript(script: Script) {
+
+        //need to make a deep copy of the script
+        let newScript: Script = JSON.parse(JSON.stringify(script));
+
+        //remove id and _id to be created when saved
+        newScript.id = null;
+        newScript._id = undefined;
+
+        this.model.saveScript(newScript, true);
+
+        this.copyScriptMessage = true;
+        this.copiedScript = script.id;
+    }
+
     getScript(_id: string) {
         return this.model.getScript(_id);
     }
 
     copyStage(stageIndex: number, stageID: number) {
         let script = this.model.selectedScript;
-        console.log(script, stageIndex);
-
-        console.log(script.stages[stageIndex]);
 
         //need to make a deep copy of the stage
         let newStage: Stage = JSON.parse(JSON.stringify(script.stages[stageIndex]));
@@ -207,26 +225,17 @@ export class ScriptWizardComponent {
 
         newStage.id = this.model.saveStage(newStage, script);
 
+        //add new stage to (end of) script
         this.model.addStageToScript(script, newStage);
 
         let newIndex = script.stages.findIndex(x => x.id == newStage.id);
 
         //move stage just after copied stage
-
-        console.log("stageId",newStage.id);
-        console.log("newIndex",newIndex);
-
-        console.log("newStage", newStage);
-
-        //newIndex stageIndex+1
         if(newIndex >= stageIndex+1) {
             this.model.moveScriptStage(script, newIndex, stageIndex+1);
         }
-
         this.copyStageMessage = true;
-
         this.copiedStage = stageID;
-        // stage.id = this.model.saveStage(stage, script);
 
     }
 
@@ -625,7 +634,6 @@ export class ScriptWizardComponent {
     }
 
     stageDrop(script: Script, event: CdkDragDrop<string[]>) {
-        console.log(script, event.previousIndex, event.currentIndex);
         this.model.moveScriptStage(script, event.previousIndex, event.currentIndex);
     }
 

@@ -389,14 +389,17 @@ export class Model {
         return this.dbScripts.find(x => this.stringLocator(x, _id));
     }
 
-    saveScript(script: Script) {
+    saveScript(script: Script, scriptCopy?: boolean) {
         if (script.id == 0 || script.id == null) {
             script.id = this.generateScriptID();
         }
         if (script._id == undefined) {
             this.dbDataSource.saveScript(script).subscribe(p => {
                 this.dbScripts.push(p);
-                this.selectScript(p._id);
+                //if new rather than copied script then automatically open it by selecting it as currrent script
+                if(!scriptCopy) {
+                    this.selectScript(p._id);
+                }
             });
         }
         else {
