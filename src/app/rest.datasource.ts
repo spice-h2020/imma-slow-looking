@@ -9,6 +9,7 @@ import { CollectionArtwork } from "./collectionArtwork.model";
 import { User } from "./user.model";
 import { ConfigSettings } from "./config";
 import { Exhibition } from "./exhibition.model";
+import { ScriptSet } from "./scriptSet.model";
 
 @Injectable() export class RestDataSource { 
 
@@ -21,6 +22,7 @@ import { Exhibition } from "./exhibition.model";
     private exhibitionUrl = this.APIURL + this.configSettings.citizenDatasetUUID + '?query=%7B%22type%22:%22exhibition%22%7D&limit=9999';
     private userUrl = this.APIURL + this.configSettings.citizenDatasetUUID + '?query=%7B%22type%22:%22user%22%7D&limit=9999';
     private themeUrl = this.APIURL + this.configSettings.citizenDatasetUUID + '?query=%7B%22type%22:%22theme%22%7D&limit=9999';
+    private scriptsetUrl = this.APIURL + this.configSettings.citizenDatasetUUID + '?query=%7B%22type%22:%22scriptset%22%7D&limit=9999';
     private artworkUrl =  this.APIURL + this.configSettings.citizenDatasetUUID + '?query=%7B%22type%22:%22artwork%22%7D&limit=9999';
     private scriptUrl = this.APIURL + this.configSettings.citizenDatasetUUID + '?query=%7B%22type%22:%22script%22%7D&limit=9999';
     private activityUrl = this.APIURL + this.configSettings.citizenDatasetUUID + '?query=%7B%22type%22:%22activity%22%7D&limit=9999';
@@ -70,6 +72,23 @@ import { Exhibition } from "./exhibition.model";
         return this.http.delete<User>(`${this.saveUrl}/${_id}`);
     }
     
+    // Script set
+    getScriptSetData(): Observable<ScriptSet[]> { 
+        return this.http.get<ScriptSet[]>(this.scriptsetUrl); 
+    } 
+
+    saveScriptSet(scriptset: ScriptSet): Observable<ScriptSet> { 
+        return this.http.post<ScriptSet>(this.saveUrl, scriptset); 
+    }
+
+    updateScriptSet(scriptset: ScriptSet): Observable<ScriptSet> {
+        return this.http.put<ScriptSet>(`${this.saveUrl}/${scriptset._id}`, scriptset); 
+    }
+
+    deleteScriptSet(_id: string): Observable<ScriptSet> { 
+        return this.http.delete<ScriptSet>(`${this.saveUrl}/${_id}`); 
+    }
+
     // Theme
     getThemeData(): Observable<Theme[]> { 
         // return this.http.get<Theme[]>(this.themeUrl, this.configSettings.config); 

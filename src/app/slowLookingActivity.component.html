@@ -1,7 +1,7 @@
 <paNavBar></paNavBar>
 <div *ngIf="!scriptfound">
     <p>Script not found. The script might be currently closed to new contributions.</p>
-    <button class="btn btn-secondary" [routerLink]="routerLink">Try Deep Viewpoints activities for yourself</button><br/><br/>
+    <!-- <button class="btn btn-secondary" [routerLink]="routerLink">Try Deep Viewpoints activities for yourself</button><br/><br/> -->
 </div>
 <div *ngIf="scriptfound" class="pt-3 pl-3 pr-3" style="background-color: white; width:100%"> 
 <ng-container *ngFor="let stage of currentScript.stages; let i = index">

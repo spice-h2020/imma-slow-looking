@@ -1,0 +1,139 @@
+<paNavBar></paNavBar>
+<div style="width: 100%; background-color: white;" class="border pl-3 pr-3 mb-3">
+<!-- <p class="lead" *ngIf="viewScript=='0'">Select a script.</p> -->
+<!-- <p class="lead" *ngIf="viewScript!='0'"><strong>Selected script: </strong><span *ngIf="selectedScript.name">{{selectedScript.name}}</span></p> -->
+    <p class="lead">Manage your scriptsets, which are sets of scripts from which one script is selected at random each time it is used.</p>
+    <ng-container *ngIf="!isLoggedOut()">
+        <div *ngIf="selectedscriptset()" class="row mb-3">
+            <div class="col">
+                <div class="row">
+                    <div class="col-sm-1" style="min-width: 10em;">
+                        <strong>Scriptset: </strong>
+                    </div>
+                    <div class="col-sm">
+                        <span>
+                            <span *ngIf="selectedscriptset()">{{selectedscriptsetname()}}</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4" style="min-width: 8em;">
+                <button class="btn btn-secondary float-right mt-1" (click)="savescriptset(selectedscriptset()); unselectscriptset();">Close scriptset</button>
+            </div>
+        </div>
+
+        <div *ngIf="!selectedscriptset()" class="row mb-3">
+            <div class="col">&nbsp;</div>
+            <div class="col-4" style="min-width: 10em;">
+                <button class="btn btn-success float-right" (click)="addscriptset();">New scriptset</button>
+            </div>
+        </div>
+    </ng-container>
+</div>
+<div *ngIf="!selectedscriptset()" >
+    <div *ngIf="!selectedscriptset()" >
+        <div class="mb-3 p-3 border" style="border-radius: 15px; background-color: white;" *ngFor="let scriptset of getscriptsets(); let i = index">
+            <div class="row">
+                <div class="col-md">
+                    <h4>{{scriptset.name}}</h4>
+                </div>
+                <div class="col-md-1" style="min-width: 20em;">
+                    <button class="btn btn-secondary float-right" (click)="selectscriptset(scriptset._id); showup();">Open scriptset</button>
+                    <button class="btn btn-danger float-right mt-3" style="clear: both;"  (click)="confirmDelete(scriptset._id);">Delete scriptset</button>
+                </div>
+            </div>
+            <div class="row" *ngIf="deleteConfirmation_Id==scriptset._id">
+                <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this scriptset?</strong> <span><button class="btn btn-danger ml-2" (click)="deletescriptset(scriptset._id)">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteConfirmation_Id=''">Cancel</button></span></div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-sm-2" style="min-width: 8em;">
+                            <strong>Description: </strong>
+                        </div>
+                        <div class="col-sm">
+                            {{scriptset.description}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2" style="min-width: 8em;">
+                            <strong>Scripts: </strong>
+                        </div>
+                        <div class="col-sm">
+                            <div *ngFor="let scriptid of scriptset.scriptids;">
+                                {{getScriptName(scriptid)}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="scriptset.scriptids.length">
+                        <div class="col-sm-2" style="min-width: 8em;">
+                            <strong>Scriptset: </strong>
+                        </div>
+                        <div class="col-sm">
+                            <a routerLink='/select/{{scriptset._id}}'>
+                                <button class="btn btn-light mr-3">View scriptset <i class='fa fa-link'></i></button>
+                            </a>
+                            <button class="btn btn-light" ngbPopover="{{scriptsetURL(scriptset)}}" popoverTitle="Script URL copied:" ngxClipboard [cbContent]='scriptsetURL(scriptset)'>Copy scriptset URL <i class="fa fa-clone" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="selectedscriptset()" style="width: 100%; background-color: white;" class="pl-3 pr-3 pt-3">
+    <ul ngbNav #nav="ngbNav" class="nav-pills">
+        <li ngbNavItem>
+            <a ngbNavLink>Scripts</a>
+            <ng-template ngbNavContent>
+                <p>Choose the scripts for your scriptset.</p>
+                <div class="ml-2">
+                    <div *ngFor="let script of getScripts()" class="form-check pb-2">
+                        <!-- <span style="float: left;" class="mr-2 form-check form-check-inline"> -->
+                        <input
+                        class="form-check-input"
+                        type="checkbox"
+                        [value]=script._id
+                        [ngModel] = "selectedscriptset().scriptids.includes(script._id)"
+                        (change) = "scriptsChange(script._id, $event)"
+                        />
+                        <label class="form-check-label">{{script.name}}&nbsp;&nbsp;</label>
+                        <!-- </span> -->
+                    </div>
+                </div>
+
+                <br/><br/>
+            </ng-template>
+        </li>
+        <li ngbNavItem>
+            <a ngbNavLink>Title</a>
+            <ng-template ngbNavContent>
+                <p>
+                    A title and desription for your scriptset.
+                </p>
+                <div class="row pb-3">
+                    <div class="col-sm-3" style="min-width: 7em;">
+                        <span class="font-weight-bold">Title: </span>
+                    </div>
+                    <div class="col-sm">
+                        <textarea rows="2" class="form-control" [(ngModel)]="selectedscriptset().name"></textarea>
+                    </div>
+                </div>
+
+                <div class="row pb-3">
+                    <div class="col-sm-3" style="min-width: 7em;">
+                        <span class="font-weight-bold">Description:</span>
+                    </div>
+                    <div class="col-sm">
+                        <textarea rows="3" class="form-control" [(ngModel)]="selectedscriptset().description"></textarea>
+                    </div>
+                </div>
+                <br/><br/>
+            </ng-template>
+         </li>
+    </ul>
+    <div [ngbNavOutlet]="nav"></div>
+</div>
+<br/>
+<br/>

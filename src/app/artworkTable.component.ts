@@ -67,7 +67,7 @@ export class ArtworkTableComponent {
         this.selectItem = item;
 
     }
-  
+    
     onChangeSearch(val: string) {
       // fetch remote data from here
       // And reassign the 'data' which is binded to 'data' property.

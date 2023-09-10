@@ -102,6 +102,7 @@ export class ScriptWizardComponent {
         script.removed = true;
         this.saveScript(script);
         this.removeConfirmation_Id = "";
+        this.removeScriptFromScriptsets(script._id);
     }
 
     toggleStageHelp() {
@@ -467,6 +468,19 @@ export class ScriptWizardComponent {
 
     deleteScript(_id: string) {
         this.model.deleteScript(_id);
+        this.removeScriptFromScriptsets(_id);
+    }
+
+    removeScriptFromScriptsets(_id: string) {
+        let scriptsets = this.model.getScriptSets();
+        for(var scriptset of scriptsets) {
+            let ind = scriptset.scriptids.findIndex(x => x == _id)
+            if(ind > -1) {
+                let filteredscripts = scriptset.scriptids.filter(x => x != _id);
+                scriptset.scriptids = filteredscripts;
+                this.model.saveScriptSet(scriptset);
+            }
+        }
     }
 
     getThemesFromIds(themeIds: Array<string>) {

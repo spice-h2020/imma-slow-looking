@@ -82,11 +82,13 @@
                                     <div *ngIf="action.questionStage.includeartworks.length" class="mb-3">
                                         <div *ngFor="let artwork of action.questionStage.includeartworks">
                                             <div *ngFor="let artwork of getArtworkFromId(artwork);">
-                                                <span style="white-space: pre-wrap; line-height: 1.2; " [innerHTML]="artwork.name"></span>
-                                                <span *ngIf="artwork.name!='' && artwork.artist!=''">, </span>
-                                                <span style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></span>
-                                                <span *ngIf="artwork.artist!='' && artwork.year!=''">, </span>
-                                                <span style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></span><br/>
+                                                <em>
+                                                    <span style="white-space: pre-wrap; line-height: 1.2; " [innerHTML]="artwork.name"></span>
+                                                    <span *ngIf="artwork.name!='' && artwork.artist!=''">, </span>
+                                                    <span style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></span>
+                                                    <span *ngIf="artwork.artist!='' && artwork.year!=''">, </span>
+                                                    <span style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></span><br/>
+                                                </em>
                                             </div>
                                         </div>
                                     </div>
@@ -115,11 +117,13 @@
                                     <div *ngIf="action.storyStage.includeartworks.length" class="mb-3">
                                         <div *ngFor="let artwork of action.storyStage.includeartworks">
                                             <div *ngFor="let artwork of getArtworkFromId(artwork);">
-                                                <span style="white-space: pre-wrap; line-height: 1.2; " [innerHTML]="artwork.name"></span>
-                                                <span *ngIf="artwork.name!='' && artwork.artist!=''">, </span>
-                                                <span style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></span>
-                                                <span *ngIf="artwork.artist!='' && artwork.year!=''">, </span>
-                                                <span style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></span><br/>
+                                                <em>
+                                                    <span style="white-space: pre-wrap; line-height: 1.2; " [innerHTML]="artwork.name"></span>
+                                                    <span *ngIf="artwork.name!='' && artwork.artist!=''">, </span>
+                                                    <span style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></span>
+                                                    <span *ngIf="artwork.artist!='' && artwork.year!=''">, </span>
+                                                    <span style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></span><br/>
+                                                </em>
                                             </div>
                                         </div>
                                     </div>

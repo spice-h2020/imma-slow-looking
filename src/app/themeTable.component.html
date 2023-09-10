@@ -51,13 +51,14 @@
             <!-- </td> 
             <td class="col-xs"> -->
                 <span *ngIf="!tableEditing && writeAccess(item) && deleteConfirmation_Id==''" style="float:right">
-                    <button class="btn btn-danger ml-3" (click)="confirmDelete(item._id); reloadThemes()">Delete</button>
+                    <button class="btn btn-warning ml-3" (click)="editrow=item._id; tableEditing=true; deleteConfirmation_Id=''; reloadThemes()">Edit</button>
+                </span>
+                <span *ngIf="!tableEditing && writeAccess(item) && deleteConfirmation_Id==''" style="float:right">
+                    <button class="btn btn-danger" (click)="confirmDelete(item._id); reloadThemes()">Delete</button>
                 </span>
             <!-- </td>
             <td class="col-xs"> -->
-                <span *ngIf="!tableEditing && writeAccess(item) && deleteConfirmation_Id==''" style="float:right">
-                    <button class="btn btn-warning" (click)="editrow=item._id; tableEditing=true; deleteConfirmation_Id=''; reloadThemes()">Edit</button>
-                </span>
+        
                 <span *ngIf="tableEditing && editrow==item._id" style="float:right">
                     <button class="btn btn-warning" (click)="tableEditing=false; addTheme(item); reloadThemes()" [disabled]="!item.name || !item.description">Save</button>
                 </span>

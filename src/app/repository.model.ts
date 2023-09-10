@@ -9,12 +9,14 @@ import { CollectionArtwork } from "./collectionArtwork.model";
 import { User } from "./user.model";
 import { ExtraArtworks } from "./extraArtworks";
 import { Exhibition } from "./exhibition.model";
+import { ScriptSet } from "./scriptSet.model";
 
 @Injectable()
 export class Model {
 
     private locator = (x: any, id: number) => x.id == id;
     private themeLocator = (theme: Theme, id: string) => theme._id === id;
+    private scriptsetLocator = (scriptset: ScriptSet, id: string) => scriptset._id === id;
     private scriptLocator = (script: Script, id: string) => script._id == id;
     private activityLocator = (activity: Activity, id: string) => activity._id == id;
     private artworkLocator = (artwork: Artwork, id: string) => artwork._id == id;
@@ -27,6 +29,7 @@ export class Model {
     private dbArtworks: Artwork[] = new Array<Artwork>();
     private dbScripts: Script[] = new Array<Script>();
     private dbThemes: Theme[] = new Array<Theme>();
+    private dbScriptSets: ScriptSet[] = new Array<ScriptSet>();
     private dbActivities: Activity[] = new Array<Activity>();
     private dbUsers: User[] = new Array<User>();
     private dbExhibitions: Exhibition[] = new Array<Exhibition>();
@@ -46,6 +49,9 @@ export class Model {
         this.selectedScript  = this.getScript(_id);
     }
 
+    //scriptset selection
+    selectedscriptset: ScriptSet = null;
+
     //add artworks not in LDH//
     private extraArtworks = new ExtraArtworks;
     private dbCollectionArtworks: CollectionArtwork[] = this.extraArtworks.artworks;
@@ -60,6 +66,7 @@ export class Model {
         this.dbDataSource.getArtworkData().subscribe(data => this.dbArtworks = data);
         this.dbDataSource.getActivityData().subscribe(data => this.dbActivities = data);
         this.dbDataSource.getScriptData().subscribe(data => this.dbScripts = data);
+        this.dbDataSource.getScriptSetData().subscribe(data => {this.dbScriptSets = data});
         this.dbDataSource.getCollection().subscribe(val => {this.dbCollectionArtworks.push(val)});
 
     }
@@ -132,6 +139,39 @@ export class Model {
             let index = this.dbUsers.findIndex(p => this.stringLocator(p, _id));
             if (index > -1) {
                 this.dbUsers.splice(index, 1);
+            }
+        })
+    }
+
+    // Script set
+    getScriptSets(): ScriptSet[] {
+        return this.dbScriptSets;
+    }
+
+    getScriptSet(_id: string) {
+        return this.dbScriptSets.find(x => this.stringLocator(x, _id));
+    }
+
+    saveScriptSet(scriptset: ScriptSet) {
+        if (scriptset._id == undefined) {
+            this.dbDataSource.saveScriptSet(scriptset).subscribe(p => {
+                this.dbScriptSets.push(p);
+                this.selectedscriptset = p;
+            });
+        } 
+        else {
+            this.dbDataSource.updateScriptSet(scriptset).subscribe(() => {
+                let index = this.dbScriptSets.findIndex(item => this.scriptsetLocator(item, scriptset._id));
+                this.dbScriptSets.splice(index, 1, scriptset);
+            });
+        }
+    }
+
+    deleteScriptSet(_id: string) {
+        this.dbDataSource.deleteScriptSet(_id).subscribe(() => {
+            let index = this.dbScriptSets.findIndex(p => this.stringLocator(p, _id));
+            if (index > -1) {
+                this.dbScriptSets.splice(index, 1);
             }
         })
     }

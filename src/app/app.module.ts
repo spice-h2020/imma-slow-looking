@@ -34,6 +34,8 @@ import { LightboxModule } from  'ng-gallery/lightbox';
 import { LIGHTBOX_CONFIG } from 'ng-gallery/lightbox';
 import { GALLERY_CONFIG } from 'ng-gallery';
 import { ScriptWizardComponent } from './scriptWizard.component';
+import { SelectorTableComponent } from './selectorTable.component';
+import { SelectorComponent } from './selector.component';
 
 
 @NgModule({
@@ -53,7 +55,9 @@ import { ScriptWizardComponent } from './scriptWizard.component';
     OverviewComponent,
     OverviewBarComponent,
     ExhibitionTableComponent,
-    ScriptWizardComponent
+    ScriptWizardComponent,
+    SelectorTableComponent,
+    SelectorComponent
     ],
   imports: [
     BrowserModule,
