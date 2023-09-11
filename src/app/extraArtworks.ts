@@ -154,10 +154,10 @@ export class ExtraArtworks {
 
         new CollectionArtwork("Pride of Place group at IMMA", "Michael Collins, Mags O’Sullivan, Ann Maguire", "March, 2023", "https://spiceimageworkaround.files.wordpress.com/2023/04/img_20230321_103609_1-688288317-e1682002773406.jpg", "Pride of Place group at IMMA, Michael Collins, Mags O’Sullivan, Ann Maguire, March, 2023"),
 
-        new CollectionArtwork("Artwork 1", "", "", "assets/img/picture1.jpg", "Artwork 1"),
-        new CollectionArtwork("Artwork 2", "", "", "assets/img/picture2.jpg", "Artwork 2"),
-        new CollectionArtwork("Artwork 3", "", "", "assets/img/picture3.jpg", "Artwork 3"),
-        new CollectionArtwork("Artwork 4", "", "", "assets/img/picture4.jpg", "Artwork 4")
+        new CollectionArtwork("Artwork 1", "", "", "https://spice.kmi.open.ac.uk/demos/imma-slow-looking/assets/img/picture1.jpg", "Artwork 1"),
+        new CollectionArtwork("Artwork 2", "", "", "https://spice.kmi.open.ac.uk/demos/imma-slow-looking/assets/img/picture2.jpg", "Artwork 2"),
+        new CollectionArtwork("Artwork 3", "", "", "https://spice.kmi.open.ac.uk/demos/imma-slow-looking/assets/img/picture3.jpg", "Artwork 3"),
+        new CollectionArtwork("Artwork 4", "", "", "https://spice.kmi.open.ac.uk/demos/imma-slow-looking/assets/img/picture4.jpg", "Artwork 4")
 
     ]
 
