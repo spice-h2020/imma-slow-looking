@@ -63,7 +63,7 @@ export class ScriptWizardComponent {
 
     initializeNewQuestion() {
         let newQuestion = new Question;
-        newQuestion = {type: "question", title: "Question goes here", choice: false, options: []};
+        newQuestion = {type: "question", title: "Question goes here", choice: false, multiselect: false, options: []};
         return newQuestion;
     }
 

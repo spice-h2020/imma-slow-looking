@@ -633,7 +633,8 @@
                                 </span>
 
                                 <table *ngIf='stage.stagetype=="question"'>
-                                    <tr><td class="align-middle">
+                                    <tr>
+                                        <td class="align-middle">
                                         <div class="form-check form-check-inline">
                                             <input
                                                 class="form-check-input"
@@ -643,10 +644,25 @@
                                                 (click) = "checkQuestionOptions(model.selectedScript, i);"
                                             /> 
                                         </div>          
-                                    </td>
-                                    <td class="align-top">
-                                        <label class="form-check-label">Multiple choice</label><br/>
-                                    </td></tr>
+                                        </td>
+                                        <td class="align-top">
+                                            <label class="form-check-label">Multiple choice</label>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        </td>
+                                        <td class="align-middle">
+                                            <div class="form-check form-check-inline">
+                                                <input
+                                                    class="form-check-input"
+                                                    type="checkbox"
+                                                    [value]="stage.question.mulitselect"
+                                                    [(ngModel)] = "stage.question.mulitselect"
+                                                /> 
+                                            </div>          
+                                        </td>
+                                        <td class="align-top">
+                                            <label class="form-check-label">Multiple selections</label>
+                                        </td>
+                                    </tr>
                                 </table>
                                 <table *ngIf='stage.stagetype=="question" && stage.question.choice' style="width: 100%; background-color:#EEEEEE;">
                                     <tr *ngFor="let option of stage.question.options; let index=index; trackBy:trackByIdx">
@@ -673,16 +689,29 @@
                                                         </svg>
                                                     </span>
                                                     <span class="font-weight-bold">Question {{index+1}}: </span><br/><textarea rows="3" class="form-control" [(ngModel)]="stage.questions[index].title"></textarea>
-                                                    <div class="form-check ml-2">
-                                                        <input
-                                                        class="form-check-input"
-                                                        type="checkbox"
-                                                        [value]="stage.questions[index].choice"
-                                                        [(ngModel)] = "stage.questions[index].choice"
-                                                        (click) = "checkMultiquestionOptions(model.selectedScript, i, index);"
-                                                    /> 
-                                                    <label class="form-check-label ml-2">Multiple choice</label>
-                                                        <button class="btn btn-danger float-right" (click)="deleteMultistageQuestion(model.selectedScript, i, index)" [disabled]="stage.questions.length < 3">Delete question</button>
+                                                    <div class="ml-2 row">
+                                                        <div class="col">
+                                                            <input
+                                                            class="form-check-input"
+                                                            type="checkbox"
+                                                            [value]="stage.questions[index].choice"
+                                                            [(ngModel)] = "stage.questions[index].choice"
+                                                            (click) = "checkMultiquestionOptions(model.selectedScript, i, index);"
+                                                            /> 
+                                                            <label class="form-check-label ml-2">Multiple choice</label>
+                                                        </div>
+                                                        <div class="col">
+                                                            <input
+                                                            class="form-check-input"
+                                                            type="checkbox"
+                                                            [value]="stage.questions[index].choice"
+                                                            [(ngModel)] = "stage.questions[index].mulitselect"
+                                                            /> 
+                                                            <label class="form-check-label ml-2">Multiple selections</label>
+                                                        </div>
+                                                        <div class="col" style="min-width: 10em;">
+                                                            <button class="btn btn-danger float-right" (click)="deleteMultistageQuestion(model.selectedScript, i, index)" [disabled]="stage.questions.length < 3">Delete question</button>
+                                                        </div>
                                                     </div>
                                                     <table *ngIf='stage.stagetype=="multiquestion" && stage.questions[index].choice' style="width: 100%; background-color:#EEEEEE;">
                                                         <tr *ngFor="let option of stage.questions[index].options; let oi=index; trackBy:trackByIdx">
@@ -819,7 +848,7 @@
                 <p>
                     Shuffle selected stages each time the script is used.
                 </p>
-                    <div *ngFor="let stage of model.selectedScript.stages; let i = index" class="form-check pr-3 pb-2">&nbsp;
+                    <div *ngFor="let stage of model.selectedScript.stages; let i = index" class="form-check mr-1 pb-2 ml-1">
                         <input 
                         class="form-check-input"
                         type="checkbox"
@@ -827,7 +856,7 @@
                         [(ngModel)] = model.selectedScript.stages[i].shuffle
                         (change) = "saveScript(model.selectedScript)"
                         />
-                        <label class="form-check-label">{{i+1}} <strong>Title:</strong> {{stage.title}} <strong>Type:</strong> {{stage.stagetype}}</label>
+                        <label class="form-check-label">{{i+1}} {{stage.title}} <strong>Type:</strong> {{stage.stagetype}}</label>
                     </div>
                 <br/><br/>
             </ng-template>

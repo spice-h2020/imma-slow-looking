@@ -95,16 +95,30 @@
                         <textarea [formControl]="answervalue" type="text" rows="3" class="form-control" (keyup)="answerChanged($event)"></textarea>
                     </div>
                     <div *ngIf="stage.questions[multiquestionIndex].choice">
-                        <div *ngFor="let option of stage.questions[multiquestionIndex].options" class="form-check ml-1">
-                            <input
-                                class="form-check-input"
-                                type="radio"
-                                [value]="option"
-                                [formControl]="answervalue"
-                                (change) = "submittedAnswer=false"
-                            />
-                            <label class="form-check-label">{{option}}</label><br/>
-                        </div>
+                        <ng-container *ngIf="!stage.questions[multiquestionIndex].mulitselect">
+                            <div *ngFor="let option of stage.questions[multiquestionIndex].options" class="form-check ml-1">
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    [value]="option"
+                                    [formControl]="answervalue"
+                                    (change) = "submittedAnswer=false"
+                                />
+                                <label class="form-check-label">{{option}}</label><br/>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="stage.questions[multiquestionIndex].mulitselect">
+                            <div *ngFor="let option of stage.questions[multiquestionIndex].options" class="form-check ml-1">
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    [value]=option
+                                    [ngModel] = "isSelectioninMQAnswer(option)"
+                                    (change) = "submittedAnswer=false; updateCheckboxMQAnswer(option, $event)"
+                                />
+                                <label class="form-check-label">{{option}}</label><br/>
+                            </div>
+                        </ng-container>
                     </div>
                     <div class="row mb-3">
                         <div>
@@ -254,28 +268,39 @@
                         <!-- <span class="float-right"><div *ngIf="stage.help" class="col-sm-12" (click)="toggleQuestionHelp()"><img width="20" style="background-color:white; cursor: pointer;" src="assets/img/question-help.png"></div></span> -->
                     </div>
                 </div>
-                <!-- <div class="col-sm-12 border container" style="display: block;">
-                    &nbsp;
-                    <span class="float-right"><div *ngIf="stage.help" class="col-sm-12" (click)="toggleQuestionHelp()"><img width="20" style="background-color:white; cursor: pointer;" src="assets/img/question-help.png"></div></span>
-                    <span class="col-sm-12" style="float:left; white-space: pre-wrap;" *ngIf="stage.help && showQuestionHelp" [innerHTML]="stage.help | linkifyHtml"></span>
-                    &nbsp;
-                </div> -->
                 <div *ngIf="!stage.question.choice" class="mb-3">
                     <textarea class="col-sm-12" rows="3" class="form-control" [(ngModel)]="newQuestionAction.answer"></textarea>
                 </div>
-                <div *ngIf="stage.question.choice" class="col-sm-12 mb-3">
-                    <div *ngFor="let option of stage.question.options" class="form-check ml-1">
-                        <input
-                            class="form-check-input"
-                            type="radio"
-                            [value]="option"
-                            [(ngModel)] = "newQuestionAction.answer"
-                            (change) = "submittedAnswer=false"
-                        />
-                        <label class="form-check-label">{{option}}</label><br/>
+                <!-- radio -->
+                <ng-container *ngIf="!stage.question.mulitselect">
+                    <div *ngIf="stage.question.choice" class="col-sm-12 mb-3">
+                        <div *ngFor="let option of stage.question.options" class="form-check ml-1">
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                [value]=option
+                                [(ngModel)] = "newQuestionAction.answer"
+                                (change) = "submittedAnswer=false"
+                            />
+                            <label class="form-check-label">{{option}}</label><br/>
+                        </div>
                     </div>
-                </div>
- 
+                </ng-container>
+                <!-- checkbox -->
+                <ng-container *ngIf="stage.question.mulitselect">
+                    <div *ngIf="stage.question.choice" class="col-sm-12 mb-3">
+                        <div *ngFor="let option of stage.question.options" class="form-check ml-1">
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                [value]=option
+                                [ngModel] = "isSelectioninAnswer(option)"
+                                (change) = "submittedAnswer=false; updateCheckboxAnswer(option, $event);"
+                            />
+                            <label class="form-check-label">{{option}}</label><br/>
+                        </div>
+                    </div>
+                </ng-container>
                 <!-- return to list if last stage -->
                 <div *ngIf="slowLookingMaximumScriptStageIndex == i" class="row bg-light border-top">
                     <div class="col text-left">

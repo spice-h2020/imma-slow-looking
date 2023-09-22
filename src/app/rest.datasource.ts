@@ -182,10 +182,11 @@ import { ScriptSet } from "./scriptSet.model";
         const obs = new Observable((observer) => {
             this.http.get<any>(this.collectionURL, this.configSettings.config).subscribe(data => {
                 let resarray:  Array<CollectionArtwork> = [];
-                for(var item of data["results"]["bindings"]) {
-                    observer.next(new CollectionArtwork(item["title"]["value"], item["creatorname"]["value"], item["year"]["value"], item["artworkurl"]["value"], item["title"]["value"]+', '+item["creatorname"]["value"]+', '+item["year"]["value"]));
-                }
-                observer.complete();
+                //should check here for error from endpoint
+                    for(var item of data["results"]["bindings"]) {
+                        observer.next(new CollectionArtwork(item["title"]["value"], item["creatorname"]["value"], item["year"]["value"], item["artworkurl"]["value"], item["title"]["value"]+', '+item["creatorname"]["value"]+', '+item["year"]["value"]));
+                    }
+                    observer.complete();
             });
         });
         return obs;

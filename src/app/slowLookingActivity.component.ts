@@ -662,6 +662,108 @@ export class SlowLookingActivityComponent implements OnInit {
         this.showup();
     }
 
+    myanswer: string = "";
+
+    updateCheckboxAnswer(option, event){
+        if(event.target.checked) {
+            this.addSelectionToAnswer(option);
+        }
+        else {
+            this.removeSelectionFromAnswer(option);
+        }
+    }
+
+    updateCheckboxMQAnswer(option, event){
+        if(event.target.checked) {
+            this.addSelectionToMQAnswer(option);
+        }
+        else {
+            this.removeSelectionFromMQAnswer(option);
+        }
+    }
+
+    addSelectionToAnswer(selection: string) {
+        if(!this.newQuestionAction.answer) {
+            this.newQuestionAction.answer = selection;
+        }
+        else {
+            this.newQuestionAction.answer = this.newQuestionAction.answer+", "+selection;
+        }
+    }
+
+    addSelectionToMQAnswer(selection: string) {
+        if(!this.answervalue.value) {
+            this.answervalue.setValue(selection);
+        }
+        else {
+            this.answervalue.setValue(this.answervalue.value+", "+selection);
+        }
+    }
+
+
+    removeSelectionFromAnswer(selection: string) {
+        let ind = this.newQuestionAction.answer.indexOf(selection);
+        if(ind > -1) {
+            if(ind == 0) {
+                if(ind+selection.length == this.newQuestionAction.answer.length) {
+                    this.newQuestionAction.answer = this.newQuestionAction.answer.replace(selection,"");
+                }
+                else {
+                    this.newQuestionAction.answer = this.newQuestionAction.answer.replace(selection+", ","");
+                }
+            }
+            else {
+                this.newQuestionAction.answer = this.newQuestionAction.answer.replace(", "+selection,"");
+            }
+        }
+    }
+
+    removeSelectionFromMQAnswer(selection: string) {
+        if(this.answervalue.value) {
+            let ind = this.answervalue.value.indexOf(selection);
+            if(ind > -1) {
+                if(ind == 0) {
+                    if(ind+selection.length == this.answervalue.value.length) {
+                        this.answervalue.setValue(this.answervalue.value.replace(selection,""));
+                    }
+                    else {
+                        this.answervalue.setValue(this.answervalue.value.replace(selection+", ",""));
+                    }
+                }
+                else {
+                    this.answervalue.setValue(this.answervalue.value.replace(", "+selection,""));
+                }
+            }
+        }
+    }
+
+    isSelectioninAnswer(selection: string) {
+        if(this.newQuestionAction.answer) {
+            return this.newQuestionAction.answer.includes(selection);
+        }
+        else {
+            return false;
+        }
+    }
+
+    isSelectioninMQAnswer(selection: string) {
+        if(this.answervalue.value) {
+            return this.answervalue.value.includes(selection);
+        }
+        else {
+            return false;
+        }
+    }
+
+    isQuestionMultiselect(qs: questionStage) {
+        if(qs.question.multiselect != undefined) {
+           return qs.question.multiselect;
+        }
+        else {
+            return false;
+        }
+    }
+
     foo(i) {
         console.log(i);
         console.log(this.newActivity);

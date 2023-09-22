@@ -1,6 +1,11 @@
 import { CollectionArtwork } from "./collectionArtwork.model";
+import { ConfigSettings } from "./config";
 
 export class ExtraArtworks {
+
+    // configuration settings
+    private configSettings = new ConfigSettings;
+
     artworks: CollectionArtwork[] = [
 
         new CollectionArtwork('Pray for More" campaign, Stuttgart, Germany', "Les Levine", "1988", "https://likeyou.com/wp-content/uploads/2018/03/Les_Levine_Pray_for_More_Portrait_with_Les_Levine_1989-90_mai36_18_likeyou.jpg", 'Pray for More" campaign, Stuttgart, Germany, Les Levine, 1988'),
@@ -154,10 +159,10 @@ export class ExtraArtworks {
 
         new CollectionArtwork("Pride of Place group at IMMA", "Michael Collins, Mags O’Sullivan, Ann Maguire", "March, 2023", "https://spiceimageworkaround.files.wordpress.com/2023/04/img_20230321_103609_1-688288317-e1682002773406.jpg", "Pride of Place group at IMMA, Michael Collins, Mags O’Sullivan, Ann Maguire, March, 2023"),
 
-        new CollectionArtwork("Artwork 1", "", "", "https://spice.kmi.open.ac.uk/demos/imma-slow-looking/assets/img/picture1.jpg", "Artwork 1"),
-        new CollectionArtwork("Artwork 2", "", "", "https://spice.kmi.open.ac.uk/demos/imma-slow-looking/assets/img/picture2.jpg", "Artwork 2"),
-        new CollectionArtwork("Artwork 3", "", "", "https://spice.kmi.open.ac.uk/demos/imma-slow-looking/assets/img/picture3.jpg", "Artwork 3"),
-        new CollectionArtwork("Artwork 4", "", "", "https://spice.kmi.open.ac.uk/demos/imma-slow-looking/assets/img/picture4.jpg", "Artwork 4")
+        new CollectionArtwork("Portrait of a Man", "Hugo van der Goes", "circa 1480", this.configSettings.baseURL+"assets/img/picture1.jpg", "Portrait of a Man, Hugo van der Goes, circa 1480"),
+        new CollectionArtwork("The Lamentation over the Dead Christ", "Andrea Mantegna", "circa 1475 - 1478", this.configSettings.baseURL+"assets/img/picture2.jpg", "The Lamentation over the Dead Christ, Andrea Mantegna, circa 1475 - 1478"),
+        new CollectionArtwork("Satyr playing flute", "Jacob Jordaens", "circa 1640", this.configSettings.baseURL+"assets/img/picture3.jpg", "Satyr playing flute, Jacob Jordaens, circa 1640"),
+        new CollectionArtwork("The Hippopotamus and Crocodile Hunt", "Peter Paul Rubens", "1615–1616", this.configSettings.baseURL+"assets/img/picture4.jpg", "The Hippopotamus and Crocodile Hunt, Peter Paul Rubens, 1615–1616")
 
     ]
 

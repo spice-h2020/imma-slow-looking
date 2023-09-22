@@ -112,8 +112,8 @@ export class SelectorTableComponent {
         // filter scripts for login
         let filteredScripts = this.filterScriptsForLogin(scripts);
 
-        //filter scripts that are open and have at least one stage
-        let filteredScripts2 = filteredScripts.filter(x => x.open && x.stages.length);
+        //filter scripts that are not removed and have at least one stage
+        let filteredScripts2 = filteredScripts.filter(x => !x.removed && x.stages.length);
 
         return filteredScripts2;
     }
