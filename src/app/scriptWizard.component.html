@@ -330,11 +330,11 @@
                     <span class="font-weight-bold">Add stage:</span>
                 </div>
                 <div class="col-sm-10">
-                    <button class="btn btn-success mr-2" (click)="addStatementStageToScript(model.selectedScript); deleteStageConfirmationId=0; showStageHelp=false;">statement</button> 
-                    <button class="btn btn-success mr-2" (click)="addQuestionStageToScript(model.selectedScript); deleteStageConfirmationId=0; showStageHelp=false;">question</button> 
-                    <button class="btn btn-success mr-2" (click)="addMultiQuestionStageToScript(model.selectedScript); deleteStageConfirmationId=0; showStageHelp=false;">multiquestion</button> 
-                    <button class="btn btn-success mr-2" (click)="addStoryStageToScript(model.selectedScript); deleteStageConfirmationId=0; showStageHelp=false;">story</button>
-                    <img class="ml-2" width="25" style="background-color:white; cursor: pointer;" src="assets/img/question-help.png" (click)="toggleStageHelp(); newStageMessage=false; copyStageMessage=false;">
+                    <button class="btn btn-success mr-2 mb-1" (click)="addStatementStageToScript(model.selectedScript); deleteStageConfirmationId=0; showStageHelp=false;">statement</button> 
+                    <button class="btn btn-success mr-2 mb-1" (click)="addQuestionStageToScript(model.selectedScript); deleteStageConfirmationId=0; showStageHelp=false;">question</button> 
+                    <button class="btn btn-success mr-2 mb-1" (click)="addMultiQuestionStageToScript(model.selectedScript); deleteStageConfirmationId=0; showStageHelp=false;">multiquestion</button> 
+                    <button class="btn btn-success mr-2 mb-1" (click)="addStoryStageToScript(model.selectedScript); deleteStageConfirmationId=0; showStageHelp=false;">story</button>
+                    <img class="mb-1" width="25" style="background-color:white; cursor: pointer;" src="assets/img/question-help.png" (click)="toggleStageHelp(); newStageMessage=false; copyStageMessage=false;">
                 </div>
             </div>
             <div *ngIf="editScriptStage==0 && newStageMessage" class="alert alert-success fadeout">
@@ -510,9 +510,9 @@
                         <span *ngIf="editScriptStage==0 && editScriptDescription=='0'"> 
                             <!-- <span class="float">&nbsp;</span> -->
                             <span class="float-right">
-                                <button class="btn btn-danger" (click)="confirmStageDelete(stage.id); showStageHelp=false; newStageMessage=false; copyStageMessage=false;">Delete stage</button>
-                                <button class="ml-3 btn btn-success" (click)="copyStage(i, stage.id); showStageHelp=false; newStageMessage=false;">Copy stage</button>
-                                <button class="ml-3 btn btn-warning" (click)="editScriptStage=stage.id; deleteStageConfirmationId=0; showStageHelp=false; newStageMessage=false; copyStageMessage=false;">Edit stage</button>
+                                <button class="btn btn-danger mb-1 mr-2" (click)="confirmStageDelete(stage.id); showStageHelp=false; newStageMessage=false; copyStageMessage=false;">Delete stage</button>
+                                <button class="mr-2 btn btn-success mb-1" (click)="copyStage(i, stage.id); showStageHelp=false; newStageMessage=false;">Copy stage</button>
+                                <button class="btn btn-warning mb-1" (click)="editScriptStage=stage.id; deleteStageConfirmationId=0; showStageHelp=false; newStageMessage=false; copyStageMessage=false;">Edit stage</button>
                             </span>
                         </span><br/>
                         <span *ngIf="copiedStage==stage.id && copyStageMessage">
