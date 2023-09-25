@@ -242,10 +242,10 @@
 </div>
 
 
-<div *ngIf="model.viewScript!='0'" style="width: 100%; background-color: white;" class="pl-3 pr-3 pt-3">
+<div *ngIf="model.viewScript!='0'" style="width: 100%; background-color: white;" class="pl-3 pr-3 pt-1">
     <ul ngbNav #nav="ngbNav" class="nav-pills">
         <li ngbNavItem>
-          <a ngbNavLink>Artworks</a>
+          <a ngbNavLink><strong>Artworks</strong></a>
           <ng-template ngbNavContent>
             <p>Choose the artworks for your script.</p>
             <div class="alert alert-info" *ngIf="getArtworks(model.selectedScript).length == 0">
@@ -322,7 +322,7 @@
            </ng-template>
         </li>
         <li ngbNavItem>
-          <a ngbNavLink>Stages</a>
+          <a ngbNavLink><strong>Stages</strong></a>
           <ng-template ngbNavContent>
             <p>Manage the stages of your script.</p>
             <div class="row" *ngIf="editScriptStage==0">
@@ -768,7 +768,7 @@
           </ng-template>
         </li>
         <li ngbNavItem>
-            <a ngbNavLink>Themes</a>
+            <a ngbNavLink><strong>Themes</strong></a>
             <ng-template ngbNavContent>
                 <p>
                     Choose one or more themes for your script.
@@ -789,7 +789,7 @@
             </ng-template>
         </li>
         <li ngbNavItem>
-            <a ngbNavLink>Title</a>
+            <a ngbNavLink><strong>Title</strong></a>
             <ng-template ngbNavContent>
                 <p>
                     Decide how your script will be presented in Deep Viewpoints. 
@@ -843,7 +843,7 @@
             </ng-template>
         </li>
         <li ngbNavItem>
-            <a ngbNavLink>Shuffle</a>
+            <a ngbNavLink><strong>Shuffle</strong></a>
             <ng-template ngbNavContent>
                 <p>
                     Shuffle selected stages each time the script is used.
