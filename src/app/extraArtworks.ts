@@ -162,7 +162,9 @@ export class ExtraArtworks {
         new CollectionArtwork("Portrait of a Man", "Hugo van der Goes", "circa 1480", this.configSettings.baseURL+"assets/img/picture1.jpg", "Portrait of a Man, Hugo van der Goes, circa 1480"),
         new CollectionArtwork("The Lamentation over the Dead Christ", "Andrea Mantegna", "circa 1475 - 1478", this.configSettings.baseURL+"assets/img/picture2.jpg", "The Lamentation over the Dead Christ, Andrea Mantegna, circa 1475 - 1478"),
         new CollectionArtwork("Satyr playing flute", "Jacob Jordaens", "circa 1640", this.configSettings.baseURL+"assets/img/picture3.jpg", "Satyr playing flute, Jacob Jordaens, circa 1640"),
-        new CollectionArtwork("The Hippopotamus and Crocodile Hunt", "Peter Paul Rubens", "1615–1616", this.configSettings.baseURL+"assets/img/picture4.jpg", "The Hippopotamus and Crocodile Hunt, Peter Paul Rubens, 1615–1616")
+        new CollectionArtwork("The Hippopotamus and Crocodile Hunt", "Peter Paul Rubens", "1615–1616", this.configSettings.baseURL+"assets/img/picture4.jpg", "The Hippopotamus and Crocodile Hunt, Peter Paul Rubens, 1615–1616"),
+        new CollectionArtwork("Anachorete endormi", "Joseph-Marie Vien", "1751", this.configSettings.baseURL+"assets/img/picture5.jpg", "Anachorete endormi, Joseph-Marie Vien, 1751"),
+        new CollectionArtwork("Festivities on the Coast (Calendimaggio)", "Agostino Tassi", "circa 1620", this.configSettings.baseURL+"assets/img/picture6.jpg", "Festivities on the Coast (Calendimaggio), Agostino Tassi, circa 1620")
 
     ]
 
