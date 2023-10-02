@@ -2,14 +2,61 @@
 <div style="width: 100%; background-color: white;" class="border pl-3 pr-3">
 <p class="lead">{{configSettings.artworks_para1}}</p>
 <div *ngIf="isLoggedIn()" class="form-group">
-    <table class="table"> 
+    <div class="col-12 border bg-dark text-white pt-1 pb-1">
+        <strong>My artworks</strong>
+    </div>
+    <div *ngFor="let item of getArtworks(); let i = index" class="border-bottom mt-3 pb-3">
+        <div class="row align-items-end">
+            <div class="col-md-4 col-sm-6 container">
+                <img src="{{item.url}}" alt="{{item.name}}" height="auto" style="width:100%" (error)="handleMissingImage($event)">
+            </div>
+            <div class="col ml-3">
+                <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="item.name"></div>
+                <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="item.artist"></div></strong>
+                <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;">{{item.year}}</div>
+            </div>
+            <div class="col-sm">
+                <button class="float-right btn btn-danger" (click)="confirmDelete(item._id)">Delete</button>
+            </div>
+
+        </div>
+        <span *ngIf="deleteConfirmation_Id==item._id">
+            <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this artwork from your collection?</strong>
+            <span *ngIf="getScriptsOfAnArtwork(item._id).length > 0">
+                <p><strong>It will be removed from the following scripts:</strong></p>
+            </span>
+            <ul *ngFor="let artworkscript of getScriptsOfAnArtwork(item._id);">
+                <li>{{artworkscript.name}}</li>
+            </ul>
+            <div><button class="btn btn-danger ml-2" (click)="deleteArtwork(item._id)">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteConfirmation_Id=''">Cancel</button></div>
+            </div>
+        </span>
+    </div>
+    
+    <div *ngIf="selected" class="pt-3 pb-3" style="border-bottom-width: 6px; border-bottom-color: #2ecc71;">
+        <div class="row align-items-end">
+            <div class="col-md-4 col-sm-6">
+                <img src="{{selectedURL()}}" alt="{{selectedName()}}" height="auto" style="width:100%" (error)="handleMissingImage($event)">
+            </div>
+            <div class="col-sm ml-3">
+                <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="selectedName()"></div>
+                <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="selectedArtist()"></div></strong>
+                <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="selectedYear()"></div>
+            </div>
+
+            <div class="col-sm">
+                <button class="float-right btn btn-success" (click)="saveArtwork(); selected=false;">Add</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <table class="table"> 
         <thead class="thead-dark"><tr><th>My artworks</th></tr></thead>
         <tr *ngFor="let item of getArtworks(); let i = index">
             <td>
             <div class="row">
                 <div class="col-12">
-
-                    <!-- <div class="col-sm-12"> -->
                         <div class="row align-items-end">
                             <div class="col-md-4 col-sm-6">
                                 <img src="{{item.url}}" alt="{{item.name}}" height="auto" style="width:100%" (error)="handleMissingImage($event)">
@@ -36,11 +83,7 @@
                             <div><button class="btn btn-danger ml-2" (click)="deleteArtwork(item._id)">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteConfirmation_Id=''">Cancel</button></div>
                             </div>
                         </span>
-                    <!-- </div> -->
                 </div>
-                <!-- </div> -->
-            <!-- </td>
-            <td> -->
 
             </div>
             </td>
@@ -53,8 +96,7 @@
                         <div class="col-md-4 col-sm-6">
                             <img src="{{selectedURL()}}" alt="{{selectedName()}}" height="auto" style="width:100%" (error)="handleMissingImage($event)">
                         </div>
-            <!-- </td>
-            <td class="align-bottom"> -->
+
                         <div class="col-sm ml-3">
                             <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="selectedName()"></div>
                             <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="selectedArtist()"></div></strong>
@@ -67,8 +109,6 @@
 
                     </div>
                 </div>
-            <!-- </td>
-            <td> -->
 
             </div>
             </td>
@@ -76,10 +116,10 @@
         <tr>
         <td>
     </td></tr>
-    </table>
-    <div class="row mb-5 ml-1 mr-1">
+    </table> -->
+    <div class="row pt-3 mb-5">
         <div class="ng-autocomplete" style="width: 100%;">
-            <span>{{configSettings.artworks_searchprompt}}</span>
+            <span><strong>{{configSettings.artworks_searchprompt}}</strong></span>
             <ng-autocomplete 
             [data]="data"
             [searchKeyword]="keyword"
