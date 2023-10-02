@@ -49,12 +49,10 @@ export class LinkText{
                         const regExp = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube(-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/;
                         // const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
                         const mymatch = match.getAnchorHref().match(regExp);
-                        console.log(mymatch);
                         let params = "";
                         if(mymatch[7]) {
                             params = mymatch[7].slice(1);
                             params = "?" + params;
-                            console.log(params);
                         }
                         if(mymatch && mymatch[6].length === 11) {
                             return '<iframe width="320" height="180" src="' + 'https://www.youtube.com/embed/' + mymatch[6] + params + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
