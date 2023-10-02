@@ -178,21 +178,23 @@ import { ScriptSet } from "./scriptSet.model";
     private collectionURL = "https://api2.mksmart.org/query/" + this.configSettings.collectionDatasetUUID + "/sparql?query=" + this.configSettings.collectionQuery;
       
     getCollection(): Observable<CollectionArtwork> {
-
         const obs = new Observable((observer) => {
             this.http.get<any>(this.collectionURL, this.configSettings.config).subscribe(data => {
+                console.log(data);
                 let resarray:  Array<CollectionArtwork> = [];
-                //should check here for error from endpoint
-                    for(var item of data["results"]["bindings"]) {
-                        observer.next(new CollectionArtwork(item["title"]["value"], item["creatorname"]["value"], item["year"]["value"], item["artworkurl"]["value"], item["title"]["value"]+', '+item["creatorname"]["value"]+', '+item["year"]["value"]));
-                    }
+                for(var item of data["results"]["bindings"]) {
+                    observer.next(new CollectionArtwork(item["title"]["value"], item["creatorname"]["value"], item["year"]["value"], item["artworkurl"]["value"], item["title"]["value"]+', '+item["creatorname"]["value"]+', '+item["year"]["value"]));
+                }
+                observer.complete();
+            },
+                error=>{
+                    console.log("error",error);
                     observer.complete();
-            });
+                }
+            );
         });
         return obs;
     }
-    
-
 }
 
 
