@@ -56,7 +56,7 @@ export class LinkText{
                         }
                         if(mymatch && mymatch[6].length === 11) {
                             // small screen
-                            return '<iframe width="426" height="240" src="' + 'https://www.youtube.com/embed/' + mymatch[6] + params + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                            return '<iframe width="256" height="144" src="' + 'https://www.youtube.com/embed/' + mymatch[6] + params + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
                             // responsive full width
                             // return '<div class="container-iframe"><iframe class="responsive-iframe" src="' + 'https://www.youtube.com/embed/' + mymatch[6] + params + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>';
                         }
