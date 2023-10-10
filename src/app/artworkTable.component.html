@@ -2,7 +2,7 @@
 <div style="width: 100%; background-color: white;" class="border pl-3 pr-3">
 <p class="lead">{{configSettings.artworks_para1}}</p>
 <div *ngIf="isLoggedIn()" class="form-group">
-    <div class="col-12 border bg-dark text-white pt-1 pb-1">
+    <div class="bg-white text-black pl-1 pt-1 pb-1 border-top-0 border-left-0 border-right-0" style="border-width: 2px; border-style: solid;">
         <strong>My artworks</strong>
     </div>
     <div *ngFor="let item of getArtworks(); let i = index" class="border-bottom mt-3 pb-3">

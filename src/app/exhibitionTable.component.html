@@ -2,8 +2,8 @@
 <div style="width: 100%; background-color: white;" class="border pl-3 pr-3">
 <p class="lead">Manage the exhibitions that can be associated with scripts.</p>
 <div *ngIf="isAdmin()" class="form-group">
-    <table class="table table-sm border"> 
-        <thead class="thead-dark"><tr><th>Exhibition</th><th></th><th></th></tr></thead>
+    <table class="table table-sm"> 
+        <thead><tr><th style="border-top: 0px;">Exhibitions</th><th style="border-top: 0px;"></th><th style="border-top: 0px;"></th></tr></thead>
         <tr *ngFor="let item of getExhibitions(); let i = index">
             <td class="col-md" *ngIf="!tableEditing || editrow!=item._id;">
                 <div class="row" *ngIf="deleteConfirmation_Id==item._id">

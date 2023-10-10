@@ -4,7 +4,7 @@
 <div class="form-group">
     <span *ngIf="getCurrentUserID()==1">
         <table class="table table-sm"> 
-            <thead class="thead-dark"><tr><th>ID</th><th>Username</th><th>Display name</th><th>Password</th><th></th><th></th></tr></thead>
+            <thead><tr><th style="border-top: 0px;">ID</th><th style="border-top: 0px;">Username</th><th style="border-top: 0px;">Display name</th><th style="border-top: 0px;">Password</th><th style="border-top: 0px;"></th><th style="border-top: 0px;"></th></tr></thead>
             <tbody class="text-black"> 
                 <tr *ngFor="let item of getUsers(); let i = index"> 
                     <td>
