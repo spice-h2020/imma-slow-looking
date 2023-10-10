@@ -848,7 +848,7 @@
                 <p>
                     Shuffle selected stages each time the script is used.
                 </p>
-                    <div *ngFor="let stage of model.selectedScript.stages; let i = index" class="form-check mr-1 pb-2 ml-1">
+                    <div *ngFor="let stage of model.selectedScript.stages; let i = index" class="form-check mr-1 pb-2 ml-2">
                         <input 
                         class="form-check-input"
                         type="checkbox"
@@ -858,6 +858,25 @@
                         />
                         <label class="form-check-label">{{i+1}} {{stage.title}} <strong>Type:</strong> {{stage.stagetype}}</label>
                     </div>
+                <br/><br/>
+            </ng-template>
+        </li>
+        <li ngbNavItem *ngIf="isAdmin()">
+            <a ngbNavLink><strong>Exhibitions</strong></a>
+            <ng-template ngbNavContent>
+                <p>
+                    Choose any exhibitions related to your script.
+                </p>
+                <div *ngFor="let exhibition of getExhibitions()" class="form-check mr-1 pb-2 ml-2">
+                    <input
+                    class="form-check-input"
+                    type="checkbox"
+                    [value]=exhibition._id
+                    [ngModel] = "model.selectedScript.exhibitionids.includes(exhibition._id)"
+                    (change) = "exhibitionsChange(model.selectedScript, exhibition._id, $event)"
+                    />
+                    <label class="form-check-label">{{exhibition.name}}&nbsp;&nbsp;</label>
+                </div>
                 <br/><br/>
             </ng-template>
         </li>
