@@ -25,6 +25,12 @@ export class ScriptWizardComponent {
 
     constructor(public currentuser: CurrentUser, public model: Model){}
 
+    //for filtering personal artwork collection
+    searchText = '';
+
+    //for filtering scripts
+    searchScriptText = '';
+
     reloadScripts() {
         this.model.refreshScripts();
     }

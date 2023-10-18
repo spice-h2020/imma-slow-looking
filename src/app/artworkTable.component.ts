@@ -16,6 +16,9 @@ export class ArtworkTableComponent {
         (event.target as HTMLImageElement).src = 'assets/img/488199.png';
     }
 
+    //for filtering personal artwork collection
+    searchText = '';
+
     // configuration settings
     configSettings = new ConfigSettings;
 

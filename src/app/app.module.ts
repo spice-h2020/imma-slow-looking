@@ -36,6 +36,8 @@ import { GALLERY_CONFIG } from 'ng-gallery';
 import { ScriptWizardComponent } from './scriptWizard.component';
 import { SelectorTableComponent } from './selectorTable.component';
 import { SelectorComponent } from './selector.component';
+import { FilterPipe } from './filter.pipe';
+import { FilterScriptPipe } from './filterscript.pipe';
 
 
 @NgModule({
@@ -57,7 +59,9 @@ import { SelectorComponent } from './selector.component';
     ExhibitionTableComponent,
     ScriptWizardComponent,
     SelectorTableComponent,
-    SelectorComponent
+    SelectorComponent,
+    FilterPipe,
+    FilterScriptPipe
     ],
   imports: [
     BrowserModule,
