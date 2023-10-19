@@ -140,6 +140,11 @@ export class OverviewComponent implements OnInit {
             if(script.homepageartworkid != undefined && script.artworkids.length > 0 && script.stages.length > 0) {
 
                 if(script.visible) {
+                    // add featured scripts
+                    if(script.featured) {
+                        this.firstScripts.push(script);
+                    }
+
                     //add to the artwork result array
                     if(script.artworkids) {
                         for(var artworkid of script.artworkids) {
@@ -219,19 +224,19 @@ export class OverviewComponent implements OnInit {
         // }
 
         //get selected scripts for feature
-        let selectedScriptIDs: string[] = ["61a2360ae340f23adf713622","619e459ef7632053c7150cff","6207c0cf1a9f272a5861698c","623f19ed718b224bc41a2c79","6422a0ea446a01749c076902","644293dbd308f2553a534e02","642dc34f887f8260ac022f36"];
+        // let selectedScriptIDs: string[] = ["61a2360ae340f23adf713622","619e459ef7632053c7150cff","6207c0cf1a9f272a5861698c","623f19ed718b224bc41a2c79","6422a0ea446a01749c076902","644293dbd308f2553a534e02","642dc34f887f8260ac022f36"];
 
-        let shuffledSelectedScriptIDs: string[] = selectedScriptIDs
-        .map(value => ({ value, sort: Math.random() }))
-        .sort((a, b) => a.sort - b.sort)
-        .map(({ value }) => value);
+        // let shuffledSelectedScriptIDs: string[] = selectedScriptIDs
+        // .map(value => ({ value, sort: Math.random() }))
+        // .sort((a, b) => a.sort - b.sort)
+        // .map(({ value }) => value);
 
-        for(var selectedScriptID of shuffledSelectedScriptIDs) {
-            let ind = this.scriptResults.findIndex(x => x.script._id == selectedScriptID);
-            if(ind > -1) {
-                this.firstScripts.push(this.scriptResults[ind].script);
-            }
-        }
+        // for(var selectedScriptID of shuffledSelectedScriptIDs) {
+        //     let ind = this.scriptResults.findIndex(x => x.script._id == selectedScriptID);
+        //     if(ind > -1) {
+        //         this.firstScripts.push(this.scriptResults[ind].script);
+        //     }
+        // }
     }
 
     getArtworkFromId(_id: string) {

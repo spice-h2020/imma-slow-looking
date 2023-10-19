@@ -1,7 +1,7 @@
 <!-- <paOverviewBar></paOverviewBar> -->
 <paNavBar></paNavBar>
 <div class="accordion" id="accordionExample">
-    <div class="accordion-item">
+    <div class="accordion-item" *ngIf="firstScripts.length > 0">
       <h2 class="accordion-header" id="heading1">
         <button class="accordion-button text-white museum-colour" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
             <span><h4>Featured</h4>
@@ -11,7 +11,7 @@
       </h2>
       <div style="background-color: black;" id="collapse1" class="accordion-collapse collapse show text-white" aria-labelledby="heading1">
           <div class="accordion-body">
-              <ngb-carousel *ngIf="firstScripts.length > 0">
+              <ngb-carousel [showNavigationArrows]="firstScripts.length > 1" [showNavigationIndicators]="firstScripts.length > 1">
                 <ng-template ngbSlide *ngFor="let script of firstScripts">
                   <div class="picsum-img-wrapper" style="height: 700px; text-align: center;" *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);">
                     <div class="col-md-6 col-sm-8 col-10 text-center mx-auto" style="width: 100%;">

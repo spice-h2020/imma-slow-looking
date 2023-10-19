@@ -19,6 +19,7 @@ export class Script {
         public autoapproved: boolean = false,
         public description: string = "",
         public exhibitionids: Array<string> = [],
-        public removed: boolean = false
+        public removed: boolean = false,
+        public featured: boolean = false
     ) {}
 }

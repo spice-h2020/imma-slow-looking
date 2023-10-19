@@ -101,19 +101,5 @@ export class OtherPeopleComponent {
         return usedArtworks;
     }
 
-    getScripts() {
-        const scripts = this.model.getScripts();
-        console.log(scripts);
-        for(var script of scripts) {
-            let newStages: Stage[] = [];
-            for(var stage of script.stages) {
-                stage.shuffle = false;
-                newStages.push(stage);
-            }
-            script.stages = newStages;
-            console.log(script);
-            // this.model.saveScript(script);
-        }
-    }
 
 }

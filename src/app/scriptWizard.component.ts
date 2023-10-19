@@ -99,6 +99,11 @@ export class ScriptWizardComponent {
         this.saveScript(script);
     }
 
+    toggleScriptFeatured(script) {
+        script.featured = !script.featured;
+        this.saveScript(script);
+    }
+
     restoreScript(script) {
         script.removed = false;
         this.saveScript(script);
