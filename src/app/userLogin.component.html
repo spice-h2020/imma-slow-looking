@@ -1,6 +1,6 @@
 <paNavBar></paNavBar>
 <div style="width: 100%; background-color: white;" class="border pl-3 pr-3">
-<p class="lead">Login to Deep Viewpoints and see your contributions.</p>
+<p class="lead">Login to Deep Viewpoints.</p>
 <span *ngIf="getCurrentUserID()==undefined">
     <span>Username</span>
     <input type="text" class="form-control" [(ngModel)]="username"/>
@@ -17,7 +17,7 @@
 <!-- <br/>
 <br/>
 <br/> -->
-<table class="table table-sm">
+<table class="table table-sm" *ngIf="getActivitiesOfCurrentUser().length">
 <thead><tr><th style="border-top: 0px;">My responses</th><th style="border-top: 0px;"></thead>
 <tr *ngFor="let activity of getActivitiesOfCurrentUser();">
     <td>
