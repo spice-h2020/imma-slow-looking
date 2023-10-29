@@ -164,7 +164,12 @@ export class ExtraArtworks {
         new CollectionArtwork("Satyr playing flute", "Jacob Jordaens", "circa 1640", this.configSettings.baseURL+"assets/img/picture3.jpg", "Satyr playing flute, Jacob Jordaens, circa 1640"),
         new CollectionArtwork("The Hippopotamus and Crocodile Hunt", "Peter Paul Rubens", "1615–1616", this.configSettings.baseURL+"assets/img/picture4.jpg", "The Hippopotamus and Crocodile Hunt, Peter Paul Rubens, 1615–1616"),
         new CollectionArtwork("Anachorète endormi", "Joseph-Marie Vien", "1751", this.configSettings.baseURL+"assets/img/picture5.jpg", "Anachorète endormi, Joseph-Marie Vien, 1751"),
-        new CollectionArtwork("Festivities on the Coast (Calendimaggio)", "Agostino Tassi", "circa 1620", this.configSettings.baseURL+"assets/img/picture6.jpg", "Festivities on the Coast (Calendimaggio), Agostino Tassi, circa 1620")
+        new CollectionArtwork("Festivities on the Coast (Calendimaggio)", "Agostino Tassi", "circa 1620", this.configSettings.baseURL+"assets/img/picture6.jpg", "Festivities on the Coast (Calendimaggio), Agostino Tassi, circa 1620"),
+
+        new CollectionArtwork("Interior, view of organ, organ number 767","Wal, A.J. van der - Photographer","06-1997","https://www.orgelsite.nl/wp-content/uploads/2018/08/01017969Y.jpg","Interior, view of organ, organ number 767, Wal, A.J. van der - Photographer, 06-1997"),
+        new CollectionArtwork("Interior, view of organ, organ number 1665","Dukker, G.J. - Photographer","07-1997","https://www.orgelsite.nl/wp-content/uploads/2018/11/Wijk01Y.jpg","Interior, view of organ, organ number 1665, Dukker, G.J. - Photographer, 07-1997"),
+        new CollectionArtwork("Interior, view of organ, organ number 470","Wal, Galen, P. (Paul) van - Photographer","06-1997","https://www.orgelsite.nl/wp-content/uploads/2018/07/IMG4009Y.jpg","Interior, view of organ, organ number 470 , Wal, Galen, P. (Paul) van - Photographer , 06-1997"),
+
 
     ]
 
