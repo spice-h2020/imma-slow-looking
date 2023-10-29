@@ -10,7 +10,42 @@
             <h2>{{stage.title}}</h2>
 
             <div>
-                <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks);" class="row align-items-end mb-3">
+                <ng-container *ngIf="getArtworksFromIds(stage.includeartworks).length > 0">
+                    <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks).slice(0,1); let first = first" class="row align-items-end mb-3">
+                        <div class="col-sm-6">
+                            <div class="row" *ngIf="artwork.url">
+                                <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;" (error)="handleMissingImage($event)">
+                            </div>
+                            <div class="row" *ngIf="!artwork.url && artwork.fileLocation">
+                                <img src="{{artwork.fileLocation}}" style="cursor: pointer;" (error)="handleMissingImage($event)">
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="col-sm-12">
+                                <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.name"></div>
+                                <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></div></strong>
+                                <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="getArtworksFromIds(stage.includeartworks).length > 1">
+                    <div class="row itemsBlock">
+                        <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks).slice(1);" class="col-md-4 col-sm-6 col-12 pb-3">
+                            <div class="row">
+                                <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="height: auto; width: 100%; cursor: pointer;" (error)="handleMissingImage($event)">
+                            </div>
+                            <div class="row">
+                                <div class="ml-3">
+                                    <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.name"></div>
+                                    <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></div></strong>
+                                    <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <!-- <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks);" class="row align-items-end mb-3">
                     <div class="col-sm-6">
                         <div class="row" *ngIf="artwork.url">
                             <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;" (error)="handleMissingImage($event)">
@@ -26,7 +61,7 @@
                             <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <p style="white-space: pre-wrap;" [innerHTML]="stage.body | linkifyHtml"></p>
@@ -62,23 +97,41 @@
 
                 <div>
                     <!-- show included artworks -->
-                    <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3">
-                        <div class="col-sm-6">
-                            <div class="row" *ngIf="artwork.url">
-                                <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;" (error)="handleMissingImage($event)">
+                    <ng-container *ngIf="getArtworksFromIds(stage.includeartworks).length > 0">
+                        <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks).slice(0,1); let first = first" class="row align-items-end mb-3">
+                            <div class="col-sm-6">
+                                <div class="row" *ngIf="artwork.url">
+                                    <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;" (error)="handleMissingImage($event)">
+                                </div>
+                                <div class="row" *ngIf="!artwork.url && artwork.fileLocation">
+                                    <img src="{{artwork.fileLocation}}" style="cursor: pointer;" (error)="handleMissingImage($event)">
+                                </div>
                             </div>
-                            <div class="row" *ngIf="!artwork.url && artwork.fileLocation">
-                                <img src="{{artwork.fileLocation}}" style="cursor: pointer;" (error)="handleMissingImage($event)">
+                            <div class="col-sm">
+                                <div class="col-sm-12">
+                                    <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.name"></div>
+                                    <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></div></strong>
+                                    <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-sm">
-                            <div class="col-sm-12">
-                                <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.name"></div>
-                                <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></div></strong>
-                                <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></div>
+                    </ng-container>
+                    <ng-container *ngIf="getArtworksFromIds(stage.includeartworks).length > 1">
+                        <div class="row itemsBlock">
+                            <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks).slice(1);" class="col-md-4 col-sm-6 col-12 pb-3">
+                                <div class="row">
+                                    <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="height: auto; width: 100%; cursor: pointer;" (error)="handleMissingImage($event)">
+                                </div>
+                                <div class="row">
+                                    <div class="ml-3">
+                                        <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.name"></div>
+                                        <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></div></strong>
+                                        <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </ng-container>
                 </div>
 
                 <div class="alert alert-info" style="white-space: pre-wrap;" [innerHTML]="stage.help | linkifyHtml" *ngIf="stage.help"></div>
@@ -238,7 +291,42 @@
 
                 <div>
                     <!-- show included artworks -->
-                    <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3">
+                    <ng-container *ngIf="getArtworksFromIds(stage.includeartworks).length > 0">
+                        <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks).slice(0,1); let first = first" class="row align-items-end mb-3">
+                            <div class="col-sm-6">
+                                <div class="row" *ngIf="artwork.url">
+                                    <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;" (error)="handleMissingImage($event)">
+                                </div>
+                                <div class="row" *ngIf="!artwork.url && artwork.fileLocation">
+                                    <img src="{{artwork.fileLocation}}" style="cursor: pointer;" (error)="handleMissingImage($event)">
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="col-sm-12">
+                                    <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.name"></div>
+                                    <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></div></strong>
+                                    <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="getArtworksFromIds(stage.includeartworks).length > 1">
+                        <div class="row itemsBlock">
+                            <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks).slice(1);" class="col-md-4 col-sm-6 col-12 pb-3">
+                                <div class="row">
+                                    <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="height: auto; width: 100%; cursor: pointer;" (error)="handleMissingImage($event)">
+                                </div>
+                                <div class="row">
+                                    <div class="ml-3">
+                                        <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.name"></div>
+                                        <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></div></strong>
+                                        <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <!-- <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3">
                         <div class="col-sm-6">
                             <div class="row" *ngIf="artwork.url">
                                 <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;" (error)="handleMissingImage($event)">
@@ -254,7 +342,7 @@
                                 <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
 
@@ -332,7 +420,42 @@
 
                 <div>
                     <!-- show included artworks -->
-                    <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3">
+                    <ng-container *ngIf="getArtworksFromIds(stage.includeartworks).length > 0">
+                        <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks).slice(0,1); let first = first" class="row align-items-end mb-3">
+                            <div class="col-sm-6">
+                                <div class="row" *ngIf="artwork.url">
+                                    <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;" (error)="handleMissingImage($event)">
+                                </div>
+                                <div class="row" *ngIf="!artwork.url && artwork.fileLocation">
+                                    <img src="{{artwork.fileLocation}}" style="cursor: pointer;" (error)="handleMissingImage($event)">
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="col-sm-12">
+                                    <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.name"></div>
+                                    <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></div></strong>
+                                    <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="getArtworksFromIds(stage.includeartworks).length > 1">
+                        <div class="row itemsBlock">
+                            <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks).slice(1);" class="col-md-4 col-sm-6 col-12 pb-3">
+                                <div class="row">
+                                    <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="height: auto; width: 100%; cursor: pointer;" (error)="handleMissingImage($event)">
+                                </div>
+                                <div class="row">
+                                    <div class="ml-3">
+                                        <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.name"></div>
+                                        <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></div></strong>
+                                        <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <!-- <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks); let first = first" class="row align-items-end mb-3">
                         <div class="col-sm-6">
                             <div class="row" *ngIf="artwork.url">
                                 <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;" (error)="handleMissingImage($event)">
@@ -348,7 +471,7 @@
                                 <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
 
