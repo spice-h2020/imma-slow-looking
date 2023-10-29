@@ -136,8 +136,8 @@ export class OverviewComponent implements OnInit {
         this.exhibitions = this.activatedRoute.snapshot.data.model6;
 
         for(var script of this.scripts) {
-            //only include scripts with a homepageartwork, at least one artwork and at lest one stage
-            if(script.homepageartworkid != undefined && script.artworkids.length > 0 && script.stages.length > 0) {
+            //only include scripts not removed, with a homepageartwork, at least one artwork and at laest one stage
+            if(!script.removed && script.homepageartworkid != undefined && script.artworkids.length > 0 && script.stages.length > 0) {
 
                 if(script.visible) {
                     // add featured scripts
