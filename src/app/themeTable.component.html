@@ -60,7 +60,7 @@
             <td class="col-xs"> -->
         
                 <span *ngIf="tableEditing && editrow==item._id" style="float:right">
-                    <button class="btn btn-warning" (click)="tableEditing=false; addTheme(item); reloadThemes()" [disabled]="!item.name || !item.description">Save</button>
+                    <button class="btn btn-warning" (click)="tableEditing=false; addTheme(item);" [disabled]="!item.name || !item.description">Save</button>
                 </span>
             </td>
         </tr>
