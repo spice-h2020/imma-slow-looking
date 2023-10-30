@@ -52,26 +52,7 @@
         </div>
     </div>
 
-    <hr class="nr" *ngIf="selected && getArtworks().length"/>
-
-    <div *ngIf="selected" class="pt-3 pb-3">
-        <div class="row align-items-end">
-            <div class="col-md-4 col-sm-6">
-                <img src="{{selectedURL()}}" alt="{{selectedName()}}" height="auto" style="width:100%" (error)="handleMissingImage($event)">
-            </div>
-            <div class="col-sm ml-3">
-                <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="selectedName()"></div>
-                <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="selectedArtist()"></div></strong>
-                <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="selectedYear()"></div>
-            </div>
-
-            <div class="col-sm">
-                <button class="float-right btn btn-success" (click)="saveArtwork(); selected=false;">Add</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="row pt-3 mb-5">
+    <div class="row mb-3">
         <div class="ng-autocomplete" style="width: 100%;">
             <span><strong>{{configSettings.artworks_searchprompt}}</strong></span>
             <ng-autocomplete 
@@ -96,6 +77,23 @@
             <ng-template #notFoundTemplate let-notFound>
             <div [innerHTML]="notFound"></div>
             </ng-template>
+        </div>
+    </div>
+
+    <div *ngIf="selected" class="pb-3">
+        <div class="row align-items-end">
+            <div class="col-md-4 col-sm-6">
+                <img src="{{selectedURL()}}" alt="{{selectedName()}}" height="auto" style="width:100%" (error)="handleMissingImage($event)">
+            </div>
+            <div class="col-sm ml-3">
+                <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="selectedName()"></div>
+                <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="selectedArtist()"></div></strong>
+                <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="selectedYear()"></div>
+            </div>
+
+            <div class="col-sm">
+                <button class="float-right btn btn-success" (click)="saveArtwork(); selected=false;">Add</button>
+            </div>
         </div>
     </div>
     <br/>
