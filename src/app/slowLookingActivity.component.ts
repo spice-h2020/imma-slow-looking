@@ -764,6 +764,15 @@ export class SlowLookingActivityComponent implements OnInit {
         }
     }
 
+    statementOnlyScript(script: Script) {
+        for(var stage of script.stages) {
+            if(stage.stagetype != "statement") {
+                return false;
+            }
+        }
+        return true;
+    }
+    
     foo(i) {
         console.log(i);
         console.log(this.newActivity);
