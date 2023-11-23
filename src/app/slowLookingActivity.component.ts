@@ -312,26 +312,57 @@ export class SlowLookingActivityComponent implements OnInit {
         }
     }
 
+    activityContainsResponse() {
+        if(this.newActivity.actions) {
+            for(var action of this.newActivity.actions) {
+                if(action instanceof questionAction) {
+                    if(action.answer) {
+                        return true;
+                    }
+                }
+                if(action instanceof multiquestionAction) {
+                    for(var answer of action.answers) {
+                        if(answer.answer) {
+                            return true;
+                        }
+                    }
+                }
+                if(action instanceof storyAction) {
+                    if(action.answer) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     addActivity() {
         this.newActivity.editor = this.currentScript.owner;
-        
-        // add author to activity
-        let user = this.currentuser.getUser();
-        let userID = user.id;
-        if(userID == 0 || user.id == null) {
-            this.newActivity.author = "";
-            this.newActivity.authorname = "anonymous";
-        }
-        else {
-            this.newActivity.author = user._id;
-            if(user.displayname) {
-                this.newActivity.authorname = user.displayname;
+
+        //discard if activity is empty
+        if(this.activityContainsResponse()) {
+            // add author to activity
+            let user = this.currentuser.getUser();
+            let userID = user.id;
+            if(userID == 0 || user.id == null) {
+                this.newActivity.author = "";
+                this.newActivity.authorname = "anonymous";
             }
             else {
-                this.newActivity.authorname = user.username;
+                this.newActivity.author = user._id;
+                if(user.displayname) {
+                    this.newActivity.authorname = user.displayname;
+                }
+                else {
+                    this.newActivity.authorname = user.username;
+                }
             }
+            this.model.saveActivity(this.newActivity);
         }
-        this.model.saveActivity(this.newActivity);
+        else {
+            console.log("empty response discarded");
+        }
     }
 
     addActionToActivity(action: Action) {
@@ -771,14 +802,6 @@ export class SlowLookingActivityComponent implements OnInit {
             }
         }
         return true;
-    }
-    
-    foo(i) {
-        console.log(i);
-        console.log(this.newActivity);
-        console.log(this.newQuestionAction);
-        console.log(this.newStoryAction);
-        console.log(this.newMultiquestionAction);
     }
 
 }
