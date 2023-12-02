@@ -177,13 +177,24 @@
                         </ng-container>
                     </div>
                     <div class="row mb-3">
-                        <div>
+                        <div class="col-6 fs-6" style="color: rgb(89, 98, 105);">
                             {{multiquestionIndex+1}}/{{stage.questions.length}}
+                        </div>
+                        <div *ngIf="stage.required" class="col-6 text-right fs-6" style="color: rgb(89, 98, 105); width:100%;">
+                            (required)
                         </div>
                         <!-- <div class="col-2 mx-auto" style="min-width: 11em;"> -->
                         <div class="mx-auto text-center" style="width: 100%;">
+                            <div class="row">
+                                <div class="col-sm-6 text-center text-sm-right p-0">
+                                    <button *ngIf="multiquestionIndex > 0" class="mb-1 mr-sm-1 btn btn-warning" style="width: 11em" (click)="updateAnswers(multiquestionIndex, answervalue.value); setAnswerValue(multiquestionIndex-1); submittedAnswer=(!stage.questions[multiquestionIndex].choice||stage.questions[multiquestionIndex].options.length > 0); decrementMultiquestionIndex();"><i class="fa fa-arrow-left" aria-hidden="true"></i> Previous question</button> 
+                                </div>
+                                <div class="col-sm-6 text-center text-sm-left p-0">
+                                    <button *ngIf="multiquestionIndex < stage.questions.length-1" class="ml-sm-1 btn btn-warning" style="width: 11em" [disabled]="stage.required && !answervalue.value" (click)="updateAnswers(multiquestionIndex, answervalue.value); setAnswerValue(multiquestionIndex+1); submittedAnswer=(!stage.questions[multiquestionIndex].choice||stage.questions[multiquestionIndex].options.length > 0); incrementMultiquestionIndex(stage.questions.length-1);">Next question <i class="fa fa-arrow-right" aria-hidden="true"></i></button> 
+                                </div>
+                            </div>
                             <!-- <span *ngIf="submittedAnswer" class="text-warning ml-1">Your last response has been saved</span><br/> -->
-                            <span *ngIf="multiquestionIndex <= 0">
+                            <!-- <span *ngIf="multiquestionIndex <= 0">
                                 <button class="mb-1 mr-1 btn btn-warning" disabled="true" (click)="updateAnswers(multiquestionIndex, answervalue.value); submittedAnswer=(!stage.questions[multiquestionIndex].choice||stage.questions[multiquestionIndex].options.length > 0);"><i class="fa fa-arrow-left" aria-hidden="true"></i> Previous question</button> 
                             </span>
                             <span *ngIf="multiquestionIndex > 0">
@@ -194,7 +205,7 @@
                             </span>
                             <span *ngIf="multiquestionIndex < stage.questions.length-1">
                                 <button class="mb-1 ml-1 btn btn-warning" [disabled]="multiquestionIndex >= stage.questions.length-1" (click)="updateAnswers(multiquestionIndex, answervalue.value); setAnswerValue(multiquestionIndex+1); submittedAnswer=(!stage.questions[multiquestionIndex].choice||stage.questions[multiquestionIndex].options.length > 0); incrementMultiquestionIndex(stage.questions.length-1);">Next question <i class="fa fa-arrow-right" aria-hidden="true"></i></button> 
-                            </span>
+                            </span> -->
                         </div>
                         <!-- <div>
                             {{multiquestionIndex+1}}/{{stage.questions.length}}
@@ -208,7 +219,7 @@
                         </div>
                         <div class="text-right">
                             <button class="mr-2 btn btn-secondary" *ngIf="i != 0" (click)="multiquestionBack(multiquestionIndex, answervalue.value, stage, stage.questions, i, newMultiquestionAction)"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
-                            <button class="btn btn-secondary" (click)="multiquestionEnd(i, multiquestionIndex, answervalue.value, stage, stage.questions, newMultiquestionAction)" [routerLink]="routerLink">Close <i class="fa fa-close" aria-hidden="true"></i></button>
+                            <button class="btn btn-secondary" [disabled]="stage.required && !(answervalue.value && (filterEmptyMultiquestionAnswers().length >= stage.questions.length || (!isFilledMultiquestionanswer(multiquestionIndex) && filterEmptyMultiquestionAnswers().length == stage.questions.length-1)))" (click)="multiquestionEnd(i, multiquestionIndex, answervalue.value, stage, stage.questions, newMultiquestionAction)" [routerLink]="routerLink">Close <i class="fa fa-close" aria-hidden="true"></i></button>
                         </div>
                         <div class="text-right mb-3">
                             <span *ngIf="!statementOnlyScript(currentScript)" class="fs-6" style="color: rgb(89, 98, 105);">Press <strong>Close</strong> to save your response</span>
@@ -221,7 +232,7 @@
                         </div>
                         <div class="text-right mb-3">
                             <button class="mr-2 btn btn-secondary" *ngIf="i != 0" (click)="multiquestionBack(multiquestionIndex, answervalue.value, stage, stage.questions, i, newMultiquestionAction)"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
-                            <button class="btn btn-secondary" (click)="multiquestionContinue(multiquestionIndex, answervalue.value, stage, stage.questions, i, newMultiquestionAction)">Continue <i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+                            <button class="btn btn-secondary" [disabled]="stage.required && !(answervalue.value && (filterEmptyMultiquestionAnswers().length >= stage.questions.length || (!isFilledMultiquestionanswer(multiquestionIndex) && filterEmptyMultiquestionAnswers().length == stage.questions.length-1)))" (click)="multiquestionContinue(multiquestionIndex, answervalue.value, stage, stage.questions, i, newMultiquestionAction)">Continue <i class="fa fa-chevron-right" aria-hidden="true"></i></button>
                         </div>
                     </div>
                 </ng-container>
@@ -251,12 +262,15 @@
                     <div class="row mb-3">
                         <!-- <div class="col">&nbsp;
                         </div> -->
-                        <div>
+                        <div class="col-6 fs-6" style="color: rgb(89, 98, 105);">
                             {{multiquestionIndex+1}}/{{stage.questions.length}}
+                        </div>
+                        <div *ngIf="stage.required" class="col-6 text-right fs-6" style="color: rgb(89, 98, 105); width:100%;">
+                            (required)
                         </div>
                         <div class="mx-auto text-center" style="width: 100%;">
                             <!-- <span *ngIf="submittedAnswer" class="text-warning ml-1">Your answer has been saved</span><br/> -->
-                            <button class="mb-1 btn btn-warning" (click)="updateAnswers(multiquestionIndex, answervalue.value); submittedAnswer=(!stage.questions[multiquestionIndex].choice||stage.questions[multiquestionIndex].options.length > 0); randomiseQuestion(stage.questions.length-1);">Shuffle question <i class="fa fa-refresh" aria-hidden="true"></i></button>
+                            <button class="mb-1 btn btn-warning"  (click)="updateAnswers(multiquestionIndex, answervalue.value); submittedAnswer=(!stage.questions[multiquestionIndex].choice||stage.questions[multiquestionIndex].options.length > 0); randomiseQuestion(stage.questions.length-1);">Shuffle question <i class="fa fa-refresh" aria-hidden="true"></i></button>
                         </div>
                         <!-- <div class="col">&nbsp;
                         </div> -->
@@ -270,7 +284,7 @@
                         </div>
                         <div class="text-right">
                             <button class="mr-2 btn btn-secondary" *ngIf="i != 0" (click)="multiquestionBack(multiquestionIndex, answervalue.value, stage, stage.questions, i, newMultiquestionAction)"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
-                            <button class="btn btn-secondary" (click)="multiquestionEnd(i, multiquestionIndex, answervalue.value, stage, stage.questions, newMultiquestionAction)" [routerLink]="routerLink">Close <i class="fa fa-close" aria-hidden="true"></i></button>
+                            <button class="btn btn-secondary" [disabled]="stage.required && !(answervalue.value && (filterEmptyMultiquestionAnswers().length >= stage.questions.length || (!isFilledMultiquestionanswer(multiquestionIndex) && filterEmptyMultiquestionAnswers().length == stage.questions.length-1)))" (click)="multiquestionEnd(i, multiquestionIndex, answervalue.value, stage, stage.questions, newMultiquestionAction)" [routerLink]="routerLink">Close <i class="fa fa-close" aria-hidden="true"></i></button>
                         </div>
                         <div class="text-right mb-3">
                             <span *ngIf="!statementOnlyScript(currentScript)" class="fs-6" style="color: rgb(89, 98, 105);">Press <strong>Close</strong> to save your response</span>
@@ -283,10 +297,11 @@
                         </div>
                         <div class="text-right mb-3">
                             <button class="mr-2 btn btn-secondary" *ngIf="i != 0" (click)="multiquestionBack(multiquestionIndex, answervalue.value, stage, stage.questions, i, newMultiquestionAction)"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
-                            <button class="btn btn-secondary" (click)="multiquestionContinue(multiquestionIndex, answervalue.value, stage, stage.questions, i, newMultiquestionAction)">Continue <i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+                            <button class="btn btn-secondary" [disabled]="stage.required && !(answervalue.value && (filterEmptyMultiquestionAnswers().length >= stage.questions.length || (!isFilledMultiquestionanswer(multiquestionIndex) && filterEmptyMultiquestionAnswers().length == stage.questions.length-1)))" (click)="multiquestionContinue(multiquestionIndex, answervalue.value, stage, stage.questions, i, newMultiquestionAction)">Continue <i class="fa fa-chevron-right" aria-hidden="true"></i></button>
                         </div>
                     </div>
                 </span>
+                
             <!-- </div> -->
         </div>
 
@@ -367,10 +382,11 @@
                 </div>
                 <div *ngIf="!stage.question.choice" class="mb-3">
                     <textarea class="col-sm-12" rows="3" class="form-control" [(ngModel)]="newQuestionAction.answer"></textarea>
+                    <div *ngIf="stage.required" class="text-right fs-6" style="color: rgb(89, 98, 105); width:100%;">(required)</div>
                 </div>
                 <!-- radio -->
                 <ng-container *ngIf="!stage.question.mulitselect">
-                    <div *ngIf="stage.question.choice" class="col-sm-12 mb-3">
+                    <div *ngIf="stage.question.choice" class="col-sm-12 mb-3 p-0">
                         <div *ngFor="let option of stage.question.options" class="form-check ml-1">
                             <input
                                 class="form-check-input"
@@ -381,11 +397,12 @@
                             />
                             <label class="form-check-label">{{option}}</label><br/>
                         </div>
+                        <div *ngIf="stage.required" class="text-right fs-6" style="color: rgb(89, 98, 105); width:100%;">(required)</div>
                     </div>
                 </ng-container>
                 <!-- checkbox -->
                 <ng-container *ngIf="stage.question.mulitselect">
-                    <div *ngIf="stage.question.choice" class="col-sm-12 mb-3">
+                    <div *ngIf="stage.question.choice" class="col-sm-12 mb-3 p-0">
                         <div *ngFor="let option of stage.question.options" class="form-check ml-1">
                             <input
                                 class="form-check-input"
@@ -396,6 +413,7 @@
                             />
                             <label class="form-check-label">{{option}}</label><br/>
                         </div>
+                        <div *ngIf="stage.required" class="text-right fs-6" style="color: rgb(89, 98, 105); width:100%;">(required)</div>
                     </div>
                 </ng-container>
                 <!-- return to list if last stage -->
@@ -405,7 +423,7 @@
                     </div>
                     <div class="text-right">
                         <button class="mr-2 btn btn-secondary" *ngIf="i != 0" (click)="questionBack(i, stage, stage.question.title, newQuestionAction);"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
-                        <button class="btn btn-secondary" (click)="questionEnd(i, stage, stage.question.title, newQuestionAction);" [routerLink]="routerLink">Close <i class="fa fa-close" aria-hidden="true"></i></button>
+                        <button class="btn btn-secondary" [disabled]="stage.required && !this.newQuestionAction.answer" (click)="questionEnd(i, stage, stage.question.title, newQuestionAction);" [routerLink]="routerLink">Close <i class="fa fa-close" aria-hidden="true"></i></button>
                     </div>
                     <div class="text-right mb-3">
                         <span *ngIf="!statementOnlyScript(currentScript)" class="fs-6" style="color: rgb(89, 98, 105);">Press <strong>Close</strong> to save your response</span>
@@ -418,7 +436,7 @@
                     </div>
                     <div class="text-right mb-3">
                         <button class="mr-2 btn btn-secondary" *ngIf="i != 0" (click)="questionBack(i, stage, stage.question.title, newQuestionAction);"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
-                        <button class="btn btn-secondary" (click)="questionContinue(i, stage, stage.question.title, newQuestionAction);">Continue <i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+                        <button class="btn btn-secondary" [disabled]="stage.required && !this.newQuestionAction.answer" (click)="questionContinue(i, stage, stage.question.title, newQuestionAction);">Continue <i class="fa fa-chevron-right" aria-hidden="true"></i></button>
                     </div>
                 </div>
             </div>
@@ -494,6 +512,7 @@
                 <!-- get the answer -->
                 <div class="mb-3">
                     <textarea class="col-sm-12" rows="3" class="form-control" [(ngModel)]="newStoryAction.answer"></textarea>
+                    <div *ngIf="stage.required" class="text-right fs-6" style="color: rgb(89, 98, 105); width:100%;">(required)</div>
                 </div>
                 
                 <!-- return to list if last stage -->
@@ -503,7 +522,7 @@
                     </div>
                     <div class="text-right">
                         <button class="mr-2 btn btn-secondary" *ngIf="i != 0" (click)="storyBack(i, stage, stage.body, newStoryAction);"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
-                        <button class="btn btn-secondary" (click)="storyEnd(i, stage, stage.body, newStoryAction);" [routerLink]="routerLink">Close <i class="fa fa-close" aria-hidden="true"></i></button>
+                        <button class="btn btn-secondary" [disabled]="stage.required && !newStoryAction.answer" (click)="storyEnd(i, stage, stage.body, newStoryAction);" [routerLink]="routerLink">Close <i class="fa fa-close" aria-hidden="true"></i></button>
                     </div>
                     <div class="text-right mb-3">
                         <span *ngIf="!statementOnlyScript(currentScript)" class="fs-6" style="color: rgb(89, 98, 105);">Press <strong>Close</strong> to save your response</span>
@@ -517,7 +536,7 @@
                     </div>
                     <div class="text-right mb-3">
                         <button class="mr-2 btn btn-secondary" *ngIf="i != 0" (click)="storyBack(i, stage, stage.body, newStoryAction);"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
-                        <button class="btn btn-secondary" (click)="storyContinue(i, stage, stage.body, newStoryAction);">Continue <i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+                        <button class="btn btn-secondary" [disabled]="stage.required && !newStoryAction.answer" (click)="storyContinue(i, stage, stage.body, newStoryAction);">Continue <i class="fa fa-chevron-right" aria-hidden="true"></i></button>
                     </div>
                 </div>
             </div>

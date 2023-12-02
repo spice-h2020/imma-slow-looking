@@ -457,9 +457,10 @@ export class SlowLookingActivityComponent implements OnInit {
 
     resetmultiquestionindex() {
         if(this.currentScript.stages[this.slowLookingCurrentScriptStageIndex].stagetype == "multiquestion") {
+
+            this.remainingMultiquestions = Array.from(Array((this.currentScript.stages[this.slowLookingCurrentScriptStageIndex] as multiquestionStage).questions.length).keys()).map(x => x);
+
             if(!(this.currentScript.stages[this.slowLookingCurrentScriptStageIndex] as multiquestionStage).sequential) {
-                this.remainingMultiquestions = Array.from(Array((this.currentScript.stages[this.slowLookingCurrentScriptStageIndex] as multiquestionStage).questions.length).keys()).map(x => x);
-     
                 let selectednum = this.randomInt(0, this.remainingMultiquestions.length-1);
                 this.multiquestionIndex=this.remainingMultiquestions[selectednum];
                 this.setAnswerValue(this.remainingMultiquestions[selectednum]);
@@ -505,7 +506,6 @@ export class SlowLookingActivityComponent implements OnInit {
         if(this.slowLookingCurrentScriptStageIndex >= 0) {
             this.getActionOfActivity(this.slowLookingCurrentScriptStageIndex);
         }
-
         this.resetmultiquestionindex();
 
         this.showup();
@@ -804,4 +804,18 @@ export class SlowLookingActivityComponent implements OnInit {
         return true;
     }
 
+    isFilledMultiquestionanswer(index) {
+        let ind = this.newMultiquestionAction.answers.findIndex(x => x.question == index);
+        if(ind > -1) {
+            return this.newMultiquestionAction.answers[ind].answer != '';
+        }
+        else {
+            return false;
+        }
+    }
+
+    filterEmptyMultiquestionAnswers() {
+        return this.newMultiquestionAction.answers.filter(x => x.answer != '');
+    }
+    
 }
