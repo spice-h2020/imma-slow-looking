@@ -22,6 +22,7 @@ import { ScriptWizardComponent } from './scriptWizard.component';
 import { SelectorTableComponent } from './selectorTable.component';
 import { ModelResolver7 } from './model.resolver7';
 import { SelectorComponent } from './selector.component';
+import { ThankyouComponent } from './thankyou.component';
 
 const routes: Routes = [
   { path: 'gallery', component: HomepageComponent, resolve: { model1: ModelResolver1, model2: ModelResolver2, model3: ModelResolver3 } },
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path: 'select/:id', component: SelectorComponent, resolve: { model1: ModelResolver1, model7: ModelResolver7 } },
   { path: 'allResponses/:id', component: AllResponsesComponent, resolve: { model1: ModelResolver1, model2: ModelResolver2, model4: ModelResolver4 } },
   { path: 'home', component: OverviewComponent, resolve: {model1: ModelResolver1, model2: ModelResolver2, model3: ModelResolver3, model6: ModelResolver6}},
+  { path: 'end', component: ThankyouComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home'}
 ];

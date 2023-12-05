@@ -11,14 +11,14 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/home" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Home</a>
                 </li>
-                <li *ngIf="!isLoggedOut()" class="nav-item">
-                  <a class="nav-link" routerLink="/gallery" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">In-gallery</a>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/gallery" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">All scripts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/otherPeople" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">All responses</a>
                 </li>
                 <li *ngIf="!isLoggedOut()" class="nav-item">
-                    <a class="nav-link" routerLink="/otherPeople" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Responses</a>
-                </li>
-                <li *ngIf="!isLoggedOut()" class="nav-item">
-                  <a class="nav-link" routerLink="/wizard" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Scripts</a>
+                  <a class="nav-link" routerLink="/wizard" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">My scripts</a>
                 </li>
                 <li *ngIf="!isLoggedOut()" class="nav-item">
                   <a class="nav-link" routerLink="/artworks" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">{{configSettings.navbar_menu5}}</a>

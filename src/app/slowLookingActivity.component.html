@@ -177,11 +177,11 @@
                         </ng-container>
                     </div>
                     <div class="row mb-3">
-                        <div class="col-6 fs-6" style="color: rgb(89, 98, 105);">
-                            {{multiquestionIndex+1}}/{{stage.questions.length}}
+                        <div class="col-6 fs-6" style="color: rgb(89, 98, 105); width:100%;">
+                            <ng-container *ngIf="stage.required">(required)</ng-container> 
                         </div>
-                        <div *ngIf="stage.required" class="col-6 text-right fs-6" style="color: rgb(89, 98, 105); width:100%;">
-                            (required)
+                        <div class="col-6 fs-6 text-right" style="color: rgb(89, 98, 105);">
+                            {{multiquestionIndex+1}}/{{stage.questions.length}}
                         </div>
                         <!-- <div class="col-2 mx-auto" style="min-width: 11em;"> -->
                         <div class="mx-auto text-center" style="width: 100%;">
@@ -262,11 +262,11 @@
                     <div class="row mb-3">
                         <!-- <div class="col">&nbsp;
                         </div> -->
-                        <div class="col-6 fs-6" style="color: rgb(89, 98, 105);">
-                            {{multiquestionIndex+1}}/{{stage.questions.length}}
+                        <div  class="col-6  fs-6" style="color: rgb(89, 98, 105); width:100%;">
+                            <ng-container *ngIf="stage.required">(required)</ng-container> 
                         </div>
-                        <div *ngIf="stage.required" class="col-6 text-right fs-6" style="color: rgb(89, 98, 105); width:100%;">
-                            (required)
+                        <div class="col-6 fs-6 text-right" style="color: rgb(89, 98, 105);">
+                            {{multiquestionIndex+1}}/{{stage.questions.length}}
                         </div>
                         <div class="mx-auto text-center" style="width: 100%;">
                             <!-- <span *ngIf="submittedAnswer" class="text-warning ml-1">Your answer has been saved</span><br/> -->
@@ -382,7 +382,7 @@
                 </div>
                 <div *ngIf="!stage.question.choice" class="mb-3">
                     <textarea class="col-sm-12" rows="3" class="form-control" [(ngModel)]="newQuestionAction.answer"></textarea>
-                    <div *ngIf="stage.required" class="text-right fs-6" style="color: rgb(89, 98, 105); width:100%;">(required)</div>
+                    <div *ngIf="stage.required" class="fs-6" style="color: rgb(89, 98, 105); width:100%;">(required)</div>
                 </div>
                 <!-- radio -->
                 <ng-container *ngIf="!stage.question.mulitselect">
@@ -397,7 +397,7 @@
                             />
                             <label class="form-check-label">{{option}}</label><br/>
                         </div>
-                        <div *ngIf="stage.required" class="text-right fs-6" style="color: rgb(89, 98, 105); width:100%;">(required)</div>
+                        <div *ngIf="stage.required" class="fs-6" style="color: rgb(89, 98, 105); width:100%;">(required)</div>
                     </div>
                 </ng-container>
                 <!-- checkbox -->
@@ -413,7 +413,7 @@
                             />
                             <label class="form-check-label">{{option}}</label><br/>
                         </div>
-                        <div *ngIf="stage.required" class="text-right fs-6" style="color: rgb(89, 98, 105); width:100%;">(required)</div>
+                        <div *ngIf="stage.required" class="fs-6" style="color: rgb(89, 98, 105); width:100%;">(required)</div>
                     </div>
                 </ng-container>
                 <!-- return to list if last stage -->
@@ -512,7 +512,7 @@
                 <!-- get the answer -->
                 <div class="mb-3">
                     <textarea class="col-sm-12" rows="3" class="form-control" [(ngModel)]="newStoryAction.answer"></textarea>
-                    <div *ngIf="stage.required" class="text-right fs-6" style="color: rgb(89, 98, 105); width:100%;">(required)</div>
+                    <div *ngIf="stage.required" class="fs-6" style="color: rgb(89, 98, 105); width:100%;">(required)</div>
                 </div>
                 
                 <!-- return to list if last stage -->

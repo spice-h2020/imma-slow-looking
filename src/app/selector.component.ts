@@ -24,6 +24,14 @@ export class SelectorComponent implements OnInit {
 
         let _id = this.activatedRoute.snapshot.params.id;
 
+        let returnparam:string = null;
+
+        this.activatedRoute.queryParams
+        .subscribe(params => {
+            returnparam = params.return;
+        }
+        );
+
         let scriptsets: ScriptSet[] = this.activatedRoute.snapshot.data.model7;
 
         //get the _id from ScriptSet
@@ -38,7 +46,12 @@ export class SelectorComponent implements OnInit {
             let randomNumber = this.randomInt(0, this.scriptids.length-1);
 
             //go to it
-            this.router.navigate(['slowLooking',this.scriptids[randomNumber]]);
+            if(returnparam) {
+                this.router.navigate(['slowLooking',this.scriptids[randomNumber]],{queryParams: {return:'end'}});
+            }
+            else {
+                this.router.navigate(['slowLooking',this.scriptids[randomNumber]]);
+            }
 
         }
 

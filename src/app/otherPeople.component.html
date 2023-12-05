@@ -43,7 +43,7 @@
 
                             <div class="col-sm-12">
                                 <div *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);" class="row align-items-end mb-3">
-                                    <div class="col-md-6 col-sm-8">
+                                    <div class="col-sm-6">
                                         <div class="row" *ngIf="artwork.url">
                                             <img src="{{artwork.url}}" alt="{{artwork.name}}" style="width: 100%" (error)="handleMissingImage($event)">
                                         </div>

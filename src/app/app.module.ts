@@ -38,6 +38,7 @@ import { SelectorTableComponent } from './selectorTable.component';
 import { SelectorComponent } from './selector.component';
 import { FilterPipe } from './filter.pipe';
 import { FilterScriptPipe } from './filterscript.pipe';
+import { ThankyouComponent } from './thankyou.component';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { FilterScriptPipe } from './filterscript.pipe';
     SelectorTableComponent,
     SelectorComponent,
     FilterPipe,
-    FilterScriptPipe
+    FilterScriptPipe,
+    ThankyouComponent
     ],
   imports: [
     BrowserModule,
