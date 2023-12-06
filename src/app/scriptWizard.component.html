@@ -47,7 +47,7 @@
                 </div>
             </div>
 
-            <div class="form-group" *ngIf="getScripts().length > 6">
+            <div class="form-group" *ngIf="getScripts().length > 12">
                 <div class="row pt-1">
                     <div class="col-sm-2 pt-1" style="min-width: 12em;">
                        <label for="search-text">Filter my scripts:</label>
@@ -288,7 +288,7 @@
           <a ngbNavLink><strong>Artworks</strong></a>
           <ng-template ngbNavContent>
             <p>Choose the artworks for your script.</p>
-            <div class="form-group" *ngIf="getArtworks(model.selectedScript).length > 6">
+            <div class="form-group" *ngIf="getArtworks(model.selectedScript).length > 12">
                 <div class="row">
                     <div class="col-sm-2 pt-1" style="min-width: 12em;">
                        <label for="search-text">Filter my artworks:</label>
