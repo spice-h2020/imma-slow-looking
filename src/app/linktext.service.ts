@@ -56,7 +56,7 @@ export class LinkText{
                         }
                         if(mymatch && mymatch[6].length === 11) {
                             //max size with ratio
-                            return '<div class="video-wrap"><div class="video-container"><iframe src="' + 'https://www.youtube.com/embed/' + mymatch[6] + params + '"></iframe></div></div>';
+                            return '<div class="video-wrap"><div class="video-container"><iframe allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" src="' + 'https://www.youtube.com/embed/' + mymatch[6] + params + '"></iframe></div></div>';
                             // small screen
                             // return '<iframe width="256" height="144" src="' + 'https://www.youtube.com/embed/' + mymatch[6] + params + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
                             // responsive full width
