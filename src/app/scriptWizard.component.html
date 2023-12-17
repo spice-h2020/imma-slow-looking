@@ -895,7 +895,7 @@
                 <br/><br/>
             </ng-template>
         </li>
-        <li ngbNavItem>
+        <li ngbNavItem *ngIf="isAdmin()">
             <a ngbNavLink><strong>Advanced</strong></a>
             <ng-template ngbNavContent>
                 <h4 class="mt-3">Shuffle</h4>

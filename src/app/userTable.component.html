@@ -3,11 +3,28 @@
 <p class="lead">Manage user accounts.</p>
 <div class="form-group">
     <span *ngIf="getCurrentUserID()==1">
+        <div class="form-group" *ngIf="getUsers().length > 12">
+            <div class="row pt-1">
+                <div class="col-sm-2 pt-1" style="min-width: 12em;">
+                   <label for="search-text">Filter users:</label>
+                </div>
+                <div class="col-sm">
+                    <input type="email" class="form-control" id="search-text" aria-describedby="search-text" 
+                    [(ngModel)]="searchText" placeholder="Username or display name">
+                </div>
+            </div>
+        </div>
         <table class="table table-sm"> 
-            <thead><tr><th style="border-top: 0px;">ID</th><th style="border-top: 0px;">Username</th><th style="border-top: 0px;">Display name</th><th style="border-top: 0px;">Password</th><th style="border-top: 0px;"></th><th style="border-top: 0px;"></th></tr></thead>
+            <thead><tr>
+                <th style="border-top: 0px;" sortable="id" (sort)="onSort($event)">ID</th>
+                <th style="border-top: 0px;" sortable="username" (sort)="onSort($event)">Username</th>
+                <th style="border-top: 0px;" sortable="displayname" (sort)="onSort($event)">Display name</th>
+                <th style="border-top: 0px;">Password</th>
+                <th style="border-top: 0px;"></th><th style="border-top: 0px;"></th>
+            </tr></thead>
             <tbody class="text-black"> 
-                <tr *ngFor="let item of getUsers(); let i = index"> 
-                    <td>
+                <tr *ngFor="let item of users | appFilterUser: searchText; let i = index"> 
+                    <td style="width:3em">
                         {{item.id}}
                     </td>
                     <td>
@@ -25,15 +42,13 @@
                         <span *ngIf="tableEditing && editrow==item._id">
                             <textarea rows="2" class="form-control" [(ngModel)]="item.displayname"></textarea>
                         </span>
+                        <span *ngIf="deleteConfirmation_Id==item._id">
+                            <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this user?</strong> <div><button class="btn btn-danger ml-2" (click)="deleteUser(item._id)">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteConfirmation_Id=''">Cancel</button></div></div>
+                        </span>
                     </td>
                     <td>
                         <span *ngIf="!tableEditing || editrow!=item._id">
                             {{item.password}}
-                            <span *ngIf="deleteConfirmation_Id==item._id">
-                                <br/>
-                                <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this user?</strong> <div><button class="btn btn-danger ml-2" (click)="deleteUser(item._id)">OK</button> <button class="btn btn-secondary ml-2" (click)="deleteConfirmation_Id=''">Cancel</button></div></div>
-                                <br/>
-                            </span>
                         </span>
                         <span *ngIf="tableEditing && editrow==item._id">
                             <textarea rows="1" class="form-control" [(ngModel)]="item.password"></textarea>

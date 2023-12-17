@@ -51,7 +51,7 @@
             <!-- </td> 
             <td class="col-xs"> -->
                 <span *ngIf="!tableEditing && writeAccess(item) && deleteConfirmation_Id==''" style="float:right">
-                    <button class="btn btn-warning ml-3" (click)="editrow=item._id; tableEditing=true; deleteConfirmation_Id=''; reloadThemes()">Edit</button>
+                    <button class="btn btn-warning ml-2" (click)="editrow=item._id; tableEditing=true; deleteConfirmation_Id=''; reloadThemes()">Edit</button>
                 </span>
                 <span *ngIf="!tableEditing && writeAccess(item) && deleteConfirmation_Id==''" style="float:right">
                     <button class="btn btn-danger" (click)="confirmDelete(item._id); reloadThemes()">Delete</button>

@@ -39,6 +39,8 @@ import { SelectorComponent } from './selector.component';
 import { FilterPipe } from './filter.pipe';
 import { FilterScriptPipe } from './filterscript.pipe';
 import { ThankyouComponent } from './thankyou.component';
+import { FilterUserPipe } from './filteruser.pipe';
+import { SortableHeaderDirective } from './sortable-header.directive';
 
 
 @NgModule({
@@ -63,7 +65,9 @@ import { ThankyouComponent } from './thankyou.component';
     SelectorComponent,
     FilterPipe,
     FilterScriptPipe,
-    ThankyouComponent
+    ThankyouComponent,
+    FilterUserPipe,
+    SortableHeaderDirective
     ],
   imports: [
     BrowserModule,
