@@ -27,195 +27,195 @@
                     <span><h4>{{theme.name}}</h4>
                     {{theme.description}}</span>
                 </button>
-                <div 
-                style="background-color: white;"
-                id="{{'collapse_' + theme._id}}" 
-                class="accordion-collapse collapse text-black" 
-                [attr.aria-labelledby]="'heading_' + theme._id"
-                >
-                    <div class="accordion-body">
-                        <div *ngFor="let script of getScriptsOfTheme(theme._id); let i = index; let last = last">
-                            <h4 class="col-sm-12">{{script.name}}</h4>
-                            <div class="col-sm-12">
-                                <p style="white-space: pre-wrap;" [innerHTML]="script.description"></p>
-                                <figcaption *ngIf="script.author != ''" class="blockquote-footer text-black">{{script.author}}</figcaption>
-                            </div>
+            </h2>
+            <div 
+            style="background-color: white;"
+            id="{{'collapse_' + theme._id}}" 
+            class="accordion-collapse collapse text-black" 
+            [attr.aria-labelledby]="'heading_' + theme._id"
+            >
+                <div class="accordion-body">
+                    <div *ngFor="let script of getScriptsOfTheme(theme._id); let i = index; let last = last">
+                        <h4 class="col-sm-12">{{script.name}}</h4>
+                        <div class="col-sm-12">
+                            <p style="white-space: pre-wrap;" [innerHTML]="script.description"></p>
+                            <figcaption *ngIf="script.author != ''" class="blockquote-footer text-dark">{{script.author}}</figcaption>
+                        </div>
 
-                            <div class="col-sm-12">
-                                <div *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);" class="row align-items-end mb-3">
-                                    <div class="col-sm-6">
-                                        <div class="row" *ngIf="artwork.url">
-                                            <img src="{{artwork.url}}" alt="{{artwork.name}}" style="width: 100%" (error)="handleMissingImage($event)">
-                                        </div>
-                                        <div class="row" *ngIf="!artwork.url && artwork.fileLocation">
-                                            <img src="{{artwork.fileLocation}}" style="cursor: pointer;" (error)="handleMissingImage($event)">
-                                        </div>
+                        <div class="col-sm-12">
+                            <div *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);" class="row align-items-end mb-3">
+                                <div class="col-sm-6">
+                                    <div class="row" *ngIf="artwork.url">
+                                        <img src="{{artwork.url}}" alt="{{artwork.name}}" style="width: 100%" (error)="handleMissingImage($event)">
                                     </div>
-                                    <div class="col-sm ml-3">
-                                        <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.name"></div>
-                                        <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></div></strong>
-                                        <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></div>
+                                    <div class="row" *ngIf="!artwork.url && artwork.fileLocation">
+                                        <img src="{{artwork.fileLocation}}" style="cursor: pointer;" (error)="handleMissingImage($event)">
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="col-sm-12" *ngIf="getNonHomepageArtworksOfScript(script).length > 0">
-                                <div class="row itemsBlock">
-                                    <div *ngFor="let otherartwork of getNonHomepageArtworksOfScript(script);" class="col-md-4 col-sm-6 col-12 pb-3">
-                                        <div class="row">
-                                            <img *ngIf="otherartwork.url" src="{{otherartwork.url}}" alt="{{otherartwork.name}}" style="height: auto; width: 100%;" (error)="handleMissingImage($event)">
-                                        </div>
-                                        <div class="row">
-                                            <div class="ml-3">
-                                                <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="otherartwork.name"></div>
-                                                <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="otherartwork.artist"></div></strong>
-                                                <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="otherartwork.year"></div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="col-sm ml-3">
+                                    <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.name"></div>
+                                    <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></div></strong>
+                                    <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></div>
                                 </div>
                             </div>
+                        </div>
 
-                            <!-- <ng-container *ngIf="getNonHomepageArtworksOfScript(script).length > 0">
-                                <div class="col-sm-12">
-                                    <div *ngFor="let otherartwork of getNonHomepageArtworksOfScript(script);" class="row align-items-end mb-3">
-                                        <div class="col-6 col-sm-4" *ngIf="otherartwork.url">
-                                            <div class="row"><img src="{{otherartwork.url}}" style="width: 100%;" alt="{{otherartwork.name}}"></div>
-                                        </div>
-                                        <div class="col col-sm ml-3">
+                        <div class="col-sm-12" *ngIf="getNonHomepageArtworksOfScript(script).length > 0">
+                            <div class="row itemsBlock">
+                                <div *ngFor="let otherartwork of getNonHomepageArtworksOfScript(script);" class="col-md-4 col-sm-6 col-12 pb-3">
+                                    <div class="row">
+                                        <img *ngIf="otherartwork.url" src="{{otherartwork.url}}" alt="{{otherartwork.name}}" style="height: auto; width: 100%;" (error)="handleMissingImage($event)">
+                                    </div>
+                                    <div class="row">
+                                        <div class="ml-3">
                                             <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="otherartwork.name"></div>
                                             <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="otherartwork.artist"></div></strong>
                                             <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="otherartwork.year"></div>
                                         </div>
                                     </div>
                                 </div>
-                            </ng-container> -->
+                            </div>
+                        </div>
 
-                            <div class="accordion mt-3" id="{{'theme'+theme._id+'script'+script._id}}">
-                                <div class="accordion-item museum-colour">
-                                    <h2 class="accordion-header" id="{{'heading_' + 'theme'+theme._id+'script'+script._id}}">
-                                        <button 
-                                            class="accordion-button collapsed text-white museum-colour" 
-                                            type="button" 
-                                            data-bs-toggle="collapse" 
-                                            [attr.data-bs-target]="'#collapse_' + 'theme'+theme._id+'script'+script._id"
-                                            aria-expanded="false" 
-                                            [attr.aria-controls]="'collapse_'+ 'theme'+theme._id+'script'+script._id">
-                                            <strong>Recent responses</strong>
-                                        </button>
-                                    </h2>
-                                    <div 
-                                        style="background-color: black;"
-                                        id="{{'collapse_' + 'theme'+theme._id+'script'+script._id}}" 
-                                        class="accordion-collapse collapse" 
-                                        [attr.aria-labelledby]="'heading_' + 'theme'+theme._id+'script'+script._id"
-                                        [attr.data-bs-parent]="'#theme'+theme._id+'script'+script._id">
-                                        <div class="accordion-body">
-                                            <div *ngFor="let activity of getApprovedActivitiesOfAScript(script._id).slice(0, maximumResponses); let i = index; let even=even">
-                                                <!-- <div style="background-color: #f2f2f2;" class="rounded-3"> -->
-                                                <div class="card text-white mb-3 museum-colour" style="border-radius: 15px;">
-                                                <div class="card-body">
-                                                    <div *ngFor="let action of activity.actions;">
-                                                        <span *ngIf="action.questionStage">
-                                                            <span *ngIf="action.questionStage.stagetype">
-                                                                <span *ngIf="action.questionStage.stagetype != 'multiquestion'">
-                                                                    <h4 *ngIf="action.questionStage.title && action.questionStage.title != ''">{{action.questionStage.title}}</h4>
-                                                                    <div *ngIf="action.questionStage.includeartworks.length" class="mb-3">
-                                                                        <div *ngFor="let artwork of action.questionStage.includeartworks">
-                                                                            <div *ngFor="let artwork of getArtworkFromId(artwork);">
-                                                                                <em>
-                                                                                    <span style="white-space: pre-wrap; line-height: 1.2; " [innerHTML]="artwork.name"></span>
-                                                                                    <span *ngIf="artwork.name!='' && artwork.artist!=''">, </span>
-                                                                                    <span style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></span>
-                                                                                    <span *ngIf="artwork.artist!='' && artwork.year!=''">, </span>
-                                                                                    <span style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></span><br/>
-                                                                                </em>
-                                                                            </div>
+                        <!-- <ng-container *ngIf="getNonHomepageArtworksOfScript(script).length > 0">
+                            <div class="col-sm-12">
+                                <div *ngFor="let otherartwork of getNonHomepageArtworksOfScript(script);" class="row align-items-end mb-3">
+                                    <div class="col-6 col-sm-4" *ngIf="otherartwork.url">
+                                        <div class="row"><img src="{{otherartwork.url}}" style="width: 100%;" alt="{{otherartwork.name}}"></div>
+                                    </div>
+                                    <div class="col col-sm ml-3">
+                                        <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="otherartwork.name"></div>
+                                        <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="otherartwork.artist"></div></strong>
+                                        <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="otherartwork.year"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container> -->
+
+                        <div class="accordion mt-2" id="{{'theme'+theme._id+'script'+script._id}}">
+                            <div class="accordion-item museum-colour">
+                                <h2 class="accordion-header" id="{{'heading_' + 'theme'+theme._id+'script'+script._id}}">
+                                    <button 
+                                        class="accordion-button collapsed text-white museum-colour" 
+                                        type="button" 
+                                        data-bs-toggle="collapse" 
+                                        [attr.data-bs-target]="'#collapse_' + 'theme'+theme._id+'script'+script._id"
+                                        aria-expanded="false" 
+                                        [attr.aria-controls]="'collapse_'+ 'theme'+theme._id+'script'+script._id">
+                                        <strong>Recent responses</strong>
+                                    </button>
+                                </h2>
+                                <div 
+                                    style="background-color: black;"
+                                    id="{{'collapse_' + 'theme'+theme._id+'script'+script._id}}" 
+                                    class="accordion-collapse collapse" 
+                                    [attr.aria-labelledby]="'heading_' + 'theme'+theme._id+'script'+script._id"
+                                    [attr.data-bs-parent]="'#theme'+theme._id+'script'+script._id">
+                                    <div class="accordion-body">
+                                        <div *ngFor="let activity of getApprovedActivitiesOfAScript(script._id).slice(0, maximumResponses); let i = index; let even=even">
+                                            <!-- <div style="background-color: #f2f2f2;" class="rounded-3"> -->
+                                            <div class="card text-white mb-3 museum-colour" style="border-radius: 15px;">
+                                            <div class="card-body">
+                                                <div *ngFor="let action of activity.actions;">
+                                                    <span *ngIf="action.questionStage">
+                                                        <span *ngIf="action.questionStage.stagetype">
+                                                            <span *ngIf="action.questionStage.stagetype != 'multiquestion'">
+                                                                <h4 *ngIf="action.questionStage.title && action.questionStage.title != ''">{{action.questionStage.title}}</h4>
+                                                                <div *ngIf="action.questionStage.includeartworks.length" class="mb-3">
+                                                                    <div *ngFor="let artwork of action.questionStage.includeartworks">
+                                                                        <div *ngFor="let artwork of getArtworkFromId(artwork);">
+                                                                            <em>
+                                                                                <span style="white-space: pre-wrap; line-height: 1.2; " [innerHTML]="artwork.name"></span>
+                                                                                <span *ngIf="artwork.name!='' && artwork.artist!=''">, </span>
+                                                                                <span style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></span>
+                                                                                <span *ngIf="artwork.artist!='' && artwork.year!=''">, </span>
+                                                                                <span style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></span><br/>
+                                                                            </em>
                                                                         </div>
                                                                     </div>
-                                                                    <em *ngIf="action.questionStage.help && action.questionStage.help != ''"><p style="white-space: pre-wrap;" [innerHTML]="action.questionStage.help | linkify"></p></em>
-                                                                    <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question | linkify"></span>
-                                                                    <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
-                                                                </span>
-                                                                <span *ngIf="action.questionStage.stagetype == 'multiquestion' && action.answers">
-                                                                    <span *ngFor="let answer of sortAnswers(action.answers); let first = first;">
-                                                                        <ng-container *ngIf="first">
-                                                                            <h4 *ngIf="action.questionStage.title && action.questionStage.title != ''">{{action.questionStage.title}}</h4>
-                                                                            <div *ngIf="action.questionStage.includeartworks.length" class="mb-3">
-                                                                                <div *ngFor="let artwork of action.questionStage.includeartworks">
-                                                                                    <div *ngFor="let artwork of getArtworkFromId(artwork);">
-                                                                                        <em>
-                                                                                            <span style="white-space: pre-wrap; line-height: 1.2; " [innerHTML]="artwork.name"></span>
-                                                                                            <span *ngIf="artwork.name!='' && artwork.artist!=''">, </span>
-                                                                                            <span style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></span>
-                                                                                            <span *ngIf="artwork.artist!='' && artwork.year!=''">, </span>
-                                                                                            <span style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></span><br/>
-                                                                                        </em>
-                                                                                    </div>
+                                                                </div>
+                                                                <em *ngIf="action.questionStage.help && action.questionStage.help != ''"><p style="white-space: pre-wrap;" [innerHTML]="action.questionStage.help | linkify"></p></em>
+                                                                <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question | linkify"></span>
+                                                                <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
+                                                            </span>
+                                                            <span *ngIf="action.questionStage.stagetype == 'multiquestion' && action.answers">
+                                                                <span *ngFor="let answer of sortAnswers(action.answers); let first = first;">
+                                                                    <ng-container *ngIf="first">
+                                                                        <h4 *ngIf="action.questionStage.title && action.questionStage.title != ''">{{action.questionStage.title}}</h4>
+                                                                        <div *ngIf="action.questionStage.includeartworks.length" class="mb-3">
+                                                                            <div *ngFor="let artwork of action.questionStage.includeartworks">
+                                                                                <div *ngFor="let artwork of getArtworkFromId(artwork);">
+                                                                                    <em>
+                                                                                        <span style="white-space: pre-wrap; line-height: 1.2; " [innerHTML]="artwork.name"></span>
+                                                                                        <span *ngIf="artwork.name!='' && artwork.artist!=''">, </span>
+                                                                                        <span style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></span>
+                                                                                        <span *ngIf="artwork.artist!='' && artwork.year!=''">, </span>
+                                                                                        <span style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></span><br/>
+                                                                                    </em>
                                                                                 </div>
                                                                             </div>
-                                                                            <em *ngIf="action.questionStage.help && action.questionStage.help != ''"><p style="white-space: pre-wrap;" [innerHTML]="action.questionStage.help | linkify"></p></em>
-                                                                        </ng-container>
-                                                                        <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.questions[answer.question] | linkify"></span>
-                                                                        <p class="font-weight-normal" style="white-space: pre-wrap;">{{answer.answer}}</p>
-                                                                    </span>
+                                                                        </div>
+                                                                        <em *ngIf="action.questionStage.help && action.questionStage.help != ''"><p style="white-space: pre-wrap;" [innerHTML]="action.questionStage.help | linkify"></p></em>
+                                                                    </ng-container>
+                                                                    <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.questions[answer.question] | linkify"></span>
+                                                                    <p class="font-weight-normal" style="white-space: pre-wrap;">{{answer.answer}}</p>
                                                                 </span>
                                                             </span>
                                                         </span>
-                                                        <span *ngIf="action.storyStage">
-                                                            <span *ngIf="action.storyStage.stagetype">
-                                                                <span *ngIf="action.storyStage.stagetype == 'story'">
-                                                                    <h4 *ngIf="action.storyStage.title && action.storyStage.title != ''">{{action.storyStage.title}}</h4>
-                                                                    <div *ngIf="action.storyStage.includeartworks.length" class="mb-3">
-                                                                        <div *ngFor="let artwork of action.storyStage.includeartworks">
-                                                                            <div *ngFor="let artwork of getArtworkFromId(artwork);">
-                                                                                <em>
-                                                                                    <span style="white-space: pre-wrap; line-height: 1.2; " [innerHTML]="artwork.name"></span>
-                                                                                    <span *ngIf="artwork.name!='' && artwork.artist!=''">, </span>
-                                                                                    <span style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></span>
-                                                                                    <span *ngIf="artwork.artist!='' && artwork.year!=''">, </span>
-                                                                                    <span style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></span><br/>
-                                                                                </em>
-                                                                            </div>
+                                                    </span>
+                                                    <span *ngIf="action.storyStage">
+                                                        <span *ngIf="action.storyStage.stagetype">
+                                                            <span *ngIf="action.storyStage.stagetype == 'story'">
+                                                                <h4 *ngIf="action.storyStage.title && action.storyStage.title != ''">{{action.storyStage.title}}</h4>
+                                                                <div *ngIf="action.storyStage.includeartworks.length" class="mb-3">
+                                                                    <div *ngFor="let artwork of action.storyStage.includeartworks">
+                                                                        <div *ngFor="let artwork of getArtworkFromId(artwork);">
+                                                                            <em>
+                                                                                <span style="white-space: pre-wrap; line-height: 1.2; " [innerHTML]="artwork.name"></span>
+                                                                                <span *ngIf="artwork.name!='' && artwork.artist!=''">, </span>
+                                                                                <span style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></span>
+                                                                                <span *ngIf="artwork.artist!='' && artwork.year!=''">, </span>
+                                                                                <span style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></span><br/>
+                                                                            </em>
                                                                         </div>
                                                                     </div>
-                                                                    <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question | linkify"></span>
-                                                                    <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
-                                                                </span>
+                                                                </div>
+                                                                <span style="font-weight: bold; white-space: pre-wrap;" [innerHTML]="action.question | linkify"></span>
+                                                                <p class="font-weight-normal" style="white-space: pre-wrap;">{{action.answer}}</p>
                                                             </span>
                                                         </span>
+                                                    </span>
+                                                </div>
+                                                <hr>
+                                                <div style="width: 100%;">
+                                                    <div class="row">
+                                                    <div class="col text-left">
+                                                        {{activity.authorname}}
                                                     </div>
-                                                    <hr>
-                                                    <div style="width: 100%;">
-                                                        <div class="row">
-                                                        <div class="col text-left">
-                                                            {{activity.authorname}}
-                                                        </div>
-                                                        <div class="col-4 text-right" style="max-width: 5em;">
-                                                            <span><span class="badge rounded-pill" style="background-color: rgba(0,0,0, 0.2);">{{activity.likes}}</span> <i class="fas fa-heart ms-2"></i></span>
-                                                        </div>
-                                                        </div>
+                                                    <div class="col-4 text-right" style="max-width: 5em;">
+                                                        <span><span class="badge rounded-pill" style="background-color: rgba(0,0,0, 0.2);">{{activity.likes}}</span> <i class="fas fa-heart ms-2"></i></span>
+                                                    </div>
                                                     </div>
                                                 </div>
-                                                </div>
                                             </div>
-                                            <div *ngIf="getApprovedActivitiesOfAScript(script._id).length > maximumResponses">
-                                                <a routerLink="/allResponses/{{script._id}}">
-                                                    <button class="btn btn-secondary mr-3">Show all <i class='fa fa-link'></i></button>
-                                                </a>
                                             </div>
+                                        </div>
+                                        <div *ngIf="getApprovedActivitiesOfAScript(script._id).length > maximumResponses">
+                                            <a routerLink="/allResponses/{{script._id}}">
+                                                <button class="btn btn-secondary mr-3">Show all <i class='fa fa-link'></i></button>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
-                            </div><br/>
-
-                            <div *ngIf="!last" class="col-sm-12">
-                                <hr>
                             </div>
+                        </div><br/>
+
+                        <div *ngIf="!last" class="col-sm-12">
+                            <hr>
                         </div>
                     </div>
                 </div>
-            </h2>
+            </div>
         </div>
     </div>
 </div>

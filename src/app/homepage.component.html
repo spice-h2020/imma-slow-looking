@@ -28,66 +28,66 @@
                     <span><h4>{{theme.name}}</h4>
                     {{theme.description}}</span>
                 </button>
-                <div 
-                style="background-color: black;"
-                id="{{'collapse_' + theme._id}}" 
-                class="accordion-collapse collapse text-white" 
-                [attr.aria-labelledby]="'heading_' + theme._id"
-                >
-                    <div class="accordion-body">
-                        <div *ngFor="let script of getScriptsOfTheme(theme._id); let i = index; let last = last" >
-                            <h4 class="col-sm-12">{{script.name}}</h4> 
-                            <div class="col-sm-12">
-                                <p style="white-space: pre-wrap;">{{script.description}}</p>
-                                <figcaption *ngIf="script.author != ''" class="blockquote-footer text-white">{{script.author}}</figcaption>
-                            </div>
+            </h2>
+            <div 
+            style="background-color: black;"
+            id="{{'collapse_' + theme._id}}" 
+            class="accordion-collapse collapse text-white" 
+            [attr.aria-labelledby]="'heading_' + theme._id"
+            >
+                <div class="accordion-body">
+                    <div *ngFor="let script of getScriptsOfTheme(theme._id); let i = index; let last = last" >
+                        <h4 class="col-sm-12">{{script.name}}</h4> 
+                        <div class="col-sm-12">
+                            <p style="white-space: pre-wrap;">{{script.description}}</p>
+                            <figcaption *ngIf="script.author != ''" class="blockquote-footer text-white">{{script.author}}</figcaption>
+                        </div>
 
-                            <div class="col-sm-12">
-                                <div *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);" class="row align-items-end mb-3">
-                                    <div class="col-sm-6">
-                                        <div class="row" *ngIf="artwork.url">
-                                            <a routerLink="/slowLooking/{{script._id}}" [queryParams]="{return:'gallery'}"><img src="{{artwork.url}}" alt="{{artwork.name}}" style="width: 100%" (error)="handleMissingImage($event)"></a>
-                                        </div>
-                                        <div class="row" *ngIf="!artwork.url && artwork.fileLocation">
-                                            <img src="{{artwork.fileLocation}}" style="cursor: pointer;" (error)="handleMissingImage($event)">
-                                        </div>
+                        <div class="col-sm-12">
+                            <div *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);" class="row align-items-end mb-3">
+                                <div class="col-sm-6">
+                                    <div class="row" *ngIf="artwork.url">
+                                        <a routerLink="/slowLooking/{{script._id}}" [queryParams]="{return:'gallery'}"><img src="{{artwork.url}}" alt="{{artwork.name}}" style="width: 100%" (error)="handleMissingImage($event)"></a>
                                     </div>
-                                    <div class="col-sm ml-3">
-                                        <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.name"></div>
-                                        <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></div></strong>
-                                        <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></div>
+                                    <div class="row" *ngIf="!artwork.url && artwork.fileLocation">
+                                        <img src="{{artwork.fileLocation}}" style="cursor: pointer;" (error)="handleMissingImage($event)">
                                     </div>
                                 </div>
+                                <div class="col-sm ml-3">
+                                    <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.name"></div>
+                                    <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.artist"></div></strong>
+                                    <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="artwork.year"></div>
+                                </div>
                             </div>
+                        </div>
 
-                            <!-- <div *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);" class="row align-items-end mb-3 mr-3">
-                                    <div class="col-8" *ngIf="artwork.url">
-                                        <a routerLink="/slowLooking/{{script._id}}"><img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}"></a>
-                                    </div>
-                                    <div class="col" *ngIf="artwork.url">
-                                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
-                                        <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"> </div></strong>
-                                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
-                                    </div>
-                                    <div class="col-8" *ngIf="!artwork.url && artwork.fileLocation">
-                                        <img routerLink="/slowLooking/{{script._id}}" class="col-sm-12" src="{{artwork.fileLocation}}" >
-                                    </div>
-                                    <div class="col" *ngIf="!artwork.url && artwork.fileLocation">
-                                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
-                                        <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></div></strong>
-                                        <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
-                                    </div>
-                            </div> -->
-                            <br/>
+                        <!-- <div *ngFor="let artwork of getArtworkFromId(script.homepageartworkid);" class="row align-items-end mb-3 mr-3">
+                                <div class="col-8" *ngIf="artwork.url">
+                                    <a routerLink="/slowLooking/{{script._id}}"><img class="col-sm-12" src="{{artwork.url}}" alt="{{artwork.name}}"></a>
+                                </div>
+                                <div class="col" *ngIf="artwork.url">
+                                    <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
+                                    <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"> </div></strong>
+                                    <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
+                                </div>
+                                <div class="col-8" *ngIf="!artwork.url && artwork.fileLocation">
+                                    <img routerLink="/slowLooking/{{script._id}}" class="col-sm-12" src="{{artwork.fileLocation}}" >
+                                </div>
+                                <div class="col" *ngIf="!artwork.url && artwork.fileLocation">
+                                    <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.name"></div>
+                                    <strong><div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.artist"></div></strong>
+                                    <div class="row text-left" style="white-space: pre-wrap;" [innerHTML]="artwork.year"></div>
+                                </div>
+                        </div> -->
+                        <br/>
 
 
-                            <div *ngIf="!last" class="col-sm-12">
-                                <hr>
-                            </div>
+                        <div *ngIf="!last" class="col-sm-12">
+                            <hr>
                         </div>
                     </div>
                 </div>
-            </h2>
+            </div>
         </div>
     </div>
 </div>
