@@ -2,57 +2,260 @@
 <div style="width: 100%; background-color: white;" class="border pl-3 pr-3">
 <p class="lead">{{configSettings.artworks_para1}}</p>
 <div *ngIf="isLoggedIn()" class="form-group">
-    <div class="bg-white text-black pl-1 pt-1 border-top-0 border-left-0 border-right-0" style="border-width: 2px; border-style: solid;">
-        <strong>My artworks</strong>
-    </div>
-    <div class="form-group" *ngIf="getArtworks().length > 12">
-        <div class="row pt-1">
-            <div class="col-sm-2 pt-1" style="min-width: 12em;">
-               <label for="search-text">Filter my artworks:</label>
-            </div>
-            <div class="col-sm">
-                <input type="email" class="form-control" id="search-text" aria-describedby="search-text" 
-                [(ngModel)]="searchText" placeholder="Artwork, artist or year">
-            </div>
-        </div>
-    </div>
-    <div class="row itemsBlock pt-2">
-        <div *ngFor="let item of getArtworks() | appFilter: searchText; let i = index" class="col-md-4 col-sm-6 col-12 pb-3">
-            <div class="row pb-3">
-                <div class="col-12">
-                    <img src="{{item.url}}" alt="{{item.name}}" height="auto" style="width:100%" (error)="handleMissingImage($event)">
-                </div>
-                <div class="col-12 ml-1">
-                    <div class="col-12">
-                        <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="item.name"></div>
-                        <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="item.artist"></div></strong>
-                        <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;">{{item.year}}</div>
-                    </div>
-                </div>
-                <div class="col-12" *ngIf="deleteConfirmation_Id!=item._id">
-                    <button class="float-right btn btn-danger"  (click)="confirmDelete(item._id)">Delete</button>
-                </div>
-        
-                <span *ngIf="deleteConfirmation_Id==item._id">
-                    <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this artwork from your collection?</strong>
-                    <span *ngIf="getScriptsOfAnArtwork(item._id).length > 0">
-                        <p><strong>It will be removed from the following scripts:</strong></p>
-                    </span>
-                    <ul *ngIf="getScriptsOfAnArtwork(item._id).length > 0">
-                        <li *ngFor="let artworkscript of getScriptsOfAnArtwork(item._id);">{{artworkscript.name}}</li>
-                    </ul>
-                    <!-- <ul *ngFor="let artworkscript of getScriptsOfAnArtwork(item._id);">
-                        <li>{{artworkscript.name}}</li>
-                    </ul> -->
-                    <div class="text-end">
-                        <button class="btn btn-secondary" (click)="deleteConfirmation_Id=''">Cancel</button><button class="btn btn-danger ml-2" (click)="deleteArtwork(item._id)">OK</button></div>
-                    </div>
-                </span>
-            </div>
-        </div>
-    </div>
 
-    <div class="row mb-3">
+    <ul ngbNav #nav="ngbNav" class="nav-pills">
+        <li ngbNavItem>
+            <a ngbNavLink (click)="recaluateNameListsArchive(); ; artworkAddedAlert=''"><strong>My artworks</strong></a>
+            <ng-template ngbNavContent>
+                <div class="row pt-2">
+                    <div class=" col-12">
+                        <input type="text" class="form-control" id="collection-search-text" aria-describedby="collection-search-text" 
+                        [(ngModel)]="searchCollectionText" placeholder="Search my artworks" (change)="recaluateNameLists()">
+                    </div>
+                </div>
+                <div class="row itemsBlock pt-2">
+                    <div class="col-md-4 col-sm-6 col-12 pb-3">
+                        <div class="ng-autocomplete" style="width: 100%;">
+                            <ng-autocomplete
+                            [data]="artistStartList"
+                            [searchKeyword]="keywordArtist"
+                            placeholder="Artist"
+                            [(ngModel)]="artistField"
+                            (selected)="selectEventArtist($event)"
+                            (inputCleared)="inputClearedArtist($event)"
+                            (inputChanged)="onChangeSearchArtist($event)"
+                            (inputFocused)="onFocusedArtist($event)"
+                            [itemTemplate]="itemTemplatez"
+                            [notFoundTemplate]="notFoundTemplatez"
+                            >
+                            </ng-autocomplete>
+                        
+                            <ng-template #itemTemplatez let-item>
+                            <a [innerHTML]="item.text"></a>
+                            </ng-template>
+                        
+                            <ng-template #notFoundTemplatez let-notFound>
+                            <div [innerHTML]="notFound"></div>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-12 pb-3">
+                        <div class="ng-autocomplete" style="width: 100%;">
+                            <ng-autocomplete
+                            [data]="artworkStartList"
+                            [searchKeyword]="keywordArtwork"
+                            placeholder="Artwork"
+                            [(ngModel)]="artworkField"
+                            (selected)="selectEventArtwork($event)"
+                            (inputCleared)="inputClearedArtwork($event)"
+                            (inputChanged)="onChangeSearchArtwork($event)"
+                            (inputFocused)="onFocusedArtwork($event)"
+                            [itemTemplate]="itemTemplatey"
+                            [notFoundTemplate]="notFoundTemplatey"
+                            >
+                            </ng-autocomplete>
+                        
+                            <ng-template #itemTemplatey let-item>
+                            <a [innerHTML]="item.text"></a>
+                            </ng-template>
+                        
+                            <ng-template #notFoundTemplatey let-notFound>
+                            <div [innerHTML]="notFound"></div>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-12 pb-3">
+                        <div class="ng-autocomplete" style="width: 100%;">
+                            <ng-autocomplete
+                            [data]="yearStartList"
+                            [searchKeyword]="keywordYear"
+                            placeholder="Year"
+                            [(ngModel)]="yearField"
+                            (selected)="selectEventYear($event)"
+                            (inputCleared)="inputClearedYear($event)"
+                            (inputChanged)="onChangeSearchYear($event)"
+                            (inputFocused)="onFocusedYear($event)"
+                            [itemTemplate]="itemTemplatex"
+                            [notFoundTemplate]="notFoundTemplatex"
+                            >
+                            </ng-autocomplete>
+                        
+                            <ng-template #itemTemplatex let-item>
+                            <a [innerHTML]="item.text"></a>
+                            </ng-template>
+                        
+                            <ng-template #notFoundTemplatex let-notFound>
+                            <div [innerHTML]="notFound"></div>
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+                <span *ngIf="filteredResults().length <= searchCollectionDisplayLimit" class="fs-6">{{filteredResults().length}} items shown</span>
+                <span *ngIf="filteredResults().length > searchCollectionDisplayLimit" class="fs-6">{{searchCollectionDisplayLimit}} of {{filteredResults().length}} items shown</span>
+                <div class="row itemsBlock pt-2">
+                    <div *ngFor="let item of filteredResults() | slice:0:searchCollectionDisplayLimit; let i = index" class="col-md-4 col-sm-6 col-12 pb-3">
+                        <div class="row pb-3">
+                            <div class="col-12">
+                                <img src="{{item.url}}" alt="{{item.name}}" height="auto" style="width:100%" (error)="handleMissingImage($event)">
+                            </div>
+                            <div class="col-12 ml-1">
+                                <div class="col-12">
+                                    <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="item.name"></div>
+                                    <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="item.artist"></div></strong>
+                                    <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;">{{item.year}}</div>
+                                </div>
+                            </div>
+                            <div class="col-12" *ngIf="deleteConfirmation_Id!=item._id">
+                                <button class="float-right btn btn-danger"  (click)="confirmDelete(item._id)">Delete</button>
+                            </div>
+                    
+                            <span *ngIf="deleteConfirmation_Id==item._id">
+                                <div class="alert alert-danger" role="alert"><strong>Are you sure you want to delete this artwork from your collection?</strong>
+                                <span *ngIf="getScriptsOfAnArtwork(item._id).length > 0">
+                                    <p><strong>It will be removed from the following scripts:</strong></p>
+                                </span>
+                                <ul *ngIf="getScriptsOfAnArtwork(item._id).length > 0">
+                                    <li *ngFor="let artworkscript of getScriptsOfAnArtwork(item._id);">{{artworkscript.name}}</li>
+                                </ul>
+                                <!-- <ul *ngFor="let artworkscript of getScriptsOfAnArtwork(item._id);">
+                                    <li>{{artworkscript.name}}</li>
+                                </ul> -->
+                                <div class="text-end">
+                                    <button class="btn btn-secondary" (click)="deleteConfirmation_Id=''">Cancel</button><button class="btn btn-danger ml-2" (click)="deleteArtwork(item._id)">OK</button></div>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pr-3 pl-3 pb-3" *ngIf="filteredResults().length > searchCollectionDisplayLimit">
+                    <button class="btn btn-secondary" (click)="searchCollectionDisplayLimit = searchCollectionDisplayLimit+6">More results</button>
+                </div>
+            </ng-template>
+        </li>
+        <li ngbNavItem>
+            <a ngbNavLink (click)="recaluateNameListsArchive(); artworkAddedAlert=''"><strong>IMMA collection</strong></a>
+            <ng-template ngbNavContent>
+                <div class="row mt-2">
+                    <div class=" col-12">
+                        <input type="email" class="form-control" id="search-text" aria-describedby="search-text" 
+                        [(ngModel)]="searchText" placeholder="Search IMMA collection">
+                    </div>
+                </div>
+                <div class="row itemsBlock pt-2">
+                    <div class="col-md-4 col-sm-6 col-12 pb-3">
+                        <div class="ng-autocomplete" style="width: 100%;">
+                            <ng-autocomplete
+                            [data]="artistStartListArchive"
+                            [searchKeyword]="keywordArtistArchive"
+                            placeholder="Artist"
+                            [(ngModel)]="artistArchiveField"
+                            (selected)="selectEventArtistArchive($event)"
+                            (inputCleared)="inputClearedArtistArchive($event)"
+                            (inputChanged)="onChangeSearchArtistArchive($event)"
+                            (inputFocused)="onFocusedArtistArchive($event)"
+                            [itemTemplate]="itemTemplatet"
+                            [notFoundTemplate]="notFoundTemplatet"
+                            >
+                            </ng-autocomplete>
+                        
+                            <ng-template #itemTemplatet let-item>
+                            <a [innerHTML]="item.text"></a>
+                            </ng-template>
+                        
+                            <ng-template #notFoundTemplatet let-notFound>
+                            <div [innerHTML]="notFound"></div>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-12 pb-3">
+                        <div class="ng-autocomplete" style="width: 100%;">
+                            <ng-autocomplete
+                            [data]="artworkStartListArchive"
+                            [searchKeyword]="keywordArtworkArchive"
+                            placeholder="Artwork"
+                            [(ngModel)]="artworkArchiveField"
+                            (selected)="selectEventArtworkArchive($event)"
+                            (inputCleared)="inputClearedArtworkArchive($event)"
+                            (inputChanged)="onChangeSearchArtworkArchive($event)"
+                            (inputFocused)="onFocusedArtworkArchive($event)"
+                            [itemTemplate]="itemTemplates"
+                            [notFoundTemplate]="notFoundTemplates"
+                            >
+                            </ng-autocomplete>
+                        
+                            <ng-template #itemTemplates let-item>
+                            <a [innerHTML]="item.text"></a>
+                            </ng-template>
+                        
+                            <ng-template #notFoundTemplates let-notFound>
+                            <div [innerHTML]="notFound"></div>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-12 pb-3">
+                        <div class="ng-autocomplete" style="width: 100%;">
+                            <ng-autocomplete
+                            [data]="yearStartListArchive"
+                            [searchKeyword]="keywordYearArchive"
+                            placeholder="Year"
+                            [(ngModel)]="yearArchiveField"
+                            (selected)="selectEventYearArchive($event)"
+                            (inputCleared)="inputClearedYearArchive($event)"
+                            (inputChanged)="onChangeSearchYearArchive($event)"
+                            (inputFocused)="onFocusedYearArchive($event)"
+                            [itemTemplate]="itemTemplater"
+                            [notFoundTemplate]="notFoundTemplater"
+                            >
+                            </ng-autocomplete>
+                        
+                            <ng-template #itemTemplater let-item>
+                            <a [innerHTML]="item.text"></a>
+                            </ng-template>
+                        
+                            <ng-template #notFoundTemplater let-notFound>
+                            <div [innerHTML]="notFound"></div>
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="!getCollection().length">Loading archive...</div>
+                <span *ngIf="filteredResultsArchive().length <= searchDisplayLimit" class="fs-6">{{filteredResultsArchive().length}} items shown</span>
+                <span *ngIf="filteredResultsArchive().length > searchDisplayLimit" class="fs-6">{{searchDisplayLimit}} of {{filteredResultsArchive().length}} items shown</span>
+
+                <div class="row itemsBlock pt-2">
+                    <div *ngFor="let item of filteredResultsArchive() | slice:0:searchDisplayLimit ; let i = index" class="col-md-4 col-sm-6 col-12 pb-3">
+                        <div class="row pb-3">
+                            <div class="col-12">
+                                <img src="{{item.filelocation}}" alt="{{item.name}}" height="auto" style="width:100%" (error)="handleMissingImage($event)">
+                            </div>
+                            <div class="col-12 ml-1">
+                                <div class="col-12">
+                                    <div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="item.name"></div>
+                                    <strong><div class="row text-left" style="white-space: pre-wrap; line-height: 1.2;" [innerHTML]="item.artist"></div></strong>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div *ngIf="artworkAddedAlert==item.filelocation" class="col-12 alert alert-success" role="alert">
+                                    Artwork added to your collection
+                                </div>
+                                <button class="float-right btn btn-success" [disabled]="artworkAlreadyAdded(item.filelocation)" (click)="artworkAddedAlert=item.filelocation; saveArtworkFromParameters(item.name, item.artist, '1999', item.filelocation)" data-bs-toggle="modal" data-bs-target="#archiveModal">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row pr-3 pl-3 pb-3" *ngIf="filteredResultsArchive().length > searchDisplayLimit">
+                    <button class="btn btn-secondary" (click)="searchDisplayLimit = searchDisplayLimit+6">More results</button>
+                </div>
+            </ng-template>
+        </li>
+    </ul>
+    <div [ngbNavOutlet]="nav"></div>
+
+
+    
+
+    <!-- <div class="row mb-3">
         <div class="ng-autocomplete" style="width: 100%;">
             <span><strong>{{configSettings.artworks_searchprompt}}</strong></span>
             <ng-autocomplete 
@@ -98,12 +301,12 @@
     </div>
     <br/>
     <br/>
-    <br/>
+    <br/> -->
 </div>
 </div>
+<!-- <br/>
 <br/>
 <br/>
-<br/>
-<br/>
+<br/> -->
 
 

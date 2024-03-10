@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Artwork } from "./artwork.model";
 import { ConfigSettings } from "./config";
 import { CurrentUser } from "./currentUser.service";
@@ -10,14 +10,49 @@ import { Model } from "./repository.model";
     templateUrl: "artworkTable.component.html"
 })
 
-export class ArtworkTableComponent {
+export class ArtworkTableComponent implements OnInit {
+
+
+    artistStartList: {text: string}[];
+    artworkStartList: {text: string}[]
+    yearStartList: {text: string}[];
+
+    artistStartListArchive: {text: string}[];
+    artworkStartListArchive: {text: string}[]
+    yearStartListArchive: {text: string}[];
 
     public handleMissingImage(event: Event) {
         (event.target as HTMLImageElement).src = 'assets/img/488199.png';
     }
 
-    //for filtering personal artwork collection
-    searchText = '';
+    ngOnInit() {
+        // let artworks: Artwork[]  = this.activatedRoute.snapshot.data.model2;
+
+        //facets for my collection
+        this.artistStartList = this.uniqByMap(this.getArtworks().map(x => x.artist)).map(x => ({text: x}));
+        this.artworkStartList = this.uniqByMap(this.getArtworks().map(x => x.name)).map(x => ({text: x}));
+        this.yearStartList = this.uniqByMap(this.getArtworks().map(x => x.year)).map(x => ({text: x}));
+
+        //facets for acrchive collection 
+        this.artistStartListArchive = this.uniqByMap(this.model.getCollection().map(x => x.artist)).map(x => ({text: x}));
+        this.artworkStartListArchive = this.uniqByMap(this.model.getCollection().map(x => x.name)).map(x => ({text: x}));
+        this.yearStartListArchive = this.uniqByMap(this.model.getCollection().map(x => x.year)).map(x => ({text: x}));
+    }
+
+    getCollection() {
+        return this.model.getCollection();
+    }
+
+    artworkAddedAlert: string  = "";
+
+    //holding facet selections when moving between tabs
+    artistField = '';
+    artworkField = '';
+    yearField = '';
+    artistArchiveField = '';
+    artworkArchiveField = '';
+    yearArchiveField = '';
+
 
     // configuration settings
     configSettings = new ConfigSettings;
@@ -106,6 +141,29 @@ export class ArtworkTableComponent {
         return filteredArtworks;
     }
 
+    artworkAlreadyAdded(filelocation) {
+        if(this.getArtworks().find(x => x.url == filelocation)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
+
+    saveArtworkFromParameters(name:string="", artist:string="", year:string="", url:string="") {
+        let artwork: Artwork = {type: "artwork", name: name, artist: artist, year: year, url: url};
+
+        //add current user_ID as owner
+        let user_ID = this.currentuser.getUser()._id;
+        artwork.owner = user_ID;
+
+        let currentArtworksOfLogin = this.getArtworks();
+        if(!(currentArtworksOfLogin.find(x => x.owner == artwork.owner && x.url == artwork.url))) {
+            this.model.saveArtwork(artwork);
+        }
+    }
+
     saveArtwork() {
         let artwork: Artwork = {type: "artwork", name: this.selectItem["name"], 
         artist: this.selectItem["artist"], year: this.selectItem["year"], url: this.selectItem["filelocation"]};
@@ -140,4 +198,223 @@ export class ArtworkTableComponent {
     getScriptsOfAnArtwork(_id: string) {
         return this.model.getScriptsOfAnArtwork(_id);
     }
+
+    uniqByMap<T>(array: T[]): T[] {
+        const map = new Map();
+        for (const item of array) {
+            map.set(item, item);
+        }
+        return Array.from(map.values());
+    }
+
+    // *********my collection search
+    searchCollectionText = "";
+    searchCollectionDisplayLimit = 12;
+
+
+    //selections from selection and events
+    artistSelected: string = null;
+    artworkSelected: string = null;
+    yearSelected: string = null;
+
+    artistSelectedArchive: string = null;
+    artworkSelectedArchive: string = null;
+    yearSelectedArchive: string = null;
+
+    //**********archive search interface
+    searchText = "";
+    searchDisplayLimit = 12;
+
+    //////////my collection facets
+    keywordArtist = 'text';
+    keywordYear = 'text';
+    keywordArtwork = 'text';
+
+    selectEventArtist(item: {text: string}) {
+        this.artistSelected = item.text;
+        // do something with selected item
+        this.recaluateNameLists();
+    }
+
+    onChangeSearchArtist(search: string) {
+    // fetch remote data from here
+    // And reassign the 'data' which is binded to 'data' property.
+    }
+
+    onFocusedArtist(e) {
+    // do something
+    }
+
+    inputClearedArtist(e) {
+        this.artistSelected = null;
+        this.recaluateNameLists();
+    }
+
+    selectEventArtwork(item: {text: string}) {
+        this.artworkSelected = item.text;
+        // do something with selected item
+        this.recaluateNameLists();
+    }
+  
+    onChangeSearchArtwork(search: string) {
+        // fetch remote data from here
+        // And reassign the 'data' which is binded to 'data' property.
+    }
+  
+    onFocusedArtwork(e) {
+        // do something
+    }
+
+    inputClearedArtwork(e) {
+        this.artworkSelected = null;
+        this.recaluateNameLists();
+    }
+
+    selectEventYear(item: {text: string}) {
+        this.yearSelected = item.text;
+        // do something with selected item
+        this.recaluateNameLists();
+    }
+      
+    onChangeSearchYear(search: string) {
+    // fetch remote data from here
+    // And reassign the 'data' which is binded to 'data' property.
+    }
+      
+    onFocusedYear(e) {
+    // do something
+    }
+    
+    inputClearedYear(e) {
+        this.yearSelected = null;
+        this.recaluateNameLists();
+    }
+
+    //////////archive facets
+    keywordArtistArchive = 'text';
+    keywordYearArchive = 'text';
+    keywordArtworkArchive = 'text';
+
+    selectEventArtistArchive(item: {text: string}) {
+        this.artistSelectedArchive = item.text;
+        // do something with selected item
+        this.recaluateNameListsArchive();
+    }
+
+    onChangeSearchArtistArchive(search: string) {
+    // fetch remote data from here
+    // And reassign the 'data' which is binded to 'data' property.
+    }
+
+    onFocusedArtistArchive(e) {
+    // do something
+    }
+
+    inputClearedArtistArchive(e) {
+        this.artistSelectedArchive = null;
+        this.recaluateNameListsArchive();
+    }
+
+    selectEventArtworkArchive(item: {text: string}) {
+        this.artworkSelectedArchive = item.text;
+        // do something with selected item
+        this.recaluateNameListsArchive();
+    }
+  
+    onChangeSearchArtworkArchive(search: string) {
+        // fetch remote data from here
+        // And reassign the 'data' which is binded to 'data' property.
+    }
+  
+    onFocusedArtworkArchive(e) {
+        // do something
+    }
+
+    inputClearedArtworkArchive(e) {
+        this.artworkSelectedArchive = null;
+        this.recaluateNameListsArchive();
+    }
+
+    selectEventYearArchive(item: {text: string}) {
+        this.yearSelectedArchive = item.text;
+        // do something with selected item
+        this.recaluateNameListsArchive();
+    }
+      
+    onChangeSearchYearArchive(search: string) {
+    // fetch remote data from here
+    // And reassign the 'data' which is binded to 'data' property.
+    }
+      
+    onFocusedYearArchive(e) {
+    // do something
+    }
+    
+    inputClearedYearArchive(e) {
+        this.yearSelectedArchive = null;
+        this.recaluateNameListsArchive();
+    }
+
+    //reloading the shown results based on facet selection
+    filteredResults() {
+        let results = this.getArtworks().filter(it => {
+            return (it.name+it.artist+it.year).toLowerCase().includes(this.searchCollectionText.toLowerCase())});
+    
+        if(this.artistSelected) {
+            results = results.filter(x => x.artist == this.artistSelected);
+        }
+        if(this.artworkSelected) {
+            results = results.filter(x => x.name == this.artworkSelected);
+        }
+        if(this.yearSelected) {
+            results = results.filter(x => x.year == this.yearSelected);
+        }
+        return results;
+    }
+
+    filteredResultsArchive() {
+        let results = this.model.getCollection().filter(it => {
+            return (it.name+it.artist+it.year).toLowerCase().includes(this.searchText.toLowerCase())});
+    
+        if(this.artistSelectedArchive) {
+            results = results.filter(x => x.artist == this.artistSelectedArchive);
+        }
+        if(this.artworkSelectedArchive) {
+            results = results.filter(x => x.name == this.artworkSelectedArchive);
+        }
+        if(this.yearSelectedArchive) {
+            results = results.filter(x => x.year == this.yearSelectedArchive);
+        }
+        return results;
+    }
+
+    recaluateNameLists() {
+        let results = this.filteredResults().filter(it => {
+            return (it.name+it.artist+it.year).toLowerCase().includes(this.searchCollectionText.toLowerCase())});
+
+        let artistNameList: {text: string}[] = this.uniqByMap(results.map(x => x.artist)).map(x => ({text: x}));
+        this.artistStartList = [... artistNameList];
+
+        let artworkNameList: {text: string}[] = this.uniqByMap(results.map(x => x.name)).map(x => ({text: x}));
+        this.artworkStartList = [... artworkNameList];
+
+        let yearNameList: {text: string}[] = this.uniqByMap(results.map(x => x.year)).map(x => ({text: x}));
+        this.yearStartList = [... yearNameList];
+    }
+
+    recaluateNameListsArchive() {
+        let results = this.filteredResultsArchive().filter(it => {
+            return (it.name+it.artist+it.year).toLowerCase().includes(this.searchCollectionText.toLowerCase())});
+
+        let artistNameList: {text: string}[] = this.uniqByMap(results.map(x => x.artist)).map(x => ({text: x}));
+        this.artistStartListArchive = [... artistNameList];
+
+        let artworkNameList: {text: string}[] = this.uniqByMap(results.map(x => x.name)).map(x => ({text: x}));
+        this.artworkStartListArchive = [... artworkNameList];
+
+        let yearNameList: {text: string}[] = this.uniqByMap(results.map(x => x.year)).map(x => ({text: x}));
+        this.yearStartListArchive = [... yearNameList];
+    }
+
+
 }

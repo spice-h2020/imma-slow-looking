@@ -25,6 +25,24 @@ export class ScriptWizardComponent {
 
     constructor(public currentuser: CurrentUser, public model: Model){}
 
+    artistStartList: {text: string}[];
+    artworkStartList: {text: string}[]
+    yearStartList: {text: string}[];
+
+    showCurrentSelection: boolean = false;
+
+    setFacetsOnScriptOpening() {
+        this.artistStartList = this.uniqByMap(this.getArtworks(this.model.selectedScript).map(x => x.artist)).map(x => ({text: x}));
+        this.artworkStartList = this.uniqByMap(this.getArtworks(this.model.selectedScript).map(x => x.name)).map(x => ({text: x}));
+        this.yearStartList = this.uniqByMap(this.getArtworks(this.model.selectedScript).map(x => x.year)).map(x => ({text: x}));
+    }
+
+
+    //holding facet selections when moving between tabs
+    artistField = '';
+    artworkField = '';
+    yearField = '';
+
     //for filtering personal artwork collection
     searchText = '';
 
@@ -677,6 +695,164 @@ export class ScriptWizardComponent {
             }
         }
         return true;
+    }
+
+
+    //*********artwork faceted search
+    selectedCollectionItem: Artwork = null;
+
+    getSelectedCollectionItemAsList() {
+        let result = [];
+        if(this.selectedCollectionItem) {
+            result.push(this.selectedCollectionItem);
+        }
+        return result;
+    }
+
+    selectCollectiomItemName() {
+        if(this.selectedCollectionItem) {
+            return this.selectedCollectionItem.name;
+        }
+        else {
+            return '';
+        }
+    }
+    selectCollectiomItemArtist() {
+        if(this.selectedCollectionItem) {
+            return this.selectedCollectionItem.artist;
+        }
+        else {
+            return '';
+        }
+    }
+    selectCollectiomItemURL() {
+        if(this.selectedCollectionItem) {
+            return this.selectedCollectionItem.url;
+        }
+        else {
+            return '';
+        }
+    }
+
+    uniqByMap<T>(array: T[]): T[] {
+        const map = new Map();
+        for (const item of array) {
+            map.set(item, item);
+        }
+        return Array.from(map.values());
+    }
+
+    //////////////////
+
+    // *********my collection search
+    searchCollectionText = "";
+    searchCollectionDisplayLimit = 12;
+
+
+    //selections from selection and events
+    artistSelected: string = null;
+    artworkSelected: string = null;
+    yearSelected: string = null;
+
+    //////////my collection facets
+    keywordArtist = 'text';
+    keywordYear = 'text';
+    keywordArtwork = 'text';
+
+    selectEventArtist(item: {text: string}) {
+        this.artistSelected = item.text;
+        // do something with selected item
+        this.recaluateNameLists();
+    }
+
+    onChangeSearchArtist(search: string) {
+    // fetch remote data from here
+    // And reassign the 'data' which is binded to 'data' property.
+    }
+
+    onFocusedArtist(e) {
+    // do something
+    }
+
+    inputClearedArtist(e) {
+        this.artistSelected = null;
+        this.recaluateNameLists();
+    }
+
+    selectEventArtwork(item: {text: string}) {
+        this.artworkSelected = item.text;
+        // do something with selected item
+        this.recaluateNameLists();
+    }
+
+    onChangeSearchArtwork(search: string) {
+        // fetch remote data from here
+        // And reassign the 'data' which is binded to 'data' property.
+    }
+
+    onFocusedArtwork(e) {
+        // do something
+    }
+
+    inputClearedArtwork(e) {
+        this.artworkSelected = null;
+        this.recaluateNameLists();
+    }
+
+    selectEventYear(item: {text: string}) {
+        this.yearSelected = item.text;
+        // do something with selected item
+        this.recaluateNameLists();
+    }
+    
+    onChangeSearchYear(search: string) {
+    // fetch remote data from here
+    // And reassign the 'data' which is binded to 'data' property.
+    }
+    
+    onFocusedYear(e) {
+    // do something
+    }
+    
+    inputClearedYear(e) {
+        this.yearSelected = null;
+        this.recaluateNameLists();
+    }
+
+    //reloading the shown results based on facet selection
+    filteredResults() {
+        let results = this.getArtworks(this.model.selectedScript).filter(it => {
+            return (it.name+it.artist+it.year).toLowerCase().includes(this.searchCollectionText.toLowerCase())});
+
+        if(this.showCurrentSelection) {
+            results = results.filter(x => this.model.selectedScript.artworkids.includes(x._id));
+        }
+    
+        if(this.artistSelected) {
+            results = results.filter(x => x.artist == this.artistSelected);
+        }
+        if(this.artworkSelected) {
+            results = results.filter(x => x.name == this.artworkSelected);
+        }
+        if(this.yearSelected) {
+            results = results.filter(x => x.year == this.yearSelected);
+        }
+        return results;
+    }
+
+    recaluateNameLists() {
+        let results = this.filteredResults().filter(it => {
+            return (it.name+it.artist+it.year).toLowerCase().includes(this.searchCollectionText.toLowerCase())});
+
+        let artistNameList: {text: string}[] = this.uniqByMap(results.map(x => x.artist)).map(x => ({text: x}));
+        this.artistStartList = [... artistNameList];
+
+        let artworkNameList: {text: string}[] = this.uniqByMap(results.map(x => x.name)).map(x => ({text: x}));
+        this.artworkStartList = [... artworkNameList];
+
+        let yearNameList: {text: string}[] = this.uniqByMap(results.map(x => x.year)).map(x => ({text: x}));
+        this.yearStartList = [... yearNameList];
+
     }
 
 }
