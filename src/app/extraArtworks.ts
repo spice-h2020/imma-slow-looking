@@ -170,6 +170,31 @@ export class ExtraArtworks {
         new CollectionArtwork("Interior, view of organ, organ number 1665","Dukker, G.J. - Photographer","07-1997","https://www.orgelsite.nl/wp-content/uploads/2018/11/Wijk01Y.jpg","Interior, view of organ, organ number 1665, Dukker, G.J. - Photographer, 07-1997"),
         new CollectionArtwork("Interior, view of organ, organ number 470","Wal, Galen, P. (Paul) van - Photographer","06-1997","https://www.orgelsite.nl/wp-content/uploads/2018/07/IMG4009Y.jpg","Interior, view of organ, organ number 470 , Wal, Galen, P. (Paul) van - Photographer , 06-1997"),
 
+        new CollectionArtwork("Homeward","Arthur Melville","1880","https://www.edinburghmuseums.org.uk/sites/default/files/images/Shifting%20Vistas_image%20websize-min.jpg","Homeward, Arthur Melville, 1880"),
+        new CollectionArtwork("A Corrie in Argyllshire","James Lawton Wingate","1866","https://www.edinburghmuseums.org.uk/sites/default/files/images/Shifting%20Vistas_image%20websize2-min_0.jpg","A Corrie in Argyllshire, James Lawton Wingate,1866"),
+        new CollectionArtwork("Conversations Part II (Granton Gas Tower)","Kate Downie","2005","https://www.edinburghmuseums.org.uk/sites/default/files/images/Shifting%20Vistas_image%20websize3-min_0.jpg","Conversataions Part II (Granton Gas Tower) , Kate Downie, 2005"),
+        new CollectionArtwork("Beech Tree, Winter","Victoria Crowe","1973","https://www.edinburghmuseums.org.uk/sites/default/files/images/Shifting%20Vistas_image%20websize5-min_0.jpg","Beech Tree, Winter, Victoria Crowe, 1973"),
+        new CollectionArtwork("Rocks, St Mary’s, Scilly Isles","Wilhelmina Barns-Graham","1953","https://www.edinburghmuseums.org.uk/sites/default/files/images/Shifting%20Vistas_image%20websize6-min_0.jpg","Rocks, St Mary’s, Scilly Isles , Wilhelmina Barns-Graham, 1973"),
+        new CollectionArtwork("Light: Island and Sea III","Jon Schueler","1971","https://www.edinburghmuseums.org.uk/sites/default/files/images/image%20websize-min_0.jpg","Beech Tree, Winter, Victoria Crowe, 1973"),
+
+        new CollectionArtwork("Willow Trees, Cattle and River", "Adam Bruce Thomson", "", "https://d3d00swyhr67nd.cloudfront.net/w1200h1200/collection/EDI/CITY/EDI_CITY_CAC_21_1988-001.jpg", "Willow Trees, Cattle and River, Adam Bruce Thomson"),
+        new CollectionArtwork("Cedars", "Adam Bruce Thomson", "", "https://d3d00swyhr67nd.cloudfront.net/w1200h1200/collection/EDI/CITY/EDI_CITY_CAC_1985_3-001.jpg", "Cedars, Adam Bruce Thomson"),
+        new CollectionArtwork("Craigleith Quarry", "Adam Bruce Thomson", "c.1907–1909", "https://d3d00swyhr67nd.cloudfront.net/w1200h1200/collection/EDII/RSA/EDII_RSA_2020_0009-001.jpg", "Craigleith Quarry, Adam Bruce Thomson, c.1907–1909"),
+        new CollectionArtwork("Trees and Cattle, Colvend", "Adam Bruce Thomson", "1920s", "https://d3d00swyhr67nd.cloudfront.net/w1200h1200/collection/EDI/CITY/EDI_CITY_CAC1985_2-001.jpg", "Trees and Cattle, Colvend, Adam Bruce Thomson, 1920s"),
+        new CollectionArtwork("North Bridge and Salisbury Crags, Edinburgh, from the North West", "Adam Bruce Thomson", "", "https://d3d00swyhr67nd.cloudfront.net/w1200h1200/collection/EDI/CITY/EDI_CITY_CAC_1978_283-001.jpg", "North Bridge and Salisbury Crags, Edinburgh, from the North West, Adam Bruce Thomson"),
+        new CollectionArtwork("Palm, Pampas Grass and Duncraig", "Adam Bruce Thomson", "", "https://d3d00swyhr67nd.cloudfront.net/w1200h1200/collection/EDI/CITY/EDI_CITY_CAC_1967_5-001.jpg", "Palm, Pampas Grass and Duncraig, Adam Bruce Thomson"),
+        new CollectionArtwork("Loch Carron Shore", "Adam Bruce Thomson", "c.1968", "https://d3d00swyhr67nd.cloudfront.net/w1200h1200/collection/EDII/RSA/EDII_RSA_1994_342-001.jpg", "Loch Carron Shore, Adam Bruce Thomson, c.1968"),
+        new CollectionArtwork("From My Bedroom Window", "Adam Bruce Thomson", "", "https://d3d00swyhr67nd.cloudfront.net/w1200h1200/collection/EDI/CITY/EDI_CITY_CAC_119_1964-001.jpg", "From My Bedroom Window, Adam Bruce Thomson"),
+        new CollectionArtwork("Park and Ruined Abbey", "Adam Bruce Thomson", "c.1961", "https://d3d00swyhr67nd.cloudfront.net/w1200h1200/collection/EDII/RSA/EDII_RSA_1995_007-001.jpg", "Park and Ruined Abbey, Adam Bruce Thomson, c.1961"),
+        new CollectionArtwork("Norman Kemp Smith (1872-1958)", "Adam Bruce Thomson", "", "https://d3d00swyhr67nd.cloudfront.net/w1200h1200/collection/EDI/UNI/EDI_UNI_EU_0966-001.jpg", "Norman Kemp Smith (1872-1958), Adam Bruce Thomson"),
+        new CollectionArtwork("Arthur's Seat", "Adam Bruce Thomson", "1970-1976", "https://d3d00swyhr67nd.cloudfront.net/w1200h1200/collection/EDI/CITY/EDI_CITY_CAC6_1990-001.jpg", "Arthur's Seat, Adam Bruce Thomson, 1970-1976"),
+        new CollectionArtwork("Head of a Girl", "Adam Bruce Thomson", "c.1943", "https://d3d00swyhr67nd.cloudfront.net/w1200h1200/collection/EDII/RSA/EDII_RSA_1994_374-001.jpg", "Head of a Girl, Adam Bruce Thomson, c.1943"),
+        new CollectionArtwork("North End, Iona, In Fitful Sunlight", "Adam Bruce Thomson", "after 1968", "https://d3d00swyhr67nd.cloudfront.net/w1200h1200/collection/EDI/CITY/EDI_CITY_CAC2017_15-001.jpg", "North End, Iona, In Fitful Sunlight, Adam Bruce Thomson, after 1968"),
+        new CollectionArtwork("Edinburgh - Canal Basin", "Adam Bruce Thomson", "c.1913", "https://d3d00swyhr67nd.cloudfront.net/w1200h1200/collection/EDI/CITY/EDI_CITY_CAC1985_1-001.jpg", "Edinburgh - Canal Basin, Adam Bruce Thomson, c.1913"),
+        new CollectionArtwork("The River Tweed above Melrose", "Adam Bruce Thomson", "before 1966", "https://d3d00swyhr67nd.cloudfront.net/w1200h1200/collection/EDI/CITY/EDI_CITY_CAC9_1974-001.jpg", "The River Tweed above Melrose, Adam Bruce Thomson, before 1966"),
+        new CollectionArtwork("Stormy Sea", "Adam Bruce Thomson", "c.1963", "https://d3d00swyhr67nd.cloudfront.net/w1200h1200/collection/EDI/CITY/EDI_CITY_CAC1963_1-001.jpg", "Stormy Sea, Adam Bruce Thomson, c.1963"),
+        new CollectionArtwork("Colinton Bridge - The Valley in Snow", "Adam Bruce Thomson", "c.1937", "https://d3d00swyhr67nd.cloudfront.net/w1200h1200/collection/EDI/CITY/EDI_CITY_CAC1997_6-001.jpg", "Colinton Bridge - The Valley in Snow, Adam Bruce Thomson, c.1937"),
+
 
     ]
 

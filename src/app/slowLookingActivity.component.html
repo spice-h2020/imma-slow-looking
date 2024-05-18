@@ -14,7 +14,9 @@
                     <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks).slice(0,1); let first = first" class="row align-items-end mb-3">
                         <div class="col-sm-6">
                             <div class="row" *ngIf="artwork.url">
-                                <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;" (error)="handleMissingImage($event)">
+                                <div class="container">
+                                    <img src="{{artwork.url}}" class="img-fluid" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;" (error)="handleMissingImage($event)">
+                                </div>
                             </div>
                             <div class="row" *ngIf="!artwork.url && artwork.fileLocation">
                                 <img src="{{artwork.fileLocation}}" style="cursor: pointer;" (error)="handleMissingImage($event)">
@@ -33,7 +35,9 @@
                     <div class="row itemsBlock">
                         <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks).slice(1);" class="col-md-4 col-sm-6 col-12 pb-3">
                             <div class="row">
-                                <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="height: auto; width: 100%; cursor: pointer;" (error)="handleMissingImage($event)">
+                                <div class="container">
+                                    <img src="{{artwork.url}}" class="img-fluid" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="height: auto; width: 100%; cursor: pointer;" (error)="handleMissingImage($event)">
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="ml-3">
@@ -104,7 +108,9 @@
                         <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks).slice(0,1); let first = first" class="row align-items-end mb-3">
                             <div class="col-sm-6">
                                 <div class="row" *ngIf="artwork.url">
-                                    <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;" (error)="handleMissingImage($event)">
+                                    <div class="container">
+                                        <img src="{{artwork.url}}" class="img-fluid" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;" (error)="handleMissingImage($event)">
+                                    </div>
                                 </div>
                                 <div class="row" *ngIf="!artwork.url && artwork.fileLocation">
                                     <img src="{{artwork.fileLocation}}" style="cursor: pointer;" (error)="handleMissingImage($event)">
@@ -123,7 +129,9 @@
                         <div class="row itemsBlock">
                             <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks).slice(1);" class="col-md-4 col-sm-6 col-12 pb-3">
                                 <div class="row">
-                                    <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="height: auto; width: 100%; cursor: pointer;" (error)="handleMissingImage($event)">
+                                    <div class="container">
+                                        <img src="{{artwork.url}}" class="img-fluid" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="height: auto; width: 100%; cursor: pointer;" (error)="handleMissingImage($event)">
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="ml-3">
@@ -319,7 +327,9 @@
                         <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks).slice(0,1); let first = first" class="row align-items-end mb-3">
                             <div class="col-sm-6">
                                 <div class="row" *ngIf="artwork.url">
-                                    <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;" (error)="handleMissingImage($event)">
+                                    <div class="container">
+                                        <img src="{{artwork.url}}" class="img-fluid" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;" (error)="handleMissingImage($event)">
+                                    </div>
                                 </div>
                                 <div class="row" *ngIf="!artwork.url && artwork.fileLocation">
                                     <img src="{{artwork.fileLocation}}" style="cursor: pointer;" (error)="handleMissingImage($event)">
@@ -338,7 +348,9 @@
                         <div class="row itemsBlock">
                             <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks).slice(1);" class="col-md-4 col-sm-6 col-12 pb-3">
                                 <div class="row">
-                                    <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="height: auto; width: 100%; cursor: pointer;" (error)="handleMissingImage($event)">
+                                    <div class="container">
+                                        <img src="{{artwork.url}}" class="img-fluid" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="height: auto; width: 100%; cursor: pointer;" (error)="handleMissingImage($event)">
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="ml-3">
@@ -454,7 +466,9 @@
                         <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks).slice(0,1); let first = first" class="row align-items-end mb-3">
                             <div class="col-sm-6">
                                 <div class="row" *ngIf="artwork.url">
-                                    <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;" (error)="handleMissingImage($event)">
+                                    <div class="container">
+                                        <img src="{{artwork.url}}" class="img-fluid" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;" (error)="handleMissingImage($event)">
+                                    </div>
                                 </div>
                                 <div class="row" *ngIf="!artwork.url && artwork.fileLocation">
                                     <img src="{{artwork.fileLocation}}" style="cursor: pointer;" (error)="handleMissingImage($event)">
@@ -473,7 +487,9 @@
                         <div class="row itemsBlock">
                             <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks).slice(1);" class="col-md-4 col-sm-6 col-12 pb-3">
                                 <div class="row">
-                                    <img src="{{artwork.url}}" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="height: auto; width: 100%; cursor: pointer;" (error)="handleMissingImage($event)">
+                                    <div class="container">
+                                        <img src="{{artwork.url}}" class="img-fluid" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="height: auto; width: 100%; cursor: pointer;" (error)="handleMissingImage($event)">
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="ml-3">

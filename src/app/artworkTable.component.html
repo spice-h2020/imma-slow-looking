@@ -239,7 +239,7 @@
                                 <div *ngIf="artworkAddedAlert==item.filelocation" class="col-12 alert alert-success" role="alert">
                                     Artwork added to your collection
                                 </div>
-                                <button class="float-right btn btn-success" [disabled]="artworkAlreadyAdded(item.filelocation)" (click)="artworkAddedAlert=item.filelocation; saveArtworkFromParameters(item.name, item.artist, '1999', item.filelocation)" data-bs-toggle="modal" data-bs-target="#archiveModal">Add</button>
+                                <button class="float-right btn btn-success" [disabled]="artworkAlreadyAdded(item.filelocation)" (click)="artworkAddedAlert=item.filelocation; saveArtworkFromParameters(item.name, item.artist, item.year , item.filelocation)" data-bs-toggle="modal" data-bs-target="#archiveModal">Add</button>
                             </div>
                         </div>
                     </div>

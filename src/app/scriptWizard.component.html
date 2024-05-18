@@ -410,7 +410,9 @@
                         <div class="col">
                             <div class="row">
                                 <ng-container *ngIf="artwork.url">
-                                    <img src="{{artwork.url}}" alt="{{artwork.name}}" height="auto" width="100%" (error)="handleMissingImage($event)">
+                                    <div class="container">
+                                        <img src="{{artwork.url}}" alt="{{artwork.name}}" class="img-fluid" height="auto" width="100%" (error)="handleMissingImage($event)">
+                                    </div>
                                 </ng-container>
                             </div>
                             <div class="row">
