@@ -14,9 +14,7 @@
                     <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks).slice(0,1); let first = first" class="row align-items-end mb-3">
                         <div class="col-sm-6">
                             <div class="row" *ngIf="artwork.url">
-                                <div class="container">
                                     <img src="{{artwork.url}}" class="img-fluid" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;" (error)="handleMissingImage($event)">
-                                </div>
                             </div>
                             <div class="row" *ngIf="!artwork.url && artwork.fileLocation">
                                 <img src="{{artwork.fileLocation}}" style="cursor: pointer;" (error)="handleMissingImage($event)">
@@ -68,7 +66,7 @@
                 </div> -->
             </div>
 
-            <p style="white-space: pre-wrap;" [innerHTML]="stage.body | linkifyHtml"></p>
+            <p class="text-break" style="white-space: pre-wrap;" [innerHTML]="stage.body | linkifyHtml"></p>
 
             <div *ngIf="slowLookingMaximumScriptStageIndex == i" class="row bg-light border-top">
                 <div class="text-left">
@@ -108,9 +106,9 @@
                         <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks).slice(0,1); let first = first" class="row align-items-end mb-3">
                             <div class="col-sm-6">
                                 <div class="row" *ngIf="artwork.url">
-                                    <div class="container">
+                                    <!-- <div class="container"> -->
                                         <img src="{{artwork.url}}" class="img-fluid" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;" (error)="handleMissingImage($event)">
-                                    </div>
+                                    <!-- </div> -->
                                 </div>
                                 <div class="row" *ngIf="!artwork.url && artwork.fileLocation">
                                     <img src="{{artwork.fileLocation}}" style="cursor: pointer;" (error)="handleMissingImage($event)">
@@ -145,13 +143,13 @@
                     </ng-container>
                 </div>
 
-                <div class="alert alert-info" style="white-space: pre-wrap;" [innerHTML]="stage.help | linkifyHtml" *ngIf="stage.help"></div>
+                <div class="alert alert-info text-break" style="white-space: pre-wrap;" [innerHTML]="stage.help | linkifyHtml" *ngIf="stage.help"></div>
 
                 
                 <ng-container *ngIf="stage.sequential">
                     <!-- <div class="col-sm-12">{{stage.body[multiquestionIndex]}}</div><br/> -->
                     
-                    <p style="white-space: pre-wrap;" [innerHTML]="stage.questions[multiquestionIndex].title | linkifyHtml"></p>
+                    <p class="text-break" style="white-space: pre-wrap;" [innerHTML]="stage.questions[multiquestionIndex].title | linkifyHtml"></p>
 
                     <!-- get answer -->
                     <div *ngIf="!stage.questions[multiquestionIndex].choice">
@@ -248,7 +246,7 @@
                 <span *ngIf="!stage.sequential">
                     <!-- <span class="col-sm-12">{{stage.body[multiquestionIndex]}}</span><br/><br/> -->
                     
-                    <p style="white-space: pre-wrap;" [innerHTML]="stage.questions[multiquestionIndex].title | linkifyHtml"></p>
+                    <p class="text-break" style="white-space: pre-wrap;" [innerHTML]="stage.questions[multiquestionIndex].title | linkifyHtml"></p>
                     <!-- <button class="m-3 btn btn-warning" (click)="randomiseQuestion(stage.body.length-1); submittedAnswer=false;">Reload question</button> -->
 
                     <div *ngIf="!stage.questions[multiquestionIndex].choice" style="width: 100%;">
@@ -327,9 +325,9 @@
                         <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks).slice(0,1); let first = first" class="row align-items-end mb-3">
                             <div class="col-sm-6">
                                 <div class="row" *ngIf="artwork.url">
-                                    <div class="container">
+                                    <!-- <div class="container"> -->
                                         <img src="{{artwork.url}}" class="img-fluid" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;" (error)="handleMissingImage($event)">
-                                    </div>
+                                    <!-- </div> -->
                                 </div>
                                 <div class="row" *ngIf="!artwork.url && artwork.fileLocation">
                                     <img src="{{artwork.fileLocation}}" style="cursor: pointer;" (error)="handleMissingImage($event)">
@@ -382,7 +380,7 @@
                 </div>
 
 
-                <p style="white-space: pre-wrap;" [innerHTML]="stage.question.title | linkifyHtml"></p>
+                <p class="text-break" style="white-space: pre-wrap;" [innerHTML]="stage.question.title | linkifyHtml"></p>
                 <div class="row">
                     <div class="col">
                         <span class="alert alert-info pl-3 pr-3" style="float:left; white-space: pre-wrap; width: 100%;" *ngIf="stage.help && showQuestionHelp" [innerHTML]="stage.help | linkifyHtml"></span>
@@ -466,9 +464,9 @@
                         <div *ngFor="let artwork of getArtworksFromIds(stage.includeartworks).slice(0,1); let first = first" class="row align-items-end mb-3">
                             <div class="col-sm-6">
                                 <div class="row" *ngIf="artwork.url">
-                                    <div class="container">
+                                    <!-- <div class="container"> -->
                                         <img src="{{artwork.url}}" class="img-fluid" alt="{{artwork.name}}" (click)="startLightbox(artwork.url)" style="cursor: pointer;" (error)="handleMissingImage($event)">
-                                    </div>
+                                    <!-- </div> -->
                                 </div>
                                 <div class="row" *ngIf="!artwork.url && artwork.fileLocation">
                                     <img src="{{artwork.fileLocation}}" style="cursor: pointer;" (error)="handleMissingImage($event)">
@@ -521,9 +519,9 @@
                 </div>
 
 
-                <p class="alert alert-info" style="white-space: pre-wrap;" [innerHTML]="stage.help | linkifyHtml"></p>
+                <p class="alert alert-info text-break" style="white-space: pre-wrap;" [innerHTML]="stage.help | linkifyHtml"></p>
 
-                <p style="white-space: pre-wrap;" [innerHTML]="stage.body | linkifyHtml"></p>
+                <p class="text-break" style="white-space: pre-wrap;" [innerHTML]="stage.body | linkifyHtml"></p>
 
                 <!-- get the answer -->
                 <div class="mb-3">
